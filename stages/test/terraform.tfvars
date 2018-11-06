@@ -1,8 +1,8 @@
 stage = "test"
 
-resource_group_name = "northvolt_automation_test"
+resource_group_name = "nv-automation-test"
 
-storage_account_name = "northvolt_automation_test"
+storage_account_name = "nvautomationtest"
 
 virtual_network_address_space = ["10.1.0.0/16"]
 

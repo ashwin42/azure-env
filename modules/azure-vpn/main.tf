@@ -1,5 +1,5 @@
 resource "azurerm_subnet" "gateway_subnet" {
-  name                 = "VpnGatewaySubnet"
+  name                 = "GatewaySubnet"
   resource_group_name  = "${var.resource_group_name}"
   virtual_network_name = "${var.virtual_network_name}"
   address_prefix       = "${var.gateway_subnet_address_prefix}"
@@ -9,7 +9,7 @@ resource "azurerm_public_ip" "virtual_network_gateway_public_ip" {
   name                         = "${var.stage}_virtual_network_gateway_public_ip"
   resource_group_name          = "${var.resource_group_name}"
   location                     = "${var.location}"
-  public_ip_address_allocation = "dynamic"
+  public_ip_address_allocation = "Dynamic"
 }
 
 resource "azurerm_virtual_network_gateway" "virtual_network_gateway" {
