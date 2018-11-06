@@ -1,2 +1,4 @@
 .terraform
+*.tfstate*
+beconf.tfvars
 secrets.tfvars
