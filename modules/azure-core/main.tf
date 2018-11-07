@@ -5,6 +5,13 @@ resource "azurerm_virtual_network" "virtual_network" {
   location            = "${var.location}"
 }
 
+resource "azurerm_subnet" "subnet_internal" {
+  name                 = "test-internal"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.virtual_network.name}"
+  address_prefix       = "${var.subnet_internal_prefix}"
+}
+
 resource "azurerm_local_network_gateway" "gamla_brogatan_26_local_gateway" {
   name                = "northvolt_gamla_brogatan_26"
   resource_group_name = "${var.resource_group_name}"

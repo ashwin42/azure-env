@@ -12,6 +12,7 @@ module "azure_core" {
   source                        = "../../modules/azure-core"
   resource_group_name           = "${var.resource_group_name}"
   virtual_network_address_space = "${var.virtual_network_address_space}"
+  subnet_internal_prefix        = "${var.subnet_internal_prefix}"
   location                      = "${var.location}"
   stage                         = "${var.stage}"
 }
@@ -25,4 +26,18 @@ module "azure_vpn" {
   gateway_connection_psk        = "${var.gateway_connection_psk}"
   location                      = "${var.location}"
   stage                         = "${var.stage}"
+}
+
+module "azure-teamcenter" {
+  source                    = "../../modules/azure-teamcenter"
+  resource_group_name       = "${var.resource_group_name}"
+  subnet_id                 = "${module.azure_core.subnet_internal_id}"
+  location                  = "${var.location}"
+  stage                     = "${var.stage}"
+  teamcenter_vm_size        = "${var.teamcenter_vm_size}"
+  teamcenter_data_disk_size = "${var.teamcenter_data_disk_size}"
+  webtier_vm_size           = "${var.webtier_vm_size}"
+  webtier_data_disk_size    = "${var.webtier_data_disk_size}"
+  password                  = "${var.admin_password}"
+  database_password         = "${var.database_password}"
 }
