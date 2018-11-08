@@ -31,6 +31,7 @@ module "azure_vpn" {
 module "azure-teamcenter" {
   source                    = "../../modules/azure-teamcenter"
   resource_group_name       = "${var.resource_group_name}"
+  storage_account_name      = "${var.storage_account_name}"
   subnet_id                 = "${module.azure_core.subnet_internal_id}"
   location                  = "${var.location}"
   stage                     = "${var.stage}"

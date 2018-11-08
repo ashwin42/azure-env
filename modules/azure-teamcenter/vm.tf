@@ -46,7 +46,18 @@ resource "azurerm_virtual_machine" "teamcenter" {
   }
 }
 
+resource "azurerm_storage_blob" "teamcenter-prereqs" {
+  depends_on             = ["azurerm_storage_container.teamcenter_resources"]
+  name                   = "install_prereqs.ps1"
+  resource_group_name    = "${var.resource_group_name}"
+  storage_account_name   = "${var.storage_account_name}"
+  storage_container_name = "${azurerm_storage_container.teamcenter_resources.name}"
+  type                   = "block"
+  source                 = "${path.module}/scripts/install_prereqs.ps1"
+}
+
 resource "azurerm_virtual_machine_extension" "teamcenter" {
+  depends_on           = ["azurerm_storage_blob.teamcenter-prereqs"]
   name                 = "${var.application_name}-vm-extension"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
@@ -57,7 +68,8 @@ resource "azurerm_virtual_machine_extension" "teamcenter" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "powershell.exe New-Item -ItemType directory -Path C:\\Users\\nvadmin\\Desktop\\kyleTestDirectory"
+        "fileUris": ["${azurerm_storage_blob.teamcenter-prereqs.url}"],
+        "commandToExecute": "powershell.exe install_prereqs.ps1"
     }
 SETTINGS
 }
