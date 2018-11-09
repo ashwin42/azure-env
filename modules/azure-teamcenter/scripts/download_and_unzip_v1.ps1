@@ -11,18 +11,17 @@ param(
     [Parameter(Mandatory = $true)] 
     [string]$Blob,
 
-    [Parameter(Mandatory = $true)] 
+    [Parameter(Mandatory = $false)] 
     [string]$Target
 )
 
 Set-StrictMode -Version 3
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+$Target = "c:\" + $Target
 
-# Check if Windows Azure Powershell is avaiable 
-if ((Get-Module -ListAvailable Azure) -eq $null) 
-{ 
-    throw "Windows Azure Powershell not found! Please install from http://www.windowsazure.com/en-us/downloads/#cmd-line-tools" 
-} 
+# Install azure sdk
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module -Name AzureRM -AllowClobber -Force
 
 # Setup Storage Context
 $ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
@@ -40,11 +39,17 @@ catch
         throw "Unable to download blob " + $Blob
     }
 
-# Unzip the file
+# Unzip the file and delete it when done
 $SourceFile = $Target + "\" + $Blob
 $ExtractedTarget = $Target + "\" + (Get-Item $SourceFile).Basename
+
 $Output = "Unzipping " + $SourceFile + " to " + $ExtractedTarget
 Write-Output $Output
+
 [System.IO.Compression.ZipFile]::ExtractToDirectory($SourceFile, $ExtractedTarget)
+
+$Output = "Deleting file " + $SourceFile
+Write-Output $Output
+Remove-Item -Path $SourceFile -Force
 
 Write-Output "Done!"

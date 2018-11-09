@@ -5,6 +5,7 @@ variable "location" {
 }
 
 variable "storage_account_name" {}
+variable "storage_access_key" {}
 variable "stage" {}
 
 variable "virtual_network_address_space" {
@@ -20,3 +21,4 @@ variable "teamcenter_vm_size" {}
 variable "webtier_vm_size" {}
 variable "teamcenter_data_disk_size" {}
 variable "webtier_data_disk_size" {}
+variable "blob_name" {}

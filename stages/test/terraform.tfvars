@@ -14,6 +14,7 @@ teamcenter_vm_size = "Standard_D4_v3"
 
 teamcenter_data_disk_size = "100"
 
-webtier_vm_size = "Standard_E2_v3"
+webtier_vm_size = "Standard_B2S"
 
 webtier_data_disk_size = "100"
+blob_name = "Tc12.0.0.0_wntx64_1_of_2.zip"

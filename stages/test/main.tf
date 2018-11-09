@@ -32,6 +32,7 @@ module "azure-teamcenter" {
   source                    = "../../modules/azure-teamcenter"
   resource_group_name       = "${var.resource_group_name}"
   storage_account_name      = "${var.storage_account_name}"
+  storage_access_key        = "${var.storage_access_key}"
   subnet_id                 = "${module.azure_core.subnet_internal_id}"
   location                  = "${var.location}"
   stage                     = "${var.stage}"
@@ -41,4 +42,5 @@ module "azure-teamcenter" {
   webtier_data_disk_size    = "${var.webtier_data_disk_size}"
   password                  = "${var.admin_password}"
   database_password         = "${var.database_password}"
+  blob_name                 = "${var.blob_name}"
 }
