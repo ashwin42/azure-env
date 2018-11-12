@@ -14,7 +14,12 @@ teamcenter_vm_size = "Standard_D4_v3"
 
 teamcenter_data_disk_size = "100"
 
-webtier_vm_size = "Standard_B2S"
+enable_render_server = false
 
-webtier_data_disk_size = "100"
+tc_gpu_vm_size = "Standard_B2s"
+
+tc_license_vm_size = "Standard_B2s"
+
+tc_gpu_data_disk_size = "100"
+
 blob_name = "Tc12.0.0.0_wntx64_1_of_2.zip"

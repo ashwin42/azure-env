@@ -1,3 +1,7 @@
+#
+# Main TeamCenter server
+#
+
 resource "azurerm_virtual_machine" "teamcenter" {
   name                             = "${var.application_name}-vm"
   location                         = "${var.location}"
@@ -92,57 +96,118 @@ resource "azurerm_virtual_machine_extension" "teamcenter" {
   PROTECTED_SETTINGS
 }
 
-# resource "azurerm_virtual_machine" "tc_gpu" {
-#   name                             = "${var.application_name}-tc-gpu-vm"
-#   location                         = "${var.location}"
-#   resource_group_name              = "${var.resource_group_name}"
-#   network_interface_ids            = ["${azurerm_network_interface.tc_gpu_network_interface.id}"]
-#   vm_size                          = "${var.tc_gpu_vm_size}"
-#   delete_os_disk_on_termination    = true
-#   delete_data_disks_on_termination = false
+#
+# GPU host for rendering previews
+#
 
+resource "azurerm_virtual_machine" "tc_gpu" {
+  count                            = "${var.enable_render_server ? 1 : 0}"
+  name                             = "${var.application_name}-tc-gpu-vm"
+  location                         = "${var.location}"
+  resource_group_name              = "${var.resource_group_name}"
+  network_interface_ids            = ["${azurerm_network_interface.tc_gpu_network_interface.id}"]
+  vm_size                          = "${var.tc_gpu_vm_size}"
+  delete_os_disk_on_termination    = true
+  delete_data_disks_on_termination = false
 
-#   storage_image_reference {
-#     sku       = "2016-Datacenter"
-#     publisher = "MicrosoftWindowsServer"
-#     version   = "latest"
-#     offer     = "WindowsServer"
-#   }
+  storage_image_reference {
+    sku       = "2016-Datacenter"
+    publisher = "MicrosoftWindowsServer"
+    version   = "latest"
+    offer     = "WindowsServer"
+  }
 
+  storage_os_disk {
+    name              = "${var.application_name}-tc-gpu-osdisk1"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
 
-#   storage_os_disk {
-#     name              = "${var.application_name}-tc-gpu-osdisk1"
-#     caching           = "ReadWrite"
-#     create_option     = "FromImage"
-#     managed_disk_type = "Standard_LRS"
-#   }
+  storage_data_disk {
+    name              = "${var.application_name}-tc-gpu-datadisk1"
+    caching           = "ReadWrite"
+    create_option     = "Empty"
+    managed_disk_type = "StandardSSD_LRS"
+    disk_size_gb      = "${var.tc_gpu_data_disk_size}"
+    lun               = "10"
+  }
 
+  os_profile_windows_config {
+    provision_vm_agent = true
+    timezone           = "W. Europe Standard Time"
+  }
 
-#   storage_data_disk {
-#     name              = "${var.application_name}-tc-gpu-datadisk1"
-#     caching           = "ReadWrite"
-#     create_option     = "Empty"
-#     managed_disk_type = "StandardSSD_LRS"
-#     disk_size_gb      = "${var.webtier_data_disk_size}"
-#     lun               = "10"
-#   }
+  os_profile {
+    computer_name  = "${var.application_name}"
+    admin_username = "nvadmin"
+    admin_password = "${var.password}"
+  }
 
+  tags {
+    stage = "${var.stage}"
+  }
+}
 
-#   os_profile_windows_config {
-#     provision_vm_agent = true
-#     timezone           = "W. Europe Standard Time"
-#   }
+#
+# Licensing server
+#
 
+resource "azurerm_virtual_machine" "tc_license" {
+  name                             = "${var.application_name}-tc-license-vm"
+  location                         = "${var.location}"
+  resource_group_name              = "${var.resource_group_name}"
+  network_interface_ids            = ["${azurerm_network_interface.tc_license_network_interface.id}"]
+  vm_size                          = "${var.tc_license_vm_size}"
+  delete_os_disk_on_termination    = true
+  delete_data_disks_on_termination = false
 
-#   os_profile {
-#     computer_name  = "${var.application_name}"
-#     admin_username = "nvadmin"
-#     admin_password = "${var.password}"
-#   }
+  storage_image_reference {
+    sku       = "2016-Datacenter"
+    publisher = "MicrosoftWindowsServer"
+    version   = "latest"
+    offer     = "WindowsServer"
+  }
 
+  storage_os_disk {
+    name              = "${var.application_name}-tc-license-osdisk1"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
 
-#   tags {
-#     stage = "${var.stage}"
-#   }
-# }
+  os_profile_windows_config {
+    provision_vm_agent = true
+    timezone           = "W. Europe Standard Time"
+  }
 
+  os_profile {
+    computer_name  = "${var.application_name}"
+    admin_username = "nvadmin"
+    admin_password = "${var.password}"
+  }
+
+  tags {
+    stage = "${var.stage}"
+  }
+}
+
+resource "azurerm_managed_disk" "tc_license_data" {
+  name                 = "tc_license-data1"
+  location             = "${var.location}"
+  resource_group_name  = "${var.resource_group_name}"
+  storage_account_type = "Standard_LRS"
+  create_option        = "Empty"
+  disk_size_gb         = "50"
+
+  tags {
+    stage = "${var.stage}"
+  }
+}
+
+resource "azurerm_virtual_machine_data_disk_attachment" "tc_license_data" {
+  managed_disk_id    = "${azurerm_managed_disk.tc_license_data.id}"
+  virtual_machine_id = "${azurerm_virtual_machine.tc_license.id}"
+  lun                = "5"
+  caching            = "ReadWrite"
+}
