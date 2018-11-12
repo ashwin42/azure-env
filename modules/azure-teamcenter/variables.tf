@@ -25,3 +25,4 @@ variable "subnet_prefix" {}
 variable "location" {}
 variable "stage" {}
 variable "blob_name" {}
+variable "db_server_size" {}

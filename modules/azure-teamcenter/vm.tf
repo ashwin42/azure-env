@@ -61,6 +61,13 @@ resource "azurerm_virtual_machine_data_disk_attachment" "teamcenter_data" {
   caching            = "ReadWrite"
 }
 
+resource "azurerm_recovery_services_protected_vm" "teamcenter" {
+  resource_group_name = "${var.resource_group_name}"
+  recovery_vault_name = "${azurerm_recovery_services_vault.teamcenter.name}"
+  source_vm_id        = "${azurerm_virtual_machine.teamcenter.id}"
+  backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
+}
+
 resource "azurerm_storage_blob" "download_and_unzip" {
   depends_on             = ["azurerm_storage_container.teamcenter_resources"]
   name                   = "download_and_unzip_v1.ps1"
@@ -149,6 +156,14 @@ resource "azurerm_virtual_machine" "tc_gpu" {
   }
 }
 
+resource "azurerm_recovery_services_protected_vm" "tc_gpu" {
+  count               = "${var.enable_render_server ? 1 : 0}"
+  resource_group_name = "${var.resource_group_name}"
+  recovery_vault_name = "${azurerm_recovery_services_vault.teamcenter.name}"
+  source_vm_id        = "${azurerm_virtual_machine.tc_gpu.id}"
+  backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
+}
+
 #
 # Licensing server
 #
@@ -210,4 +225,11 @@ resource "azurerm_virtual_machine_data_disk_attachment" "tc_license_data" {
   virtual_machine_id = "${azurerm_virtual_machine.tc_license.id}"
   lun                = "5"
   caching            = "ReadWrite"
+}
+
+resource "azurerm_recovery_services_protected_vm" "tc_license" {
+  resource_group_name = "${var.resource_group_name}"
+  recovery_vault_name = "${azurerm_recovery_services_vault.teamcenter.name}"
+  source_vm_id        = "${azurerm_virtual_machine.tc_license.id}"
+  backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
 }

@@ -24,3 +24,4 @@ variable "tc_license_vm_size" {}
 variable "teamcenter_data_disk_size" {}
 variable "tc_gpu_data_disk_size" {}
 variable "blob_name" {}
+variable "db_server_size" {}

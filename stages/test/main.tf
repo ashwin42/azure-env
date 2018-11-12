@@ -46,4 +46,5 @@ module "azure-teamcenter" {
   password                  = "${var.admin_password}"
   database_password         = "${var.database_password}"
   blob_name                 = "${var.blob_name}"
+  db_server_size            = "${var.db_server_size}"
 }

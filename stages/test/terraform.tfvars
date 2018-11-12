@@ -16,10 +16,12 @@ teamcenter_data_disk_size = "100"
 
 enable_render_server = false
 
-tc_gpu_vm_size = "Standard_B2s"
+tc_gpu_vm_size = "Standard_NV6"
 
 tc_license_vm_size = "Standard_B2s"
 
 tc_gpu_data_disk_size = "100"
 
 blob_name = "Tc12.0.0.0_wntx64_1_of_2.zip"
+
+db_server_size = "GP_Gen4_8"
