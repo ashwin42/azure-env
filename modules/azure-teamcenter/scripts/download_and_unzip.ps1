@@ -19,10 +19,6 @@ Set-StrictMode -Version 3
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $Target = "c:\" + $Target
 
-# Install azure sdk
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-Install-Module -Name AzureRM -AllowClobber -Force
-
 # Setup Storage Context
 $ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
 

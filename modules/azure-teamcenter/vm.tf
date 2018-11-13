@@ -68,18 +68,8 @@ resource "azurerm_recovery_services_protected_vm" "teamcenter" {
   backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
 }
 
-resource "azurerm_storage_blob" "download_and_unzip" {
-  depends_on             = ["azurerm_storage_container.teamcenter_resources"]
-  name                   = "download_and_unzip_v1.ps1"
-  resource_group_name    = "${var.resource_group_name}"
-  storage_account_name   = "${var.storage_account_name}"
-  storage_container_name = "${azurerm_storage_container.teamcenter_resources.name}"
-  type                   = "block"
-  source                 = "${path.module}/scripts/download_and_unzip_v1.ps1"
-}
-
 resource "azurerm_virtual_machine_extension" "teamcenter" {
-  depends_on           = ["azurerm_storage_blob.download_and_unzip"]
+  depends_on           = ["azurerm_storage_blob.first_run"]
   name                 = "${var.application_name}-vm-extension"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
@@ -90,13 +80,13 @@ resource "azurerm_virtual_machine_extension" "teamcenter" {
 
   settings = <<SETTINGS
     {
-      "fileUris": ["${azurerm_storage_blob.download_and_unzip.url}"]
+      "fileUris": ["${azurerm_storage_blob.first_run.url}"]
     }
   SETTINGS
 
   protected_settings = <<PROTECTED_SETTINGS
     {
-      "commandToExecute": "powershell -File ${azurerm_storage_blob.download_and_unzip.name} -StorageAccountKey ${var.storage_access_key} -StorageAccountName ${var.storage_account_name} -Container ${azurerm_storage_container.teamcenter_resources.name} -Blob ${var.blob_name} -Target ${var.targetdir}",
+      "commandToExecute": "powershell -File ${azurerm_storage_blob.first_run.name} -StorageAccountKey ${var.storage_access_key} -StorageAccountName ${var.storage_account_name} -Container ${azurerm_storage_container.teamcenter_resources.name}",
       "storageAccountKey": "${var.storage_access_key}",
       "storageAccountName": "${var.storage_account_name}"
     }
@@ -169,7 +159,7 @@ resource "azurerm_recovery_services_protected_vm" "tc_gpu" {
 #
 
 resource "azurerm_virtual_machine" "tc_license" {
-  name                             = "${var.application_name}-tc-license-vm"
+  name                             = "${var.application_name}-license-vm"
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
   network_interface_ids            = ["${azurerm_network_interface.tc_license_network_interface.id}"]
@@ -185,7 +175,7 @@ resource "azurerm_virtual_machine" "tc_license" {
   }
 
   storage_os_disk {
-    name              = "${var.application_name}-tc-license-osdisk1"
+    name              = "${var.application_name}-license-osdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -208,7 +198,7 @@ resource "azurerm_virtual_machine" "tc_license" {
 }
 
 resource "azurerm_managed_disk" "tc_license_data" {
-  name                 = "tc_license-data1"
+  name                 = "${var.application_name}-license-data1"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   storage_account_type = "Standard_LRS"

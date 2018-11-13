@@ -6,6 +6,19 @@ resource "azurerm_network_security_group" "teamcenter_security_group" {
   name                = "${var.application_name}_security_group"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
+
+  # Allow RDP from HQ
+  security_rule {
+    name                       = "RDP_from_HQ"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefixes    = ["192.168.118.0/24", "192.168.119.0/24"]
+    destination_address_prefix = "${cidrhost(var.subnet_prefix, 5)}"
+  }
 }
 
 resource "azurerm_network_interface" "teamcenter_network_interface" {
