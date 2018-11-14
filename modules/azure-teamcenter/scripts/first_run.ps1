@@ -9,15 +9,9 @@ param(
     [string]$Container
 )
 
-$ScriptsToRun = @(
-    "create_teamcenter_prereqs.ps1",
-    "download_and_unzip.ps1"
-)
+$ScriptsToRun = @("create_teamcenter_prereqs.ps1", "download_and_unzip.ps1")
 
-$BlobsToUnzip = @(
-    "Tc12.0.0.0_wntx64_1_of_2.zip",
-    "Tc12.0.0.0_wntx64_2_of_2.zip"
-)
+$BlobsToUnzip = @("Tc12.0.0.0_wntx64_1_of_2.zip", "Tc12.0.0.0_wntx64_2_of_2.zip")
 
 $Target = "Teamcenter"
 

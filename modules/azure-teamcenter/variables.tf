@@ -13,6 +13,11 @@ variable "targetdir" {
 variable "storage_access_key" {}
 variable "password" {}
 variable "database_password" {}
+
+variable "teamcenter_server_count" {
+  default = 1
+}
+
 variable "teamcenter_vm_size" {}
 variable "teamcenter_data_disk_size" {}
 variable "tc_gpu_vm_size" {}

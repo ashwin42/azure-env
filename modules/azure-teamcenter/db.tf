@@ -22,9 +22,10 @@ resource "azurerm_sql_database" "teamcenter" {
 }
 
 resource "azurerm_sql_firewall_rule" "teamcenter" {
-  name                = "${var.application_name}-sql_firewall_rule"
+  count               = "${var.teamcenter_server_count}"
+  name                = "${var.application_name}${count.index}-sql_firewall_rule"
   resource_group_name = "${var.resource_group_name}"
   server_name         = "${azurerm_sql_server.teamcenter.name}"
-  start_ip_address    = "${azurerm_network_interface.teamcenter_network_interface.private_ip_address}"
-  end_ip_address      = "${azurerm_network_interface.teamcenter_network_interface.private_ip_address}"
+  start_ip_address    = "${azurerm_network_interface.teamcenter_network_interface.*.private_ip_address[count.index]}"
+  end_ip_address      = "${azurerm_network_interface.teamcenter_network_interface.*.private_ip_address[count.index]}"
 }

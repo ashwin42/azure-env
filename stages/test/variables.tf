@@ -18,6 +18,7 @@ variable "gateway_connection_psk" {}
 variable "admin_password" {}
 variable "database_password" {}
 variable "teamcenter_vm_size" {}
+variable "teamcenter_server_count" {}
 variable "enable_render_server" {}
 variable "tc_gpu_vm_size" {}
 variable "tc_license_vm_size" {}

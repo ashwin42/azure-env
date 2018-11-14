@@ -37,6 +37,7 @@ module "azure-teamcenter" {
   subnet_prefix             = "${module.azure_core.subnet_internal_prefix}"
   location                  = "${var.location}"
   stage                     = "${var.stage}"
+  teamcenter_server_count   = "${var.teamcenter_server_count}"
   teamcenter_vm_size        = "${var.teamcenter_vm_size}"
   teamcenter_data_disk_size = "${var.teamcenter_data_disk_size}"
   enable_render_server      = "${var.enable_render_server}"

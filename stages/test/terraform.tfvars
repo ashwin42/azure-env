@@ -25,3 +25,5 @@ tc_gpu_data_disk_size = "100"
 blob_name = "Tc12.0.0.0_wntx64_1_of_2.zip"
 
 db_server_size = "GP_Gen4_8"
+
+teamcenter_server_count = 1

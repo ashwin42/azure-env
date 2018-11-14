@@ -3,10 +3,11 @@
 #
 
 resource "azurerm_virtual_machine" "teamcenter" {
-  name                             = "${var.application_name}-vm"
+  count                            = "${var.teamcenter_server_count}"
+  name                             = "${var.application_name}${count.index}-vm"
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
-  network_interface_ids            = ["${azurerm_network_interface.teamcenter_network_interface.id}"]
+  network_interface_ids            = ["${azurerm_network_interface.teamcenter_network_interface.*.id[count.index]}"]
   vm_size                          = "${var.teamcenter_vm_size}"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
@@ -19,7 +20,7 @@ resource "azurerm_virtual_machine" "teamcenter" {
   }
 
   storage_os_disk {
-    name              = "${var.application_name}-osdisk1"
+    name              = "${var.application_name}${count.index}-osdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -31,7 +32,7 @@ resource "azurerm_virtual_machine" "teamcenter" {
   }
 
   os_profile {
-    computer_name  = "${var.application_name}"
+    computer_name  = "${var.application_name}${count.index}"
     admin_username = "nvadmin"
     admin_password = "${var.password}"
   }
@@ -42,7 +43,8 @@ resource "azurerm_virtual_machine" "teamcenter" {
 }
 
 resource "azurerm_managed_disk" "teamcenter_data" {
-  name                 = "teamcenter-data1"
+  count                = "${var.teamcenter_server_count}"
+  name                 = "${var.application_name}${count.index}-data1"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   storage_account_type = "StandardSSD_LRS"
@@ -55,25 +57,28 @@ resource "azurerm_managed_disk" "teamcenter_data" {
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "teamcenter_data" {
-  managed_disk_id    = "${azurerm_managed_disk.teamcenter_data.id}"
-  virtual_machine_id = "${azurerm_virtual_machine.teamcenter.id}"
+  count              = "${var.teamcenter_server_count}"
+  managed_disk_id    = "${azurerm_managed_disk.teamcenter_data.*.id[count.index]}"
+  virtual_machine_id = "${azurerm_virtual_machine.teamcenter.*.id[count.index]}"
   lun                = "5"
   caching            = "ReadWrite"
 }
 
 resource "azurerm_recovery_services_protected_vm" "teamcenter" {
+  count               = "${var.teamcenter_server_count}"
   resource_group_name = "${var.resource_group_name}"
   recovery_vault_name = "${azurerm_recovery_services_vault.teamcenter.name}"
-  source_vm_id        = "${azurerm_virtual_machine.teamcenter.id}"
+  source_vm_id        = "${azurerm_virtual_machine.teamcenter.*.id[count.index]}"
   backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
 }
 
 resource "azurerm_virtual_machine_extension" "teamcenter" {
+  count                = "${var.teamcenter_server_count}"
   depends_on           = ["azurerm_storage_blob.first_run"]
-  name                 = "${var.application_name}-vm-extension"
+  name                 = "${var.application_name}${count.index}-vm-extension"
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
-  virtual_machine_name = "${azurerm_virtual_machine.teamcenter.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.teamcenter.*.name[count.index]}"
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
   type_handler_version = "1.9"
@@ -175,7 +180,7 @@ resource "azurerm_virtual_machine" "tc_license" {
   }
 
   storage_os_disk {
-    name              = "${var.application_name}-license-osdisk1"
+    name              = "${var.application_name}-lic-osdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -187,7 +192,7 @@ resource "azurerm_virtual_machine" "tc_license" {
   }
 
   os_profile {
-    computer_name  = "${var.application_name}"
+    computer_name  = "${var.application_name}-lic"
     admin_username = "nvadmin"
     admin_password = "${var.password}"
   }
@@ -195,26 +200,6 @@ resource "azurerm_virtual_machine" "tc_license" {
   tags {
     stage = "${var.stage}"
   }
-}
-
-resource "azurerm_managed_disk" "tc_license_data" {
-  name                 = "${var.application_name}-license-data1"
-  location             = "${var.location}"
-  resource_group_name  = "${var.resource_group_name}"
-  storage_account_type = "Standard_LRS"
-  create_option        = "Empty"
-  disk_size_gb         = "50"
-
-  tags {
-    stage = "${var.stage}"
-  }
-}
-
-resource "azurerm_virtual_machine_data_disk_attachment" "tc_license_data" {
-  managed_disk_id    = "${azurerm_managed_disk.tc_license_data.id}"
-  virtual_machine_id = "${azurerm_virtual_machine.tc_license.id}"
-  lun                = "5"
-  caching            = "ReadWrite"
 }
 
 resource "azurerm_recovery_services_protected_vm" "tc_license" {
