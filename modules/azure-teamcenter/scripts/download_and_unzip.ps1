@@ -11,7 +11,7 @@ param(
     [Parameter(Mandatory = $true)] 
     [string]$Blob,
 
-    [Parameter(Mandatory = $false)] 
+    [Parameter(Mandatory = $true)] 
     [string]$Target
 )
 

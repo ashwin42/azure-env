@@ -7,14 +7,32 @@ resource "azurerm_sql_server" "teamcenter" {
   administrator_login_password = "${var.database_password}"
 }
 
+resource "azurerm_mssql_elasticpool" "teamcenter" {
+  name                = "teamcenter-epool"
+  resource_group_name = "${var.resource_group_name}"
+  location            = "${var.location}"
+  server_name         = "${azurerm_sql_server.teamcenter.name}"
+
+  sku {
+    name     = "GP_Gen4"
+    capacity = 4
+    tier     = "GeneralPurpose"
+    family   = "Gen4"
+  }
+
+  per_database_settings {
+    min_capacity = 1
+    max_capacity = 4
+  }
+}
+
 resource "azurerm_sql_database" "teamcenter" {
   name                = "${var.application_name}-database"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
   server_name         = "${azurerm_sql_server.teamcenter.name}"
-
-  # edition                          = "General Purpose"
-  # requested_service_objective_name = "${var.db_server_size}"
+  elastic_pool_name   = "${azurerm_mssql_elasticpool.teamcenter.name}"
+  #max_size_bytes      = "1000000000000"
 
   tags {
     stage = "${var.stage}"

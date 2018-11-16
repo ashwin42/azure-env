@@ -43,3 +43,17 @@ resource "azurerm_virtual_network_gateway_connection" "site_to_site_gateway_conn
 
   shared_key = "${var.gateway_connection_psk}"
 }
+
+resource "azurerm_route_table" "nv_hq" {
+  name                = "nv_hqroutingtable"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+}
+
+resource "azurerm_route" "nv_hq" {
+  name                = "nv_hq_subnets_route"
+  resource_group_name = "${var.resource_group_name}"
+  route_table_name    = "${azurerm_route_table.nv_hq.name}"
+  address_prefix      = "192.168.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}

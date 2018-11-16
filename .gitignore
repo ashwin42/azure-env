@@ -3,3 +3,5 @@
 *.tfstate*
 beconf.tfvars
 secrets.tfvars
+id_rsa
+kube*

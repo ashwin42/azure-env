@@ -6,6 +6,19 @@ resource "azurerm_network_security_group" "teamcenter_security_group" {
   name                = "${var.application_name}_security_group"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
+    
+    security_rule {
+    name                       = "license_server"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
 }
 
 resource "azurerm_network_interface" "teamcenter_network_interface" {
@@ -57,6 +70,18 @@ resource "azurerm_network_security_group" "tc_license_security_group" {
   name                = "${var.application_name}_tc_license_security_group"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
+
+  security_rule {
+    name                       = "license_server"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "28000"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
 }
 
 resource "azurerm_network_interface" "tc_license_network_interface" {

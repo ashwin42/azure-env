@@ -31,3 +31,14 @@ variable "location" {}
 variable "stage" {}
 variable "blob_name" {}
 variable "db_server_size" {}
+variable "public_ssh_key_path" {}
+variable "k8s_service_principal_id" {}
+variable "k8s_service_principal_password" {}
+
+variable "k8s_vm_size" {
+  default = "Standard_D1_v2"
+}
+
+variable "k8s_vm_count" {
+  default = 1
+}

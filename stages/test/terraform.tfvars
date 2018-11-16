@@ -12,7 +12,7 @@ subnet_internal_prefix = "10.1.10.0/24"
 
 teamcenter_vm_size = "Standard_D4_v3"
 
-teamcenter_data_disk_size = "100"
+teamcenter_data_disk_size = "1000"
 
 enable_render_server = false
 
@@ -27,3 +27,11 @@ blob_name = "Tc12.0.0.0_wntx64_1_of_2.zip"
 db_server_size = "GP_Gen4_8"
 
 teamcenter_server_count = 1
+
+public_ssh_key_path = "id_rsa.pub"
+
+k8s_service_principal_id = "b950c89d-0fb7-4492-ae8f-7b7ccc4db6d3"
+
+k8s_vm_size = "Standard_D1_v2"
+
+k8s_vm_count = 1

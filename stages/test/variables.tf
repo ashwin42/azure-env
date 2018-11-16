@@ -26,3 +26,8 @@ variable "teamcenter_data_disk_size" {}
 variable "tc_gpu_data_disk_size" {}
 variable "blob_name" {}
 variable "db_server_size" {}
+variable "public_ssh_key_path" {}
+variable "k8s_service_principal_password" {}
+variable "k8s_service_principal_id" {}
+variable "k8s_vm_size" {}
+variable "k8s_vm_count" {}
