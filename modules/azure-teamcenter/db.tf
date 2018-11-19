@@ -39,6 +39,13 @@ resource "azurerm_sql_database" "teamcenter" {
   }
 }
 
+resource "azurerm_sql_virtual_network_rule" "teamcenter" {
+  name                = "${var.application_name}-sql-vnet-rule"
+  resource_group_name = "${var.resource_group_name}"
+  server_name         = "${azurerm_sql_server.teamcenter.name}"
+  subnet_id           = "${var.subnet_id}"
+}
+
 resource "azurerm_sql_firewall_rule" "teamcenter" {
   count               = "${var.teamcenter_server_count}"
   name                = "${var.application_name}${count.index}-sql_firewall_rule"
