@@ -65,3 +65,13 @@ module "azure-teamcenter" {
   k8s_vm_size                    = "${var.k8s_vm_size}"
   k8s_vm_count                   = "${var.k8s_vm_count}"
 }
+
+module "azure-tia" {
+  source              = "../../modules/azure-tia"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${module.azure_core.subnet_internal_id}"
+  subnet_prefix       = "${module.azure_core.subnet_internal_prefix}"
+  location            = "${var.location}"
+  stage               = "${var.stage}"
+  password            = "${var.admin_password}"
+}
