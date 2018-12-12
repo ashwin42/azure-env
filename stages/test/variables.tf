@@ -31,3 +31,5 @@ variable "k8s_service_principal_password" {}
 variable "k8s_service_principal_id" {}
 variable "k8s_vm_size" {}
 variable "k8s_vm_count" {}
+variable "abb800xa_base_ip" {}
+variable "abb800xa_application_name" {}

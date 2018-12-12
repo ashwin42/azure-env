@@ -35,3 +35,7 @@ k8s_service_principal_id = "b950c89d-0fb7-4492-ae8f-7b7ccc4db6d3"
 k8s_vm_size = "Standard_D1_v2"
 
 k8s_vm_count = 1
+
+abb800xa_base_ip = 210
+
+abb800xa_application_name = "abb800xa"

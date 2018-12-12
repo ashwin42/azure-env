@@ -75,3 +75,15 @@ module "azure-tia" {
   stage               = "${var.stage}"
   password            = "${var.admin_password}"
 }
+
+module "azure-abb800xa" {
+  source              = "../../modules/azure-vm"
+  application_name    = "${var.abb800xa_application_name}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${module.azure_core.subnet_internal_id}"
+  subnet_prefix       = "${module.azure_core.subnet_internal_prefix}"
+  base_ip             = "${var.abb800xa_base_ip}"
+  location            = "${var.location}"
+  stage               = "${var.stage}"
+  password            = "${var.admin_password}"
+}
