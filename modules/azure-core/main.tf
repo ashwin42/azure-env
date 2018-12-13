@@ -18,5 +18,5 @@ resource "azurerm_local_network_gateway" "gamla_brogatan_26_local_gateway" {
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
   gateway_address     = "31.208.18.58"
-  address_space       = ["192.168.118.0/24", "192.168.119.0/24"]
+  address_space       = ["192.168.118.0/24", "192.168.119.0/24", "192.168.113.0/24"]
 }
