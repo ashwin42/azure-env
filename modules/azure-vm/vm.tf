@@ -3,7 +3,8 @@ resource "azurerm_virtual_machine" "vm" {
   name                             = "${var.application_name}${count.index}-vm"
   location                         = "${var.location}"
   resource_group_name              = "${var.resource_group_name}"
-  network_interface_ids            = ["${azurerm_network_interface.network_interface.*.id[count.index]}"]
+  primary_network_interface_id     = "${azurerm_network_interface.network_interface.*.id[count.index]}"
+  network_interface_ids            = ["${azurerm_network_interface.network_interface.*.id[count.index]}", "${var.secondary_nic}"]
   vm_size                          = "${var.vm_size}"
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
@@ -67,3 +68,4 @@ resource "azurerm_virtual_machine_data_disk_attachment" "data" {
 #   source_vm_id        = "${azurerm_virtual_machine.vm.*.id[count.index]}"
 #   backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
 # }
+

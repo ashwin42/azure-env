@@ -2,8 +2,8 @@ resource "azurerm_network_security_group" "security_group" {
   name                = "${var.application_name}_security_group"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
-    
-    security_rule {
+
+  security_rule {
     name                       = "Allow_Outbound"
     priority                   = 100
     direction                  = "Outbound"
@@ -14,7 +14,6 @@ resource "azurerm_network_security_group" "security_group" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-
 }
 
 resource "azurerm_network_interface" "network_interface" {
@@ -29,5 +28,6 @@ resource "azurerm_network_interface" "network_interface" {
     subnet_id                     = "${var.subnet_id}"
     private_ip_address_allocation = "static"
     private_ip_address            = "${cidrhost(var.subnet_prefix, count.index + var.base_ip)}"
+    primary                       = true
   }
 }

@@ -13,6 +13,8 @@ variable "virtual_network_address_space" {
 }
 
 variable "gateway_subnet_address_prefix" {}
+variable "client_gateway_subnet_address_prefix" {}
+variable "client_address_space" {}
 variable "subnet_internal_prefix" {}
 variable "gateway_connection_psk" {}
 variable "admin_password" {}

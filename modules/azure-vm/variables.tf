@@ -14,6 +14,10 @@ variable "data_disk_size" {
   default = 100
 }
 
+variable "secondary_nic" {
+  default = ""
+}
+
 variable "resource_group_name" {}
 variable "subnet_id" {}
 variable "subnet_prefix" {}

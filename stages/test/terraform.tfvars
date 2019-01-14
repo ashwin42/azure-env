@@ -8,6 +8,10 @@ virtual_network_address_space = ["10.1.0.0/16"]
 
 gateway_subnet_address_prefix = "10.1.1.0/27"
 
+client_gateway_subnet_address_prefix = "10.1.2.0/24"
+
+client_address_space = "10.1.3.0/24"
+
 subnet_internal_prefix = "10.1.10.0/24"
 
 teamcenter_vm_size = "Standard_D4_v3"

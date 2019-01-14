@@ -39,6 +39,16 @@ module "azure_vpn" {
   stage                         = "${var.stage}"
 }
 
+# module "azure_client_vpn" {
+#   source                        = "../../modules/azure-vpn-p2s"
+#   resource_group_name           = "${var.resource_group_name}"
+#   virtual_network_name          = "${module.azure_core.virtual_network_name}"
+#   gateway_subnet_address_prefix = "${var.client_gateway_subnet_address_prefix}"
+#   client_address_space          = "${var.client_address_space}"
+#   location                      = "${var.location}"
+#   stage                         = "${var.stage}"
+# }
+
 module "azure-teamcenter" {
   source                         = "../../modules/azure-teamcenter"
   resource_group_name            = "${var.resource_group_name}"
@@ -76,6 +86,38 @@ module "azure-tia" {
   password            = "${var.admin_password}"
 }
 
+resource "azurerm_network_security_group" "abb800xa_secondary_security_group" {
+  name                = "${var.abb800xa_application_name}0_secondary_security_group"
+  resource_group_name = "${var.resource_group_name}"
+  location            = "${var.location}"
+
+  security_rule {
+    name                       = "Allow_Outbound"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_interface" "abb800xa_secondary_nic" {
+  name                      = "${var.abb800xa_application_name}0-second-network_interface"
+  resource_group_name       = "${var.resource_group_name}"
+  location                  = "${var.location}"
+  network_security_group_id = "${azurerm_network_security_group.abb800xa_secondary_security_group.id}"
+
+  ip_configuration {
+    name                          = "${var.abb800xa_application_name}0-second-network_interface_ip_config"
+    subnet_id                     = "${module.azure_core.subnet_internal_id}"
+    private_ip_address_allocation = "static"
+    private_ip_address            = "10.1.10.220"
+  }
+}
+
 module "azure-abb800xa" {
   source              = "../../modules/azure-vm"
   application_name    = "${var.abb800xa_application_name}"
@@ -86,4 +128,5 @@ module "azure-abb800xa" {
   location            = "${var.location}"
   stage               = "${var.stage}"
   password            = "${var.admin_password}"
+  secondary_nic       = "${azurerm_network_interface.abb800xa_secondary_nic.id}"
 }
