@@ -2,14 +2,14 @@ resource "azurerm_subnet" "gateway_subnet" {
   name                 = "GatewaySubnet"
   resource_group_name  = "${var.resource_group_name}"
   virtual_network_name = "${var.virtual_network_name}"
-  address_prefix       = "${var.gateway_subnet_address_prefix}"
+  address_prefix       = "${var.gateway_subnet}"
 }
 
 resource "azurerm_public_ip" "virtual_network_gateway_public_ip" {
-  name                         = "${var.stage}_virtual_network_gateway_public_ip"
-  resource_group_name          = "${var.resource_group_name}"
-  location                     = "${var.location}"
-  public_ip_address_allocation = "Dynamic"
+  name                = "${var.resource_group_name}_vnet_gw_pub_ip"
+  resource_group_name = "${var.resource_group_name}"
+  location            = "${var.location}"
+  allocation_method   = "Dynamic"
 }
 
 resource "azurerm_virtual_network_gateway" "virtual_network_gateway" {
@@ -18,7 +18,7 @@ resource "azurerm_virtual_network_gateway" "virtual_network_gateway" {
   location            = "${var.location}"
 
   type     = "Vpn"
-  vpn_type = "PolicyBased"
+  vpn_type = "${var.vpn_type}"
 
   active_active = false
   enable_bgp    = false

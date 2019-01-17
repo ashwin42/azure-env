@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version = ">= 1.19.0"
+  version = ">= 1.21.0"
 }
 
 # provider "kubernetes" {
@@ -29,14 +29,13 @@ module "azure_core" {
 }
 
 module "azure_vpn" {
-  source                        = "../../modules/azure-vpn"
-  resource_group_name           = "${var.resource_group_name}"
-  virtual_network_name          = "${module.azure_core.virtual_network_name}"
-  gateway_subnet_address_prefix = "${var.gateway_subnet_address_prefix}"
-  local_network_gateway_id      = "${module.azure_core.gamla_brogatan_26_local_gateway}"
-  gateway_connection_psk        = "${var.gateway_connection_psk}"
-  location                      = "${var.location}"
-  stage                         = "${var.stage}"
+  source                   = "../../modules/azure-vpn"
+  resource_group_name      = "${var.resource_group_name}"
+  virtual_network_name     = "${module.azure_core.virtual_network_name}"
+  gateway_subnet           = "${var.gateway_subnet_address_prefix}"
+  local_network_gateway_id = "${module.azure_core.gamla_brogatan_26_local_gateway}"
+  gateway_connection_psk   = "${var.gateway_connection_psk}"
+  location                 = "${var.location}"
 }
 
 # module "azure_client_vpn" {
@@ -102,6 +101,18 @@ resource "azurerm_network_security_group" "abb800xa_secondary_security_group" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+  # security_rule {
+  #   name                       = "Allow_RDP_from_ABB"
+  #   priority                   = 110
+  #   direction                  = "Inbound"
+  #   access                     = "Allow"
+  #   protocol                   = "*"
+  #   source_port_range          = "*"
+  #   destination_port_range     = "*"
+  #   source_address_prefix      = "*"
+  #   destination_address_prefix = "*"
+  # }
 }
 
 resource "azurerm_network_interface" "abb800xa_secondary_nic" {
