@@ -11,6 +11,6 @@ variable "vnet_address_space" {
   default = ["10.101.0.0/16"]
 }
 
-variable "gateway_subnet" {
+variable "gateway_subnet_prefix" {
   default = "10.101.0.0/27"
 }

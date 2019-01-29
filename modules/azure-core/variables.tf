@@ -5,6 +5,7 @@ variable "virtual_network_address_space" {
 }
 
 variable "subnet_internal_prefix" {}
+variable "gateway_subnet_prefix" {}
 
 variable "location" {}
 

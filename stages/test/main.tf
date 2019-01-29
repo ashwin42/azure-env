@@ -24,6 +24,7 @@ module "azure_core" {
   resource_group_name           = "${var.resource_group_name}"
   virtual_network_address_space = "${var.virtual_network_address_space}"
   subnet_internal_prefix        = "${var.subnet_internal_prefix}"
+  gateway_subnet_prefix         = "${var.gateway_subnet_address_prefix}"
   location                      = "${var.location}"
   stage                         = "${var.stage}"
 }
@@ -32,21 +33,22 @@ module "azure_vpn" {
   source                   = "../../modules/azure-vpn"
   resource_group_name      = "${var.resource_group_name}"
   virtual_network_name     = "${module.azure_core.virtual_network_name}"
-  gateway_subnet           = "${var.gateway_subnet_address_prefix}"
+  gateway_subnet_id        = "${module.azure_core.gateway_subnet_id}"
   local_network_gateway_id = "${module.azure_core.gamla_brogatan_26_local_gateway}"
   gateway_connection_psk   = "${var.gateway_connection_psk}"
   location                 = "${var.location}"
 }
 
-# module "azure_client_vpn" {
-#   source                        = "../../modules/azure-vpn-p2s"
-#   resource_group_name           = "${var.resource_group_name}"
-#   virtual_network_name          = "${module.azure_core.virtual_network_name}"
-#   gateway_subnet_address_prefix = "${var.client_gateway_subnet_address_prefix}"
-#   client_address_space          = "${var.client_address_space}"
-#   location                      = "${var.location}"
-#   stage                         = "${var.stage}"
-# }
+module "azure_client_vpn" {
+  source                        = "../../modules/azure-vpn-p2s"
+  resource_group_name           = "${var.resource_group_name}"
+  virtual_network_name          = "${module.azure_core.virtual_network_name}"
+  gateway_subnet_address_prefix = "${var.client_gateway_subnet_address_prefix}"
+  client_address_space          = "${var.client_address_space}"
+  gateway_subnet_id             = "${module.azure_core.gateway_subnet_id}"
+  location                      = "${var.location}"
+  stage                         = "${var.stage}"
+}
 
 module "azure-teamcenter" {
   source                         = "../../modules/azure-teamcenter"

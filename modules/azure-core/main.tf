@@ -20,3 +20,10 @@ resource "azurerm_local_network_gateway" "gamla_brogatan_26_local_gateway" {
   gateway_address     = "31.208.18.58"
   address_space       = ["192.168.118.0/24", "192.168.119.0/24", "192.168.113.0/24"]
 }
+
+resource "azurerm_subnet" "gateway_subnet" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.virtual_network.name}"
+  address_prefix       = "${var.gateway_subnet_prefix}"
+}

@@ -7,8 +7,8 @@ resource "azurerm_local_network_gateway" "gamla_brogatan_26" {
 }
 
 data "azurerm_key_vault" "nv-core" {
-  name                = "nv-core"
-  resource_group_name = "${var.resource_group_name}"
+  name                        = "nv-core"
+  resource_group_name         = "${var.resource_group_name}"
 }
 
 data "azurerm_key_vault_secret" "gateway_connection_psk" {
@@ -16,13 +16,20 @@ data "azurerm_key_vault_secret" "gateway_connection_psk" {
   vault_uri = "${data.azurerm_key_vault.nv-core.vault_uri}"
 }
 
-module "azure_vpn" {
-  source                   = "../modules/azure-vpn"
-  resource_group_name      = "${var.resource_group_name}"
-  vpn_type                 = "RouteBased"
-  virtual_network_name     = "${azurerm_virtual_network.core_vnet.name}"
-  gateway_subnet           = "${var.gateway_subnet}"
-  local_network_gateway_id = "${azurerm_local_network_gateway.gamla_brogatan_26.id}"
-  gateway_connection_psk   = "${data.azurerm_key_vault_secret.gateway_connection_psk.value}"
-  location                 = "${var.location}"
+resource "azurerm_subnet" "gateway_subnet" {
+  name                 = "GatewaySubnet"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.core_vnet.name}"
+  address_prefix       = "${var.gateway_subnet_prefix}"
 }
+
+# module "azure_vpn" {
+#   source                   = "../modules/azure-vpn"
+#   resource_group_name      = "${var.resource_group_name}"
+#   vpn_type                 = "RouteBased"
+#   virtual_network_name     = "${azurerm_virtual_network.core_vnet.name}"
+#   gateway_subnet_id        = "${azurerm_subnet.gateway_subnet.id}"
+#   local_network_gateway_id = "${azurerm_local_network_gateway.gamla_brogatan_26.id}"
+#   gateway_connection_psk   = "${data.azurerm_key_vault_secret.gateway_connection_psk.value}"
+#   location                 = "${var.location}"
+# }

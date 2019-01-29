@@ -18,8 +18,16 @@ resource "azurerm_subnet" "nv_shared_1" {
   address_prefix       = "10.101.1.0/24"
 }
 
+resource "azurerm_subnet" "nv_automation_1" {
+  name                 = "nv-automation-1"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.core_vnet.name}"
+  address_prefix       = "10.101.2.0/24"
+}
+
 output "subnet_id" {
   value = {
     "nv_shared_1" = "${azurerm_subnet.nv_shared_1.id}"
+    "nv_automation_1" = "${azurerm_subnet.nv_automation_1.id}"
   }
 }
