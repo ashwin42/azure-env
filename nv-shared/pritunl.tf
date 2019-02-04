@@ -27,6 +27,18 @@ resource "azurerm_network_security_group" "pritunl" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "Allow_Inbound_http_for_letsencrypt"
+    priority                   = 118
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
   security_rule {
     name                       = "Allow_Inbound_OpenVPN"
     priority                   = 120

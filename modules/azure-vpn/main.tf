@@ -15,7 +15,7 @@ resource "azurerm_virtual_network_gateway" "virtual_network_gateway" {
 
   active_active = false
   enable_bgp    = false
-  sku           = "Basic"
+  sku           = "${var.sku}"
 
   ip_configuration {
     name                          = "${var.virtual_network_name}_gateway_config"

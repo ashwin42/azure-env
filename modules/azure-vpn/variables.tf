@@ -12,3 +12,7 @@ variable "local_network_gateway_id" {}
 variable "gateway_connection_psk" {}
 
 variable "location" {}
+
+variable "sku" {
+  default = "Basic"
+}
