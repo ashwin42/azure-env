@@ -66,13 +66,6 @@ resource "azurerm_virtual_machine" "tia1" {
   delete_os_disk_on_termination    = false
   delete_data_disks_on_termination = false
 
-  #   storage_image_reference {
-  #     sku       = "2016-Datacenter"
-  #     publisher = "MicrosoftWindowsServer"
-  #     version   = "latest"
-  #     offer     = "WindowsServer"
-  #   }
-
   storage_os_disk {
     name            = "tia-os1"
     os_type         = "Windows"
