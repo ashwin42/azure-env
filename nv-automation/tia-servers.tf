@@ -1,4 +1,4 @@
-# Template to update the image
+# Template to update the base image
 # module "tia-template" {
 #   source              = "../modules/tia-server"
 #   name                = "template"
