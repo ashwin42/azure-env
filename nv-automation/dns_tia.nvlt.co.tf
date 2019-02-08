@@ -12,6 +12,14 @@ resource "azurerm_dns_a_record" "vpn_tia" {
   records             = ["${azurerm_public_ip.pritunl.ip_address}"]
 }
 
+resource "azurerm_dns_a_record" "vpn_admin_tia" {
+  name                = "vpn-admin"
+  zone_name           = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  resource_group_name = "${var.resource_group_name}"
+  ttl                 = 300
+  records             = ["${azurerm_public_ip.pritunl_proxy.ip_address}"]
+}
+
 resource "azurerm_dns_a_record" "hirano_tia" {
   name                = "hirano"
   zone_name           = "${azurerm_dns_zone.tia_nvlt_co.name}"

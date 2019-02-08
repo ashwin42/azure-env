@@ -11,7 +11,19 @@ resource "azurerm_network_security_group" "pritunl" {
     protocol                   = "TCP"
     source_port_range          = "*"
     destination_port_range     = "443"
-    source_address_prefix      = "31.208.18.58/32"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_https_from_proxy"
+    priority                   = 111
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "${azurerm_public_ip.pritunl_proxy.ip_address}/32"
     destination_address_prefix = "*"
   }
 
@@ -100,6 +112,60 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 }
 
+resource "azurerm_network_security_group" "pritunl_proxy" {
+  name                = "pritunl_proxy_security_group"
+  resource_group_name = "${var.resource_group_name}"
+  location            = "${var.location}"
+
+  security_rule {
+    name                       = "Allow_Inbound_https_from_office"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "31.208.18.58/32"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_from_office"
+    priority                   = 111
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "2015"
+    source_address_prefix      = "31.208.18.58/32"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_ssh_from_office"
+    priority                   = 115
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "31.208.18.58/32"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_http_for_letsencrypt"
+    priority                   = 118
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
 resource "azurerm_public_ip" "pritunl" {
   name                    = "pritunl-pip"
   location                = "${var.location}"
@@ -149,6 +215,65 @@ resource "azurerm_virtual_machine" "pritunl" {
 
   os_profile {
     computer_name  = "pritunl1"
+    admin_username = "nvadmin"
+    admin_password = "Password1234!"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+}
+
+# Proxy
+resource "azurerm_public_ip" "pritunl_proxy" {
+  name                    = "pritunl-proxy-pip"
+  location                = "${var.location}"
+  resource_group_name     = "${var.resource_group_name}"
+  allocation_method       = "Dynamic"
+  idle_timeout_in_minutes = 30
+}
+
+resource "azurerm_network_interface" "pritunl_proxy" {
+  name                      = "pritunl-proxy-nic"
+  location                  = "${var.location}"
+  resource_group_name       = "${var.resource_group_name}"
+  enable_ip_forwarding      = true
+  network_security_group_id = "${azurerm_network_security_group.pritunl_proxy.id}"
+
+  ip_configuration {
+    name                          = "pritunl-proxy1"
+    subnet_id                     = "${local.nv_automation_1}"
+    private_ip_address_allocation = "Static"
+    private_ip_address            = "10.101.2.11"
+    public_ip_address_id          = "${azurerm_public_ip.pritunl_proxy.id}"
+  }
+}
+
+resource "azurerm_virtual_machine" "pritunl_proxy" {
+  name                             = "pritunl-proxy-vm"
+  location                         = "${var.location}"
+  resource_group_name              = "${var.resource_group_name}"
+  network_interface_ids            = ["${azurerm_network_interface.pritunl_proxy.id}"]
+  vm_size                          = "Standard_B1s"
+  delete_os_disk_on_termination    = false
+  delete_data_disks_on_termination = false
+
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "18.04-LTS"
+    version   = "latest"
+  }
+
+  storage_os_disk {
+    name              = "pritunl_proxyosdisk1"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+  }
+
+  os_profile {
+    computer_name  = "pritunl-proxy1"
     admin_username = "nvadmin"
     admin_password = "Password1234!"
   }
