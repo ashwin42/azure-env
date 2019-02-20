@@ -29,13 +29,13 @@ module "azure_vpn" {
   location                 = "${var.location}"
 }
 
-# AWS
+# AWS Root VPC
 resource "azurerm_local_network_gateway" "aws" {
   name                = "aws"
   resource_group_name = "${var.resource_group_name}"
   location            = "${var.location}"
-  gateway_address     = "13.53.158.28"
-  address_space       = ["10.103.0.0/16", "10.104.0.0/16"]
+  gateway_address     = "13.53.151.188"
+  address_space       = ["10.103.0.0/16"]
 }
 
 data "azurerm_key_vault_secret" "aws_psk" {
@@ -44,7 +44,7 @@ data "azurerm_key_vault_secret" "aws_psk" {
 }
 
 resource "azurerm_virtual_network_gateway_connection" "aws" {
-  name                = "AWS_site_to_site_vpn"
+  name                = "AWS_Root_vpn"
   location            = "${var.location}"
   resource_group_name = "${var.resource_group_name}"
 
@@ -69,10 +69,42 @@ resource "azurerm_route" "aws1" {
   next_hop_type       = "VirtualNetworkGateway"
 }
 
-resource "azurerm_route" "aws2" {
-  name                = "aws_automation_subnets_route"
+# AWS Automation VPC
+resource "azurerm_local_network_gateway" "aws_automation" {
+  name                = "aws_automation"
   resource_group_name = "${var.resource_group_name}"
-  route_table_name    = "${azurerm_route_table.aws.name}"
+  location            = "${var.location}"
+  gateway_address     = "13.53.147.1"
+  address_space       = ["10.104.0.0/16"]
+}
+
+data "azurerm_key_vault_secret" "aws_automation_psk" {
+  name      = "vpn-aws-automation-psk"
+  vault_uri = "${data.azurerm_key_vault.nv-core.vault_uri}"
+}
+
+resource "azurerm_virtual_network_gateway_connection" "aws_automation" {
+  name                = "AWS_Automation_VPN"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+
+  type                       = "IPsec"
+  virtual_network_gateway_id = "${module.azure_vpn.virtual_network_gateway_id}"
+  local_network_gateway_id   = "${azurerm_local_network_gateway.aws_automation.id}"
+
+  shared_key = "${data.azurerm_key_vault_secret.aws_automation_psk.value}"
+}
+
+resource "azurerm_route_table" "aws_automation" {
+  name                = "aws_automation_routingtable"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+}
+
+resource "azurerm_route" "aws_automation1" {
+  name                = "aws_automation_root_subnets_route"
+  resource_group_name = "${var.resource_group_name}"
+  route_table_name    = "${azurerm_route_table.aws_automation.name}"
   address_prefix      = "10.104.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
