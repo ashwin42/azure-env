@@ -108,3 +108,45 @@ resource "azurerm_route" "aws_automation1" {
   address_prefix      = "10.104.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
+
+# Fully redundant dynamically routed VPN
+# resource "azurerm_public_ip" "main_vngw_primary" {
+#   name                    = "main_vnet_gw_primary"
+#   resource_group_name     = "${var.resource_group_name}"
+#   location                = "${var.location}"
+#   allocation_method       = "Dynamic"
+#   idle_timeout_in_minutes = 30
+# }
+
+# resource "azurerm_public_ip" "main_vngw_secondary" {
+#   name                    = "main_vnet_gw_secondary"
+#   resource_group_name     = "${var.resource_group_name}"
+#   location                = "${var.location}"
+#   allocation_method       = "Dynamic"
+#   idle_timeout_in_minutes = 30
+# }
+
+# resource "azurerm_virtual_network_gateway" "main" {
+#   name                = "main_vnet_gw"
+#   resource_group_name = "${var.resource_group_name}"
+#   location            = "${var.location}"
+
+#   type     = "Vpn"
+#   vpn_type = "RouteBased"
+
+#   active_active = true
+#   enable_bgp    = true
+#   sku           = "VpnGw1"
+
+#   ip_configuration {
+#     name                 = "main_vnet_gw_primary"
+#     public_ip_address_id = "${azurerm_public_ip.main_vngw_primary.id}"
+#     subnet_id            = "${azurerm_subnet.gateway_subnet.id}"
+#   }
+
+#   ip_configuration {
+#     name                 = "main_vnet_gw_secondary"
+#     public_ip_address_id = "${azurerm_public_ip.main_vngw_secondary.id}"
+#     subnet_id            = "${azurerm_subnet.gateway_subnet.id}"
+#   }
+# }
