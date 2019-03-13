@@ -100,6 +100,30 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_ABB"
+    priority                   = 129
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "17654"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_ABB"
+    priority                   = 130
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.20/32"
+  }
+
+  security_rule {
     name                       = "Deny_VNET"
     priority                   = 4096
     direction                  = "Outbound"
@@ -222,6 +246,13 @@ resource "azurerm_virtual_machine" "pritunl" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
+}
+
+resource "azurerm_recovery_services_protected_vm" "pritunl" {
+  resource_group_name = "nv-shared"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  source_vm_id        = "${azurerm_virtual_machine.pritunl.id}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
 }
 
 # Proxy
