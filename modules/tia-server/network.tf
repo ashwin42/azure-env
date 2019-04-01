@@ -29,3 +29,11 @@ resource "azurerm_network_interface" "tia" {
     private_ip_address            = "${var.ipaddress}"
   }
 }
+
+resource "azurerm_dns_a_record" "tia" {
+  name                = "${var.name}"
+  zone_name           = "${var.dns_zone}"
+  resource_group_name = "${var.resource_group_name}"
+  ttl                 = 300
+  records             = ["${var.ipaddress}"]
+}

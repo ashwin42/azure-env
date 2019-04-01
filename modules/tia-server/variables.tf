@@ -11,6 +11,8 @@ variable "vault_id" {
   default = ""
 }
 
+variable "dns_zone" {}
+
 variable "recovery_vault_name" {}
 
 variable "recovery_vault_resource_group" {
