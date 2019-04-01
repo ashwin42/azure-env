@@ -26,6 +26,27 @@ module "tia_zeppelin" {
   location            = "${var.location}"
   resource_group_name = "${var.resource_group_name}"
   subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
+
+# -- CIS --
+data "azurerm_key_vault_secret" "tia_cis" {
+  name      = "tia-cis-nvadmin"
+  vault_uri = "${data.azurerm_key_vault.nv_core.vault_uri}"
+}
+
+module "tia_cis" {
+  source              = "../modules/tia-server"
+  name                = "cis"
+  ipaddress           = "10.101.2.202"
+  password            = "${data.azurerm_key_vault_secret.tia_cis.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
   vault_id            = "${data.azurerm_key_vault.nv_core.id}"
   recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
   backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
