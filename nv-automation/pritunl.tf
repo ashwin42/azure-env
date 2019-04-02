@@ -118,7 +118,7 @@ resource "azurerm_network_security_group" "pritunl" {
     access                     = "Allow"
     protocol                   = "UDP"
     source_port_range          = "*"
-    destination_port_range     = "17654"
+    destination_port_range     = "18930"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
