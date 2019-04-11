@@ -39,44 +39,6 @@ module "azure_vpn" {
   location                 = "${var.location}"
 }
 
-module "azure_client_vpn" {
-  source                        = "../../modules/azure-vpn-p2s"
-  resource_group_name           = "${var.resource_group_name}"
-  virtual_network_name          = "${module.azure_core.virtual_network_name}"
-  gateway_subnet_address_prefix = "${var.client_gateway_subnet_address_prefix}"
-  client_address_space          = "${var.client_address_space}"
-  gateway_subnet_id             = "${module.azure_core.gateway_subnet_id}"
-  location                      = "${var.location}"
-  stage                         = "${var.stage}"
-}
-
-module "azure-teamcenter" {
-  source                         = "../../modules/azure-teamcenter"
-  resource_group_name            = "${var.resource_group_name}"
-  storage_account_name           = "${var.storage_account_name}"
-  storage_access_key             = "${var.storage_access_key}"
-  subnet_id                      = "${module.azure_core.subnet_internal_id}"
-  subnet_prefix                  = "${module.azure_core.subnet_internal_prefix}"
-  location                       = "${var.location}"
-  stage                          = "${var.stage}"
-  teamcenter_server_count        = "${var.teamcenter_server_count}"
-  teamcenter_vm_size             = "${var.teamcenter_vm_size}"
-  teamcenter_data_disk_size      = "${var.teamcenter_data_disk_size}"
-  enable_render_server           = "${var.enable_render_server}"
-  tc_gpu_vm_size                 = "${var.tc_gpu_vm_size}"
-  tc_gpu_data_disk_size          = "${var.tc_gpu_data_disk_size}"
-  tc_license_vm_size             = "${var.tc_license_vm_size}"
-  password                       = "${var.admin_password}"
-  database_password              = "${var.database_password}"
-  blob_name                      = "${var.blob_name}"
-  db_server_size                 = "${var.db_server_size}"
-  public_ssh_key_path            = "${var.public_ssh_key_path}"
-  k8s_service_principal_id       = "${var.k8s_service_principal_id}"
-  k8s_service_principal_password = "${var.k8s_service_principal_password}"
-  k8s_vm_size                    = "${var.k8s_vm_size}"
-  k8s_vm_count                   = "${var.k8s_vm_count}"
-}
-
 module "azure-tia" {
   source              = "../../modules/azure-tia"
   resource_group_name = "${var.resource_group_name}"
@@ -104,17 +66,17 @@ resource "azurerm_network_security_group" "abb800xa_secondary_security_group" {
     destination_address_prefix = "*"
   }
 
-  # security_rule {
-  #   name                       = "Allow_RDP_from_ABB"
-  #   priority                   = 110
-  #   direction                  = "Inbound"
-  #   access                     = "Allow"
-  #   protocol                   = "*"
-  #   source_port_range          = "*"
-  #   destination_port_range     = "*"
-  #   source_address_prefix      = "*"
-  #   destination_address_prefix = "*"
-  # }
+  security_rule {
+    name                       = "Allow_RDP"
+    priority                   = 110
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "10.0.0.0/8"
+    destination_address_prefix = "*"
+  }
 }
 
 resource "azurerm_network_interface" "abb800xa_secondary_nic" {
