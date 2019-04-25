@@ -136,6 +136,42 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_Siemens"
+    priority                   = 133
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "19927"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_Siemens_TIA"
+    priority                   = 134
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "8735"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.200/30"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_Siemens_RDP"
+    priority                   = 135
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.200/30"
+  }
+
+  security_rule {
     name                       = "Deny_VNET"
     priority                   = 4096
     direction                  = "Outbound"
