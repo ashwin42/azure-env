@@ -5,8 +5,8 @@ locals {
 }
 
 data "azurerm_key_vault_secret" "abb800xa" {
-  name      = "abb800xa-nvadmin"
-  vault_uri = "${data.azurerm_key_vault.nv_core.vault_uri}"
+  name         = "abb800xa-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
 }
 
 resource "azurerm_network_security_group" "abb800xa" {
