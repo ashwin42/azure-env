@@ -109,6 +109,46 @@ resource "azurerm_route" "aws_automation1" {
   next_hop_type       = "VirtualNetworkGateway"
 }
 
+# Miradot Co-location
+resource "azurerm_local_network_gateway" "miradot_colo" {
+  name                = "miradot_colo"
+  resource_group_name = "${azurerm_resource_group.nv-core.name}"
+  location            = "${var.location}"
+  gateway_address     = "5.178.78.106"
+  address_space       = ["10.254.6.0/24"]
+}
+
+data "azurerm_key_vault_secret" "miradot_colo_psk" {
+  name      = "vpn-miradot-colo-psk"
+  vault_uri = "${data.azurerm_key_vault.nv-core.vault_uri}"
+}
+
+resource "azurerm_virtual_network_gateway_connection" "miradot_colo" {
+  name                = "miradot_colo_vpn"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.nv-core.name}"
+
+  type                       = "IPsec"
+  virtual_network_gateway_id = "${module.azure_vpn.virtual_network_gateway_id}"
+  local_network_gateway_id   = "${azurerm_local_network_gateway.miradot_colo.id}"
+
+  shared_key = "${data.azurerm_key_vault_secret.miradot_colo_psk.value}"
+}
+
+resource "azurerm_route_table" "miradot_colo" {
+  name                = "miradot_colo_routingtable"
+  location            = "${var.location}"
+  resource_group_name = "${azurerm_resource_group.nv-core.name}"
+}
+
+resource "azurerm_route" "miradot_colo1" {
+  name                = "miradot_colo_root_subnets_route"
+  resource_group_name = "${azurerm_resource_group.nv-core.name}"
+  route_table_name    = "${azurerm_route_table.miradot_colo.name}"
+  address_prefix      = "10.254.6.0/24"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+
 # Fully redundant dynamically routed VPN
 # resource "azurerm_public_ip" "main_vngw_primary" {
 #   name                    = "main_vnet_gw_primary"

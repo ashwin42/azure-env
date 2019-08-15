@@ -49,6 +49,7 @@ resource "azurerm_subnet" "nv_automation_1" {
   resource_group_name  = "${azurerm_resource_group.nv-core.name}"
   virtual_network_name = "${azurerm_virtual_network.core_vnet.name}"
   address_prefix       = "10.101.2.0/24"
+  service_endpoints    = ["Microsoft.Storage"]
 }
 
 resource "azurerm_subnet" "nv_lab_1" {

@@ -1,5 +1,5 @@
 terraform {
-  required_version = "0.11.14"
+  required_version = "<=0.12.5"
   backend "azurerm" {
     storage_account_name = "nvtfstate"
     container_name       = "nv-tf-state"
