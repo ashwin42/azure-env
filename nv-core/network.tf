@@ -58,6 +58,13 @@ resource "azurerm_subnet" "nv_lab_1" {
   address_prefix       = "10.101.3.0/24"
 }
 
+resource "azurerm_subnet" "azure_bastion" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = "${azurerm_resource_group.nv-core.name}"
+  virtual_network_name = "${azurerm_virtual_network.core_vnet.name}"
+  address_prefix       = "10.101.252.0/27"
+}
+
 output "subnet_id" {
   value = {
     "nv_shared_1"     = "${azurerm_subnet.nv_shared_1.id}"
