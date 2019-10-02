@@ -13,3 +13,7 @@ resource "azurerm_express_route_circuit" "main" {
 
   tags     = merge(var.default_tags, {})
 }
+
+output "labs_express_route_skey" {
+    value = azurerm_express_route_circuit.main.service_key
+}
