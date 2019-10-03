@@ -21,6 +21,6 @@ resource "azurerm_subnet" "abb_800xa_1" {
 resource "azurerm_subnet" "abb_800xa_2" {
   resource_group_name  = azurerm_resource_group.abb_800xa.name
   virtual_network_name = azurerm_virtual_network.abb_800xa.name
-  name                 = "800xa-1"
+  name                 = "800xa-2"
   address_prefix       = "10.60.60.0/24"
 }
