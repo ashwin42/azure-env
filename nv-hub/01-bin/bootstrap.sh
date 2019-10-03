@@ -5,7 +5,7 @@ set -e
 # Storage account key should be saved in Azure Vault
 
 RESOURCE_GROUP_NAME=nv-hub-core
-STORAGE_ACCOUNT_NAME=nvhubfstate
+STORAGE_ACCOUNT_NAME=nvhubtfstate
 CONTAINER_NAME=nv-tf-state
 LOCATION=westeurope
 
