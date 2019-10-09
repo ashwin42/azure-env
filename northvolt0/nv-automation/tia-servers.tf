@@ -71,3 +71,23 @@ module "tia_cis" {
   recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
   backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
 }
+
+# -- Dürr --
+data "azurerm_key_vault_secret" "tia_durr" {
+  name         = "tia-durr-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+module "tia_durr" {
+  source              = "../modules/tia-server"
+  name                = "durr"
+  ipaddress           = "10.101.2.203"
+  password            = "${data.azurerm_key_vault_secret.tia_durr.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
