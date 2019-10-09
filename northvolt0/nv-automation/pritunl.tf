@@ -194,6 +194,29 @@ resource "azurerm_network_security_group" "pritunl" {
     source_address_prefix      = "*"
     destination_address_prefix = "10.101.2.210/32"
   }
+    security_rule {
+    name                       = "Allow_Inbound_durr"
+    priority                   = 138
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "10815"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_durr"
+    priority                   = 139
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "8735"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.203/32"
+  }
 
   security_rule {
     name                       = "Deny_VNET"
@@ -206,6 +229,7 @@ resource "azurerm_network_security_group" "pritunl" {
     source_address_prefix      = "*"
     destination_address_prefix = "VirtualNetwork"
   }
+  
 }
 
 resource "azurerm_public_ip" "pritunl" {
