@@ -47,3 +47,39 @@ resource "azurerm_recovery_services_protected_vm" "tia" {
   source_vm_id        = "${azurerm_virtual_machine.tia.id}"
   backup_policy_id    = "${var.backup_policy_id}"
 }
+
+data "azurerm_key_vault" "nv_core" {
+  name                = "nv-core"
+  resource_group_name = "nv-core"
+}
+
+data "azurerm_key_vault_secret" "domainjoin" {
+  name         = "domainjoin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+resource "azurerm_virtual_machine_extension" "ad_join" {
+  name                 = "ad_join"
+  location             = "${var.location}"
+  resource_group_name  = "${var.resource_group_name}"
+  virtual_machine_name = "${azurerm_virtual_machine.tia.name}"
+  publisher            = "Microsoft.Compute"
+  type                 = "JsonADDomainExtension"
+  type_handler_version = "1.3"
+
+  settings           = <<SETTINGS
+        {
+            "Name": "northvolt.com",
+            "User": "northvolt\\domainjoin",
+            "Restart": "true",
+            "Options": "3"
+        }
+SETTINGS
+  protected_settings = <<PROTECTED_SETTINGS
+    {
+      "Password": "${data.azurerm_key_vault_secret.domainjoin.value}"
+    }
+  
+PROTECTED_SETTINGS
+  depends_on         = ["azurerm_virtual_machine.tia"]
+}
