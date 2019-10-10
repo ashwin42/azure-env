@@ -114,7 +114,7 @@ resource "azurerm_local_network_gateway" "miradot_colo" {
   name                = "miradot_colo"
   resource_group_name = "${azurerm_resource_group.nv-core.name}"
   location            = "${var.location}"
-  gateway_address     = "5.178.78.110"
+  gateway_address     = "213.50.54.194"
   address_space       = ["10.254.6.0/24"]
 }
 
