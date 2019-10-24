@@ -6,7 +6,7 @@ resource "azurerm_virtual_network" "abb_800xa" {
   address_space       = ["10.60.0.0/16"]
   # Once AADDS is in place, this should be enabled/changed
   #dns_servers         = ["10.101.250.4", "10.101.250.5"]
-  tags                = merge(var.default_tags, {})
+  tags = merge(var.default_tags, {})
 }
 
 # 800xa subnets
@@ -24,3 +24,13 @@ resource "azurerm_subnet" "abb_800xa_2" {
   name                 = "800xa-2"
   address_prefix       = "10.60.60.0/24"
 }
+
+resource "azurerm_virtual_network_peering" "abb800xa_to_nv-hub" {
+  name                         = "nv-production_to_nv-hub"
+  resource_group_name          = azurerm_resource_group.abb_800xa.name
+  virtual_network_name         = azurerm_virtual_network.abb_800xa.name
+  remote_virtual_network_id    = var.remote_virtual_network_id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+}
+  

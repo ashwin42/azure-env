@@ -3,6 +3,8 @@ variable "resource_group_name" {}
 
 variable "location" {}
 
+variable "remote_virtual_network_id" {}
+
 // Locally defined vars
 variable "default_tags" {
   default = {
