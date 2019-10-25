@@ -10,8 +10,10 @@ resource "azurerm_virtual_network" "core_vnet" {
 }
 
 resource "azurerm_virtual_network_peering" "nv-hub_to_800xa" {
-  name                      = "nv-hub_to_nv-production"
-  resource_group_name       = azurerm_resource_group.core_network.name
-  virtual_network_name      = azurerm_virtual_network.core_vnet.name
-  remote_virtual_network_id = var.remote_virtual_network_id
+  name                         = "nv-hub_to_nv-production"
+  resource_group_name          = azurerm_resource_group.core_network.name
+  virtual_network_name         = azurerm_virtual_network.core_vnet.name
+  remote_virtual_network_id    = var.remote_virtual_network_id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
 }
