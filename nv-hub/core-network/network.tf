@@ -63,3 +63,26 @@ resource "azurerm_virtual_network_gateway" "nv-hub-er-gw" {
     subnet_id            = azurerm_subnet.GatewaySubnet.id
   }
 }
+
+resource "azurerm_subnet" "core-utils-1" {
+  name                 = "core-utils-1"
+  resource_group_name  = azurerm_resource_group.core_network.name
+  virtual_network_name = azurerm_virtual_network.core_vnet.name
+  address_prefix       = "10.40.10.0/24"
+  service_endpoints    = ["Microsoft.Storage"]
+}
+
+output "core-utils-1-id" {
+  value = azurerm_subnet.core-utils-1.id
+}
+
+resource "azurerm_subnet" "nv_domain_services" {
+  name                      = "nv-domain-services"
+  resource_group_name       = azurerm_resource_group.core_network.name
+  virtual_network_name      = azurerm_virtual_network.core_vnet.name
+  address_prefix            = "10.40.250.0/24"
+}
+
+output "nv_domain_services-id" {
+  value = azurerm_subnet.nv_domain_services.id
+}
