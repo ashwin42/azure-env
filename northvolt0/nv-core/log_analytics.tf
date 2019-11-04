@@ -6,6 +6,6 @@ resource "azurerm_log_analytics_workspace" "nv-core" {
   retention_in_days   = 120
 
   tags = {
-      terraform = true
+    terraform = true
   }
 }

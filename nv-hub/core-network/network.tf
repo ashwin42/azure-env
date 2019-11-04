@@ -9,11 +9,25 @@ resource "azurerm_virtual_network" "core_vnet" {
   tags = merge(var.default_tags, {})
 }
 
+output "core_vnet_id"{
+  value = azurerm_virtual_network.core_vnet.id
+}
+
 resource "azurerm_virtual_network_peering" "nv-hub_to_800xa" {
   name                         = "nv-hub_to_nv-production"
   resource_group_name          = azurerm_resource_group.core_network.name
   virtual_network_name         = azurerm_virtual_network.core_vnet.name
-  remote_virtual_network_id    = var.remote_virtual_network_id
+  remote_virtual_network_id    = var.remote_800xa_vnet
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+  allow_gateway_transit        = true
+}
+
+resource "azurerm_virtual_network_peering" "nv-hub_to_csp" {
+  name                         = "nv-hub_to_csp"
+  resource_group_name          = azurerm_resource_group.core_network.name
+  virtual_network_name         = azurerm_virtual_network.core_vnet.name
+  remote_virtual_network_id    = var.remote_csp_vnet
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
   allow_gateway_transit        = true

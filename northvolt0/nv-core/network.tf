@@ -11,6 +11,15 @@ output "core_vnet_id" {
   value = "${azurerm_virtual_network.core_vnet.id}"
 }
 
+resource "azurerm_virtual_network_peering" "csp_to_nv-hub" {
+  name                         = "csp_to_nv-hub"
+  resource_group_name          = azurerm_resource_group.nv-core.name
+  virtual_network_name         = azurerm_virtual_network.core_vnet.name
+  remote_virtual_network_id    = "${var.remote_hub_vnet}"
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+}
+
 # Subnets
 data "azurerm_network_security_group" "AADDS" {
   name                = "AADDS-northvolt.com-NSG"
