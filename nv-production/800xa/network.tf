@@ -25,6 +25,14 @@ resource "azurerm_subnet" "abb_800xa_2" {
   address_prefix       = "10.60.60.0/24"
 }
 
+# 800xa subnets
+resource "azurerm_subnet" "abb_800xa_3" {
+  resource_group_name  = azurerm_resource_group.abb_800xa.name
+  virtual_network_name = azurerm_virtual_network.abb_800xa.name
+  name                 = "800xa-3"
+  address_prefix       = "10.60.51.0/24"
+}
+
 resource "azurerm_virtual_network_peering" "abb800xa_to_nv-hub" {
   name                         = "nv-production_to_nv-hub"
   resource_group_name          = azurerm_resource_group.abb_800xa.name
@@ -32,5 +40,5 @@ resource "azurerm_virtual_network_peering" "abb800xa_to_nv-hub" {
   remote_virtual_network_id    = var.remote_virtual_network_id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
+  use_remote_gateways          = true
 }
-  

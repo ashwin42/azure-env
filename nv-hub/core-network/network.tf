@@ -16,6 +16,7 @@ resource "azurerm_virtual_network_peering" "nv-hub_to_800xa" {
   remote_virtual_network_id    = var.remote_virtual_network_id
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
+  allow_gateway_transit        = true
 }
 
 resource "azurerm_subnet" "GatewaySubnet" {
