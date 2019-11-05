@@ -5,7 +5,7 @@ resource "azurerm_virtual_network" "core_vnet" {
   name                = "core_vnet"
   address_space       = ["10.40.0.0/16"]
   # Once AADDS is in place, this should be enabled/changed
-  #dns_servers         = ["10.101.250.4", "10.101.250.5"]
+  dns_servers         = ["10.40.250.4", "10.40.250.5"]
   tags = merge(var.default_tags, {})
 }
 
