@@ -5,11 +5,11 @@ resource "azurerm_virtual_network" "core_vnet" {
   name                = "core_vnet"
   address_space       = ["10.40.0.0/16"]
   # Once AADDS is in place, this should be enabled/changed
-  dns_servers         = ["10.40.250.4", "10.40.250.5"]
-  tags = merge(var.default_tags, {})
+  dns_servers = ["10.40.250.4", "10.40.250.5"]
+  tags        = merge(var.default_tags, {})
 }
 
-output "core_vnet_id"{
+output "core_vnet_id" {
   value = azurerm_virtual_network.core_vnet.id
 }
 
@@ -77,10 +77,10 @@ output "core-utils-1-id" {
 }
 
 resource "azurerm_subnet" "nv_domain_services" {
-  name                      = "nv-domain-services"
-  resource_group_name       = azurerm_resource_group.core_network.name
-  virtual_network_name      = azurerm_virtual_network.core_vnet.name
-  address_prefix            = "10.40.250.0/24"
+  name                 = "nv-domain-services"
+  resource_group_name  = azurerm_resource_group.core_network.name
+  virtual_network_name = azurerm_virtual_network.core_vnet.name
+  address_prefix       = "10.40.250.0/24"
 }
 
 output "nv_domain_services-id" {
