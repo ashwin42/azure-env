@@ -64,6 +64,28 @@ resource "azurerm_virtual_network_gateway" "nv-hub-er-gw" {
   }
 }
 
+resource "azurerm_subnet" "core_vpn_mgmt_1" {
+  name                 = "core-vpn-mgmt-1"
+  resource_group_name  = azurerm_resource_group.core_network.name
+  virtual_network_name = azurerm_virtual_network.core_vnet.name
+  address_prefix       = "10.40.5.0/24"
+}
+
+output "core_vpn_mgmt_1_id" {
+  value = azurerm_subnet.core_vpn_mgmt_1.id
+}
+
+resource "azurerm_subnet" "core_vpn_client_1" {
+  name                 = "core-vpn-client-1"
+  resource_group_name  = azurerm_resource_group.core_network.name
+  virtual_network_name = azurerm_virtual_network.core_vnet.name
+  address_prefix       = "10.40.6.0/24"
+}
+
+output "core_vpn_client_1_id" {
+  value = azurerm_subnet.core_vpn_client_1.id
+}
+
 resource "azurerm_subnet" "core-utils-1" {
   name                 = "core-utils-1"
   resource_group_name  = azurerm_resource_group.core_network.name
