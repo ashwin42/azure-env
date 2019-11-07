@@ -9,6 +9,6 @@ terraform {
 }
 
 provider "azurerm" {
-  version = ">= 1.19.0"
+  version         = ">= 1.19.0"
   subscription_id = "f23047bd-1342-4fdf-a81c-00c91500455f"
 }

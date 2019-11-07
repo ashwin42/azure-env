@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "core_vnet" {
   resource_group_name = "${azurerm_resource_group.nv-core.name}"
   address_space       = "${var.vnet_address_space}"
   location            = "${var.location}"
-  dns_servers         = ["10.101.250.4", "10.101.250.5"]
+  #dns_servers         = ["10.40.250.4", "10.40.250.5"]
 }
 
 output "core_vnet_id" {
