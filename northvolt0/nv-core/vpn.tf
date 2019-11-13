@@ -9,7 +9,7 @@ resource "azurerm_local_network_gateway" "gamla_brogatan_26" {
   resource_group_name = "${azurerm_resource_group.nv-core.name}"
   location            = "${var.location}"
   gateway_address     = "31.208.18.58"
-  address_space       = ["192.168.118.0/23", "192.168.113.0/24"]
+  address_space       = ["10.10.8.0/23"]
 }
 
 data "azurerm_key_vault_secret" "gateway_connection_psk" {
@@ -158,6 +158,7 @@ resource "azurerm_route" "miradot_colo1" {
 #   idle_timeout_in_minutes = 30
 # }
 
+
 # resource "azurerm_public_ip" "main_vngw_secondary" {
 #   name                    = "main_vnet_gw_secondary"
 #   resource_group_name     = "${azurerm_resource_group.nv-core.name}"
@@ -166,17 +167,21 @@ resource "azurerm_route" "miradot_colo1" {
 #   idle_timeout_in_minutes = 30
 # }
 
+
 # resource "azurerm_virtual_network_gateway" "main" {
 #   name                = "main_vnet_gw"
 #   resource_group_name = "${azurerm_resource_group.nv-core.name}"
 #   location            = "${var.location}"
 
+
 #   type     = "Vpn"
 #   vpn_type = "RouteBased"
+
 
 #   active_active = true
 #   enable_bgp    = true
 #   sku           = "VpnGw1"
+
 
 #   ip_configuration {
 #     name                 = "main_vnet_gw_primary"
@@ -184,9 +189,11 @@ resource "azurerm_route" "miradot_colo1" {
 #     subnet_id            = "${azurerm_subnet.gateway_subnet.id}"
 #   }
 
+
 #   ip_configuration {
 #     name                 = "main_vnet_gw_secondary"
 #     public_ip_address_id = "${azurerm_public_ip.main_vngw_secondary.id}"
 #     subnet_id            = "${azurerm_subnet.gateway_subnet.id}"
 #   }
 # }
+

@@ -4,8 +4,9 @@ resource "azurerm_virtual_network" "core_vnet" {
   resource_group_name = "${azurerm_resource_group.nv-core.name}"
   address_space       = "${var.vnet_address_space}"
   location            = "${var.location}"
+
   # Can't change these, so leaving it in
-  dns_servers         = ["10.101.250.4", "10.101.250.5"]
+  dns_servers = ["10.101.250.4", "10.101.250.5"]
 }
 
 output "core_vnet_id" {
@@ -14,8 +15,8 @@ output "core_vnet_id" {
 
 resource "azurerm_virtual_network_peering" "csp_to_nv-hub" {
   name                         = "csp_to_nv-hub"
-  resource_group_name          = azurerm_resource_group.nv-core.name
-  virtual_network_name         = azurerm_virtual_network.core_vnet.name
+  resource_group_name          = "${azurerm_resource_group.nv-core.name}"
+  virtual_network_name         = "${azurerm_virtual_network.core_vnet.name}"
   remote_virtual_network_id    = "${var.remote_hub_vnet}"
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true

@@ -47,6 +47,6 @@ resource "azurerm_route" "nv_hq" {
   name                = "nv_hq_subnets_route"
   resource_group_name = "${var.resource_group_name}"
   route_table_name    = "${azurerm_route_table.nv_hq.name}"
-  address_prefix      = "192.168.0.0/16"
+  address_prefix      = "10.10.8.0/23"
   next_hop_type       = "VirtualNetworkGateway"
 }
