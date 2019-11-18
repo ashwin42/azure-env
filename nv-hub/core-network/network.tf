@@ -33,6 +33,16 @@ resource "azurerm_virtual_network_peering" "nv-hub_to_csp" {
   allow_gateway_transit        = true
 }
 
+resource "azurerm_virtual_network_peering" "nv-hub_to_infra" {
+  name                         = "nv-hub_to_infra"
+  resource_group_name          = azurerm_resource_group.core_network.name
+  virtual_network_name         = azurerm_virtual_network.core_vnet.name
+  remote_virtual_network_id    = var.remote_infra_vnet
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+  allow_gateway_transit        = true
+}
+
 resource "azurerm_subnet" "GatewaySubnet" {
   name                 = "GatewaySubnet"
   resource_group_name  = azurerm_resource_group.core_network.name
