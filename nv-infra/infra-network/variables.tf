@@ -10,6 +10,6 @@ variable "remote_virtual_network_id" {
 // Locally defined vars
 variable "default_tags" {
   default = {
-    repo = "azure-env/nv-production/nv_infra"
+    repo = "azure-env/nv_infra"
   }
 }

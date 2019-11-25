@@ -1,8 +1,8 @@
-// # Include all settings from the root terragrunt.hcl file
-// include {
-//   path = find_in_parent_folders()
-// }
+# Include all settings from the root terragrunt.hcl file
+include {
+  path = find_in_parent_folders()
+}
 
-// inputs = {
-//   resource_group_name       = "nv_infra"
-// }
+inputs = {
+  resource_group_name       = "nv_siemens"
+}
