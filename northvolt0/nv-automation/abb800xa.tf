@@ -55,3 +55,50 @@ module "abb800xa" {
   backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
   secondary_nic       = "${azurerm_network_interface.abb800xa_secondary_nic.id}"
 }
+
+resource "azurerm_network_security_group" "abb800xa_2" {
+  name                = "abb800xa-2-sg"
+  resource_group_name = "${var.resource_group_name}"
+  location            = "${var.location}"
+
+  security_rule {
+    name                       = "Allow_Outbound"
+    priority                   = 100
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
+resource "azurerm_network_interface" "abb800xa_2_secondary_nic" {
+  name                      = "abb800xa-2-second-nic"
+  resource_group_name       = "${var.resource_group_name}"
+  location                  = "${var.location}"
+  network_security_group_id = "${azurerm_network_security_group.abb800xa_2.id}"
+
+  ip_configuration {
+    name                          = "abb800xa-2-second-nic_config"
+    subnet_id                     = "${local.nv_automation_1}"
+    private_ip_address_allocation = "static"
+    private_ip_address            = "10.101.2.23"
+  }
+}
+
+module "abb800xa_2" {
+  source              = "../modules/windows-server"
+  security_group_id   = "${azurerm_network_security_group.abb800xa_2.id}"
+  password            = "${data.azurerm_key_vault_secret.abb800xa.value}"
+  ipaddress           = "10.101.2.22"
+  name                = "abb800xa-2"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+  secondary_nic       = "${azurerm_network_interface.abb800xa_2_secondary_nic.id}"
+}
