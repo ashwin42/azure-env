@@ -53,10 +53,10 @@ resource "azurerm_virtual_network_peering" "nv-hub_to_infra" {
   allow_gateway_transit        = true
 }
 
-resource "azurerm_virtual_network_peering" "nv-hub_vpn_to_siemens" {
-  name                         = "nv-hub_vpn_to_infra"
+resource "azurerm_virtual_network_peering" "nv-hub_to_siemens" {
+  name                         = "nv-hub_to_siemens"
   resource_group_name          = azurerm_resource_group.core_network.name
-  virtual_network_name         = azurerm_virtual_network.core_vnet_vpn.name
+  virtual_network_name         = azurerm_virtual_network.core_vnet.name
   remote_virtual_network_id    = var.remote_siemens_vnet
   allow_virtual_network_access = true
   allow_forwarded_traffic      = true
