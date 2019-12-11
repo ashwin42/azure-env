@@ -5,6 +5,7 @@ resource "azurerm_virtual_network" "nv_siemens_vnet" {
   name                = "nv_siemens_vnet"
   address_space       = ["10.44.0.0/16"]
   tags                = merge(var.default_tags, {})
+  dns_servers         = ["10.40.250.4", "10.40.250.5"]
 }
 
 # siemens subnets
@@ -44,4 +45,21 @@ resource "azurerm_subnet" "siemens_system_subnet" {
   virtual_network_name = azurerm_virtual_network.nv_siemens_vnet.name
   name                 = "siemens_system_subnet"
   address_prefix       = "10.44.1.128/26"
+}
+
+resource "azurerm_virtual_network_peering" "nv_siemens_to_nv-hub" {
+  name                         = "nv_siemens_to_nv-hub"
+  resource_group_name          = azurerm_resource_group.nv_siemens.name
+  virtual_network_name         = azurerm_virtual_network.nv_siemens_vnet.name
+  remote_virtual_network_id    = var.remote_virtual_network_id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+  use_remote_gateways          = true
+}
+
+resource "azurerm_subnet" "azure_bastion" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = azurerm_resource_group.nv_siemens.name
+  virtual_network_name = azurerm_virtual_network.nv_siemens_vnet.name
+  address_prefix       = "10.44.1.192/27"
 }
