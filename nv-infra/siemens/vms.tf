@@ -239,4 +239,8 @@ module "nv-siemens-sql" {
   managed_data_disk_size = "500"
   secondary_nic          = "${azurerm_network_interface.sql_secondary_nic.id}"
   availability_set       = azurerm_availability_set.nv_siemens_avs.id
+  image_publisher        = "MicrosoftSQLServer"
+  image_offer            = "SQL2016SP1-WS2016"
+  image_sku              = "Enterprise"
+  image_version          = "latest"
 }
