@@ -1,0 +1,11 @@
+VDI TenantName
+Northvolt-VDI
+
+$svcPrincipalCreds.Value
+Stored in Keyvault
+
+$aadContext.TenantId.Guid
+706c5db9-5278-483b-b622-70084f823a12
+
+$svcPrincipal.AppId
+0dd7d088-06cd-4da7-8a9b-56018acd2555

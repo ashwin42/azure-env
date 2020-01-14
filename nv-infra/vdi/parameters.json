@@ -1,0 +1,109 @@
+{
+        "rdshImageSource": {
+            "value": "Gallery"
+        },
+        "vmImageVhdUri": {
+            "value": ""
+        },
+        "rdshGalleryImageSKU": {
+            "value": "Windows-10-Enterprise-multi-session"
+        },
+        "rdshCustomImageSourceName": {
+            "value": ""
+        },
+        "rdshCustomImageSourceResourceGroup": {
+            "value": ""
+        },
+        "rdshNamePrefix": {
+            "value": "nv-poc-2"
+        },
+        "rdshNumberOfInstances": {
+            "value": 1
+        },
+        "rdshVMDiskType": {
+            "value": "Premium_LRS"
+        },
+        "rdshVmSize": {
+            "value": "Standard_NC6s_v3"
+        },
+        "enableAcceleratedNetworking": {
+            "value": false
+        },
+        "rdshUseManagedDisks": {
+            "value": true
+        },
+        "storageAccountResourceGroupName": {
+            "value": "''"
+        },
+        "domainToJoin": {
+            "value": "aadds.northvolt.com"
+        },
+        "existingDomainUPN": {
+            "value": "domainjoin@northvolt.com"
+        },
+        "existingDomainPassword": {
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-infra-core/providers/Microsoft.KeyVault/vaults/nv-infra-core"
+                },
+                "secretName": "domainjoin"
+            }
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "existingVnetName": {
+            "value": "nv_infra"
+        },
+        "newOrExistingVnet": {
+            "value": "existing"
+        },
+        "existingSubnetName": {
+            "value": "vdi_subnet"
+        },
+        "virtualNetworkResourceGroupName": {
+            "value": "nv_infra"
+        },
+        "rdBrokerURL": {
+            "value": "https://rdbroker.wvd.microsoft.com"
+        },
+        "existingTenantGroupName": {
+            "value": "Default Tenant Group"
+        },
+        "existingTenantName": {
+            "value": "Northvolt-VDI"
+        },
+        "hostPoolName": {
+            "value": "nv_vdi_poc_2"
+        },
+        "serviceMetadataLocation": {
+            "value": "United-States"
+        },
+        "enablePersistentDesktop": {
+            "value": false
+        },
+        "defaultDesktopUsers": {
+            "value": "anders.markland@northvolt.com,karl.ziethen@northvolt.com,kenya.shatani@northvolt.com,daniel.agrell@northvolt.com,therese.ostergren@northvolt.com,johan.blom@northvolt.com,wenkan.huang@northvolt.com,evangelos.bakas@northvolt.com,Jesper.Andersson@northvolt.com,pontus.engstrom@northvolt.com,myra.martinez@northvolt.com,ermal@northvolt.com,marko@northvolt.com,ali@northvolt.com,olivia.ivkovic@northvolt.com,christoffer.jonsson@northvolt.com"
+        },
+        "tenantAdminUpnOrApplicationId": {
+            "value": "0dd7d088-06cd-4da7-8a9b-56018acd2555"
+        },
+        "tenantAdminPassword": {
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-infra-core/providers/Microsoft.KeyVault/vaults/nv-infra-core"
+                },
+                "secretName": "tenantAdminPassword"
+            }
+        },
+        "isServicePrincipal": {
+            "value": true
+        },
+        "aadTenantId": {
+            "value": "706c5db9-5278-483b-b622-70084f823a12"
+        },
+        "location": {
+            "value": "westeurope"
+        }
+
+}
