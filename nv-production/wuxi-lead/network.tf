@@ -51,16 +51,48 @@ resource "azurerm_network_security_group" "FLP1PAHTS01KED1-nsg" {
   resource_group_name = "${azurerm_resource_group.nv-wuxi-lead.name}"
 
   security_rule {
-    name                       = "kyle"
-    priority                   = 100
+    name                       = "Temp_Office"
+    priority                   = 120
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "62.20.55.58"
     destination_address_prefix = "*"
   }
+
+   security_rule {
+    name                       = "Factory"
+    priority                   = 130
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "213.50.54.192/28"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    access                                     = "Allow"
+    description                                = ""
+    destination_address_prefix                 = "*"
+    destination_address_prefixes               = []
+    destination_application_security_group_ids = []
+    destination_port_range                     = "*"
+    destination_port_ranges                    = []
+    direction                                  = "Inbound"
+    name                                       = "AwsInbound"
+    priority                                   = 110
+    protocol                                   = "*"
+    source_address_prefix                      = "10.21.0.0/16"
+    source_address_prefixes                    = []
+    source_application_security_group_ids      = []
+    source_port_range                          = "*"
+    source_port_ranges                         = []
+  }
+
 }
 /* security_rule {
     name                       = "kyle"

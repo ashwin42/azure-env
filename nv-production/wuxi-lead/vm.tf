@@ -5,7 +5,7 @@ resource "azurerm_virtual_machine" "main" {
   primary_network_interface_id  = "${azurerm_network_interface.main.id}"
   network_interface_ids         = ["${azurerm_network_interface.main.id}"]
   vm_size                       = "${var.vm_size}"
-  delete_os_disk_on_termination = false
+  delete_os_disk_on_termination = true
 
   storage_image_reference {
     sku       = "enterprise"

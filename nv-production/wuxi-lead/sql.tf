@@ -97,3 +97,11 @@ resource "azurerm_sql_firewall_rule" "kyle-2" {
   start_ip_address    = "85.30.130.73"
   end_ip_address      = "85.30.130.73"
 }
+
+resource "azurerm_sql_firewall_rule" "allow-aws" {
+  name                = "allow-aws"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "63.33.247.39"
+  end_ip_address      = "63.33.247.39"
+}
