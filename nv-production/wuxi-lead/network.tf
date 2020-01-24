@@ -7,10 +7,25 @@ resource "azurerm_virtual_network" "wuxi-vnet" {
 }
 
 resource "azurerm_subnet" "wuxi-subnet" {
-  name                 = "wuxi-subnet"
-  resource_group_name  = var.resource_group_name
-  virtual_network_name = azurerm_virtual_network.wuxi-vnet.name
-  address_prefix       = "10.42.0.0/24"
+  name                                           = "wuxi-subnet"
+  resource_group_name                            = var.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.wuxi-vnet.name
+  address_prefix                                 = "10.42.0.0/24"
+  enforce_private_link_endpoint_network_policies = true
+}
+
+resource "azurerm_private_endpoint" "nv_wuxi_sql_pe" {
+  name                = "nv_wuxi_sql_pe"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = azurerm_subnet.wuxi-subnet.id
+
+  private_service_connection {
+    name                           = "nv_wuxi_sql_pe"
+    is_manual_connection           = false
+    private_connection_resource_id = azurerm_sql_server.nv-wuxi-lead.id
+    subresource_names              = ["sqlServer"]
+  }
 }
 
 resource "azurerm_network_interface" "main" {
@@ -62,7 +77,7 @@ resource "azurerm_network_security_group" "FLP1PAHTS01KED1-nsg" {
     destination_address_prefix = "*"
   }
 
-   security_rule {
+  security_rule {
     name                       = "Factory"
     priority                   = 130
     direction                  = "Inbound"

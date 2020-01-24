@@ -1,5 +1,5 @@
 data "azurerm_key_vault_secret" "nv-production-core" {
-  name         = "nv-wuxi-lead"
+  name         = "nv-wuxi-lead-sql"
   key_vault_id = "${data.azurerm_key_vault.nv-production-core.id}"
 }
 
