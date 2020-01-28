@@ -3,7 +3,7 @@ resource "azurerm_virtual_network" "nv_siemens_vnet" {
   resource_group_name = azurerm_resource_group.nv_siemens.name
   location            = var.location
   name                = "nv_siemens_vnet"
-  address_space       = ["10.44.0.0/16"]
+  address_space       = ["10.44.1.0/24"]
   tags                = merge(var.default_tags, {})
   dns_servers         = ["10.40.250.4", "10.40.250.5"]
 }

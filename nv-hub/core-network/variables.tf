@@ -23,6 +23,10 @@ variable "remote_siemens_vnet" {
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_siemens/providers/Microsoft.Network/virtualNetworks/nv_siemens_vnet"
 }
 
+variable "remote_network_mon_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_network_mon/providers/Microsoft.Network/virtualNetworks/nv_network_mon_vnet"
+}
+
 // Locally defined vars
 variable "default_tags" {
   default = {
