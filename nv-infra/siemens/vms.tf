@@ -123,7 +123,7 @@ module "nv-siemens-sipass" {
   availability_set       = azurerm_availability_set.nv_siemens_avs.id
   image_publisher        = "MicrosoftSQLServer"
   image_offer            = "SQL2016SP1-WS2016"
-  image_sku              = "Enterprise"
+  image_sku              = "Standard"
   image_version          = "latest"
 }
 
@@ -241,6 +241,6 @@ module "nv-siemens-sql" {
   availability_set       = azurerm_availability_set.nv_siemens_avs.id
   image_publisher        = "MicrosoftSQLServer"
   image_offer            = "SQL2016SP1-WS2016"
-  image_sku              = "Enterprise"
+  image_sku              = "Standard"
   image_version          = "latest"
 }
