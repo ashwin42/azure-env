@@ -19,7 +19,7 @@ variable "private_ip_address" {
 }
 
 variable "vm_size" {
-  default = "Standard_B2ms"
+  default = "Standard_B2s"
 }
 
 variable "managed_disk_type" {

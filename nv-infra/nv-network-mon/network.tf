@@ -25,7 +25,8 @@ resource "azurerm_virtual_network" "nv_network_mon_vnet" {
   resource_group_name = var.resource_group_name
   location            = var.location
   name                = "nv_network_mon_vnet"
-  address_space       = ["10.44.3.0/27"]
+  address_space       = ["10.44.3.0/24"]
+  dns_servers         = ["10.40.250.4", "10.40.250.5"]
 }
 
 # nv_network_mon subnets
@@ -34,6 +35,14 @@ resource "azurerm_subnet" "nv_network_mon_subnet" {
   virtual_network_name = azurerm_virtual_network.nv_network_mon_vnet.name
   name                 = "nv_network_mon_subnet"
   address_prefix       = "10.44.3.0/27"
+}
+
+# nv_network_nps subnets
+resource "azurerm_subnet" "nv_nps_subnet" {
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.nv_network_mon_vnet.name
+  name                 = "nv_nps_subnet"
+  address_prefix       = "10.44.3.32/27"
 }
 
 resource "azurerm_virtual_network_peering" "nv_network_mon_to_nv-hub" {
