@@ -34,15 +34,8 @@ resource "azurerm_sql_database" "nv-wuxi-cylindrical" {
   max_size_bytes      = "1099511627776"
 }
 
-resource "azurerm_sql_firewall_rule" "barracks" {
-  name                = "barracks"
-  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
-  server_name         = azurerm_sql_server.nv-wuxi-lead.name
-  start_ip_address    = "155.4.206.91"
-  end_ip_address      = "155.4.206.91"
-}
-
 resource "azurerm_sql_firewall_rule" "ClientIPAddress_2019-9-25_17-8-5" {
+  # todo: change resource name
   name                = "ClientIPAddress_2019-9-25_17-8-5"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -51,6 +44,7 @@ resource "azurerm_sql_firewall_rule" "ClientIPAddress_2019-9-25_17-8-5" {
 }
 
 resource "azurerm_sql_firewall_rule" "ClientIPAddress_2019-9-26_8-55-57" {
+  # todo: change resource name
   name                = "ClientIPAddress_2019-9-26_8-55-57"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -59,6 +53,7 @@ resource "azurerm_sql_firewall_rule" "ClientIPAddress_2019-9-26_8-55-57" {
 }
 
 resource "azurerm_sql_firewall_rule" "train" {
+  # todo: remove after VPN setup
   name                = "train"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -67,6 +62,7 @@ resource "azurerm_sql_firewall_rule" "train" {
 }
 
 resource "azurerm_sql_firewall_rule" "wuxi-hotel" {
+  # todo: remove after commissioning
   name                = "wuxi-hotel"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -75,6 +71,7 @@ resource "azurerm_sql_firewall_rule" "wuxi-hotel" {
 }
 
 resource "azurerm_sql_firewall_rule" "Wuxi-team" {
+  # todo: change resource name
   name                = "Wuxi-team"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -83,6 +80,7 @@ resource "azurerm_sql_firewall_rule" "Wuxi-team" {
 }
 
 resource "azurerm_sql_firewall_rule" "kyle" {
+  # todo: change resource name
   name                = "kyle"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -91,6 +89,7 @@ resource "azurerm_sql_firewall_rule" "kyle" {
 }
 
 resource "azurerm_sql_firewall_rule" "kyle-2" {
+  # todo: change resource name
   name                = "kyle-2"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -98,10 +97,26 @@ resource "azurerm_sql_firewall_rule" "kyle-2" {
   end_ip_address      = "85.30.130.73"
 }
 
-resource "azurerm_sql_firewall_rule" "allow-aws" {
-  name                = "allow-aws"
+resource "azurerm_sql_firewall_rule" "aws-k8s" {
+  name                = "aws-k8s"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
   start_ip_address    = "63.33.247.39"
   end_ip_address      = "63.33.247.39"
+}
+
+resource "azurerm_sql_firewall_rule" "factory-telia" {
+  name                = "labs-telia"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "213.50.54.193"
+  end_ip_address      = "213.50.54.206"
+}
+
+resource "azurerm_sql_firewall_rule" "factory-tele2" {
+  name                = "labs-tele2"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "62.20.23.2"
+  end_ip_address      = "62.20.23.14"
 }
