@@ -29,7 +29,7 @@ resource "azurerm_network_security_group" "nv_labx_nsg" {
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "83.233.110.151"
+    source_address_prefix      = "83.233.110.244"
     destination_address_prefix = "*"
   }
   
