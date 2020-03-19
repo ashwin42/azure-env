@@ -35,8 +35,8 @@ resource "azurerm_sql_firewall_rule" "Allow_Inbound_pontus" {
   name                = "Allow_Inbound_pontus"
   resource_group_name = azurerm_resource_group.nv_labx.name
   server_name         = azurerm_sql_server.nv-labx-sql-server.name
-  start_ip_address    = "83.233.110.151"
-  end_ip_address      = "83.233.110.151"
+  start_ip_address    = "83.233.110.244"
+  end_ip_address      = "83.233.110.244"
 }
 
 resource "azurerm_sql_firewall_rule" "Factory" {
