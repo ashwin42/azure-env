@@ -105,7 +105,7 @@ resource "azurerm_sql_firewall_rule" "aws-k8s" {
   end_ip_address      = "63.33.247.39"
 }
 
-resource "azurerm_sql_firewall_rule" "factory-telia" {
+resource "azurerm_sql_firewall_rule" "labs-telia" {
   name                = "labs-telia"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -113,7 +113,7 @@ resource "azurerm_sql_firewall_rule" "factory-telia" {
   end_ip_address      = "213.50.54.206"
 }
 
-resource "azurerm_sql_firewall_rule" "factory-tele2" {
+resource "azurerm_sql_firewall_rule" "labs-tele2" {
   name                = "labs-tele2"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
@@ -121,11 +121,18 @@ resource "azurerm_sql_firewall_rule" "factory-tele2" {
   end_ip_address      = "62.20.23.14"
 }
 
-resource "azurerm_sql_firewall_rule" "linnea" {
-  name                = "linnea"
+resource "azurerm_sql_firewall_rule" "linnea-home" {
+  name                = "linnea-home"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
   start_ip_address    = "85.226.248.54"
   end_ip_address      = "85.226.248.54"
 }
 
+resource "azurerm_sql_firewall_rule" "kyle-home" {
+  name                = "kyle-home"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "188.151.113.108"
+  end_ip_address      = "188.151.113.108"
+}
