@@ -136,3 +136,39 @@ resource "azurerm_sql_firewall_rule" "kyle-home" {
   start_ip_address    = "188.151.113.108"
   end_ip_address      = "188.151.113.108"
 }
+
+resource "azurerm_sql_firewall_rule" "aws-public-ips" {
+  # todo: THIS IS TEMPORARY. MUST REMOVE AFTER AWS-AZURE TUNNELING.
+  name                = "aws-public-ips"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "99.80.0.0"
+  end_ip_address      = "99.81.255.255"
+}
+
+resource "azurerm_sql_firewall_rule" "internal-k8s-1" {
+  # todo: THIS IS TEMPORARY. MUST REMOVE AFTER AWS-AZURE TUNNELING.
+  name                = "internal-k8s-1"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "10.21.13.0"
+  end_ip_address      = "10.21.13.255"
+}
+
+resource "azurerm_sql_firewall_rule" "internal-k8s-2" {
+  # todo: THIS IS TEMPORARY. MUST REMOVE AFTER AWS-AZURE TUNNELING.
+  name                = "internal-k8s-2"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "10.21.14.0"
+  end_ip_address      = "10.21.14.255"
+}
+
+resource "azurerm_sql_firewall_rule" "internal-k8s-3" {
+  # todo: THIS IS TEMPORARY. MUST REMOVE AFTER AWS-AZURE TUNNELING.
+  name                = "internal-k8s-3"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
+  server_name         = azurerm_sql_server.nv-wuxi-lead.name
+  start_ip_address    = "10.21.15.0"
+  end_ip_address      = "10.21.15.255"
+}
