@@ -1,0 +1,123 @@
+{
+  "acceptMappedClaims": null,
+  "addIns": [],
+  "allowGuestsSignIn": null,
+  "allowPassthroughUsers": null,
+  "appId": "be8d485f-e54c-4031-95a6-ad0f61e2d50e",
+  "appLogoUrl": null,
+  "appPermissions": null,
+  "appRoles": [
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "User",
+      "displayName": "User",
+      "id": "18d14569-c3bd-439b-9a66-3a2aee01d14f",
+      "isEnabled": true,
+      "value": null
+    },
+    {
+      "allowedMemberTypes": [
+        "User"
+      ],
+      "description": "msiam_access",
+      "displayName": "msiam_access",
+      "id": "b9632174-c057-4f7e-951b-be3adc52bfe6",
+      "isEnabled": true,
+      "value": null
+    }
+  ],
+  "applicationTemplateId": null,
+  "availableToOtherTenants": false,
+  "deletionTimestamp": null,
+  "displayName": "nv-auth-dev",
+  "errorUrl": null,
+  "groupMembershipClaims": "SecurityGroup",
+  "homepage": "https://account.activedirectory.windowsazure.com:444/applications/default.aspx?metadata=customappsso|ISV9.1|primary|z",
+  "identifierUris": [
+    "urn:amazon:cognito:sp:eu-west-1_oPiNz53Bm"
+  ],
+  "informationalUrls": {
+    "marketing": null,
+    "privacy": null,
+    "support": null,
+    "termsOfService": null
+  },
+  "isDeviceOnlyAuthSupported": null,
+  "keyCredentials": [],
+  "knownClientApplications": [],
+  "logo@odata.mediaEditLink": "directoryObjects/fd1f6237-cd59-45e7-9972-05d642cc8d2d/Microsoft.DirectoryServices.Application/logo",
+  "logoUrl": null,
+  "logoutUrl": null,
+  "mainLogo@odata.mediaEditLink": "directoryObjects/fd1f6237-cd59-45e7-9972-05d642cc8d2d/Microsoft.DirectoryServices.Application/mainLogo",
+  "oauth2AllowIdTokenImplicitFlow": true,
+  "oauth2AllowImplicitFlow": false,
+  "oauth2AllowUrlPathMatching": false,
+  "oauth2Permissions": [
+    {
+      "adminConsentDescription": "Allow the application to access nv-auth-dev on behalf of the signed-in user.",
+      "adminConsentDisplayName": "Access nv-auth-dev",
+      "id": "c48d8cd4-9255-46fa-9a49-a27957126aad",
+      "isEnabled": true,
+      "type": "User",
+      "userConsentDescription": "Allow the application to access nv-auth-dev on your behalf.",
+      "userConsentDisplayName": "Access nv-auth-dev",
+      "value": "user_impersonation"
+    }
+  ],
+  "oauth2RequirePostResponse": false,
+  "objectId": "fd1f6237-cd59-45e7-9972-05d642cc8d2d",
+  "objectType": "Application",
+  "odata.metadata": "https://graph.windows.net/706c5db9-5278-483b-b622-70084f823a12/$metadata#directoryObjects/@Element",
+  "odata.type": "Microsoft.DirectoryServices.Application",
+  "optionalClaims": {
+    "accessToken": [],
+    "idToken": [],
+    "saml2Token": [
+      {
+        "additionalProperties": [],
+        "essential": false,
+        "name": "groups",
+        "source": null
+      }
+    ],
+    "samlToken": null
+  },
+  "orgRestrictions": [],
+  "parentalControlSettings": {
+    "countriesBlockedForMinors": [],
+    "legalAgeGroupRule": "Allow"
+  },
+  "passwordCredentials": [
+    {
+      "additionalProperties": null,
+      "customKeyIdentifier": null,
+      "endDate": "2299-12-30T23:00:00+00:00",
+      "keyId": "2d38a9d9-afa4-44c3-97f9-2cdb2aae4b62",
+      "startDate": "2019-11-07T15:49:59.030000+00:00",
+      "value": null
+    }
+  ],
+  "preAuthorizedApplications": null,
+  "publicClient": false,
+  "publisherDomain": "northvolt.com",
+  "recordConsentConditions": null,
+  "replyUrls": [
+    "https://search-ds-northvolt-hifsabjmw6acy6f2m565dkaswi.eu-west-1.es.amazonaws.com/_plugin/kibana/app/kibana",
+    "https://wirebonder.aut-dev.aws.nvlt.co",
+    "https://wirebonder.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://gql-pub.aut-dev.aws.nvlt.co",
+    "https://gql-pub.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://auth-dev.nvlt.co/saml2/idpresponse",
+    "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/oauth2/idpresponse",
+    "https://superset.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/",
+    "https://superset.aut-dev.aws.nvlt.co"
+  ],
+  "requiredResourceAccess": [],
+  "samlMetadataUrl": null,
+  "signInAudience": "AzureADMyOrg",
+  "tokenEncryptionKeyId": null,
+  "wwwHomepage": null
+}
