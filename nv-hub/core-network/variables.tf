@@ -31,6 +31,10 @@ variable "remote_polarion_vnet"{
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_polarion/providers/Microsoft.Network/virtualNetworks/nv_polarion_vnet"
 }
 
+variable "remote_nv_labx_vnet"{
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_labx/providers/Microsoft.Network/virtualNetworks/nv_labx_vnet"
+}
+
 // Locally defined vars
 variable "default_tags" {
   default = {

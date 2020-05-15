@@ -36,3 +36,13 @@ resource "azurerm_subnet" "labx_subnet" {
   name                 = "labx_subnet"
   address_prefix       = "10.44.2.0/26"
 }
+
+resource "azurerm_virtual_network_peering" "nv_labx_vnet_to_nv-hub" {
+  name                         = "nv_labx_vnet_to_nv-hub"
+  resource_group_name          = var.resource_group_name
+  virtual_network_name         = azurerm_virtual_network.nv_labx_vnet.name
+  remote_virtual_network_id    = var.remote_virtual_network_id
+  allow_virtual_network_access = true
+  allow_forwarded_traffic      = true
+  use_remote_gateways          = true
+}
