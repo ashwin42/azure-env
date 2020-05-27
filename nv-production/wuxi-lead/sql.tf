@@ -125,8 +125,8 @@ resource "azurerm_sql_firewall_rule" "linnea-home" {
   name                = "linnea-home"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   server_name         = azurerm_sql_server.nv-wuxi-lead.name
-  start_ip_address    = "85.226.248.54"
-  end_ip_address      = "85.226.248.54"
+  start_ip_address    = "213.112.195.92"
+  end_ip_address      = "213.112.195.92"
 }
 
 resource "azurerm_sql_firewall_rule" "kyle-home" {
