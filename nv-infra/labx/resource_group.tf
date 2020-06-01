@@ -4,6 +4,13 @@ resource "azurerm_resource_group" "nv_labx" {
   tags     = merge(var.default_tags, {})
 }
 
+resource "azurerm_management_lock" "nv_labx_lock" {
+  name       = "nv_labx_lock"
+  scope      = azurerm_resource_group.nv_labx.id
+  lock_level = "CanNotDelete"
+  notes      = "Locked because it's a core component"
+}
+
 resource "azurerm_network_security_group" "nv_labx_nsg" {
   name                = "nv_labx_nsg"
   resource_group_name = var.resource_group_name

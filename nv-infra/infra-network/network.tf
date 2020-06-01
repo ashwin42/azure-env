@@ -25,28 +25,3 @@ resource "azurerm_virtual_network_peering" "nv_infra_to_nv-hub" {
   allow_forwarded_traffic      = true
   use_remote_gateways          = true
 }
-
-resource "azurerm_subnet" "AzureBastionSubnet_vdi" {
-  name                 = "AzureBastionSubnet"
-  resource_group_name  = azurerm_resource_group.nv_infra.name
-  virtual_network_name = azurerm_virtual_network.nv_infra.name
-  address_prefix       = "10.80.0.32/27"
-}
-
-resource "azurerm_network_security_group" "nv_vdi_poc-nsg" {
-  name                = "nv_vdi_poc-nsg"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.nv_infra .name
-
-  security_rule {
-    name                       = "vdi_poc"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "31.208.18.58"
-    destination_address_prefix = "10.80.0.0/27"
-  }
-}

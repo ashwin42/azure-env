@@ -4,6 +4,13 @@ resource "azurerm_resource_group" "nv_polarion" {
   tags     = merge(var.default_tags, {})
 }
 
+resource "azurerm_management_lock" "nv_polarion_lock" {
+  name       = "nv_polarion_lock"
+  scope      = azurerm_resource_group.nv_polarion.id
+  lock_level = "CanNotDelete"
+  notes      = "Locked because it's a core component"
+}
+
 resource "azurerm_network_security_group" "nv_polarion_nsg" {
   name                = "nv_polarion_nsg"
   resource_group_name = var.resource_group_name
