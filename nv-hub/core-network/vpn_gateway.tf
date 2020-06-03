@@ -103,3 +103,44 @@ resource "azurerm_virtual_network_gateway_connection" "azure_to_labs_s2s" {
   }
 
 }
+
+data "azurerm_key_vault_secret" "azure_to_lilje_office_s2s" {
+  name         = "azure-to-lilje-office-s2s-psk"
+  key_vault_id = data.azurerm_key_vault.nv_hub_core.id
+}
+
+resource "azurerm_local_network_gateway" "azure_to_lilje_office_s2s" {
+  name                = "azure-to-lilje-office-s2s"
+  resource_group_name = azurerm_resource_group.core_network.name
+  location            = var.location
+  gateway_address     = "98.128.134.222"
+  address_space       = ["10.245.255.0/30"]
+
+  bgp_settings {
+    asn                 = "65407"
+    bgp_peering_address = "10.245.255.2"
+  }
+}
+
+resource "azurerm_virtual_network_gateway_connection" "azure_to_lilje_office_s2s" {
+  name                = "azure-to-lilje-office-s2s"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  type                       = "IPsec"
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.nv_hub_vpn_gw_core.id
+  local_network_gateway_id   = azurerm_local_network_gateway.azure_to_lilje_office_s2s.id
+  shared_key                 = data.azurerm_key_vault_secret.azure_to_lilje_office_s2s.value
+  enable_bgp                 = true
+
+  ipsec_policy {
+    dh_group         = "DHGroup14"
+    ike_encryption   = "AES256"
+    ike_integrity    = "SHA256"
+    ipsec_encryption = "AES256"
+    ipsec_integrity  = "SHA256"
+    pfs_group        = "PFS24"
+    sa_lifetime      = "27000"
+  }
+
+}
