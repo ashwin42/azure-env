@@ -1,0 +1,181 @@
+{
+        "nestedTemplatesLocation": {
+            "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.0.12-preview/"
+        },
+        "artifactsLocation": {
+            "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration.zip"
+        },
+        "subscription": {
+            "value": "11dd160f-0e01-4b4d-a7a0-59407e357777"
+        },
+        "resourceGroup": {
+            "value": "nv_siemens"
+        },
+        "hostpoolName": {
+            "value": "nv-sipass-client"
+        },
+        "hostpoolFriendlyName": {
+            "value": ""
+        },
+        "hostpoolDescription": {
+            "value": "Regretfully created using ARM templates"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "workSpaceName": {
+            "value": "Sipass Windows Virtual Desktop"
+        },
+        "workspaceLocation": {
+            "value": "eastus"
+        },
+        "workspaceResourceGroup": {
+            "value": "nv_siemens"
+        },
+        "allApplicationGroupReferences": {
+            "value": ""
+        },
+        "addToWorkspace": {
+            "value": true
+        },
+        "administratorAccountUsername": {
+            "value": "domainjoin@northvolt.com"
+        },
+        "administratorAccountPassword": {
+            "reference": {
+                "keyVault": {
+                "id": "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-infra-core/providers/Microsoft.KeyVault/vaults/nv-infra-core"
+                },
+                "secretName": "domainjoin"
+            }
+        },
+        "createAvailabilitySet": {
+            "value": true
+        },
+        "vmResourceGroup": {
+            "value": "nv_siemens"
+        },
+        "vmLocation": {
+            "value": "westeurope"
+        },
+        "vmSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "vmNumberOfInstances": {
+            "value": 1
+        },
+        "vmNamePrefix": {
+            "value": "siemensclient"
+        },
+        "vmImageType": {
+            "value": "Gallery"
+        },
+        "vmGalleryImageOffer": {
+            "value": "Windows-10"
+        },
+        "vmGalleryImagePublisher": {
+            "value": "MicrosoftWindowsDesktop"
+        },
+        "vmGalleryImageSKU": {
+            "value": "19h2-evd"
+        },
+        "vmImageVhdUri": {
+            "value": ""
+        },
+        "vmCustomImageSourceId": {
+            "value": ""
+        },
+        "vmDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "vmUseManagedDisks": {
+            "value": true
+        },
+        "storageAccountResourceGroupName": {
+            "value": ""
+        },
+        "existingVnetName": {
+            "value": "nv_siemens_vnet"
+        },
+        "existingSubnetName": {
+            "value": "siemens_sipass_controllers"
+        },
+        "virtualNetworkResourceGroupName": {
+            "value": "nv_siemens"
+        },
+        "usePublicIP": {
+            "value": false
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "createNetworkSecurityGroup": {
+            "value": false
+        },
+        "networkSecurityGroupId": {
+            "value": ""
+        },
+        "networkSecurityGroupRules": {
+            "value": []
+        },
+        "hostpoolType": {
+            "value": "Pooled"
+        },
+        "personalDesktopAssignmentType": {
+            "value": ""
+        },
+        "maxSessionLimit": {
+            "value": 99999
+        },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "customRdpProperty": {
+            "value": ""
+        },
+        "vmTemplate": {
+            "value": "{\"domain\":\"northvolt.com\",\"galleryImageOffer\":\"Windows-10\",\"galleryImagePublisher\":\"MicrosoftWindowsDesktop\",\"galleryImageSKU\":\"19h2-evd\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"siemensclient\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8}}"
+        },
+        "tokenExpirationTime": {
+            "value": "2020-06-16T09:50:13.747Z"
+        },
+        "hostpoolTags": {
+            "value": {}
+        },
+        "applicationGroupTags": {
+            "value": {}
+        },
+        "availabilitySetTags": {
+            "value": {}
+        },
+        "networkInterfaceTags": {
+            "value": {}
+        },
+        "networkSecurityGroupTags": {
+            "value": {}
+        },
+        "publicIPAddressTags": {
+            "value": {}
+        },
+        "virtualMachineTags": {
+            "value": {}
+        },
+        "imageTags": {
+            "value": {}
+        },
+        "apiVersion": {
+            "value": "2019-12-10-preview"
+        },
+        "validationEnviroment": {
+            "value": false
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "domain": {
+            "value": "aadds.northvolt.com"
+        }
+}
