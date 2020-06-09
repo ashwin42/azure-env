@@ -2,7 +2,7 @@
 resource "azurerm_public_ip" "public_vpn_gw_core" {
   name                = "public-vpn-gw-core"
   location            = var.location
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
 
   allocation_method = "Dynamic"
 }
@@ -10,7 +10,7 @@ resource "azurerm_public_ip" "public_vpn_gw_core" {
 resource "azurerm_virtual_network_gateway" "nv_hub_vpn_gw_core" {
   name                = "nw-hub-vpn-gw-core"
   location            = var.location
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
 
   type = "Vpn"
 
@@ -26,7 +26,7 @@ resource "azurerm_virtual_network_gateway" "nv_hub_vpn_gw_core" {
 # AWS Ireland Production Transit Gateway
 resource "azurerm_local_network_gateway" "aws_ireland_prod_tgw" {
   name                = "aws-ireland-prod-tgw"
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
   location            = var.location
   gateway_address     = "52.19.7.38"
   address_space       = ["10.21.0.0/16"]
@@ -40,7 +40,7 @@ data "azurerm_key_vault_secret" "aws_ireland_prod_tgw_psk" {
 resource "azurerm_virtual_network_gateway_connection" "aws_ireland_prod_tgw" {
   name                = "aws_ireland_prod_tgw"
   location            = var.location
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
 
   type                       = "IPsec"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.nv_hub_vpn_gw_core.id
@@ -52,17 +52,18 @@ resource "azurerm_virtual_network_gateway_connection" "aws_ireland_prod_tgw" {
 resource "azurerm_route_table" "aws_ireland_prod_tgw" {
   name                = "aws_ireland_prod_tgw_routingtable"
   location            = var.location
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_route" "aws_ireland_prod_tgw" {
   name                = "aws_ireland_prod_tgw_subnets_route"
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
   route_table_name    = azurerm_route_table.aws_ireland_prod_tgw.name
   address_prefix      = "10.21.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
 
+# Azure Hub - Labs
 data "azurerm_key_vault_secret" "azure_to_labs_s2s" {
   name         = "azure-to-labs-s2s"
   key_vault_id = data.azurerm_key_vault.nv_hub_core.id
@@ -70,7 +71,7 @@ data "azurerm_key_vault_secret" "azure_to_labs_s2s" {
 
 resource "azurerm_local_network_gateway" "azure_to_labs_s2s" {
   name                = "azure-to-labs-s2s"
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
   location            = var.location
   gateway_address     = "213.50.54.194"
   address_space       = ["10.244.255.0/30"]
@@ -104,6 +105,7 @@ resource "azurerm_virtual_network_gateway_connection" "azure_to_labs_s2s" {
 
 }
 
+# Azure Hub - Liljeholmen office
 data "azurerm_key_vault_secret" "azure_to_lilje_office_s2s" {
   name         = "azure-to-lilje-office-s2s-psk"
   key_vault_id = data.azurerm_key_vault.nv_hub_core.id
@@ -111,7 +113,7 @@ data "azurerm_key_vault_secret" "azure_to_lilje_office_s2s" {
 
 resource "azurerm_local_network_gateway" "azure_to_lilje_office_s2s" {
   name                = "azure-to-lilje-office-s2s"
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
   location            = var.location
   gateway_address     = "98.128.134.222"
   address_space       = ["10.245.255.0/30"]
@@ -144,3 +146,66 @@ resource "azurerm_virtual_network_gateway_connection" "azure_to_lilje_office_s2s
   }
 
 }
+
+# Azure - AWS Stockholm TGW
+resource "azurerm_local_network_gateway" "aws_stockholm_prod_tgw" {
+  name                = "aws-stockholm-prod-tgw"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  gateway_address     = "13.48.37.70"
+  address_space       = ["10.13.0.0/16", "10.23.0.0/16", "10.33.0.0/16", "10.104.0.0/16"]
+}
+
+data "azurerm_key_vault_secret" "aws_stockholm_prod_tgw_psk" {
+  name         = "vpn-aws-stockholm-prod-tgw-psk"
+  key_vault_id = data.azurerm_key_vault.nv_hub_core.id
+}
+
+resource "azurerm_virtual_network_gateway_connection" "aws_stockholm_prod_tgw" {
+  name                = "aws_stockholm_prod_tgw"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  type                       = "IPsec"
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.nv_hub_vpn_gw_core.id
+  local_network_gateway_id   = azurerm_local_network_gateway.aws_stockholm_prod_tgw.id
+
+  shared_key = data.azurerm_key_vault_secret.aws_stockholm_prod_tgw_psk.value
+}
+
+resource "azurerm_route_table" "aws_stockholm_prod_tgw" {
+  name                = "aws_stockholm_prod_tgw_routingtable"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_route" "aws_stockholm_prod_tgw_1" {
+  name                = "aws_stockholm_prod_tgw_subnets_route_1"
+  resource_group_name = var.resource_group_name
+  route_table_name    = azurerm_route_table.aws_stockholm_prod_tgw.name
+  address_prefix      = "10.13.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+
+resource "azurerm_route" "aws_stockholm_prod_tgw_2" {
+  name                = "aws_stockholm_prod_tgw_subnets_route_2"
+  resource_group_name = var.resource_group_name
+  route_table_name    = azurerm_route_table.aws_stockholm_prod_tgw.name
+  address_prefix      = "10.23.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+resource "azurerm_route" "aws_stockholm_prod_tgw_3" {
+  name                = "aws_stockholm_prod_tgw_subnets_route_3"
+  resource_group_name = var.resource_group_name
+  route_table_name    = azurerm_route_table.aws_stockholm_prod_tgw.name
+  address_prefix      = "10.33.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+resource "azurerm_route" "aws_stockholm_prod_tgw_4" {
+  name                = "aws_stockholm_prod_tgw_subnets_route_4"
+  resource_group_name = var.resource_group_name
+  route_table_name    = azurerm_route_table.aws_stockholm_prod_tgw.name
+  address_prefix      = "10.104.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+
