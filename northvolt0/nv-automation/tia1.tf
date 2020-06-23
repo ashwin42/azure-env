@@ -72,6 +72,7 @@ resource "azurerm_virtual_machine" "tia1" {
     create_option   = "Attach"
     managed_disk_id = "${azurerm_managed_disk.tia1_os.id}"
   }
+
   os_profile_windows_config {
     provision_vm_agent = true
     timezone           = "W. Europe Standard Time"

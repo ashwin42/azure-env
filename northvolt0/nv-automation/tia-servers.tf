@@ -91,3 +91,84 @@ module "tia_durr" {
   recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
   backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
 }
+
+# -- Kova --
+data "azurerm_key_vault_secret" "tia_kova" {
+  name         = "tia-kova-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+module "tia_kova" {
+  source              = "../modules/tia-server"
+  name                = "kova"
+  ipaddress           = "10.101.2.204"
+  password            = "${data.azurerm_key_vault_secret.tia_kova.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
+
+# -- nvdev --
+data "azurerm_key_vault_secret" "tia_nvdev" {
+  name         = "tia-nvdev-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+module "tia_nvdev" {
+  source              = "../modules/tia-server"
+  name                = "nvdev"
+  ipaddress           = "10.101.2.205"
+  password            = "${data.azurerm_key_vault_secret.tia_nvdev.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
+
+# -- Jeil --
+data "azurerm_key_vault_secret" "tia_jeil" {
+  name         = "tia-jeil-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+module "tia_jeil" {
+  source              = "../modules/tia-server"
+  name                = "jeil"
+  ipaddress           = "10.101.2.206"
+  password            = "${data.azurerm_key_vault_secret.tia_jeil.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
+
+# -- Siemens bms --
+data "azurerm_key_vault_secret" "tia_siemensbms" {
+  name         = "tia-siemensbms-nvadmin"
+  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+}
+
+module "tia_siemensbms" {
+  source              = "../modules/tia-server"
+  name                = "siemensbms"
+  ipaddress           = "10.101.2.207"
+  password            = "${data.azurerm_key_vault_secret.tia_siemensbms.value}"
+  location            = "${var.location}"
+  resource_group_name = "${var.resource_group_name}"
+  subnet_id           = "${local.nv_automation_1}"
+  dns_zone            = "${azurerm_dns_zone.tia_nvlt_co.name}"
+  vault_id            = "${data.azurerm_key_vault.nv_core.id}"
+  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
+  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+}
+
