@@ -206,6 +206,7 @@ resource "azurerm_network_security_group" "pritunl" {
     source_address_prefix      = "*"
     destination_address_prefix = "10.101.2.210/32"
   }
+
   security_rule {
     name                       = "Allow_Inbound_durr"
     priority                   = 138
@@ -279,6 +280,114 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_kova"
+    priority                   = 144
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "10654"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_kova"
+    priority                   = 145
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.204/32"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_nv_dev"
+    priority                   = 146
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "11802"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_nv_dev"
+    priority                   = 147
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.205/32"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_jeil"
+    priority                   = 148
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "17686"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_jeil"
+    priority                   = 149
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.206/32"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_siemensbms"
+    priority                   = 150
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "17645"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_siemensbms"
+    priority                   = 151
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.207/32"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_Northvolt_RDP"
+    priority                   = 200
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.210/32"
+  }
+
+  security_rule {
     name                       = "Deny_VNET"
     priority                   = 4096
     direction                  = "Outbound"
@@ -289,7 +398,6 @@ resource "azurerm_network_security_group" "pritunl" {
     source_address_prefix      = "*"
     destination_address_prefix = "VirtualNetwork"
   }
-
 }
 
 resource "azurerm_public_ip" "pritunl" {

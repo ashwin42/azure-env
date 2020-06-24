@@ -1,5 +1,6 @@
 terraform {
   required_version = "0.11.14"
+
   backend "azurerm" {
     storage_account_name = "nvtfstate"
     container_name       = "nv-tf-state"
@@ -8,7 +9,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version = ">= 1.32.0"
+  version = "=1.32.0"
 }
 
 data "terraform_remote_state" "nv-core" {
