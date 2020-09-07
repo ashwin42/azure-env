@@ -156,8 +156,22 @@ resource "azurerm_local_network_gateway" "aws_stockholm_prod_tgw" {
   address_space       = ["10.13.0.0/16", "10.23.0.0/16", "10.33.0.0/16", "10.104.0.0/16"]
 }
 
+# Azure - AWS Ireland DEV TGW
+resource "azurerm_local_network_gateway" "aws_ireland_dev_tgw" {
+  name                = "aws-ireland-dev-tgw"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  gateway_address     = "52.18.92.185"
+  address_space       = ["10.11.0.0/16"]
+}
+
 data "azurerm_key_vault_secret" "aws_stockholm_prod_tgw_psk" {
   name         = "vpn-aws-stockholm-prod-tgw-psk"
+  key_vault_id = data.azurerm_key_vault.nv_hub_core.id
+}
+
+data "azurerm_key_vault_secret" "aws_ireland_dev_tgw_psk" {
+  name         = "vpn-aws-ireland-dev-tgw-psk"
   key_vault_id = data.azurerm_key_vault.nv_hub_core.id
 }
 
@@ -173,8 +187,26 @@ resource "azurerm_virtual_network_gateway_connection" "aws_stockholm_prod_tgw" {
   shared_key = data.azurerm_key_vault_secret.aws_stockholm_prod_tgw_psk.value
 }
 
+resource "azurerm_virtual_network_gateway_connection" "aws_ireland_dev_tgw" {
+  name                = "aws_ireland_dev_tgw"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  type                       = "IPsec"
+  virtual_network_gateway_id = azurerm_virtual_network_gateway.nv_hub_vpn_gw_core.id
+  local_network_gateway_id   = azurerm_local_network_gateway.aws_ireland_dev_tgw.id
+
+  shared_key = data.azurerm_key_vault_secret.aws_ireland_dev_tgw_psk.value
+}
+
 resource "azurerm_route_table" "aws_stockholm_prod_tgw" {
   name                = "aws_stockholm_prod_tgw_routingtable"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_route_table" "aws_ireland_dev_tgw" {
+  name                = "aws_ireland_dev_tgw_routingtable"
   location            = var.location
   resource_group_name = var.resource_group_name
 }
@@ -194,6 +226,7 @@ resource "azurerm_route" "aws_stockholm_prod_tgw_2" {
   address_prefix      = "10.23.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
+
 resource "azurerm_route" "aws_stockholm_prod_tgw_3" {
   name                = "aws_stockholm_prod_tgw_subnets_route_3"
   resource_group_name = var.resource_group_name
@@ -201,11 +234,20 @@ resource "azurerm_route" "aws_stockholm_prod_tgw_3" {
   address_prefix      = "10.33.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
+
 resource "azurerm_route" "aws_stockholm_prod_tgw_4" {
   name                = "aws_stockholm_prod_tgw_subnets_route_4"
   resource_group_name = var.resource_group_name
   route_table_name    = azurerm_route_table.aws_stockholm_prod_tgw.name
   address_prefix      = "10.104.0.0/16"
+  next_hop_type       = "VirtualNetworkGateway"
+}
+
+resource "azurerm_route" "aws_ireland_dev_tgw" {
+  name                = "aws_ireland_dev_tgw_subnets_route"
+  resource_group_name = var.resource_group_name
+  route_table_name    = azurerm_route_table.aws_ireland_dev_tgw.name
+  address_prefix      = "10.11.0.0/16"
   next_hop_type       = "VirtualNetworkGateway"
 }
 
