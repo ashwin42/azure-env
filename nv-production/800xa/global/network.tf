@@ -4,8 +4,6 @@ resource "azurerm_virtual_network" "abb_800xa" {
   location            = var.location
   name                = "800xa"
   address_space       = ["10.60.0.0/16"]
-  # Once AADDS is in place, this should be enabled/changed
-  #dns_servers         = ["10.101.250.4", "10.101.250.5"]
   tags = merge(var.default_tags, {})
 }
 

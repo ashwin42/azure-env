@@ -8,6 +8,7 @@ variable "remote_virtual_network_id" {}
 // Locally defined vars
 variable "default_tags" {
   default = {
-    repo = "azure-env/nv-production/800xa"
+    repo = "azure-env/nv-production/800xa/global"
   }
 }
+
