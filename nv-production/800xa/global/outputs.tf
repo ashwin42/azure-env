@@ -22,3 +22,9 @@ output "vnet_peering" {
   value = azurerm_virtual_network_peering.abb800xa_to_nv-hub
 }
 
+output "recovery_services" {
+  value = {
+    recovery_vault_name        = azurerm_recovery_services_vault.main.name
+    protection_policy_daily_id = azurerm_recovery_services_protection_policy_vm.daily.id
+  }
+}
