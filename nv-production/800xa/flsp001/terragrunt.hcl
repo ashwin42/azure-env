@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//800xA_vm?ref=v0.1.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//800xA_vm?ref=v0.1.1"
   #source = "../modules/800xA_vm"
 }
 
@@ -49,5 +49,9 @@ inputs = {
       timezone                  = ""
     }
   }
+  backup_vm                              = true
+  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
+  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
+  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
 }
 

@@ -4,7 +4,7 @@ resource "azurerm_virtual_network" "abb_800xa" {
   location            = var.location
   name                = "800xa"
   address_space       = ["10.60.0.0/16"]
-  tags = merge(var.default_tags, {})
+  tags                = merge(var.default_tags, {})
 }
 
 # 800xa subnets

@@ -12,3 +12,6 @@ variable "default_tags" {
   }
 }
 
+variable "recovery_vault_name" {
+  default = "LABS-ABB-800xA"
+}
