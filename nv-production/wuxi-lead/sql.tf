@@ -1,6 +1,6 @@
 data "azurerm_key_vault_secret" "nv-production-core" {
   name         = "nv-wuxi-lead-sql"
-  key_vault_id = "${data.azurerm_key_vault.nv-production-core.id}"
+  key_vault_id = data.azurerm_key_vault.nv-production-core.id
 }
 
 resource "azurerm_sql_server" "nv-wuxi-lead" {
@@ -9,7 +9,7 @@ resource "azurerm_sql_server" "nv-wuxi-lead" {
   location                     = var.location
   version                      = "12.0"
   administrator_login          = "nvwuxi-admin"
-  administrator_login_password = "${data.azurerm_key_vault_secret.nv-production-core.value}"
+  administrator_login_password = data.azurerm_key_vault_secret.nv-production-core.value
 }
 
 resource "azurerm_sql_database" "nv-wuxi-prismatic" {

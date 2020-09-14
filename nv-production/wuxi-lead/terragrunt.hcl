@@ -4,5 +4,5 @@ include {
 }
 
 inputs = {
-  resource_group_name       = "nv-wuxi-lead"
+  resource_group_name = "nv-wuxi-lead"
 }
