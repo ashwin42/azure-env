@@ -38,7 +38,7 @@ resource "azurerm_network_interface" "main" {
     name                          = "${var.name}-nic_config"
     subnet_id                     = azurerm_subnet.wuxi-subnet.id
     private_ip_address_allocation = "static"
-    private_ip_address            = "${var.ipaddress}"
+    private_ip_address            = var.ipaddress
     public_ip_address_id          = azurerm_public_ip.FLP1PAHTS01KED1.id
   }
 }
@@ -56,14 +56,14 @@ resource "azurerm_virtual_network_peering" "wuxi-vnet_to_nv-hub" {
 resource "azurerm_public_ip" "FLP1PAHTS01KED1" {
   name                = "FLP1PAHTS01KED1-ip"
   location            = var.location
-  resource_group_name = "${azurerm_resource_group.nv-wuxi-lead.name}"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_security_group" "FLP1PAHTS01KED1-nsg" {
   name                = "FLP1PAHTS01KED1-nsg"
   location            = var.location
-  resource_group_name = "${azurerm_resource_group.nv-wuxi-lead.name}"
+  resource_group_name = azurerm_resource_group.nv-wuxi-lead.name
 
   security_rule {
     name                       = "Temp_Office"

@@ -1,10 +1,10 @@
 resource "azurerm_virtual_machine" "main" {
-  name                          = "${var.name}"
-  location                      = "${var.location}"
-  resource_group_name           = "${var.resource_group_name}"
-  primary_network_interface_id  = "${azurerm_network_interface.main.id}"
-  network_interface_ids         = ["${azurerm_network_interface.main.id}"]
-  vm_size                       = "${var.vm_size}"
+  name                          = var.name
+  location                      = var.location
+  resource_group_name           = var.resource_group_name
+  primary_network_interface_id  = azurerm_network_interface.main.id
+  network_interface_ids         = [azurerm_network_interface.main.id]
+  vm_size                       = var.vm_size
   delete_os_disk_on_termination = true
 
   storage_image_reference {
@@ -22,9 +22,9 @@ resource "azurerm_virtual_machine" "main" {
   }
 
   os_profile {
-    computer_name  = "${var.name}"
+    computer_name  = var.name
     admin_username = "nvadmin"
-    admin_password = "${data.azurerm_key_vault_secret.nv-production-core.value}"
+    admin_password = data.azurerm_key_vault_secret.nv-production-core.value
   }
 
   os_profile_windows_config {
@@ -34,7 +34,7 @@ resource "azurerm_virtual_machine" "main" {
 }
 
 resource "null_resource" "disk_encryption" {
-  count = "${var.vault_id != "" ? 1 : 0}"
+  count = var.vault_id != "" ? 1 : 0
 
   triggers = {
     storage_os_disk = azurerm_virtual_machine.main.id
@@ -46,8 +46,9 @@ resource "null_resource" "disk_encryption" {
 }
 
 resource "azurerm_recovery_services_protected_vm" "main" {
-  resource_group_name = "${var.recovery_vault_resource_group}"
-  recovery_vault_name = "${var.recovery_vault_name}"
-  source_vm_id        = "${azurerm_virtual_machine.main.id}"
-  backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
+  resource_group_name = var.recovery_vault_resource_group
+  recovery_vault_name = var.recovery_vault_name
+  source_vm_id        = azurerm_virtual_machine.main.id
+  backup_policy_id    = azurerm_recovery_services_protection_policy_vm.daily.id
 }
+
