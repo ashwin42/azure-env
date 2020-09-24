@@ -26,6 +26,7 @@ resource "azurerm_virtual_network" "nv_labx_vnet" {
   location            = var.location
   name                = "nv_labx_vnet"
   address_space       = ["10.44.2.0/24"]
+  dns_servers         = ["10.40.250.4", "10.40.250.5"]
   tags                = merge(var.default_tags, {})
 }
 
@@ -35,6 +36,7 @@ resource "azurerm_subnet" "labx_subnet" {
   virtual_network_name = azurerm_virtual_network.nv_labx_vnet.name
   name                 = "labx_subnet"
   address_prefix       = "10.44.2.0/26"
+  service_endpoints    = ["Microsoft.Sql"]
 }
 
 resource "azurerm_virtual_network_peering" "nv_labx_vnet_to_nv-hub" {
