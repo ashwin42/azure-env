@@ -82,7 +82,6 @@ resource "azurerm_managed_disk" "data_disk" {
   encryption_settings {
     enabled = true
     disk_encryption_key {
-      #secret_url      = "https://nv-infra-core.vault.azure.net/secrets/4F37950E-0E62-4C3C-BE62-91EB6338BB8F/d1cf29f9e90b4f9688d01f66125ab0fe"
       secret_url      = data.azurerm_key_vault_secret.encryption.id
       source_vault_id = data.azurerm_key_vault.nv-infra-core.id
     }
