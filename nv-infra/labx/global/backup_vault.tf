@@ -38,9 +38,3 @@ resource "azurerm_recovery_services_protection_policy_vm" "daily" {
   }
 }
 
-output "recovery_services" {
-  value = {
-    recovery_vault_name        = "${azurerm_recovery_services_vault.nv-labx.name}"
-    protection_policy_daily_id = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
-  }
-}

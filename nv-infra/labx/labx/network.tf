@@ -1,14 +1,23 @@
-resource "azurerm_resource_group" "nv_labx" {
-  name     = var.resource_group_name
-  location = var.location
-  tags     = merge(var.default_tags, {})
+resource "azurerm_public_ip" "labx" {
+  name                = "labx-ip"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  allocation_method   = "Static"
 }
 
-resource "azurerm_management_lock" "nv_labx_lock" {
-  name       = "nv_labx_lock"
-  scope      = azurerm_resource_group.nv_labx.id
-  lock_level = "CanNotDelete"
-  notes      = "Locked because it's a core component"
+resource "azurerm_network_interface" "main" {
+  name                      = "${var.name}-nic"
+  resource_group_name       = var.resource_group_name
+  location                  = var.location
+  network_security_group_id = azurerm_network_security_group.nv_labx_nsg.id
+
+  ip_configuration {
+    name                          = "${var.name}-nic_config"
+    subnet_id                     = var.subnet_id
+    private_ip_address_allocation = "static"
+    private_ip_address            = var.ipaddress
+    public_ip_address_id          = azurerm_public_ip.labx.id
+  }
 }
 
 resource "azurerm_network_security_group" "nv_labx_nsg" {
@@ -39,7 +48,7 @@ resource "azurerm_network_security_group" "nv_labx_nsg" {
     source_address_prefix      = "83.233.110.244"
     destination_address_prefix = "*"
   }
-  
+
   security_rule {
     name                       = "Factory"
     priority                   = 130
