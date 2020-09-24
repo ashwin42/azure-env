@@ -34,7 +34,8 @@ resource "azurerm_virtual_machine" "main" {
   }
 
   storage_os_disk {
-    name              = "${var.name}-os"
+    #name              = "${var.name}-os"
+    name              = "labx-osdisk-20200422-082835"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "StandardSSD_LRS"
@@ -53,7 +54,7 @@ resource "azurerm_virtual_machine" "main" {
 }
 
 resource "null_resource" "disk_encryption" {
-  count = "${var.vault_id != "" ? 1 : 0}"
+  count = var.vault_id != "" ? 1 : 0
 
   triggers = {
     storage_os_disk = azurerm_virtual_machine.main.id
@@ -78,6 +79,14 @@ resource "azurerm_managed_disk" "data_disk" {
   storage_account_type = var.managed_data_disk_type
   create_option        = "Empty"
   disk_size_gb         = var.managed_data_disk_size
+  encryption_settings {
+    enabled = true
+    disk_encryption_key {
+      #secret_url      = "https://nv-infra-core.vault.azure.net/secrets/4F37950E-0E62-4C3C-BE62-91EB6338BB8F/d1cf29f9e90b4f9688d01f66125ab0fe"
+      secret_url      = data.azurerm_key_vault_secret.encryption.id
+      source_vault_id = data.azurerm_key_vault.nv-infra-core.id
+    }
+  }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attach" {
@@ -91,3 +100,9 @@ data "azurerm_key_vault" "nv-infra-core" {
   name                = "nv-infra-core"
   resource_group_name = "nv-infra-core"
 }
+
+data "azurerm_key_vault_secret" "encryption" {
+  name         = "4F37950E-0E62-4C3C-BE62-91EB6338BB8F"
+  key_vault_id = data.azurerm_key_vault.nv-infra-core.id
+}
+
