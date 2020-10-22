@@ -1,36 +1,36 @@
 resource "azurerm_recovery_services_vault" "nv-shared" {
   name                = "nv-shared-recovery-vault"
-  location            = "${var.location}"
-  resource_group_name = "${var.resource_group_name}"
+  location            = var.location
+  resource_group_name = var.resource_group_name
   sku                 = "Standard"
 }
 
 resource "azurerm_recovery_services_protection_policy_vm" "daily" {
   name                = "daily"
-  resource_group_name = "${var.resource_group_name}"
-  recovery_vault_name = "${azurerm_recovery_services_vault.nv-shared.name}"
+  resource_group_name = var.resource_group_name
+  recovery_vault_name = azurerm_recovery_services_vault.nv-shared.name
 
-  backup = {
+  backup {
     frequency = "Daily"
     time      = "23:00"
   }
 
-  retention_daily = {
+  retention_daily {
     count = 30
   }
 
-  retention_weekly = {
+  retention_weekly {
     count    = 12
     weekdays = ["Sunday"]
   }
 
-  retention_monthly = {
+  retention_monthly {
     count    = 12
     weekdays = ["Sunday"]
     weeks    = ["Last"]
   }
 
-  retention_yearly = {
+  retention_yearly {
     count    = 1
     weekdays = ["Sunday"]
     weeks    = ["Last"]
@@ -40,7 +40,8 @@ resource "azurerm_recovery_services_protection_policy_vm" "daily" {
 
 output "recovery_services" {
   value = {
-    recovery_vault_name        = "${azurerm_recovery_services_vault.nv-shared.name}"
-    protection_policy_daily_id = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
+    recovery_vault_name        = azurerm_recovery_services_vault.nv-shared.name
+    protection_policy_daily_id = azurerm_recovery_services_protection_policy_vm.daily.id
   }
 }
+
