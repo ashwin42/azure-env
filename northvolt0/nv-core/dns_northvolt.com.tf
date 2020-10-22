@@ -17,4 +17,3 @@
 #   ttl                 = 3600
 #   record              = "northvolt.com"
 # }
-
