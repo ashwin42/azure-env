@@ -1,12 +1,19 @@
-variable "resource_group_name" {}
-
-variable "virtual_network_address_space" {
-  type = "list"
+variable "resource_group_name" {
 }
 
-variable "subnet_internal_prefix" {}
-variable "gateway_subnet_prefix" {}
+variable "virtual_network_address_space" {
+  type = list(string)
+}
 
-variable "location" {}
+variable "subnet_internal_prefix" {
+}
 
-variable "stage" {}
+variable "gateway_subnet_prefix" {
+}
+
+variable "location" {
+}
+
+variable "stage" {
+}
+

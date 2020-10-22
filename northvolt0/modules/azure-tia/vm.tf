@@ -1,10 +1,10 @@
 resource "azurerm_virtual_machine" "tia" {
-  count                            = "${var.tia_server_count}"
+  count                            = var.tia_server_count
   name                             = "${var.application_name}${count.index}-vm"
-  location                         = "${var.location}"
-  resource_group_name              = "${var.resource_group_name}"
-  network_interface_ids            = ["${azurerm_network_interface.tia_network_interface.*.id[count.index]}"]
-  vm_size                          = "${var.tia_vm_size}"
+  location                         = var.location
+  resource_group_name              = var.resource_group_name
+  network_interface_ids            = [azurerm_network_interface.tia_network_interface[count.index].id]
+  vm_size                          = var.tia_vm_size
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
 
@@ -30,32 +30,32 @@ resource "azurerm_virtual_machine" "tia" {
   os_profile {
     computer_name  = "${var.application_name}${count.index}"
     admin_username = "nvadmin"
-    admin_password = "${var.password}"
+    admin_password = var.password
   }
 
-  tags {
-    stage = "${var.stage}"
+  tags = {
+    stage = var.stage
   }
 }
 
 resource "azurerm_managed_disk" "tia_data" {
-  count                = "${var.tia_server_count}"
+  count                = var.tia_server_count
   name                 = "${var.application_name}${count.index}-data1"
-  location             = "${var.location}"
-  resource_group_name  = "${var.resource_group_name}"
+  location             = var.location
+  resource_group_name  = var.resource_group_name
   storage_account_type = "StandardSSD_LRS"
   create_option        = "Empty"
-  disk_size_gb         = "${var.tia_data_disk_size}"
+  disk_size_gb         = var.tia_data_disk_size
 
-  tags {
-    stage = "${var.stage}"
+  tags = {
+    stage = var.stage
   }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "tia_data" {
-  count              = "${var.tia_server_count}"
-  managed_disk_id    = "${azurerm_managed_disk.tia_data.*.id[count.index]}"
-  virtual_machine_id = "${azurerm_virtual_machine.tia.*.id[count.index]}"
+  count              = var.tia_server_count
+  managed_disk_id    = azurerm_managed_disk.tia_data[count.index].id
+  virtual_machine_id = azurerm_virtual_machine.tia[count.index].id
   lun                = "5"
   caching            = "ReadWrite"
 }

@@ -1,9 +1,9 @@
 resource "azurerm_virtual_machine" "tia" {
-  name                          = "${local.fullname}"
-  location                      = "${var.location}"
-  resource_group_name           = "${var.resource_group_name}"
-  network_interface_ids         = ["${azurerm_network_interface.tia.id}"]
-  vm_size                       = "${var.vm_size}"
+  name                          = local.fullname
+  location                      = var.location
+  resource_group_name           = var.resource_group_name
+  network_interface_ids         = [azurerm_network_interface.tia.id]
+  vm_size                       = var.vm_size
   delete_os_disk_on_termination = false
 
   storage_os_disk {
@@ -14,13 +14,13 @@ resource "azurerm_virtual_machine" "tia" {
   }
 
   os_profile {
-    computer_name  = "${local.fullname}"
+    computer_name  = local.fullname
     admin_username = "nvadmin"
-    admin_password = "${var.password}"
+    admin_password = var.password
   }
 
   storage_image_reference {
-    id = "${var.image}"
+    id = var.image
   }
 
   os_profile_windows_config {
@@ -30,10 +30,10 @@ resource "azurerm_virtual_machine" "tia" {
 }
 
 resource "null_resource" "tia_encryption" {
-  count = "${var.vault_id != "" ? 1 : 0}"
+  count = var.vault_id != "" ? 1 : 0
 
-  triggers {
-    storage_os_disk = "${azurerm_virtual_machine.tia.id}"
+  triggers = {
+    storage_os_disk = azurerm_virtual_machine.tia.id
   }
 
   provisioner "local-exec" {
@@ -42,10 +42,10 @@ resource "null_resource" "tia_encryption" {
 }
 
 resource "azurerm_recovery_services_protected_vm" "tia" {
-  resource_group_name = "${var.recovery_vault_resource_group}"
-  recovery_vault_name = "${var.recovery_vault_name}"
-  source_vm_id        = "${azurerm_virtual_machine.tia.id}"
-  backup_policy_id    = "${var.backup_policy_id}"
+  resource_group_name = var.recovery_vault_resource_group
+  recovery_vault_name = var.recovery_vault_name
+  source_vm_id        = azurerm_virtual_machine.tia.id
+  backup_policy_id    = var.backup_policy_id
 }
 
 data "azurerm_key_vault" "nv_core" {
@@ -55,19 +55,20 @@ data "azurerm_key_vault" "nv_core" {
 
 data "azurerm_key_vault_secret" "domainjoin" {
   name         = "domainjoin"
-  key_vault_id = "${data.azurerm_key_vault.nv_core.id}"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
 }
 
 resource "azurerm_virtual_machine_extension" "ad_join" {
+  count                = var.ad_join == "" ? 0 : 1
   name                 = "ad_join"
-  location             = "${var.location}"
-  resource_group_name  = "${var.resource_group_name}"
-  virtual_machine_name = "${azurerm_virtual_machine.tia.name}"
+  location             = var.location
+  resource_group_name  = var.resource_group_name
+  virtual_machine_name = azurerm_virtual_machine.tia.name
   publisher            = "Microsoft.Compute"
   type                 = "JsonADDomainExtension"
   type_handler_version = "1.3"
 
-  settings           = <<SETTINGS
+  settings = <<SETTINGS
         {
             "Name": "northvolt.com",
             "User": "northvolt\\domainjoin",
@@ -75,11 +76,16 @@ resource "azurerm_virtual_machine_extension" "ad_join" {
             "Options": "3"
         }
 SETTINGS
+
+
   protected_settings = <<PROTECTED_SETTINGS
     {
       "Password": "${data.azurerm_key_vault_secret.domainjoin.value}"
     }
   
 PROTECTED_SETTINGS
-  depends_on         = ["azurerm_virtual_machine.tia"]
+
+
+  depends_on = [azurerm_virtual_machine.tia]
 }
+

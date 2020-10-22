@@ -1,6 +1,8 @@
-variable "application_name" {}
+variable "application_name" {
+}
 
-variable "password" {}
+variable "password" {
+}
 
 variable "server_count" {
   default = 1
@@ -18,9 +20,21 @@ variable "secondary_nic" {
   default = ""
 }
 
-variable "resource_group_name" {}
-variable "subnet_id" {}
-variable "subnet_prefix" {}
-variable "base_ip" {}
-variable "location" {}
-variable "stage" {}
+variable "resource_group_name" {
+}
+
+variable "subnet_id" {
+}
+
+variable "subnet_prefix" {
+}
+
+variable "base_ip" {
+}
+
+variable "location" {
+}
+
+variable "stage" {
+}
+
