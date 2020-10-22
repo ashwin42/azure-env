@@ -1,11 +1,11 @@
 resource "azurerm_virtual_machine" "vm" {
-  count                            = "${var.server_count}"
+  count                            = var.server_count
   name                             = "${var.application_name}${count.index}-vm"
-  location                         = "${var.location}"
-  resource_group_name              = "${var.resource_group_name}"
-  primary_network_interface_id     = "${azurerm_network_interface.network_interface.*.id[count.index]}"
-  network_interface_ids            = ["${azurerm_network_interface.network_interface.*.id[count.index]}", "${var.secondary_nic}"]
-  vm_size                          = "${var.vm_size}"
+  location                         = var.location
+  resource_group_name              = var.resource_group_name
+  primary_network_interface_id     = azurerm_network_interface.network_interface[count.index].id
+  network_interface_ids            = [azurerm_network_interface.network_interface[count.index].id, var.secondary_nic]
+  vm_size                          = var.vm_size
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
 
@@ -31,32 +31,32 @@ resource "azurerm_virtual_machine" "vm" {
   os_profile {
     computer_name  = "${var.application_name}${count.index}"
     admin_username = "nvadmin"
-    admin_password = "${var.password}"
+    admin_password = var.password
   }
 
-  tags {
-    stage = "${var.stage}"
+  tags = {
+    stage = var.stage
   }
 }
 
 resource "azurerm_managed_disk" "data" {
-  count                = "${var.server_count}"
+  count                = var.server_count
   name                 = "${var.application_name}${count.index}-data1"
-  location             = "${var.location}"
-  resource_group_name  = "${var.resource_group_name}"
+  location             = var.location
+  resource_group_name  = var.resource_group_name
   storage_account_type = "StandardSSD_LRS"
   create_option        = "Empty"
-  disk_size_gb         = "${var.data_disk_size}"
+  disk_size_gb         = var.data_disk_size
 
-  tags {
-    stage = "${var.stage}"
+  tags = {
+    stage = var.stage
   }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "data" {
-  count              = "${var.server_count}"
-  managed_disk_id    = "${azurerm_managed_disk.data.*.id[count.index]}"
-  virtual_machine_id = "${azurerm_virtual_machine.vm.*.id[count.index]}"
+  count              = var.server_count
+  managed_disk_id    = azurerm_managed_disk.data[count.index].id
+  virtual_machine_id = azurerm_virtual_machine.vm[count.index].id
   lun                = "5"
   caching            = "ReadWrite"
 }
@@ -68,4 +68,3 @@ resource "azurerm_virtual_machine_data_disk_attachment" "data" {
 #   source_vm_id        = "${azurerm_virtual_machine.vm.*.id[count.index]}"
 #   backup_policy_id    = "${azurerm_recovery_services_protection_policy_vm.daily.id}"
 # }
-
