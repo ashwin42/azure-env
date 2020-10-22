@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "pritunl" {
   name                = "pritunl_security_group"
-  resource_group_name = "${var.resource_group_name}"
-  location            = "${var.location}"
+  resource_group_name = var.resource_group_name
+  location            = var.location
 
   security_rule {
     name                       = "Allow_Inbound_https_from_office"
@@ -402,33 +402,33 @@ resource "azurerm_network_security_group" "pritunl" {
 
 resource "azurerm_public_ip" "pritunl" {
   name                    = "pritunl-pip"
-  location                = "${var.location}"
-  resource_group_name     = "${var.resource_group_name}"
+  location                = var.location
+  resource_group_name     = var.resource_group_name
   allocation_method       = "Dynamic"
   idle_timeout_in_minutes = 30
 }
 
 resource "azurerm_network_interface" "pritunl" {
   name                      = "pritunl-nic"
-  location                  = "${var.location}"
-  resource_group_name       = "${var.resource_group_name}"
+  location                  = var.location
+  resource_group_name       = var.resource_group_name
   enable_ip_forwarding      = true
-  network_security_group_id = "${azurerm_network_security_group.pritunl.id}"
+  network_security_group_id = azurerm_network_security_group.pritunl.id
 
   ip_configuration {
     name                          = "pritunl1"
-    subnet_id                     = "${local.nv_automation_1}"
+    subnet_id                     = local.nv_automation_1
     private_ip_address_allocation = "Static"
     private_ip_address            = "10.101.2.10"
-    public_ip_address_id          = "${azurerm_public_ip.pritunl.id}"
+    public_ip_address_id          = azurerm_public_ip.pritunl.id
   }
 }
 
 resource "azurerm_virtual_machine" "pritunl" {
   name                             = "pritunl-vm"
-  location                         = "${var.location}"
-  resource_group_name              = "${var.resource_group_name}"
-  network_interface_ids            = ["${azurerm_network_interface.pritunl.id}"]
+  location                         = var.location
+  resource_group_name              = var.resource_group_name
+  network_interface_ids            = [azurerm_network_interface.pritunl.id]
   vm_size                          = "Standard_D2s_v3"
   delete_os_disk_on_termination    = false
   delete_data_disks_on_termination = false
@@ -460,7 +460,8 @@ resource "azurerm_virtual_machine" "pritunl" {
 
 resource "azurerm_recovery_services_protected_vm" "pritunl" {
   resource_group_name = "nv-shared"
-  recovery_vault_name = "${data.terraform_remote_state.nv-shared.recovery_services.recovery_vault_name}"
-  source_vm_id        = "${azurerm_virtual_machine.pritunl.id}"
-  backup_policy_id    = "${data.terraform_remote_state.nv-shared.recovery_services.protection_policy_daily_id}"
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  source_vm_id        = azurerm_virtual_machine.pritunl.id
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
 }
+
