@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "vnet_address_space" {
-  type    = "list"
+  type    = list(string)
   default = ["10.2.1.0/24"]
 }
 
@@ -23,3 +23,4 @@ variable "virtual_network_name" {
 variable "gateway_subnet_prefix" {
   default = "10.2.2.224/27"
 }
+
