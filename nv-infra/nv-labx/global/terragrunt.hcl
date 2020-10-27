@@ -1,9 +1,7 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//800xA_vm?ref=v0.1.1"
-  source = "../../../../tf-mod-azure/global"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.0"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include {
   path = find_in_parent_folders()
 }
@@ -18,7 +16,7 @@ inputs = {
   recovery_vault_name       = "labx-rv"
   vnet_name                 = "nv_labx_vnet"
   vnet_peering_name         = "nv_labx_vnet_to_nv-hub"
-  subnet_name               = "labx_subnet"
+  subnet_names              = [ "labx_subnet" ]
   lock_resources            = "false"
   service_endpoints         = [ "Microsoft.Sql" ]
 }

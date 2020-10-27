@@ -1,9 +1,7 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//800xA_vm?ref=v0.1.1"
-  source = "../../../../tf-mod-azure/vm"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.0"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include {
   path = find_in_parent_folders()
 }
@@ -12,7 +10,6 @@ dependency "global" {
   config_path = "../global"
 }
 
-# These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
   setup_prefix                           = dependency.global.outputs.setup_prefix
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
