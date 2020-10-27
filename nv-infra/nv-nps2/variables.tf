@@ -5,6 +5,7 @@ variable "location" {}
 
 // Locally defined vars
 variable "default_tags" {
+  type = map
   default = {
     repo = "azure-env/nv_infra/nv_nps2"
   }
@@ -19,11 +20,11 @@ variable "vault_id" {
 }
 
 variable "recovery_vault_name" {
-  default = "nv-nps-recovery-vault2"
+  default = "nv-nps-recovery-vault"
 }
 
 variable "recovery_vault_resource_group" {
-  default = "nv_nps2"
+  default = "nv_nps"
 }
 
 variable "backup_policy_id" {

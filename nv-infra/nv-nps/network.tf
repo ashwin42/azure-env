@@ -10,20 +10,20 @@ data "azurerm_subnet" "nv_nps_subnet" {
 }
 
 resource "azurerm_public_ip" "nv-nps-ip" {
-  name                = "nv-nps-ip"
+  name                = "nps-pip-e2d5647a48a84f2bb2320adb4a777b67"
   location            = var.location
   resource_group_name = var.resource_group_name
-  allocation_method   = "Static"
+  allocation_method   = "Dynamic"
 }
 
 resource "azurerm_network_interface" "main" {
-  name                      = "${var.name}-nic"
+  name                      = "nps-nic-8ca5eefe90644c88bfb13248c0eb6012"
   resource_group_name       = var.resource_group_name
   location                  = var.location
   network_security_group_id = azurerm_network_security_group.nv_nps_nsg.id
 
   ip_configuration {
-    name                          = "${var.name}-nic_config"
+    name                          = "9fc138ea62014d42a9437c63e3beff13"
     subnet_id                     = data.azurerm_subnet.nv_nps_subnet.id
     private_ip_address_allocation = "static"
     private_ip_address            = var.ipaddress
