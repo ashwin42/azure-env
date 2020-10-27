@@ -9,7 +9,8 @@ variable "remote_virtual_network_id" {
 
 // Locally defined vars
 variable "default_tags" {
-  default = {
-    repo = "azure-env/nv_infra"
-  }
+  type = map
+#  default = {
+#    repo = "azure-env/nv_infra"
+#  }
 }
