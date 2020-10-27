@@ -5,6 +5,7 @@ variable "location" {}
 
 // Locally defined vars
 variable "default_tags" {
+  type = map
   default = {
     repo = "azure-env/nv_infra/nv_nps"
   }
