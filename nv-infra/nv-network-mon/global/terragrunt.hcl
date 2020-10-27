@@ -1,9 +1,7 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//800xA_vm?ref=v0.1.1"
-  source = "../../../../tf-mod-azure/global"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.0"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include {
   path = find_in_parent_folders()
 }
