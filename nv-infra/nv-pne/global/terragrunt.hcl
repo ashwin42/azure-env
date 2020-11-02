@@ -12,4 +12,5 @@ inputs = {
   subnets                   = [ "10.44.5.32/27" ]
   dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
   remote_virtual_network_id = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
+  service_endpoints         = [ "Microsoft.Storage" ]
 }
