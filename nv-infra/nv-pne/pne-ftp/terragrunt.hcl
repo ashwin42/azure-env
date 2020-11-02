@@ -74,6 +74,14 @@ inputs = {
       source_address_prefix  = "10.16.14.0/23"
       access                 = "Allow"
       description            = "Allow connections from Labs MFA VPN clients"
+    },
+    {
+      name                   = "Local_VNET"
+      priority               = "230"
+      direction              = "Inbound"
+      source_address_prefix  = "10.44.5.32/27"
+      access                 = "Allow"
+      description            = "Allow connections from local VNET"
     }
   ]
 }
