@@ -27,12 +27,28 @@ variable "remote_network_mon_vnet" {
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_network_mon/providers/Microsoft.Network/virtualNetworks/nv_network_mon_vnet"
 }
 
-variable "remote_polarion_vnet"{
+variable "remote_polarion_vnet" {
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_polarion/providers/Microsoft.Network/virtualNetworks/nv_polarion_vnet"
 }
 
-variable "remote_nv_labx_vnet"{
+variable "remote_nv_labx_vnet" {
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_labx/providers/Microsoft.Network/virtualNetworks/nv_labx_vnet"
+}
+
+variable "remote_nv_arx_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/arx-rg/providers/Microsoft.Network/virtualNetworks/arx-vnet"
+}
+
+variable "remote_nv_pne_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-pne-rg/providers/Microsoft.Network/virtualNetworks/nv-pne-vnet"
+}
+
+variable "remote_nv_test_wvd_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-test-wvd-rg/providers/Microsoft.Network/virtualNetworks/nv-test-wvd-vnet"
+}
+
+variable "remote_nv_cell_assembly_ws_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-cell-assembly-ws-rg/providers/Microsoft.Network/virtualNetworks/nv-cell-assembly-ws-vnet"
 }
 
 // Locally defined vars

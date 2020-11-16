@@ -4,5 +4,5 @@ include {
 }
 
 inputs = {
-  resource_group_name       = "core_utils"
+  resource_group_name = "core_utils"
 }
