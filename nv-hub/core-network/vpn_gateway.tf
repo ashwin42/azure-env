@@ -153,7 +153,7 @@ resource "azurerm_local_network_gateway" "aws_stockholm_prod_tgw" {
   resource_group_name = var.resource_group_name
   location            = var.location
   gateway_address     = "13.48.37.70"
-  address_space       = ["10.13.0.0/16", "10.23.0.0/16", "10.33.0.0/16", "10.104.0.0/16"]
+  address_space       = ["10.13.0.0/16", "10.23.0.0/16", "10.33.0.0/16", "10.104.0.0/16", "10.22.0.0/25" ]
 }
 
 # Azure - AWS Ireland DEV TGW
