@@ -24,3 +24,6 @@ variable "gateway_subnet_prefix" {
   default = "10.2.2.224/27"
 }
 
+variable "subscription_id" {
+  default = "f23047bd-1342-4fdf-a81c-00c91500455f"
+}
