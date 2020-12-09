@@ -6,6 +6,7 @@ terraform {
     storage_account_name = "nvtfstate"
     container_name       = "nv-tf-state"
     key                  = "nv-automation.tfstate"
+    subscription_id      = "f23047bd-1342-4fdf-a81c-00c91500455f"
   }
 }
 
