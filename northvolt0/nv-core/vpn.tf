@@ -27,6 +27,7 @@ module "azure_vpn" {
   local_network_gateway_id = azurerm_local_network_gateway.gamla_brogatan_26.id
   gateway_connection_psk   = data.azurerm_key_vault_secret.gateway_connection_psk.value
   location                 = var.location
+  subscription_id          = var.subscription_id
 }
 
 # AWS Root VPC

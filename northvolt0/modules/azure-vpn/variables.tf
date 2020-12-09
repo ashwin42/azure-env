@@ -24,3 +24,4 @@ variable "sku" {
   default = "Basic"
 }
 
+variable "subscription_id" {}
