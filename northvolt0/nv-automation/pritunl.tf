@@ -364,6 +364,18 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_ssh_from_labs"
+    priority                   = 117
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "213.50.54.192/28"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
     name                       = "Allow_Outbound_siemensbms"
     priority                   = 151
     direction                  = "Outbound"
@@ -373,6 +385,30 @@ resource "azurerm_network_security_group" "pritunl" {
     destination_port_range     = "*"
     source_address_prefix      = "*"
     destination_address_prefix = "10.101.2.207/32"
+  }
+
+  security_rule {
+    name                       = "Allow_Inbound_seci"
+    priority                   = 152
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "19062"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_seci"
+    priority                   = 153
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.208/32"
   }
 
   security_rule {
