@@ -64,6 +64,14 @@ inputs = {
       description           = "Allow connections from Labs MFA VPN clients"
     },
     {
+      name                  = "LocalSubnet"
+      priority              = "205"
+      direction             = "Inbound"
+      source_address_prefix = dependency.global.outputs.subnet["10.44.2.0/26"].address_prefix
+      access                = "Allow"
+      description           = "Allow connections from local subnet"
+    },
+    {
       name                  = "NV-VH_VPN"
       priority              = "210"
       direction             = "Inbound"
