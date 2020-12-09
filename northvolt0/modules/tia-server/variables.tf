@@ -13,6 +13,14 @@ variable "subnet_id" {
 variable "ipaddress" {
 }
 
+variable "public_ipaddress" {
+  default = false
+}
+
+variable "public_ipaddress_name" {
+  default = ""
+}
+
 variable "password" {
 }
 
@@ -45,3 +53,4 @@ variable "ad_join" {
   default = ""
 }
 
+variable "subscription_id" {}

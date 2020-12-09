@@ -66,6 +66,7 @@ module "abb800xa" {
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
   secondary_nic       = azurerm_network_interface.abb800xa_secondary_nic.id
+  subscription_id     = var.subscription_id
 }
 
 resource "azurerm_network_security_group" "abb800xa_2" {
@@ -125,5 +126,6 @@ module "abb800xa_2" {
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
   secondary_nic       = azurerm_network_interface.abb800xa_2_secondary_nic.id
+  subscription_id     = var.subscription_id
 }
 

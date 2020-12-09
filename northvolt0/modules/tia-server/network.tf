@@ -16,6 +16,15 @@ resource "azurerm_network_security_group" "tia" {
   }
 }
 
+resource "azurerm_public_ip" "tia" {
+  count                   = var.public_ipaddress ? 1 : 0
+  name                    = var.public_ipaddress_name == "" ? "${local.fullname}-publicip" : var.public_ipaddress_name
+  location                = var.location
+  resource_group_name     = var.resource_group_name
+  allocation_method       = "Dynamic"
+  idle_timeout_in_minutes = 4
+}
+
 resource "azurerm_network_interface" "tia" {
   name                      = "${local.fullname}-nic"
   resource_group_name       = var.resource_group_name
@@ -27,6 +36,7 @@ resource "azurerm_network_interface" "tia" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "static"
     private_ip_address            = var.ipaddress
+    public_ip_address_id          = var.public_ipaddress ? azurerm_public_ip.tia[0].id : null
   }
 }
 

@@ -41,3 +41,4 @@ variable "vm_size" {
   default = "Standard_D4_v3"
 }
 
+variable "subscription_id" {}

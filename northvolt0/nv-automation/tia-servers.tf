@@ -32,6 +32,7 @@ module "tia_northvolt" {
   backup_policy_id      = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
   public_ipaddress      = true
   public_ipaddress_name = "tia1-nic_config_public"
+  subscription_id       = var.subscription_id
 }
 
 # -- Zeppelin --
@@ -52,6 +53,7 @@ module "tia_zeppelin" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- CIS --
@@ -72,6 +74,7 @@ module "tia_cis" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- Dürr --
@@ -93,6 +96,7 @@ module "tia_durr" {
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
   ad_join             = "true"
+  subscription_id     = var.subscription_id
 }
 
 # -- Kova --
@@ -113,6 +117,7 @@ module "tia_kova" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- nvdev --
@@ -133,6 +138,7 @@ module "tia_nvdev" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- Jeil --
@@ -153,6 +159,7 @@ module "tia_jeil" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- Siemens bms --
@@ -173,6 +180,7 @@ module "tia_siemensbms" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  subscription_id     = var.subscription_id
 }
 
 # -- Seci --
@@ -194,5 +202,6 @@ module "tia_seci" {
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
   ad_join             = true
+  subscription_id     = var.subscription_id
 }
 

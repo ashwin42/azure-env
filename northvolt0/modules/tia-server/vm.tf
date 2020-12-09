@@ -70,8 +70,8 @@ resource "azurerm_virtual_machine_extension" "ad_join" {
 
   settings = <<SETTINGS
         {
-            "Name": "northvolt.com",
-            "User": "northvolt\\domainjoin",
+            "Name": "aadds.northvolt.com",
+            "User": "domainjoin@northvolt.com",
             "Restart": "true",
             "Options": "3"
         }
