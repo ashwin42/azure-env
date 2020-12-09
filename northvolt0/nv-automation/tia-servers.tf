@@ -30,6 +30,8 @@ module "tia_northvolt" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  public_ipaddress    = true
+  public_ipaddress_name = "tia1-nic_config_public"
 }
 
 # -- Zeppelin --
@@ -171,5 +173,26 @@ module "tia_siemensbms" {
   vault_id            = data.azurerm_key_vault.nv_core.id
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+}
+
+# -- Seci --
+data "azurerm_key_vault_secret" "tia_seci" {
+  name         = "tia-seci-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_seci" {
+  source              = "../modules/tia-server"
+  name                = "seci"
+  ipaddress           = "10.101.2.208"
+  password            = data.azurerm_key_vault_secret.tia_seci.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
 }
 
