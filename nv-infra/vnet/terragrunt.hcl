@@ -19,4 +19,6 @@ inputs = {
   vnet_name                 = "nv_infra"
   vnet_peering_name         = "nv_infra_to_nv-hub"
   lock_resources            = true
+  service_endpoints         = [ "Microsoft.Storage" ]
+  enforce_private_link      = true
 }
