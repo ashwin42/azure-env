@@ -37,7 +37,7 @@ resource "null_resource" "tia_encryption" {
   }
 
   provisioner "local-exec" {
-    command = "az vm encryption enable --resource-group \"${var.resource_group_name}\" --name \"${local.fullname}\" --disk-encryption-keyvault \"${var.vault_id}\" --volume-type OS"
+    command = "az vm encryption enable --resource-group \"${var.resource_group_name}\" --name \"${local.fullname}\" --disk-encryption-keyvault \"${var.vault_id}\" --volume-type OS --subscription ${var.subscription_id}"
   }
 }
 
