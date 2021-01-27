@@ -51,6 +51,14 @@ variable "remote_nv_cell_assembly_ws_vnet" {
   default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-cell-assembly-ws-rg/providers/Microsoft.Network/virtualNetworks/nv-cell-assembly-ws-vnet"
 }
 
+variable "remote_nv_e3_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-e3-rg/providers/Microsoft.Network/virtualNetworks/nv-e3-vnet"
+}
+
+variable "remote_nv_gabi_lca_vnet" {
+  default = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gabi-lca-rg/providers/Microsoft.Network/virtualNetworks/nv-gabi-lca-vnet"
+}
+
 // Locally defined vars
 variable "default_tags" {
   default = {
