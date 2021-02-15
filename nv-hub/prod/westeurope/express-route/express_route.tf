@@ -1,6 +1,6 @@
 resource "azurerm_express_route_circuit" "main" {
   name                  = "LabsExpressRoute"
-  resource_group_name   = azurerm_resource_group.core_network.name
+  resource_group_name   = var.resource_group_name
   location              = var.location
   service_provider_name = "Telia Carrier"
   peering_location      = "Amsterdam"
@@ -21,13 +21,13 @@ output "labs_express_route_skey" {
 resource "azurerm_express_route_circuit_authorization" "er-to-er-gw" {
   name                       = "er-to-er-gw"
   express_route_circuit_name = azurerm_express_route_circuit.main.name
-  resource_group_name        = azurerm_resource_group.core_network.name
+  resource_group_name        = var.resource_group_name
 }
 
 resource "azurerm_virtual_network_gateway_connection" "er-gw-to-er" {
   name                = "er-gw-to-er"
   location            = var.location
-  resource_group_name = azurerm_resource_group.core_network.name
+  resource_group_name = var.resource_group_name
 
   type                       = "ExpressRoute"
   virtual_network_gateway_id = azurerm_virtual_network_gateway.nv-hub-er-gw.id

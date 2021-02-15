@@ -4,5 +4,5 @@ include {
 }
 
 inputs = {
-  resource_group_name = "core_vpn"
+  resource_group_name = "core_network"
 }
