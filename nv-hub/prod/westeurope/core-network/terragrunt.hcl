@@ -13,7 +13,7 @@ inputs = {
   vnet_name             = "core_vnet"
   address_space         = ["10.40.0.0/16"]
   dns_servers           = ["10.40.250.4", "10.40.250.5"]
-  repo_tag              = { "repo" = "azure-env/nv-hub/core-vnet" }
+  #repo_tag              = { "repo" = "azure-env/nv-hub/core-vnet" }
   create_recovery_vault = false
   subnets = [
     {

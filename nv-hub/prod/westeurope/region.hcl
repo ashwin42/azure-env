@@ -1,3 +1,3 @@
 locals {
-  location = "westeurope"
+  location = basename(get_parent_terragrunt_dir())
 }
