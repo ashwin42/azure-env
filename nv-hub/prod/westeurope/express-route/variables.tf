@@ -3,6 +3,8 @@ variable "resource_group_name" {}
 
 variable "location" {}
 
+variable "subscription_id" {}
+
 variable "remote_800xa_vnet" {
   default = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/800xa/providers/Microsoft.Network/virtualNetworks/800xa"
 }
