@@ -10,7 +10,7 @@ resource "azurerm_subnet" "wuxi-subnet" {
   name                                           = "wuxi-subnet"
   resource_group_name                            = var.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.wuxi-vnet.name
-  address_prefix                                 = "10.42.0.0/24"
+  address_prefixes                               = ["10.42.0.0/24"]
   enforce_private_link_endpoint_network_policies = true
 }
 
@@ -32,7 +32,6 @@ resource "azurerm_network_interface" "main" {
   name                      = "${var.name}-nic"
   resource_group_name       = var.resource_group_name
   location                  = var.location
-  network_security_group_id = azurerm_network_security_group.FLP1PAHTS01KED1-nsg.id
 
   ip_configuration {
     name                          = "${var.name}-nic_config"
@@ -109,99 +108,9 @@ resource "azurerm_network_security_group" "FLP1PAHTS01KED1-nsg" {
   }
 
 }
-/* security_rule {
-    name                       = "kyle"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "85.30.130.73"
-    destination_address_prefix = "*"
-  }
 
-  security_rule {
-    name                       = "tempoffice"
-    priority                   = 101
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "62.20.55.58"
-    destination_address_prefix = "*"
-  }
+resource "azurerm_network_interface_security_group_association" "this" {
+  network_interface_id      = azurerm_network_interface.main.id
+  network_security_group_id = azurerm_network_security_group.FLP1PAHTS01KED1-nsg.id
+}
 
-  security_rule {
-    name                       = "barracks"
-    priority                   = 102
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "155.4.206.91"
-    destination_address_prefix = "*"
-  }
-  
-  security_rule {
-    name                       = "ClientIPAddress_2019-9-25_17-8-5"
-    priority                   = 103
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "31.208.18.58"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "ClientIPAddress_2019-9-26_8-55-57"
-    priority                   = 104
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "62.20.55.58"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "train"
-    priority                   = 105
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "185.224.57.161"
-    destination_address_prefix = "*"
-  }
-
-   security_rule {
-    name                       = "wuxi-hotel"
-    priority                   = 106
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "31.208.13.131"
-    destination_address_prefix = "*"
-  }  
-
-   security_rule {
-    name                       = "wuxi-team"
-    priority                   = 107
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "83.233.65.157"
-    destination_address_prefix = "*"
-  }  
-} */

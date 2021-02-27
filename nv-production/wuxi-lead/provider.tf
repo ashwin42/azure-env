@@ -4,6 +4,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version         = "=1.41.0"
+  version         = "=2.49.0"
   subscription_id = "0f5f2447-3af3-4bbf-98fb-ac9664f75bdc"
+  features {}
 }

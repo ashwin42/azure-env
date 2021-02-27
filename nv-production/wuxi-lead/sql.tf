@@ -12,6 +12,13 @@ resource "azurerm_sql_server" "nv-wuxi-lead" {
   administrator_login_password = data.azurerm_key_vault_secret.nv-production-core.value
 }
 
+resource "azurerm_mssql_server_extended_auditing_policy" "this" {
+  server_id                               = azurerm_sql_server.nv-wuxi-lead.id
+  storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
+  storage_account_access_key_is_secondary = false
+  retention_in_days                       = 30
+}
+
 resource "azurerm_sql_database" "nv-wuxi-prismatic" {
   name                = "nv-wuxi-prismatic"
   resource_group_name = azurerm_resource_group.nv-wuxi-lead.name

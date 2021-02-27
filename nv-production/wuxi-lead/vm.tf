@@ -45,10 +45,10 @@ resource "null_resource" "disk_encryption" {
   }
 }
 
-resource "azurerm_recovery_services_protected_vm" "main" {
+resource "azurerm_backup_protected_vm" "main" {
   resource_group_name = var.recovery_vault_resource_group
   recovery_vault_name = var.recovery_vault_name
   source_vm_id        = azurerm_virtual_machine.main.id
-  backup_policy_id    = azurerm_recovery_services_protection_policy_vm.daily.id
+  backup_policy_id    = azurerm_backup_policy_vm.daily.id
 }
 
