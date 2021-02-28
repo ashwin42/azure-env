@@ -5,3 +5,5 @@ beconf.tfvars
 secrets.tfvars
 id_rsa
 kube*
+tg_generated_*.tf
+terragrunt-debug.tfvars.json
