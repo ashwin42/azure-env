@@ -5,7 +5,7 @@ resource "azurerm_recovery_services_vault" "FL-P1-PA-HTS01-KED01" {
   sku                 = "Standard"
 }
 
-resource "azurerm_recovery_services_protection_policy_vm" "daily" {
+resource "azurerm_backup_policy_vm" "daily" {
   name                = "daily"
   resource_group_name = var.resource_group_name
   recovery_vault_name = azurerm_recovery_services_vault.FL-P1-PA-HTS01-KED01.name
@@ -41,7 +41,7 @@ resource "azurerm_recovery_services_protection_policy_vm" "daily" {
 output "recovery_services" {
   value = {
     recovery_vault_name        = azurerm_recovery_services_vault.FL-P1-PA-HTS01-KED01.name
-    protection_policy_daily_id = azurerm_recovery_services_protection_policy_vm.daily.id
+    protection_policy_daily_id = azurerm_backup_policy_vm.daily.id
   }
 }
 
