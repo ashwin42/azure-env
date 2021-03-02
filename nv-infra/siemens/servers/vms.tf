@@ -26,7 +26,7 @@ resource "azurerm_network_interface" "desigo_secondary_nic" {
 }
 
 module "nv-siemens-desigo" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "desigo"
   ipaddress              = "10.44.1.135"
@@ -64,7 +64,7 @@ resource "azurerm_network_interface" "vms_secondary_nic" {
 }
 
 module "nv-siemens-vms" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "vms"
   ipaddress              = "10.44.1.136"
@@ -91,22 +91,22 @@ data "azurerm_key_vault_secret" "nv-siemens-sipass" {
   key_vault_id = "${data.azurerm_key_vault.nv-infra-core.id}"
 }
 
-resource "azurerm_network_interface" "sipass_secondary_nic" {
-  name                      = "sipass-second-nic"
-  resource_group_name       = "${var.resource_group_name}"
-  location                  = "${var.location}"
-  network_security_group_id = "${azurerm_network_security_group.nv_siemens_nsg.id}"
-
-  ip_configuration {
-    name                          = "sipass-second-nic_config"
-    subnet_id                     = azurerm_subnet.siemens_sipass_controllers.id
-    private_ip_address_allocation = "static"
-    private_ip_address            = "10.44.1.102"
-  }
-}
+#resource "azurerm_network_interface" "sipass_secondary_nic" {
+#  name                      = "sipass-second-nic"
+#  resource_group_name       = "${var.resource_group_name}"
+#  location                  = "${var.location}"
+#  network_security_group_id = "${azurerm_network_security_group.nv_siemens_nsg.id}"
+#
+#  ip_configuration {
+#    name                          = "sipass-second-nic_config"
+#    subnet_id                     = azurerm_subnet.siemens_sipass_controllers.id
+#    private_ip_address_allocation = "static"
+#    private_ip_address            = "10.44.1.102"
+#  }
+#}
 
 module "nv-siemens-sipass" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "sipass"
   ipaddress              = "10.44.1.137"
@@ -117,14 +117,14 @@ module "nv-siemens-sipass" {
   vault_id               = "${data.azurerm_key_vault.nv-infra-core.id}"
   recovery_vault_name    = var.recovery_vault_name
   backup_policy_id       = var.backup_policy_id
-  vm_size                = "Standard_D2s_v3"
+  vm_size                = "Standard_D4s_v3"
   managed_data_disk_size = "1000"
-  secondary_nic          = "${azurerm_network_interface.sipass_secondary_nic.id}"
-  availability_set       = azurerm_availability_set.nv_siemens_avs.id
-  image_publisher        = "MicrosoftSQLServer"
-  image_offer            = "SQL2016SP1-WS2016"
-  image_sku              = "Standard"
-  image_version          = "latest"
+  #secondary_nic          = "${azurerm_network_interface.sipass_secondary_nic.id}"
+  availability_set = azurerm_availability_set.nv_siemens_avs.id
+  image_publisher  = "MicrosoftSQLServer"
+  image_offer      = "SQL2016SP1-WS2016"
+  image_sku        = "Standard"
+  image_version    = "latest"
 }
 
 # -- Identity --
@@ -148,7 +148,7 @@ resource "azurerm_network_interface" "identity_secondary_nic" {
 }
 
 module "nv-siemens-identity" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "identity"
   ipaddress              = "10.44.1.138"
@@ -186,7 +186,7 @@ resource "azurerm_network_interface" "recording_secondary_nic" {
 }
 
 module "nv-siemens-recording-server" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "recordingserver"
   ipaddress              = "10.44.1.139"
@@ -224,7 +224,7 @@ resource "azurerm_network_interface" "sql_secondary_nic" {
 }
 
 module "nv-siemens-sql" {
-  source                 = "../modules/windows-server"
+  source                 = "../../modules/windows-server"
   security_group_id      = "${azurerm_network_security_group.nv_siemens_nsg.id}"
   name                   = "sql"
   ipaddress              = "10.44.1.140"
