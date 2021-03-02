@@ -8,6 +8,7 @@ variable "default_tags" {
   default = {
     repo = "azure-env/nv_infra/nv_siemens"
   }
+  type = map
 }
 
 variable "name" {

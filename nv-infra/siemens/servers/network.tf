@@ -45,6 +45,7 @@ resource "azurerm_subnet" "siemens_system_subnet" {
   virtual_network_name = azurerm_virtual_network.nv_siemens_vnet.name
   name                 = "siemens_system_subnet"
   address_prefix       = "10.44.1.128/26"
+  service_endpoints    = ["Microsoft.Sql"]
 }
 
 resource "azurerm_virtual_network_peering" "nv_siemens_to_nv-hub" {
@@ -63,3 +64,4 @@ resource "azurerm_subnet" "azure_bastion" {
   virtual_network_name = azurerm_virtual_network.nv_siemens_vnet.name
   address_prefix       = "10.44.1.192/27"
 }
+

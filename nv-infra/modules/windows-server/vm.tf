@@ -3,7 +3,7 @@ resource "azurerm_virtual_machine" "main" {
   location                         = var.location
   resource_group_name              = var.resource_group_name
   primary_network_interface_id     = azurerm_network_interface.main.id
-  network_interface_ids            = [azurerm_network_interface.main.id, var.secondary_nic]
+  network_interface_ids            = compact([azurerm_network_interface.main.id, var.secondary_nic])
   vm_size                          = var.vm_size
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
@@ -61,6 +61,9 @@ resource "azurerm_managed_disk" "data_disk" {
   storage_account_type = var.managed_data_disk_type
   create_option        = "Empty"
   disk_size_gb         = var.managed_data_disk_size
+  lifecycle {
+    ignore_changes = [ encryption_settings ]
+  }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attach" {
