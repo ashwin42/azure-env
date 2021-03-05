@@ -4,5 +4,5 @@ terraform {
 }
 
 provider "azuread" {
-  version = "=0.8"
+  version = "=1.1.1"
 }
