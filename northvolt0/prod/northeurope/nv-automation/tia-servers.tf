@@ -1,6 +1,6 @@
 # Template to update the base image
 # module "tia-template" {
-#   source              = "../modules/tia-server"
+#   source              = "../../../modules/tia-server/"
 #   name                = "template"
 #   ipaddress           = "10.101.2.245"
 #   password            = "xq2!%5N&Vkz6YiaT"
@@ -19,7 +19,7 @@ data "azurerm_key_vault_secret" "tia_northvolt" {
 }
 
 module "tia_northvolt" {
-  source                = "../modules/tia-server"
+  source                = "../../../modules/tia-server/"
   name                  = "northvolt"
   ipaddress             = "10.101.2.210"
   password              = data.azurerm_key_vault_secret.tia_northvolt.value
@@ -42,7 +42,7 @@ data "azurerm_key_vault_secret" "tia_zeppelin" {
 }
 
 module "tia_zeppelin" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "zeppelin"
   ipaddress           = "10.101.2.201"
   password            = data.azurerm_key_vault_secret.tia_zeppelin.value
@@ -63,7 +63,7 @@ data "azurerm_key_vault_secret" "tia_cis" {
 }
 
 module "tia_cis" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "cis"
   ipaddress           = "10.101.2.202"
   password            = data.azurerm_key_vault_secret.tia_cis.value
@@ -84,7 +84,7 @@ data "azurerm_key_vault_secret" "tia_durr" {
 }
 
 module "tia_durr" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "durr"
   ipaddress           = "10.101.2.203"
   password            = data.azurerm_key_vault_secret.tia_durr.value
@@ -106,7 +106,7 @@ data "azurerm_key_vault_secret" "tia_kova" {
 }
 
 module "tia_kova" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "kova"
   ipaddress           = "10.101.2.204"
   password            = data.azurerm_key_vault_secret.tia_kova.value
@@ -127,7 +127,7 @@ data "azurerm_key_vault_secret" "tia_nvdev" {
 }
 
 module "tia_nvdev" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "nvdev"
   ipaddress           = "10.101.2.205"
   password            = data.azurerm_key_vault_secret.tia_nvdev.value
@@ -148,7 +148,7 @@ data "azurerm_key_vault_secret" "tia_jeil" {
 }
 
 module "tia_jeil" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "jeil"
   ipaddress           = "10.101.2.206"
   password            = data.azurerm_key_vault_secret.tia_jeil.value
@@ -169,7 +169,7 @@ data "azurerm_key_vault_secret" "tia_siemensbms" {
 }
 
 module "tia_siemensbms" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "siemensbms"
   ipaddress           = "10.101.2.207"
   password            = data.azurerm_key_vault_secret.tia_siemensbms.value
@@ -190,7 +190,7 @@ data "azurerm_key_vault_secret" "tia_seci" {
 }
 
 module "tia_seci" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "seci"
   ipaddress           = "10.101.2.208"
   password            = data.azurerm_key_vault_secret.tia_seci.value
@@ -212,7 +212,7 @@ data "azurerm_key_vault_secret" "tia_flour" {
 }
 
 module "tia_flour" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "flour"
   ipaddress           = "10.101.2.209"
   password            = data.azurerm_key_vault_secret.tia_flour.value
@@ -234,7 +234,7 @@ data "azurerm_key_vault_secret" "tia_sejong" {
 }
 
 module "tia_sejong" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "sejong"
   ipaddress           = "10.101.2.211"
   password            = data.azurerm_key_vault_secret.tia_sejong.value
@@ -256,7 +256,7 @@ data "azurerm_key_vault_secret" "tia_flexlink" {
 }
 
 module "tia_flexlink" {
-  source              = "../modules/tia-server"
+  source              = "../../../modules/tia-server/"
   name                = "flexlink"
   ipaddress           = "10.101.2.212"
   password            = data.azurerm_key_vault_secret.tia_flexlink.value

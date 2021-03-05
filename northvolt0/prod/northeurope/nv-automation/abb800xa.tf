@@ -54,7 +54,7 @@ resource "azurerm_network_interface" "abb800xa_secondary_nic" {
 }
 
 module "abb800xa" {
-  source              = "../modules/windows-server"
+  source              = "../../../modules/windows-server"
   security_group_id   = azurerm_network_security_group.abb800xa.id
   password            = data.azurerm_key_vault_secret.abb800xa.value
   ipaddress           = local.ip_address
@@ -114,7 +114,7 @@ resource "azurerm_network_interface" "abb800xa_2_secondary_nic" {
 }
 
 module "abb800xa_2" {
-  source              = "../modules/windows-server"
+  source              = "../../../modules/windows-server"
   security_group_id   = azurerm_network_security_group.abb800xa_2.id
   password            = data.azurerm_key_vault_secret.abb800xa.value
   ipaddress           = "10.101.2.22"
