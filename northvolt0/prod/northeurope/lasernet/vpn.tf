@@ -18,7 +18,7 @@ data "azurerm_key_vault_secret" "gateway_connection_psk" {
 }
 
 module "azure_vpn" {
-  source                   = "../modules/azure-vpn"
+  source                   = "../../../modules/azure-vpn"
   resource_group_name      = var.resource_group_name
   vpn_type                 = "RouteBased"
   sku                      = "VpnGw1"
