@@ -53,6 +53,9 @@ resource "azurerm_managed_disk" "data_disk" {
   storage_account_type = "StandardSSD_LRS"
   create_option        = "Empty"
   disk_size_gb         = var.managed_data_disk_size
+  lifecycle {
+    ignore_changes = [ encryption_settings ]
+  }
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "data_disk_attach" {
