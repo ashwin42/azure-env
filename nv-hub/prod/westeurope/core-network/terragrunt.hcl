@@ -117,5 +117,10 @@ inputs = {
       vnet_id             = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-wuxi-lead/providers/Microsoft.Network/virtualNetworks/wuxi-vnet"
       use_remote_gateways = false
     },
+    {
+      name                = "nv-hub_to_revolt-wave4",
+      vnet_id             = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/revolt-wave4-rg/providers/Microsoft.Network/virtualNetworks/revolt-wave4-vnet"
+      use_remote_gateways = false
+    },
   ]
 }
