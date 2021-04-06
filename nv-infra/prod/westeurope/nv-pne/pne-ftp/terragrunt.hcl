@@ -22,7 +22,7 @@ inputs = {
   vm_size                                = "Standard_DS1_v2"
   managed_disk_name                      = "pne-ftp-osdisk"
   managed_disk_type                      = "StandardSSD_LRS"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
@@ -60,20 +60,12 @@ inputs = {
       description            = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "NV-VH_VPN"
-      priority               = "210"
-      direction              = "Inbound"
-      source_address_prefix  = "10.10.0.0/21"
-      access                 = "Allow"
-      description            = "Allow connections from NV-VH"
-    },
-    {
-      name                   = "Factory_PNE"
-      priority               = "220"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.14.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "NV-Cyclers"
+      priority              = "220"
+      direction             = "Inbound"
+      source_address_prefix = "10.100.250.0/23"
+      access                = "Allow"
+      description           = "Allow connections from NV-Cyclers"
     },
     {
       name                   = "Local_VNET"
