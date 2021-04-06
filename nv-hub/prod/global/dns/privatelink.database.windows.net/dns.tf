@@ -33,6 +33,16 @@ resource "azurerm_private_dns_a_record" "nv-labx-sql" {
   zone_name           = azurerm_private_dns_zone.database.name
 }
 
+resource "azurerm_private_dns_a_record" "asrs-nv1-dev-sql" {
+  name = "asrs-nv1-dev-sql"
+  records = [
+    "10.44.5.180",
+  ]
+  ttl                 = 300
+  resource_group_name = var.resource_group_name
+  zone_name           = azurerm_private_dns_zone.database.name
+}
+
 resource "azurerm_private_dns_zone_virtual_network_link" "core_vnet" {
   name                  = "core_vnet"
   resource_group_name   = var.resource_group_name
