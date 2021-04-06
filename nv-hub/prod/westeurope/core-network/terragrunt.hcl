@@ -122,5 +122,10 @@ inputs = {
       vnet_id             = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/revolt-wave4-rg/providers/Microsoft.Network/virtualNetworks/revolt-wave4-vnet"
       use_remote_gateways = false
     },
+    {
+      name                = "nv-hub_to_asrs-wcs-dev",
+      vnet_id             = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/asrs-nv1-dev-rg/providers/Microsoft.Network/virtualNetworks/asrs-nv1-dev-vnet"
+      use_remote_gateways = false
+    },
   ]
 }
