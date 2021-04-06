@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.16"
 }
 
 include {
@@ -13,7 +13,7 @@ dependency "global" {
 inputs = {
   setup_prefix                           = dependency.global.outputs.setup_prefix
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = "nv_labx2"
+  recovery_vault_resource_group          = "nv_labx"
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = "nv_labx2"
   subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
@@ -24,7 +24,7 @@ inputs = {
   create_avset                           = "true"
   avset_name                             = "nv_labx2_avs"
   vm_size                                = "Standard_B2ms"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
