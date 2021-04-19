@@ -315,3 +315,25 @@ module "tia_siemens" {
   subscription_id     = var.subscription_id
 }
 
+# -- Comau --
+data "azurerm_key_vault_secret" "tia_comau" {
+  name         = "tia-comau-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_comau" {
+  source              = "../../../modules/tia-server/"
+  name                = "comau"
+  ipaddress           = "10.101.2.215"
+  password            = data.azurerm_key_vault_secret.tia_comau.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
+  subscription_id     = var.subscription_id
+}
+
