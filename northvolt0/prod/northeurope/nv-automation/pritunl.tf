@@ -508,6 +508,18 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Outbound_Siemens"
+    priority                   = 162
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.214/32"
+  }
+
+  security_rule {
     name                       = "Allow_Outbound_Northvolt_RDP"
     priority                   = 200
     direction                  = "Outbound"
