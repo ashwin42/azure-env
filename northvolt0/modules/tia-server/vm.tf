@@ -86,6 +86,6 @@ SETTINGS
 PROTECTED_SETTINGS
 
 
-  depends_on = [azurerm_virtual_machine.tia]
+  depends_on = [azurerm_virtual_machine.tia, null_resource.tia_encryption]
 }
 
