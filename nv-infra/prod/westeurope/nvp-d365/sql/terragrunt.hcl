@@ -37,5 +37,10 @@ inputs = {
       name      = "NVP Jeden Backup fiber"
       start_ip_address = "85.219.139.46"
     },
+    {
+      name      = "NV Labs"
+      start_ip_address = "213.50.54.193"
+      end_ip_address   = "213.50.54.206"
+    },
   ]
 }
