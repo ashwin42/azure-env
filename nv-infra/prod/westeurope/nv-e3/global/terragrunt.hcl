@@ -12,9 +12,10 @@ inputs = {
   dns_servers   = ["10.40.250.5", "10.40.250.4"]
   subnets = [
     {
-      name              = "nv-e3-subnet-10.44.5.128"
-      address_prefixes  = ["10.44.5.128/29"]
-      service_endpoints = ["Microsoft.Storage"]
+      name                 = "nv-e3-subnet-10.44.5.128"
+      address_prefixes     = ["10.44.5.128/29"]
+      service_endpoints    = ["Microsoft.Storage", "Microsoft.Sql"]
+      enforce_private_link = true
     },
   ]
   peerings = [
