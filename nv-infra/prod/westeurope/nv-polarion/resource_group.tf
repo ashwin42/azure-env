@@ -40,4 +40,16 @@ resource "azurerm_network_security_group" "nv_polarion_nsg" {
     destination_address_prefix = "*"
   }
 
+  security_rule {
+    name                       = "Labs_Telia"
+    priority                   = 140
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "62.20.23.0/28"
+    destination_address_prefix = "*"
+  }
+
 }

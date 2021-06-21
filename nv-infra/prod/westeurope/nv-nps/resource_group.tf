@@ -34,14 +34,14 @@ resource "azurerm_network_security_group" "nv_nps_nsg" {
     }
 
   security_rule {
-    name                       = "Johnny"
+    name                       = "Labs-Telia"
     priority                   = 140
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "213.50.54.192/28"
+    source_address_prefix      = "62.20.23.0/28"
     destination_address_prefix = "*"
     }
 
