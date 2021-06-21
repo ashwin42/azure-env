@@ -86,7 +86,16 @@ inputs = {
       source_address_prefix  = "62.20.55.58"
       access                 = "Allow"
       description            = "Allow connections from Labs MFA VPN clients"
-    }
+    },
+    {
+      name                   = "Factory_Telia"
+      priority               = "240"
+      direction              = "Inbound"
+      protocol               = "Tcp"
+      source_address_prefix  = "62.20.23.0/28"
+      access                 = "Allow"
+      description            = "Allow connections from Labs clients"
+    },
   ]
 }
 

@@ -42,5 +42,10 @@ inputs = {
       start_ip_address = "213.50.54.193"
       end_ip_address   = "213.50.54.206"
     },
+    {
+      name      = "NV Telia"
+      start_ip_address = "62.20.23.1"
+      end_ip_address   = "62.20.23.14"
+    },
   ]
 }

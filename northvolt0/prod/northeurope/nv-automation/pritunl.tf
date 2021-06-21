@@ -376,6 +376,18 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_ssh_from_labs_telia"
+    priority                   = 119
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "62.20.23.0/28"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
     name                       = "Allow_Outbound_siemensbms"
     priority                   = 151
     direction                  = "Outbound"
