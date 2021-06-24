@@ -604,6 +604,30 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
+    name                       = "Allow_Inbound_Wuxi"
+    priority                   = 169
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "16860"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow_Outbound_Wuxi"
+    priority                   = 170
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "10.101.2.218/32"
+  }
+
+  security_rule {
     name                       = "Allow_Outbound_Northvolt_RDP"
     priority                   = 200
     direction                  = "Outbound"
