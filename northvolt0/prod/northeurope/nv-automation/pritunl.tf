@@ -424,7 +424,7 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
-    name                       = "Allow_Inbound_flour"
+    name                       = "Allow_Inbound_Fluor"
     priority                   = 154
     direction                  = "Inbound"
     access                     = "Allow"
@@ -436,7 +436,7 @@ resource "azurerm_network_security_group" "pritunl" {
   }
 
   security_rule {
-    name                       = "Allow_Outbound_flour"
+    name                       = "Allow_Outbound_Fluor"
     priority                   = 155
     direction                  = "Outbound"
     access                     = "Allow"
