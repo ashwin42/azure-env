@@ -30,6 +30,12 @@ inputs = {
       vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
       allow_gateway_transit = false
     },
+    {
+      name                  = "asrs_nv1-dev2nv-d365-api",
+      vnet_id               = "/subscriptions/bd728441-1b83-4daa-a72f-91d5dc6284f1/resourceGroups/AzureAPImanagment/providers/Microsoft.Network/virtualNetworks/ASRS-ApiMgmt"
+      allow_gateway_transit = false
+      use_remote_gateways   = false
+    },
   ]
 }
 
