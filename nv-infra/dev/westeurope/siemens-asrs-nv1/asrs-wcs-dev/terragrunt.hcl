@@ -77,6 +77,14 @@ inputs = {
       destination_port_range = "4711"
       access                = "Allow"
       description           = "Allow connections from local web delegated subnet"
-    }
+    },
+    {
+      name                  = "D365_API_Mgmt"
+      priority              = "215"
+      direction             = "Inbound"
+      source_address_prefix = "10.44.6.0/25"
+      access                = "Allow"
+      description           = "Allow connections from API Mgmt service"
+    },
   ]
 }
