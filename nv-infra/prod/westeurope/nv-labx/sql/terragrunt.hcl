@@ -22,7 +22,16 @@ inputs = {
   databases = [
     {
       name = "Labware"
-    }
+    },
+    {
+      name = "Labware-Test"
+    },
+    {
+      name = "Labware-Prod"
+    },
+    {
+      name = "Labware-Dev"
+    },
   ]
   custom_rules = [
     {
