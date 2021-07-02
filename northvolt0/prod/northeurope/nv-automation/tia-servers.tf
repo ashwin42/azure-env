@@ -205,17 +205,17 @@ module "tia_seci" {
   subscription_id     = var.subscription_id
 }
 
-# -- Flour --
-data "azurerm_key_vault_secret" "tia_flour" {
-  name         = "tia-flour-nvadmin"
+# [TOC-320] -- Fluor --
+data "azurerm_key_vault_secret" "tia_fluor" {
+  name         = "tia-fluor-nvadmin"
   key_vault_id = data.azurerm_key_vault.nv_core.id
 }
 
-module "tia_flour" {
+module "tia_fluor" {
   source              = "../../../modules/tia-server/"
-  name                = "flour"
+  name                = "fluor"
   ipaddress           = "10.101.2.209"
-  password            = data.azurerm_key_vault_secret.tia_flour.value
+  password            = data.azurerm_key_vault_secret.tia_fluor.value
   location            = var.location
   resource_group_name = var.resource_group_name
   subnet_id           = local.nv_automation_1
