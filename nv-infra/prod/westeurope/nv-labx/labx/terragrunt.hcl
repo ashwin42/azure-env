@@ -31,10 +31,10 @@ inputs = {
   localadmin_key_name                    = "nv-labx"
   storage_account_name                   = "nvinfrabootdiag"
   storage_image_reference = {
-    sku       = "2016-Datacenter",
+    sku = "2016-Datacenter",
   },
   os_profile_windows_config = {
-    enable_automatic_upgrades       = "false",
+    enable_automatic_upgrades = "false",
   },
   network_interfaces = [
     {

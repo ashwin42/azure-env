@@ -40,14 +40,14 @@ inputs = {
       public_ip = false
     }
   ]
-#  data_disks = [
-#    {
-#      name                 = "labx2-data1"
-#      size                 = "25"
-#      lun                  = "5"
-#      storage_account_type = "StandardSSD_LRS"
-#    }
-#  ]
+  #  data_disks = [
+  #    {
+  #      name                 = "labx2-data1"
+  #      size                 = "25"
+  #      lun                  = "5"
+  #      storage_account_type = "StandardSSD_LRS"
+  #    }
+  #  ]
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"
