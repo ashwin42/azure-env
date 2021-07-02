@@ -14,6 +14,10 @@ dependency "e3-global" {
   config_path = "../nv-e3/global"
 }
 
+dependency "labx-global" {
+  config_path = "../nv-labx/global/"
+}
+
 include {
   path = find_in_parent_folders()
 }
@@ -30,13 +34,14 @@ inputs = {
   enable_ad_auth                    = true
   file_shares = [
     { name = "e3-battery-systems", quota = 10 },
-    { name = "e3-labs-maintenance", quota = 10 }
+    { name = "e3-labs-maintenance", quota = 10 },
+    { name = "labware-8", quota = 10 },
   ]
   network_rules = [
     {
-      name       = "default_rule"
-      subnet_ids = [ dependency.e3-global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id ]
+      name       = "Allow_VNETs"
+      subnet_ids = [ dependency.e3-global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id, dependency.labx-global.outputs.subnet.labx_subnet.id ]
       bypass     = [ "AzureServices" ]
-    }
+    },
   ]
 }
