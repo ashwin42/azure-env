@@ -19,7 +19,7 @@ inputs = {
     {
       name                 = "labx_subnet"
       address_prefixes     = ["10.44.2.0/26"]
-      service_endpoints    = ["Microsoft.Sql"]
+      service_endpoints    = ["Microsoft.Sql", "Microsoft.Storage"]
       enforce_private_link = true
     },
   ]
