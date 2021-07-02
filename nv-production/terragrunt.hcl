@@ -85,5 +85,6 @@ inputs = merge(
   local.region_vars.locals,
   local.environment_vars.locals,
   { repo_tag = { "repo" : "azure-env/${basename(get_parent_terragrunt_dir())}/${path_relative_to_include()}" } },
+  { env_tag = { "environment" : "${local.environment}" } },
 )
 
