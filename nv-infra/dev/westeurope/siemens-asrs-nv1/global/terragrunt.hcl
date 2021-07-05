@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.17"
 }
 
 include {
@@ -16,12 +16,20 @@ inputs = {
       address_prefixes  = [ "10.44.5.176/28" ]
       service_endpoints = [ "Microsoft.Sql" ]
       enforce_private_link = true
+      delegation = []
     },
     {
       name = "asrs-nv1-dev-subnet-10.44.5.192-28"
       address_prefixes  = [ "10.44.5.192/28" ]
       service_endpoints = []
       enforce_private_link = false
+      delegation = [
+        {
+          name = "Microsoft.Web.serverFarms",
+          service_delegation_name = "Microsoft.Web/serverFarms",
+          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+        },
+      ]
     },
   ]
   peerings = [
