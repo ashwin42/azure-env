@@ -402,3 +402,25 @@ module "tia_wuxi" {
   ad_join             = true
   subscription_id     = var.subscription_id
 }
+
+# [TOC-347] -- Cajo --
+data "azurerm_key_vault_secret" "tia_cajo" {
+  name         = "tia-cajo-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_cajo" {
+  source              = "../../../modules/tia-server/"
+  name                = "cajo"
+  ipaddress           = "10.101.2.219"
+  password            = data.azurerm_key_vault_secret.tia_cajo.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
+  subscription_id     = var.subscription_id
+}
