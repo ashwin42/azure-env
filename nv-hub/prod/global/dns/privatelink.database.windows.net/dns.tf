@@ -53,6 +53,16 @@ resource "azurerm_private_dns_a_record" "nv-e3-sql" {
   zone_name           = azurerm_private_dns_zone.database.name
 }
 
+resource "azurerm_private_dns_a_record" "nv-cmx-sql" {
+  name = "nv-cmx-sql"
+  records = [
+    "10.46.0.68",
+  ]
+  ttl                 = 300
+  resource_group_name = var.resource_group_name
+  zone_name           = azurerm_private_dns_zone.database.name
+}
+
 resource "azurerm_private_dns_a_record" "asrs-nv1-prod-sql" {
   name = "asrs-nv1-prod-sql"
   records = [
