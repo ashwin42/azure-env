@@ -132,5 +132,10 @@ inputs = {
       vnet_id             = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/infosec-wvd-rg/providers/Microsoft.Network/virtualNetworks/infosec-wvd-vnet"
       use_remote_gateways = false
     },
+    {
+      name                = "nv-hub_to_nv-gen-infra-vnet",
+      vnet_id             = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-rg/providers/Microsoft.Network/virtualNetworks/nv-gen-infra-vnet"
+      use_remote_gateways = false
+    },
   ]
 }
