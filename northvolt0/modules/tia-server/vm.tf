@@ -61,9 +61,7 @@ data "azurerm_key_vault_secret" "domainjoin" {
 resource "azurerm_virtual_machine_extension" "ad_join" {
   count                = var.ad_join == "" ? 0 : 1
   name                 = "ad_join"
-  location             = var.location
-  resource_group_name  = var.resource_group_name
-  virtual_machine_name = azurerm_virtual_machine.tia.name
+  virtual_machine_id   = azurerm_virtual_machine.tia.id
   publisher            = "Microsoft.Compute"
   type                 = "JsonADDomainExtension"
   type_handler_version = "1.3"
