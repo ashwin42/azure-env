@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.2.16"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.2.19"
 }
 
 dependency "global" {
@@ -15,15 +15,17 @@ inputs = {
   resource_group_name            = dependency.global.outputs.resource_group.name
   subnet_id                      = dependency.global.outputs.subnet.labx_subnet.id
   storage_account_name           = "qcsftpstorage"
+  skuname                        = "Standard_LRS"
   create_private_endpoints_names = ["file"]
+  large_file_share_enabled       = true
   file_shares = [
-    { name = "qc-sftp", quota = "5120" },
+    { name = "qc-sftp", quota = "40960" },
   ]
   network_rules = [
     {
       name           = "default_rule"
       bypass         = ["AzureServices"]
-      default_action = "Deny"
+      default_action = "Allow"
       subnet_ids     = [dependency.global.outputs.subnet.labx_subnet.id]
     },
   ]
