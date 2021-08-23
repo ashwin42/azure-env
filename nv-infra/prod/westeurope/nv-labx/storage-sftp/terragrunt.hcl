@@ -19,7 +19,7 @@ inputs = {
   create_private_endpoints_names = ["file"]
   large_file_share_enabled       = true
   file_shares = [
-    { name = "qc-sftp", quota = "40960" },
+    { name = "qc-sftp", quota = "81920" },
   ]
   network_rules = [
     {
