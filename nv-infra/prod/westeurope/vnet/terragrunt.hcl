@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.20"
   #source = "../../../../../tf-mod-azure/global"
 }
 
@@ -21,6 +21,17 @@ inputs = {
       address_prefixes     = ["10.80.0.0/27"]
       service_endpoints    = ["Microsoft.Storage"]
       enforce_private_link = true
+      nsg_name  = "vdi_subnet_nsg"
+#      nsg_rules = [
+#        {
+#          name                  = "Labs_MFA_VPN"
+#          priority              = "200"
+#          direction             = "Inbound"
+#          source_address_prefix = "10.16.8.0/23"
+#          access                = "Allow"
+#          description           = "Allow connections from Labs MFA VPN clients"
+#        },
+#      ]
     },
   ]
   peerings = [
@@ -43,3 +54,4 @@ inputs = {
     }
   ]
 }
+
