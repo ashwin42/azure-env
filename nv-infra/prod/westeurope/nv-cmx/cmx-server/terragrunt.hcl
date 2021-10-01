@@ -56,4 +56,14 @@ inputs = {
       public_ip = false
     }
   ]
+  custom_rules = [
+    {
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
+    },
+  ]
 }
