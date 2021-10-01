@@ -75,7 +75,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.32-28"].address_prefix
       protocol               = "TCP"
-      destination_port_range = "4711"
+      destination_port_range = "4711,5005"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
@@ -85,7 +85,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.48-28"].address_prefix
       protocol               = "TCP"
-      destination_port_range = "4711"
+      destination_port_range = "4711,5006"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
@@ -95,7 +95,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.80-28"].address_prefix
       protocol               = "TCP"
-      destination_port_range = "4711"
+      destination_port_range = "4711,5007"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
@@ -105,7 +105,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.96-28"].address_prefix
       protocol               = "TCP"
-      destination_port_range = "4711"
+      destination_port_range = "4711,5008"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
@@ -115,7 +115,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.112-28"].address_prefix
       protocol               = "TCP"
-      destination_port_range = "4711"
+      destination_port_range = "4711,5009"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
@@ -126,6 +126,22 @@ inputs = {
       source_address_prefix = "10.44.6.0/25"
       access                = "Allow"
       description           = "Allow connections from API Mgmt service"
+    },
+    {
+      name                  = "Ett_IT"
+      priority              = "220"
+      direction             = "Inbound"
+      source_address_prefix = "10.103.0.0/16"
+      access                = "Allow"
+      description           = "Allow connections from Ett IT"
+    },
+    {
+      name                  = "Ett_OT"
+      priority              = "221"
+      direction             = "Inbound"
+      source_address_prefix = "10.203.0.0/16"
+      access                = "Allow"
+      description           = "Allow connections from Ett OT"
     },
   ]
 }
