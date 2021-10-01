@@ -7,26 +7,26 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "asrs-nv1-dev"
-  address_space             = [ "10.44.5.176/28", "10.44.5.192/28" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  subnets                   = [
+  setup_prefix  = "asrs-nv1-dev"
+  address_space = ["10.44.5.176/28", "10.44.5.192/28"]
+  dns_servers   = ["10.40.250.5", "10.40.250.4"]
+  subnets = [
     {
-      name = "asrs-nv1-dev-subnet-10.44.5.176-28"
-      address_prefixes  = [ "10.44.5.176/28" ]
-      service_endpoints = [ "Microsoft.Sql" ]
+      name                 = "asrs-nv1-dev-subnet-10.44.5.176-28"
+      address_prefixes     = ["10.44.5.176/28"]
+      service_endpoints    = ["Microsoft.Sql"]
       enforce_private_link = true
-      delegation = []
+      delegation           = []
     },
     {
-      name = "asrs-nv1-dev-subnet-10.44.5.192-28"
-      address_prefixes  = [ "10.44.5.192/28" ]
-      service_endpoints = []
+      name                 = "asrs-nv1-dev-subnet-10.44.5.192-28"
+      address_prefixes     = ["10.44.5.192/28"]
+      service_endpoints    = []
       enforce_private_link = false
       delegation = [
         {
-          name = "Microsoft.Web.serverFarms",
-          service_delegation_name = "Microsoft.Web/serverFarms",
+          name                       = "Microsoft.Web.serverFarms",
+          service_delegation_name    = "Microsoft.Web/serverFarms",
           service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
         },
       ]

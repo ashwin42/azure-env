@@ -33,7 +33,7 @@ inputs = {
     {
       name      = "asrs-wcs-dev-nic1"
       ipaddress = "10.44.5.181"
-      subnet                              = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
+      subnet    = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
       public_ip = false
     }
   ]
@@ -69,14 +69,14 @@ inputs = {
       description           = "Allow connections from local subnet"
     },
     {
-      name                  = "LocalSubnetWeb"
-      priority              = "210"
-      direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.192-28"].address_prefix
+      name                   = "LocalSubnetWeb"
+      priority               = "210"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.192-28"].address_prefix
       protocol               = "TCP"
       destination_port_range = "4711"
-      access                = "Allow"
-      description           = "Allow connections from local web delegated subnet"
+      access                 = "Allow"
+      description            = "Allow connections from local web delegated subnet"
     },
     {
       name                  = "D365_API_Mgmt"
