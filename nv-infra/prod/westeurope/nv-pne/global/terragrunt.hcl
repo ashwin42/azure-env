@@ -7,14 +7,14 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "nv-pne"
-  address_space             = [ "10.44.5.32/27" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  subnets                   = [
+  setup_prefix  = "nv-pne"
+  address_space = ["10.44.5.32/27"]
+  dns_servers   = ["10.40.250.5", "10.40.250.4"]
+  subnets = [
     {
-      name = "nv-pne-subnet-10.44.5.32"
-      address_prefixes  = [ "10.44.5.32/27" ]
-      service_endpoints = [ "Microsoft.Storage" ]
+      name              = "nv-pne-subnet-10.44.5.32"
+      address_prefixes  = ["10.44.5.32/27"]
+      service_endpoints = ["Microsoft.Storage"]
     },
   ]
   peerings = [

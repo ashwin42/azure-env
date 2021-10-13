@@ -44,20 +44,20 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "pne-ftp-nic1"
+      name      = "pne-ftp-nic1"
       ipaddress = "10.44.5.62"
-      subnet = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+      subnet    = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
       public_ip = false
     }
   ],
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
       name                  = "NV-Cyclers"
@@ -68,12 +68,12 @@ inputs = {
       description           = "Allow connections from NV-Cyclers"
     },
     {
-      name                   = "Local_VNET"
-      priority               = "230"
-      direction              = "Inbound"
-      source_address_prefix  = "10.44.5.32/27"
-      access                 = "Allow"
-      description            = "Allow connections from local VNET"
+      name                  = "Local_VNET"
+      priority              = "230"
+      direction             = "Inbound"
+      source_address_prefix = "10.44.5.32/27"
+      access                = "Allow"
+      description           = "Allow connections from local VNET"
     }
   ]
 }
