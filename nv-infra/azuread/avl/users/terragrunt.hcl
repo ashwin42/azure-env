@@ -26,6 +26,7 @@ inputs = {
       user_principal_name   = "bernhard.eisenberger@nv-external.com"
       password              = "NorthVolt123!"
       force_password_change = true
+      groups                = ["AVL Users"]
     },
     {
       account_enabled       = true
@@ -43,6 +44,7 @@ inputs = {
       user_principal_name   = "sunil.pasricha@nv-external.com"
       password              = "NorthVolt123!"
       force_password_change = true
+      groups                = ["AVL Users"]
     },
     {
       account_enabled       = true
@@ -60,6 +62,7 @@ inputs = {
       user_principal_name   = "bernhard.stummer@nv-external.com"
       password              = "NorthVolt123!"
       force_password_change = true
+      groups                = ["AVL Users"]
     },
     {
       account_enabled       = true
@@ -77,6 +80,7 @@ inputs = {
       user_principal_name   = "balazs.szilard@nv-external.com"
       password              = "NorthVolt123!"
       force_password_change = true
+      groups                = ["AVL Users"]
     },
   ]
 }
