@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.2.23"
   #source = "../../../../../../tf-mod-azure/sql"
 }
 
@@ -13,13 +13,14 @@ include {
 }
 
 inputs = {
-  resource_group_name     = dependency.global.outputs.resource_group.name
-  setup_prefix            = dependency.global.outputs.setup_prefix
-  key_vault_name          = "nv-infra-core"
-  key_vault_rg            = "nv-infra-core"
-  subnet_id               = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
-  create_private_endpoint = true
-  lock_resources          = false
+  resource_group_name           = dependency.global.outputs.resource_group.name
+  setup_prefix                  = dependency.global.outputs.setup_prefix
+  key_vault_name                = "nv-infra-core"
+  key_vault_rg                  = "nv-infra-core"
+  subnet_id                     = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
+  create_private_endpoint       = true
+  lock_resources                = false
+  public_network_access_enabled = false
   databases = [
     {
       name = "cmx"

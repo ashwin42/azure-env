@@ -8,14 +8,14 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "nv-cmx"
-  vnet_name                 = "nv-gen-infra-vnet"
-  vnet_resource_group_name  = "nv-gen-infra-rg"
-  subnets                   = [
+  setup_prefix             = "nv-cmx"
+  vnet_name                = "nv-gen-infra-vnet"
+  vnet_resource_group_name = "nv-gen-infra-rg"
+  subnets = [
     {
-      name = "nv-cmx-subnet-10.46.0.64-28"
-      address_prefixes  = [ "10.46.0.64/28" ]
-      service_endpoints = [ "Microsoft.Sql" ]
+      name                 = "nv-cmx-subnet-10.46.0.64-28"
+      address_prefixes     = ["10.46.0.64/28"]
+      service_endpoints    = ["Microsoft.Sql"]
       enforce_private_link = true
     },
   ]
