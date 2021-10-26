@@ -18,6 +18,12 @@ resource "azuread_application" "this" {
       "https://asrs-nv1-prod-cathode-as.azurewebsites.net/signin-oidc",
       "https://asrs-nv1-prod-anode-as.azurewebsites.net/",
       "https://asrs-nv1-prod-anode-as.azurewebsites.net/signin-oidc",
+      "https://asrs-nv1-prod-cw1-as.azurewebsites.net/",
+      "https://asrs-nv1-prod-cw1-as.azurewebsites.net/signin-oidc",
+      "https://asrs-nv1-prod-fa1-as.azurewebsites.net/",
+      "https://asrs-nv1-prod-fa1-as.azurewebsites.net/signin-oidc",
+      "https://asrs-nv1-prod-spw-as.azurewebsites.net/",
+      "https://asrs-nv1-prod-spw-as.azurewebsites.net/signin-oidc",
     ]
     implicit_grant {
       access_token_issuance_enabled = false
