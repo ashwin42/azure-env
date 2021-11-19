@@ -12,7 +12,7 @@ inputs = {
     {
       account_enabled       = true
       business_phones       = ["+351910046683"]
-      company_name          = "Siemens"
+      company_name          = "Siemens S.A."
       department            = "NV-External"
       display_name          = "Fabio Vaz"
       given_name            = "Fabio"
@@ -25,7 +25,8 @@ inputs = {
       user_principal_name   = "fabio.vaz@nv-external.com"
       password              = "NorthVolt123!"
       force_password_change = true
-      groups                = ["AAD-Siemens-ASRS-VPN-ELIGIBLE"]
+      preferred_language    = "en-GB"
+      #groups                = ["AAD-Siemens-ASRS-VPN-ELIGIBLE"]
     },
   ]
 }
