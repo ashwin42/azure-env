@@ -82,6 +82,24 @@ inputs = {
       force_password_change = true
       groups                = ["AVL Users"]
     },
+    {
+      account_enabled       = true
+      business_phones       = ["+46765252677"]
+      company_name          = "AVL"
+      department            = "NV-External"
+      display_name          = "Kristian Düring"
+      given_name            = "Kristian"
+      surname               = "Düring"
+      job_title             = "NV-External"
+      mail_nickname         = "kristian.duering"
+      other_mails           = ["kristian.duering@avl.com"]
+      show_in_address_list  = false
+      usage_location        = "SE"
+      user_principal_name   = "kristian.duering@nv-external.com"
+      password              = "NorthVolt123!"
+      force_password_change = true
+      groups                = ["AVL Users"]
+    },
   ]
 }
 
