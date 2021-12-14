@@ -23,7 +23,14 @@ inputs = {
   public_network_access_enabled = false
   databases = [
     {
-      name = "cmx"
+      name     = "cmx_2021-10-22T06-15Z"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-labs"
+      edition  = "Standard"
+      max_size = "268435456000"
     },
   ]
   custom_rules = [
