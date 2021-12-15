@@ -120,12 +120,14 @@ inputs = {
       description            = "Allow connections from local web delegated subnet"
     },
     {
-      name                  = "D365_API_Mgmt"
-      priority              = "215"
-      direction             = "Inbound"
-      source_address_prefix = "10.44.6.0/25"
-      access                = "Allow"
-      description           = "Allow connections from API Mgmt service"
+      name                   = "D365_API_Mgmt"
+      priority               = "215"
+      direction              = "Inbound"
+      source_address_prefix  = "10.44.6.0/25"
+      protocol               = "TCP"
+      destination_port_range = "5005-5009"
+      access                 = "Allow"
+      description            = "Allow connections from API Mgmt service"
     },
     {
       name                  = "Ett_IT"
@@ -142,6 +144,16 @@ inputs = {
       source_address_prefix = "10.203.0.0/16"
       access                = "Allow"
       description           = "Allow connections from Ett OT"
+    },
+    {
+      name                   = "AWS_Automation_Ireland_Prod"
+      priority               = "222"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.0.0/16"
+      protocol               = "TCP"
+      destination_port_range = "5005-5009"
+      access                 = "Allow"
+      description            = "Allow connections from API Mgmt service"
     },
   ]
 }
