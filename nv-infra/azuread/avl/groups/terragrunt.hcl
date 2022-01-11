@@ -35,6 +35,81 @@ inputs = {
       description  = "Provides VPN access to AVL dev resources in cloud and on-prem"
       security_enabled = true
     },
+    {
+      display_name = "AVL A&PC Administrator"
+      description = "Full access"
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC User"
+      description = "Read only access"
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Lab engineer"
+      description = "Action table"
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Work order manager"
+      description = "Project Manager, Planner and Test Methodologist activities"
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project EV32"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project PPE Slim"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project PPE High"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project PPE CV"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project PPE CV ESS"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project UC"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project GPA"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project L1"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project P1"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project L2"
+      description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL A&PC Project 46/80"
+      description = ""
+      security_enabled = true
+    },
   ]
 }
 
