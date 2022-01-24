@@ -424,3 +424,69 @@ module "tia_cajo" {
   ad_join             = true
   subscription_id     = var.subscription_id
 }
+
+# [TOC-462] -- Sejfo --
+data "azurerm_key_vault_secret" "tia_sejfo" {
+  name         = "tia-sejfo-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_sejfo" {
+  source              = "../../../modules/tia-server/"
+  name                = "sejfo"
+  ipaddress           = "10.101.2.220"
+  password            = data.azurerm_key_vault_secret.tia_sejfo.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
+  subscription_id     = var.subscription_id
+}
+
+# [TOC-470] -- mplus --
+data "azurerm_key_vault_secret" "tia_mplus" {
+  name         = "tia-mplus-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_mplus" {
+  source              = "../../../modules/tia-server/"
+  name                = "mplus"
+  ipaddress           = "10.101.2.222"
+  password            = data.azurerm_key_vault_secret.tia_mplus.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
+  subscription_id     = var.subscription_id
+}
+
+# [TOC-470] -- pne --
+data "azurerm_key_vault_secret" "tia_pne" {
+  name         = "tia-pne-nvadmin"
+  key_vault_id = data.azurerm_key_vault.nv_core.id
+}
+
+module "tia_pne" {
+  source              = "../../../modules/tia-server/"
+  name                = "pne"
+  ipaddress           = "10.101.2.223"
+  password            = data.azurerm_key_vault_secret.tia_pne.value
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id           = local.nv_automation_1
+  dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
+  vault_id            = data.azurerm_key_vault.nv_core.id
+  recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
+  backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
+  ad_join             = true
+  subscription_id     = var.subscription_id
+}
