@@ -23,12 +23,27 @@ inputs = {
   public_network_access_enabled = false
   databases = [
     {
-      name     = "cmx_2021-10-22T06-15Z"
+      name     = "cmx-ett"
       edition  = "Standard"
       max_size = "268435456000"
     },
     {
       name     = "cmx-labs"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-revolt"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-northvolt-systems"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-nv-ab"
       edition  = "Standard"
       max_size = "268435456000"
     },
