@@ -115,6 +115,15 @@ inputs = {
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
     },
+    {
+      name                       = "rnd-temp-office"
+      local_network_gateway_name = "rnd-temp-office"
+      secret_name                = "vpn-rnd-temp-office-psk"
+      gateway_address            = "92.43.35.134"
+      address_space              = "10.16.32.0/23"
+      address_prefix             = "10.16.32.0/23"
+      enable_bgp                 = "false"
+    },
   ]
 }
 
