@@ -4,4 +4,7 @@ locals {
   remote_state_storage_account_name = "nvhubtfstate"
   remote_state_container_name       = "nv-tf-state"
   remote_state_resource_group_name  = "nv-hub-core"
+  azurerm_provider_version          = ">=2.94.0"
+  terraform_required_version        = ">=0.1.5"
+  azurerm_features                  = "features {}"
 }
