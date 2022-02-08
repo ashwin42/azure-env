@@ -19,13 +19,13 @@ inputs = {
   create_private_endpoints_names = ["file"]
   large_file_share_enabled       = true
   file_shares = [
-    { name = "qc-sftp", quota = "81920" },
+    { name = "qc-sftp", quota = "102400" },
   ]
   network_rules = [
     {
       name           = "default_rule"
       bypass         = ["AzureServices"]
-      default_action = "Allow"
+      default_action = "Deny"
       subnet_ids     = [dependency.global.outputs.subnet.labx_subnet.id]
     },
   ]
