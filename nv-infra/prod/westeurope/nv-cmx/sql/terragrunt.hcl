@@ -23,7 +23,12 @@ inputs = {
   public_network_access_enabled = false
   databases = [
     {
-      name     = "cmx-ett"
+      name     = "cmx-ds1"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-ds2"
       edition  = "Standard"
       max_size = "268435456000"
     },
@@ -44,6 +49,16 @@ inputs = {
     },
     {
       name     = "cmx-nv-ab"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-us1"
+      edition  = "Standard"
+      max_size = "268435456000"
+    },
+    {
+      name     = "cmx-fa1"
       edition  = "Standard"
       max_size = "268435456000"
     },
