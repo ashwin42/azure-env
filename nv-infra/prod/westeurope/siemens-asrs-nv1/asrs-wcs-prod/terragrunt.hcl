@@ -155,6 +155,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from API Mgmt service"
     },
+    {
+      name                   = "AWS_Automation_Ireland_Prod_ICMP"
+      priority               = "223"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.0.0/16"
+      protocol               = "ICMP"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow connections from API Mgmt service"
+    },
   ]
 }
 
