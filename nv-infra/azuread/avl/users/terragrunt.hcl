@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//users?ref=v1.0.0"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//users?ref=v1.1.0"
   #source = "../../../../../tf-mod-azuread/users/"
 }
 
@@ -25,6 +25,7 @@ inputs = {
       usage_location        = "DE"
       user_principal_name   = "bernhard.eisenberger@nv-external.com"
       password              = "NorthVolt123!"
+      preferred_language    = "de-DE"
       force_password_change = true
       groups                = ["AVL Users"]
     },
@@ -43,6 +44,7 @@ inputs = {
       usage_location        = "IN"
       user_principal_name   = "sunil.pasricha@nv-external.com"
       password              = "NorthVolt123!"
+      preferred_language    = null
       force_password_change = true
       groups                = ["AVL Users"]
     },
@@ -61,6 +63,7 @@ inputs = {
       usage_location        = "DE"
       user_principal_name   = "bernhard.stummer@nv-external.com"
       password              = "NorthVolt123!"
+      preferred_language    = null
       force_password_change = true
       groups                = ["AVL Users"]
     },
@@ -79,6 +82,7 @@ inputs = {
       usage_location        = "DE"
       user_principal_name   = "balazs.szilard@nv-external.com"
       password              = "NorthVolt123!"
+      preferred_language    = null
       force_password_change = true
       groups                = ["AVL Users"]
     },
@@ -97,6 +101,7 @@ inputs = {
       usage_location        = "SE"
       user_principal_name   = "kristian.duering@nv-external.com"
       password              = "NorthVolt123!"
+      preferred_language    = null
       force_password_change = true
       groups                = ["AVL Users"]
     },
