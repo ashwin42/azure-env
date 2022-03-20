@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.0.0"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.1.0"
   #source = "../../../../../tf-mod-azuread/groups/"
 }
 
@@ -108,6 +108,11 @@ inputs = {
     {
       display_name = "AVL A&PC Project 46/80"
       description = ""
+      security_enabled = true
+    },
+    {
+      display_name = "AVL AP Eligible Users"
+      description = "Provides eligibility to request accees to AVL A&PC Access Packages"
       security_enabled = true
     },
   ]
