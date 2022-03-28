@@ -24,12 +24,5 @@ inputs = {
       types                   = ["DynamicMembership"]
       dynamic_membership_rule = "(device.devicePhysicalIds -any _ -startsWith \"[OrderID]:FV.T1\")"
     },
-    {
-      display_name            = "MDM FV"
-      description             = "All Windows devices located in MDM FV"
-      security_enabled        = true
-      types                   = ["DynamicMembership"]
-      dynamic_membership_rule = "(device.devicePhysicalIds -any _ -startsWith \"[OrderID]:FV\")"
-    },
   ]
 }
