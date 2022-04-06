@@ -15,14 +15,18 @@ inputs = {
       description  = "Groups assigned to this group will be synced to remote access server ett database"
       security_enabled = true
       member_groups = [
-        "TechOps",
-        "NV IT Core Role",
         "NV F1.A1.CT.COT01",
         "NV F1.C1.CT.COT01",
         "NV F1.A1.SU",
         "NV F1.C1.SU",
         "NV F1.C1.CD.CLD03",
         "NV F1.A1.CD.CLD03",
+        "NV F1.A1.CT.COT02",
+        "NV F1.C1.CT.COT02",
+        "NV F1.A1.CT.COT03",
+        "NV F1.C1.CT.COT03",
+        "NV TechOps Role",
+        "NV TechOps Lead Role",
       ]
     },
     {
