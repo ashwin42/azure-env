@@ -26,7 +26,6 @@ inputs = {
         "NV F1.A1.CT.COT03",
         "NV F1.C1.CT.COT03",
         "NV TechOps Role",
-        "NV TechOps Lead Role",
       ]
     },
     {
