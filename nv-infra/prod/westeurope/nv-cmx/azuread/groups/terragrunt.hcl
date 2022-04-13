@@ -22,6 +22,12 @@ inputs = {
       security_enabled = true
       member_users      = []
     },
+    {
+      display_name = "CMX virtual desktop user access"
+      description  = "Members in this group gets access to CMX cloud setup WVD"
+      security_enabled = true
+      member_users      = []
+    },
   ]
 }
 
