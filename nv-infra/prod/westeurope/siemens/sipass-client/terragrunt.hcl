@@ -67,24 +67,34 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                    = "Labs_MFA_VPN"
-      priority                = "200"
-      direction               = "Inbound"
-      source_address_prefix   = "10.16.8.0/23"
-      protocol                = "*"
-      destination_port_range  = "0-65535"
-      access                  = "Allow"
-      description             = "Allow connections from Labs MFA VPN clients"
+      name                   = "Labs_MFA_VPN"
+      priority               = "200"
+      direction              = "Inbound"
+      source_address_prefix  = "10.16.8.0/23"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                    = "LocalVnet"
-      priority                = "205"
-      direction               = "Inbound"
-      source_address_prefix   = dependency.global.outputs.virtual_network.address_space[0]
-      protocol                = "TCP"
-      destination_port_range  = 8742
-      access                  = "Allow"
-      description             = "Allow connections from local VNet"
+      name                   = "LocalVnet"
+      priority               = "205"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.global.outputs.virtual_network.address_space[0]
+      protocol               = "TCP"
+      destination_port_range = 8742
+      access                 = "Allow"
+      description            = "Allow connections from local VNet"
+    },
+    {
+      name                   = "Cellhouse"
+      priority               = "207"
+      direction              = "Inbound"
+      source_address_prefix  = "10.193.8.0/24"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Cellhouse"
     },
   ]
 }
