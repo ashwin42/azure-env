@@ -108,5 +108,19 @@ inputs = {
       icon_index                   = 0
       assign_groups                = ["TechOps", "Physical Security Administrators", "Physical Security CCTV Users"]
     },
+    {
+      name                         = "ARXClient"
+      group_name                   = "ARXClient"
+      friendly_name                = "ARX Client"
+      group_friendly_name          = "ARX Application Group"
+      description                  = null
+      path                         = "C:\\Program Files\\ASSA\\ARX\\ARX Client.exe"
+      command_line_argument_policy = "DoNotAllow"
+      command_line_arguments       = ""
+      show_in_portal               = true
+      icon_path                    = "C:\\Program Files\\ASSA\\ARX\\ARX Client.exe"
+      icon_index                   = 0
+      assign_groups                = ["TechOps", "Physical Security ARX Users"]
+    },
   ]
 }
