@@ -63,6 +63,14 @@ inputs = {
       allow_forwarded_traffic      = true
       use_remote_gateways          = true
     },
+    {
+      name                         = "nv_siemens_to_nv-arx",
+      vnet_id                      = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/arx-rg/providers/Microsoft.Network/virtualNetworks/arx-vnet"
+      allow_gateway_transit        = false
+      allow_virtual_network_access = true
+      allow_forwarded_traffic      = false
+      use_remote_gateways          = false
+    },
   ]
 }
 

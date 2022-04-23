@@ -59,12 +59,20 @@ inputs = {
       description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                  = "NV-VH_VPN"
+      name                  = "NV-VH_Security"
       priority              = "210"
       direction             = "Inbound"
-      source_address_prefix = "10.10.0.0/21"
+      source_address_prefix = "10.193.6.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-VH"
-    }
+    },
+    {
+      name                  = "Phy-Sec-Access-server"
+      priority              = "211"
+      direction             = "Inbound"
+      source_address_prefix = "10.44.1.101/32"
+      access                = "Allow"
+      description           = "Allow connections from NV-VH"
+    },
   ]
 }
