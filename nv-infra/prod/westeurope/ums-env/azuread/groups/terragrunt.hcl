@@ -11,16 +11,16 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "NV ViewLinc UMS User Access"
-      description  = "Members in this group gets access to UMS ViewLinc cloud setup WVD and VPN"
+      display_name     = "NV ViewLinc UMS User Access"
+      description      = "Members in this group gets access to UMS ViewLinc cloud setup WVD and VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
     {
-      display_name = "NV ViewLinc UMS Administrator Access"
-      description  = "Members in this group gets administrator access to UMS ViewLinc cloud setup WVD and VPN"
+      display_name     = "NV ViewLinc UMS Administrator Access"
+      description      = "Members in this group gets administrator access to UMS ViewLinc cloud setup WVD and VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
   ]
 }
