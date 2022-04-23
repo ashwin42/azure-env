@@ -106,6 +106,15 @@ inputs = {
       access                = "Allow"
       description           = "Allow connections from on-prem"
     },
+    {
+      name                  = "Cellhouse"
+      priority              = "207"
+      direction             = "Inbound"
+      source_address_prefix = "10.193.8.0/24"
+      access                = "Allow"
+      description           = "Allow connections from Cellhouse"
+    },
+
   ]
 }
 

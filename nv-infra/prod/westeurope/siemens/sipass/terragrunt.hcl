@@ -54,7 +54,7 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.1.137"
+          private_ip_address            = "10.44.1.145"
           subnet_id                     = dependency.global.outputs.subnet.siemens_system_subnet.id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
@@ -94,6 +94,14 @@ inputs = {
       source_address_prefix = "10.0.0.0/8"
       access                = "Allow"
       description           = "Allow connections from on-prem"
+    },
+    {
+      name                  = "Cellhouse"
+      priority              = "207"
+      direction             = "Inbound"
+      source_address_prefix = "10.193.8.0/24"
+      access                = "Allow"
+      description           = "Allow connections from Cellhouse"
     },
   ]
 }
