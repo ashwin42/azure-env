@@ -58,6 +58,14 @@ inputs = {
       ]
     },
   ]
+  data_disks = [
+    {
+      name                 = "${local.name}-data1"
+      size                 = "300"
+      lun                  = "5"
+      storage_account_type = "Standard_LRS"
+    }
+  ]
   custom_rules = [
     {
       name                   = "Labs_MFA_VPN"
