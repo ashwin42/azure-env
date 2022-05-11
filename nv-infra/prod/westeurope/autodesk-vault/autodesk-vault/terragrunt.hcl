@@ -84,5 +84,14 @@ inputs = {
       description            = "Allow connections from Labs MFA VPN clients"
     },
   ]
+
+  data_disks = [
+    {
+      name                 = "${local.name}-data1"
+      size                 = "500"
+      lun                  = "0"
+      storage_account_type = "StandardSSD_LRS"
+    },
+  ]
 }
 
