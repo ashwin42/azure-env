@@ -178,6 +178,15 @@ inputs = {
       address_prefix             = "10.16.36.0/23"
       enable_bgp                 = "false"
     },
+    {
+      name                       = "drei-office"
+      local_network_gateway_name = "drei-office"
+      secret_name                = "vpn-drei-office-psk"
+      gateway_fqdn               = "drei-fw01-crvrkkmdmk.dynamic-m.com"
+      address_space              = "10.17.0.0/22,10.193.9.0/24"
+      address_prefix             = "10.17.0.0/22,10.193.9.0/24"
+      enable_bgp                 = "false"
+    },
   ]
 }
 
