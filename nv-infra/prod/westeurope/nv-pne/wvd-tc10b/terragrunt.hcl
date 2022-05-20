@@ -13,10 +13,10 @@ dependency "global" {
 inputs = {
   resource_group_name  = dependency.global.outputs.resource_group.name
   setup_prefix         = dependency.global.outputs.setup_prefix
-  wvd_ws_friendly_name = "PNE Virtual Desktop TC8"
-  wvd_hp_name          = "nv-pne-hp-tc8"
-  wvd_ag_name          = "nv-pne-hp-DAG-tc8"
-  wvd_ws_name          = "nv-pne-hp-ws-tc8"
+  wvd_ws_friendly_name = "PNE Virtual Desktop TC10b - 10.11 to 10.19"
+  wvd_hp_name          = "nv-pne-hp-tc10b"
+  wvd_ag_name          = "nv-pne-hp-DAG-tc10b"
+  wvd_ws_name          = "nv-pne-hp-ws-tc10b"
   wvd_location         = "westeurope"
   assign_groups = [
     "NV TechOps Role",
