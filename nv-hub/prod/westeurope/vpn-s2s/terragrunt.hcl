@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.2.24"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.3.1"
   #source = "../../../../../tf-mod-azure/vpns2s"
 }
 
@@ -122,7 +122,7 @@ inputs = {
       address_space       = ""
       enable_bgp          = "true"
       bgp_asn             = "65308"
-      bgp_peering_address = "169.254.21.10"
+      bgp_peering_address = "169.254.0.15"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
       ike_integrity       = "SHA256"
@@ -140,7 +140,7 @@ inputs = {
       address_space       = ""
       enable_bgp          = "true"
       bgp_asn             = "65308"
-      bgp_peering_address = "169.254.21.11"
+      bgp_peering_address = "169.254.0.16"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
       ike_integrity       = "SHA256"
@@ -176,6 +176,15 @@ inputs = {
       gateway_address            = "92.43.36.196"
       address_space              = "10.16.36.0/23"
       address_prefix             = "10.16.36.0/23"
+      enable_bgp                 = "false"
+    },
+    {
+      name                       = "drei-office"
+      local_network_gateway_name = "drei-office"
+      secret_name                = "vpn-drei-office-psk"
+      gateway_fqdn               = "drei-fw01-crvrkkmdmk.dynamic-m.com"
+      address_space              = "10.17.0.0/22,10.193.9.0/24"
+      address_prefix             = "10.17.0.0/22,10.193.9.0/24"
       enable_bgp                 = "false"
     },
   ]

@@ -1,6 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.2"
-  #source = "../../../../../../tf-mod-azure/vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
 }
 
 include {
@@ -12,7 +11,11 @@ dependency "global" {
 }
 
 dependency "wvd" {
-  config_path = "../wvd"
+  config_path = "../wvd-tc10b"
+}
+
+locals {
+  name = basename(get_terragrunt_dir())
 }
 
 inputs = {
@@ -23,68 +26,41 @@ inputs = {
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
-  vm_name                                = "nv-pne-oper-0"
-  vm_size                                = "Standard_D4_v2"
+  name                                   = local.name
+  vm_name                                = local.name
+  vm_size                                = "Standard_DS4_v2"
   backup_vm                              = true
-  managed_disk_name                      = "nv-pne-oper-0_OsDisk_1_5e3cecb836374e779f44e77c610cd138"
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
-  boot_diagnostics_enabled               = true
   storage_account_name                   = "nvinfrabootdiag"
-  ipconfig_name                          = "ipconfig"
   ad_join                                = true
   wvd_register                           = true
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
-    sku       = "20h1-evd",
+    sku       = "21h1-evd-g2",
   }
-
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
   }
-
   os_profile = {
     admin_username = "domainjoin"
-    computer_name  = "nv-pne-oper-0"
   }
-
   network_interfaces = [
     {
-      name = "nv-pne-oper-0-nic"
-      ip_configuration = [
-        {
-          ipaddress                     = "10.44.5.37"
-          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-          public_ip                     = false
-          private_ip_address_allocation = "Static"
-          ipconfig_name                 = "ipconfig"
-        },
-      ]
-    },
+      name      = "${local.name}-nic"
+      ipaddress = "10.44.5.43"
+      subnet    = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+      public_ip = false
+    }
   ]
-
   data_disks = [
     {
-      name                 = "nv-pne-oper-0_datadisk"
-      size                 = "4000"
+      name                 = "${local.name}_datadisk"
+      size                 = "1000"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
-      caching              = "ReadWrite"
-    },
-    {
-      name                 = "nv-pne-oper-0_datadisk1"
-      size                 = "5000"
-      lun                  = "5"
-      storage_account_type = "StandardSSD_LRS"
-      caching              = "None"
-    },
+    }
   ]
-
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"
