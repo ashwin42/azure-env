@@ -19,6 +19,11 @@ inputs = {
       display_name     = "Azure Subscriptions Billing Reader Access"
       description      = "Provides Reader access to all Azure subscriptions for Billing purposes"
       security_enabled = true
-    },    
+    },
+    {
+      display_name     = "Azure Subscriptions Support Request Contributor"
+      description      = "Provides Contributor access to all Azure subscriptions for support purposes"
+      security_enabled = true
+    },
   ]
 }
