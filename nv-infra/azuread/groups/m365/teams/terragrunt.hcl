@@ -14,6 +14,7 @@ inputs = {
       display_name            = "TechOps team"
       description             = "Northvolt TechOps team"
       provisioning_options    = ["Team"]
+      visibility              = "Private"
       mail_enabled            = "true"
       mail_nickname           = "techopsteam"
       types                   = ["Unified"]
