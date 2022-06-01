@@ -13,12 +13,8 @@ inputs = {
     {
       display_name            = "TechOps Team"
       description             = "Northvolt TechOps team"
-      owner                   = "NV TechOps Role"
       mail_enabled            = "true"
       mail_nickname           = "TechOpsTeam"
-      member_groups = [
-        "NV TechOps Role",
-      ]
       types                   = ["Unified"]
     },
   ]
