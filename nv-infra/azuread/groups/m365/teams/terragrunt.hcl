@@ -11,10 +11,11 @@ include {
 inputs = {
   groups = [
     {
-      display_name            = "TechOps Team"
+      display_name            = "TechOps team"
       description             = "Northvolt TechOps team"
+      provisioning_options    = ["Team"]
       mail_enabled            = "true"
-      mail_nickname           = "TechOpsTeam"
+      mail_nickname           = "techopsteam"
       types                   = ["Unified"]
     },
   ]
