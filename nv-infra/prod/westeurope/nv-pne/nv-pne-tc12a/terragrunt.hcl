@@ -77,7 +77,7 @@ inputs = {
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
     {
       name                  = "NV-Cyclers-12a"
       priority              = "222"

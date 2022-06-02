@@ -15,7 +15,7 @@ dependency "wvd" {
 }
 
 locals {
-  name = "nv-pne-tc10a"
+  name = basename(get_terragrunt_dir())
 }
 
 inputs = {
@@ -77,7 +77,7 @@ inputs = {
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
     {
       name                  = "NV-Cyclers-10a"
       priority              = "222"

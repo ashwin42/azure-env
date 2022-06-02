@@ -51,7 +51,7 @@ inputs = {
       ipaddress = "10.44.5.43"
       subnet    = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
       public_ip = false
-    }
+    },
   ]
   data_disks = [
     {
@@ -59,7 +59,7 @@ inputs = {
       size                 = "1000"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
-    }
+    },
   ]
   custom_rules = [
     {
@@ -77,7 +77,7 @@ inputs = {
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
     {
       name                  = "NV-Cyclers-10b"
       priority              = "222"
