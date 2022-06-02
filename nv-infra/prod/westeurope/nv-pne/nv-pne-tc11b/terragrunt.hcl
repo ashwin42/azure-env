@@ -78,5 +78,13 @@ inputs = {
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
     }
+    {
+      name                  = "NV-Cyclers-11b"
+      priority              = "222"
+      direction             = "Inbound"
+      source_address_prefix = "10.149.40.0/22"
+      access                = "Allow"
+      description           = "Allow connections from NV-Cyclers"
+    },    
   ]
 }
