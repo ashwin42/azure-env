@@ -59,7 +59,7 @@ inputs = {
       size                 = "2000"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
-    }
+    },
   ]
   custom_rules = [
     {
@@ -77,6 +77,14 @@ inputs = {
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
+    {
+      name                  = "NV-Cyclers-12b"
+      priority              = "222"
+      direction             = "Inbound"
+      source_address_prefix = "10.149.44.0/22"
+      access                = "Allow"
+      description           = "Allow connections from NV-Cyclers"
+    },       
   ]
 }
