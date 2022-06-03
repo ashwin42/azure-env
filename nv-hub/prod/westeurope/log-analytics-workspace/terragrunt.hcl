@@ -8,14 +8,14 @@ include {
 }
 
 inputs = {
-    setup_prefix                        = "nv-hub-analytics-log"
-    name                                = "nv-hub-analytics-log"
-    resource_group_name                 = "core_utils"
-    location                            = "West Europe"
-    sku                                 = "PerGB2018"
-    retention_in_days                   = "30"
-    internet_ingestion_enabled          = true
-    internet_query_enabled              = true
-    lock_resource                       = true
+  setup_prefix               = "nv-hub-analytics-log"
+  name                       = "nv-hub-analytics-log"
+  resource_group_name        = "core_utils"
+  location                   = "West Europe"
+  sku                        = "PerGB2018"
+  retention_in_days          = "30"
+  internet_ingestion_enabled = true
+  internet_query_enabled     = true
+  lock_resource              = true
 }
 
