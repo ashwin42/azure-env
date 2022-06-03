@@ -1,6 +1,6 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.3.3"
-  source = "../../../../../tf-mod-azure/log_analytics_workspace/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.3.5"
+  #source = "../../../../../tf-mod-azure/log_analytics_workspace/"
 }
 
 include {
