@@ -16,7 +16,7 @@ inputs = {
   custom_rdp_properties        = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"
 
   assign_groups = [
-    #"NV TechOps Role",
+    "NV TechOps Role",
     #"NV TechOps Lead Role",
     "Physical Security Administrators",
     "Physical Security Server Administrators",
@@ -36,7 +36,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files (x86)\\SiPass integrated\\SiPassOpClient.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators", "Physical Security Access Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators", "Physical Security Access Users"]
     },
     {
       name                         = "SiPassCC"
@@ -50,7 +50,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files (x86)\\SiPass integrated\\SiPassConfigurationClient.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators"]
     },
     {
       name                         = "SiPassOC"
@@ -64,7 +64,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files (x86)\\SiPass integrated\\SiPassOpClient.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators", "Physical Security Access Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators", "Physical Security Access Users"]
     },
     {
       name                         = "SiPassIE"
@@ -78,7 +78,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files (x86)\\SiPass integrated\\CardholderImportExport.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators"]
     },
     {
       name                         = "VMSClient"
@@ -92,7 +92,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Windows\\Installer\\{09ED1BB2-20A9-4F3D-B6E0-446277564C3A}\\Client.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators", "Physical Security CCTV Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators", "Physical Security CCTV Users"]
     },
     {
       name                         = "VMSWebClient"
@@ -106,7 +106,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Windows\\Installer\\{09ED1BB2-20A9-4F3D-B6E0-446277564C3A}\\Client.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security Administrators", "Physical Security CCTV Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators", "Physical Security CCTV Users"]
     },
     {
       name                         = "ARXClient"
@@ -120,7 +120,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files\\ASSA\\ARX\\ARX Client.exe"
       icon_index                   = 0
-      assign_groups                = ["TechOps", "Physical Security ARX Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security ARX Users"]
     },
   ]
 }
