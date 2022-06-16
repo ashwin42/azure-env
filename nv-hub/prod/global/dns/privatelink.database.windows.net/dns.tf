@@ -73,6 +73,16 @@ resource "azurerm_private_dns_a_record" "asrs-nv1-prod-sql" {
   zone_name           = azurerm_private_dns_zone.database.name
 }
 
+resource "azurerm_private_dns_a_record" "nv-toolsnet-sql" {
+  name = "nv-toolsnet-sql"
+  records = [
+    "10.46.1.20",
+  ]
+  ttl                 = 300
+  resource_group_name = var.resource_group_name
+  zone_name           = azurerm_private_dns_zone.database.name
+}
+
 resource "azurerm_private_dns_zone_virtual_network_link" "core_vnet" {
   name                  = "core_vnet"
   resource_group_name   = var.resource_group_name
