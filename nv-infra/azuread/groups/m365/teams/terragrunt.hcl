@@ -16,7 +16,7 @@ inputs = {
       provisioning_options    = ["Team"]
       visibility              = "Private"
       mail_enabled            = "true"
-      mail_nickname           = "techopsteam"
+      mail_nickname           = "techops"
       types                   = ["Unified"]
     },
   ]
