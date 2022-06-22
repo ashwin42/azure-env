@@ -79,12 +79,22 @@ inputs = {
       description            = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "ETT_EMS_APs"
-      priority               = "210"
+      name                   = "ETT_EMS_APs_TCP"
+      priority               = "300"
+      direction              = "Inbound"
+      source_address_prefix  = "10.194.8.0/22"
+      protocol               = "Tcp"
+      destination_port_range = "23,80,443,502,771,950,12500,12600,55000"
+      access                 = "Allow"
+      description            = "Allow connections from Ett EMS Access points"
+    },
+    {
+      name                   = "ETT_EMS_APs_UDP"
+      priority               = "310"
       direction              = "Inbound"
       source_address_prefix  = "10.194.8.0/22"
       protocol               = "Udp"
-      destination_port_range = "12600"
+      destination_port_range = "6767,12600"
       access                 = "Allow"
       description            = "Allow connections from Ett EMS Access points"
     },
