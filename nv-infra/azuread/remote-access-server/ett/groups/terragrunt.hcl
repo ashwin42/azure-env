@@ -26,6 +26,8 @@ inputs = {
         "NV F1.A1.CT.COT03",
         "NV F1.C1.CT.COT03",
         "NV TechOps Role",
+        "Ett Supplier VPN Wuxi Titans",
+        "VPN-F1-F1-PF2-AP",
         "NV F1.U1.NR",
       ]
     },
