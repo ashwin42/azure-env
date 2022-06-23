@@ -11,13 +11,14 @@ include {
 inputs = {
   groups = [
     {
-      display_name            = "TechOps team"
-      description             = "Northvolt TechOps team"
-      provisioning_options    = ["Team"]
-      visibility              = "Private"
-      mail_enabled            = "true"
-      mail_nickname           = "techops"
-      types                   = ["Unified"]
+      display_name             = "TechOps team"
+      description              = "Northvolt TechOps team"
+      provisioning_options     = ["Team"]
+      visibility               = "Private"
+      mail_enabled             = "true"
+      mail_nickname            = "techops"
+      types                    = ["Unified"]
+      external_senders_allowed = true
     },
   ]
 }
