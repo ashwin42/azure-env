@@ -11,11 +11,11 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "Octoplant Labs VPN AP"
-      description  = "Members in this group gets access to Octoplant Ett VPN"
+      display_name     = "Octoplant Labs VPN AP"
+      description      = "Members in this group gets access to Octoplant Ett VPN"
       security_enabled = true
-      member_users      = []
-    },    
+      member_users     = []
+    },
   ]
 }
 

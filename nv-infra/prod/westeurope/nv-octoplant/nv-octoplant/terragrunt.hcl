@@ -33,13 +33,13 @@ inputs = {
   ad_join                                = true
   #localadmin_key_name                    = "domainjoin"
   storage_image_reference = {
-    sku     = "2019-Datacenter",
+    sku = "2019-Datacenter",
   }
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
     timezone                   = null
-    winrm = null
+    winrm                      = null
     additional_unattend_config = null
   }
   os_profile = {
@@ -80,7 +80,7 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    },    
+    },
   ]
 }
 
