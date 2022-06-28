@@ -40,7 +40,7 @@ inputs = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
     timezone                   = null
-    winrm = null
+    winrm                      = null
     additional_unattend_config = null
   }
   os_profile = {
@@ -52,7 +52,7 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.46.1.33"
+          ipaddress                     = "10.46.1.37"
           subnet_id                     = dependency.vnet.outputs.subnet["nv-plc-ews-10.46.1.32_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
