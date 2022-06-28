@@ -51,7 +51,7 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.46.1.8"
+          ipaddress                     = "10.46.1.12"
           subnet_id                     = dependency.vnet.outputs.subnet["nv-octoplant-10.46.1.8_29"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
