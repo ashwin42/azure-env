@@ -24,5 +24,12 @@ inputs = {
       types                   = ["DynamicMembership"]
       dynamic_membership_rule = "(user.userPrincipalName -startsWith \"sa-f1.u1\")"
     },
+    {
+      display_name            = "NV F1.U1.EF"
+      description             = "All service accounts located in F1.U1.EF used on the factory floor Operator PCs"
+      security_enabled        = true
+      types                   = ["DynamicMembership"]
+      dynamic_membership_rule = "(user.userPrincipalName -startsWith \"sa-f1.u1.ef\")"
+    },
   ]
 }
