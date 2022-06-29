@@ -15,7 +15,7 @@ inputs = {
       description      = "Members in this group gets VPN access to Octoplant Ett"
       security_enabled = true
       member_users     = []
-    },    
+    },
     {
       display_name     = "Octoplant Admin VPN AP"
       description      = "Members in this group gets RDP access to Octoplant servers with administrative privileges"
