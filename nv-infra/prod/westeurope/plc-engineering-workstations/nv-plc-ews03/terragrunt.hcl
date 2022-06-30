@@ -99,7 +99,7 @@ inputs = {
       destination_port_range = "64021"
       access                 = "Allow"
       description            = "Allow neccessary port 64021 from octoplant-labs"
-    },    
+    },
   ]
 }
 
