@@ -79,7 +79,7 @@ inputs = {
       protocol               = "Tcp"
       destination_port_range = "64001-64006"
       access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      description            = "Allow neccessary ports 64001-64006 from PLC Engineering Workstations subnet"
     },
     {
       name                   = "nv-plc-ews_Allow_64021"
@@ -89,7 +89,7 @@ inputs = {
       protocol               = "Tcp"
       destination_port_range = "64021"
       access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      description            = "Allow neccessary port 64021 from PLC Engineering Workstations subnet"
     },
   ]
 }
