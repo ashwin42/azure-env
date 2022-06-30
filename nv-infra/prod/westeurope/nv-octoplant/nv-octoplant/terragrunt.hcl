@@ -80,27 +80,7 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                   = "nv-plc-ews_Allow_64001-64006"
-      priority               = "300"
-      direction              = "Inbound"
-      source_address_prefix  = "10.46.1.32/28"
-      protocol               = "Tcp"
-      destination_port_range = "64001-64006"
-      access                 = "Allow"
-      description            = "Allow neccessary ports 64001-64006 from PLC Engineering Workstations subnet"
-    },
-    {
-      name                   = "nv-plc-ews_Allow_64021"
-      priority               = "301"
-      direction              = "Inbound"
-      source_address_prefix  = "10.46.1.32/28"
-      protocol               = "Tcp"
-      destination_port_range = "64021"
-      access                 = "Allow"
-      description            = "Allow neccessary port 64021 from PLC Engineering Workstations subnet"
-    },    
+    }, 
   ]
 }
 
