@@ -80,6 +80,26 @@ inputs = {
       access                 = "Allow"
       description            = "Allow RDP connections from Labs MFA VPN clients"
     },
+    {
+      name                   = "octoplant-labs_Allow_64001-64006"
+      priority               = "300"
+      direction              = "Inbound"
+      source_address_prefix  = "10.46.1.12/32"
+      protocol               = "Tcp"
+      destination_port_range = "64001-64006"
+      access                 = "Allow"
+      description            = "Allow neccessary ports 64001-64006 from octoplant-labs"
+    },
+    {
+      name                   = "octoplant-labs_Allow_64021"
+      priority               = "301"
+      direction              = "Inbound"
+      source_address_prefix  = "10.46.1.12/32"
+      protocol               = "Tcp"
+      destination_port_range = "64021"
+      access                 = "Allow"
+      description            = "Allow neccessary port 64021 from octoplant-labs"
+    },    
   ]
 }
 
