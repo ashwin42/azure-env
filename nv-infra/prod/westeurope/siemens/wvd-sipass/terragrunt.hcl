@@ -64,7 +64,7 @@ inputs = {
       show_in_portal               = true
       icon_path                    = "C:\\Program Files (x86)\\SiPass integrated\\SiPassOpClient.exe"
       icon_index                   = 0
-      assign_groups                = ["NV TechOps Role", "Physical Security Administrators", "Physical Security Access Users"]
+      assign_groups                = ["NV TechOps Role", "Physical Security Administrators"]
     },
     {
       name                         = "SiPassIE"
