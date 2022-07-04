@@ -12,7 +12,7 @@ inputs = {
   groups = [
     {
       display_name     = "Octoplant Labs VPN AP"
-      description      = "Members in this group gets access to Octoplant Labs VPN"
+      description      = "Members in this group gets VPN access to Labs Labs"
       security_enabled = true
       member_users     = []
     },

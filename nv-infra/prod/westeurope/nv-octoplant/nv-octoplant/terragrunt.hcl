@@ -80,7 +80,7 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    },
+    }, 
   ]
 }
 
