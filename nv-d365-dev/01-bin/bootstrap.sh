@@ -32,10 +32,10 @@ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOU
 az keyvault create --name $RESOURCE_GROUP_NAME --resource-group $RESOURCE_GROUP_NAME --location $LOCATION --enable-rbac-authorization
 
 # Set Permissions on vault
-ASSIGNEE=$(az ad group show --group $VAULT_OWNER_GROUP | | jq -r .id)
+ASSIGNEE=$(az ad group show --group "$VAULT_OWNER_GROUP" | jq -r .objectId)
 SUBSCRIPTION_ID=$(az account show | jq -r .id)
 
-azlatest role assignment create  --role $VAULT_ROLE --assignee $VAULT_OWNER_GROUP --scope "/subscriptions/bd728441-1b83-4daa-a72f-91d5dc6284f1/resourceGroups/${RESOURCE_GROUP_NAME}/providers/Microsoft.KeyVault/vaults/${RESOURCE_GROUP_NAME}"
+az role assignment create --role "$VAULT_ROLE" --assignee $ASSIGNEE --scope "/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP_NAME}/providers/Microsoft.KeyVault/vaults/${RESOURCE_GROUP_NAME}"
 
 # Add storage account key to vault
 az keyvault secret set --vault-name $RESOURCE_GROUP_NAME --name "tfstate-storage-account" --value $ACCOUNT_KEY
