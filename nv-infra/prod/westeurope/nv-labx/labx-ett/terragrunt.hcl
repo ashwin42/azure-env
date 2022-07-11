@@ -35,15 +35,15 @@ inputs = {
     enable_automatic_upgrades  = true
     timezone                   = null
     winrm                      = null
-    additional_unattend_config = null    
+    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = basename(get_terragrunt_dir())
-  }  
+  }
   network_interfaces = [
     {
-      name      = "${basename(get_terragrunt_dir())}-nic"
+      name = "${basename(get_terragrunt_dir())}-nic"
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.17"
@@ -52,7 +52,7 @@ inputs = {
           private_ip_address_allocation = "Dynamic"
           ipconfig_name                 = "ipconfig"
         },
-      ]      
+      ]
     }
   ]
   data_disks = [
@@ -65,14 +65,14 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"      
-      protocol              = "Tcp"
+      name                   = "Labs_MFA_VPN"
+      priority               = "200"
+      direction              = "Inbound"
+      source_address_prefix  = "10.16.8.0/23"
+      protocol               = "Tcp"
       destination_port_range = "0-65535"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
+      access                 = "Allow"
+      description            = "Allow connections from Labs MFA VPN clients"
     },
     {
       name                   = "Ett_MFA_VPN"
@@ -85,14 +85,14 @@ inputs = {
       description            = "Allow connections from Ett MFA VPN clients"
     },
     {
-      name                  = "LocalSubnet"
-      priority              = "205"
-      direction             = "Inbound"
-      source_address_prefix = "10.44.2.0/26"
-      protocol              = "Tcp"
+      name                   = "LocalSubnet"
+      priority               = "205"
+      direction              = "Inbound"
+      source_address_prefix  = "10.44.2.0/26"
+      protocol               = "Tcp"
       destination_port_range = "0-65535"
-      access                = "Allow"
-      description           = "Allow connections from local subnet"
+      access                 = "Allow"
+      description            = "Allow connections from local subnet"
     },
   ]
 }
