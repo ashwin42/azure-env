@@ -22,6 +22,12 @@ inputs = {
       security_enabled = true
       member_users     = []
     },
+    {
+      display_name     = "Octoplant Admin Approvers"
+      description      = "Members in this group will be approvers for the Octoplant Admin VPN AP"
+      security_enabled = true
+      member_users     = ["jack.parkin@northvolt.com", "kyle@northvolt.com", "anton.frankel@northvolt.com", "chandrahas.reddy@northvolt.com"]
+    },    
   ]
 }
 
