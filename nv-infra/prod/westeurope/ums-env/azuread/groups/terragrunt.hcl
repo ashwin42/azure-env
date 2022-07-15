@@ -22,6 +22,12 @@ inputs = {
       security_enabled = true
       member_users     = []
     },
+    {
+      display_name     = "NV ViewLinc UMS AP Approvers"
+      description      = "Members in this group can approve requests for UMS ViewLinc AP "
+      security_enabled = true
+      member_users     = []
+    },
   ]
 }
 
