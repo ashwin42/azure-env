@@ -187,7 +187,15 @@
                         "equals":"Windows-10"
                      }
                   ]
-               }
+               },
+               {
+                  "allOf":[
+                     {
+                        "field":"Microsoft.Compute/imagePublisher",
+                        "equals":"northvolt"
+                     }
+                  ]
+               }               
             ]
          }
       ]
