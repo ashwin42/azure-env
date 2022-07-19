@@ -1,6 +1,6 @@
 terraform {
   source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.1.0"
-  #source = "../../../../../../tf-mod-azuread/groups/"
+  #source = "../../../../../../../tf-mod-azuread/groups/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -15,6 +15,11 @@ inputs = {
       description      = "Members in this group obtain access to TIA MU Strama Server"
       security_enabled = true
     },
+    {
+      display_name     = "TIA MU mPlus Users"
+      description      = "Members in this group obtain access to TIA MU mPlus Server"
+      security_enabled = true
+    },    
   ]
 }
 
