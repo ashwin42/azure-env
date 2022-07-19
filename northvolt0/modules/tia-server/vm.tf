@@ -27,6 +27,10 @@ resource "azurerm_virtual_machine" "tia" {
     provision_vm_agent = true
     timezone           = "W. Europe Standard Time"
   }
+
+  lifecycle {
+    ignore_changes = [storage_image_reference]
+  }
 }
 
 resource "null_resource" "tia_encryption" {
