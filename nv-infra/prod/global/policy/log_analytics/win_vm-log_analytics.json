@@ -100,6 +100,10 @@
                            {
                               "field":"Microsoft.Compute/imageOffer",
                               "like":"*-WS2012R2-BYOL"
+                           },
+                           {
+                              "field":"Microsoft.Compute/imageOffer",
+                              "like":"*-ws2022"
                            }
                         ]
                      }
@@ -145,7 +149,11 @@
                      {
                         "field":"Microsoft.Compute/imageSku",
                         "equals":"Pre-Req-AX7-Onebox-U8"
-                     }
+                     },
+                     {
+                        "field":"Microsoft.Compute/imageSku",
+                        "equals":"Pre-Req-AX7-Onebox-V6"
+                     }                     
                   ]
                },
                {
@@ -195,7 +203,15 @@
                         "equals":"northvolt"
                      }
                   ]
-               }               
+               },
+               {
+                  "allOf":[
+                     {
+                        "field":"Microsoft.Compute/imagePublisher",
+                        "equals":"Dynamics"
+                     }
+                  ]
+               }
             ]
          }
       ]

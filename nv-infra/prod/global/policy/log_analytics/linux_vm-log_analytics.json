@@ -254,6 +254,26 @@
                         "like":"7*"
                      }
                   ]
+               },
+               {
+                  "allOf":[
+                     {
+                        "field":"Microsoft.Compute/imagePublisher",
+                        "equals":"MicrosoftSQLServer"
+                     },
+                     {
+                        "field":"Microsoft.Compute/imageOffer",
+                        "equals":"SQL2017-Ubuntu1604"
+                     }
+                  ]
+               },
+               {
+                  "allOf":[
+                     {
+                        "field":"Microsoft.Compute/imagePublisher",
+                        "equals":"aviatrix-systems"
+                     }
+                  ]
                }
             ]
          }
