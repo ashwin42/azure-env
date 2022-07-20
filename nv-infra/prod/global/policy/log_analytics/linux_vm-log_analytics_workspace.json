@@ -1,0 +1,8 @@
+{
+    "logAnalytics": {
+        "value": "/subscriptions/32de2a14-563c-4f79-a65e-7679f9c6b1b2/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/sentinelassiem"
+    },
+    "listOfImageIdToInclude": {
+        "value": [] 
+    }
+}
