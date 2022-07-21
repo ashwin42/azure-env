@@ -1,0 +1,12 @@
+{
+    "logAnalytics": {
+        "value": "/subscriptions/32de2a14-563c-4f79-a65e-7679f9c6b1b2/resourcegroups/sentinel/providers/microsoft.operationalinsights/workspaces/sentinelassiem"
+    },
+    "listOfImageIdToInclude": {
+        "value": [
+            "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/tia-mu-rg/providers/Microsoft.Compute/galleries/nvgallery2/images/tia-template",
+            "/subscriptions/bd728441-1b83-4daa-a72f-91d5dc6284f1/resourceGroups/Tools_and_Products/providers/Microsoft.Compute/galleries/TNPROBOT01/images/TNPROBOT"
+        ] 
+    }
+}
+
