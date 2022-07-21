@@ -7,8 +7,6 @@
             "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/tia-mu-rg/providers/Microsoft.Compute/galleries/nvgallery2/images/tia-template",
             "/subscriptions/bd728441-1b83-4daa-a72f-91d5dc6284f1/resourceGroups/Tools_and_Products/providers/Microsoft.Compute/galleries/TNPROBOT01/images/TNPROBOT"
         ] 
-    },
-    "effect": {
-        "value": "DeployIfNotExists"
     }
 }
+
