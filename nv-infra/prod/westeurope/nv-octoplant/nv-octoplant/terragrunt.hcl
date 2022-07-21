@@ -25,7 +25,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_D2_v3"
+  vm_size                                = "Standard_D4_v3"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
@@ -67,7 +67,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = "10.16.8.0/23"
       protocol               = "Tcp"
-      destination_port_range = "3389"
+      destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow RDP connections from Labs MFA VPN clients"
     },
