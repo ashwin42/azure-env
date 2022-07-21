@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.28"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.9"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -22,7 +22,7 @@ inputs = {
   resource_group_name                    = dependency.global.outputs.resource_group.name
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_B4ms"
+  vm_size                                = "Standard_B8ms"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
@@ -38,8 +38,11 @@ inputs = {
     sku       = "2019-Datacenter"
   }
   os_profile_windows_config = {
-    enable_automatic_upgrades = true
-    timezone                  = "W. Europe Standard Time"
+    enable_automatic_upgrades  = true
+    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent         = true
+    winrm                      = null
+    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "nvadmin"
@@ -92,7 +95,7 @@ inputs = {
       priority               = "206"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.virtual_network.address_space[0]
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "3389"
       access                 = "Allow"
       description            = "Allow RDP connections from local VNet"
