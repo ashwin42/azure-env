@@ -26,7 +26,12 @@ inputs = {
       display_name     = "NV ViewLinc UMS AP Approvers"
       description      = "Members in this group can approve requests for UMS ViewLinc AP "
       security_enabled = true
-      member_users     = []
+      member_users = [
+        "carla.lucila@northvolt.com",
+        "erik.rozenbeek@northvolt.com",
+        "mian.ali@northvolt.com",
+        "yevgeniy.sidorov@northvolt.com"
+      ]
     },
   ]
 }
