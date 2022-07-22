@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.6"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.4.0"
   #source = "../../../tf-mod-azure/global"
 }
 
@@ -14,16 +14,12 @@ inputs = {
   address_space         = ["10.40.0.0/16"]
   dns_servers           = ["10.40.250.4", "10.40.250.5"]
   create_recovery_vault = false
+  lock_resources        = true
   subnets = [
     {
-      name              = "test-hub"
-      address_prefixes  = ["10.40.0.0/29"]
+      name              = "hub-dmz"
+      address_prefixes  = ["10.40.253.0/24"]
       service_endpoints = []
-    },
-    {
-      name              = "core-utils-1"
-      address_prefixes  = ["10.40.10.0/24"]
-      service_endpoints = ["Microsoft.Storage"]
     },
     {
       name              = "nv-domain-services"
@@ -35,18 +31,13 @@ inputs = {
       address_prefixes  = ["10.40.254.0/24"]
       service_endpoints = []
     },
-    {
-      name              = "core-vpn-mgmt-1"
-      address_prefixes  = ["10.40.5.0/24"]
-      service_endpoints = []
-    },
-    {
-      name              = "core-vpn-client-1"
-      address_prefixes  = ["10.40.6.0/24"]
-      service_endpoints = []
-    },
   ]
   peerings = [
+    {
+      name                = "hub-we2hub-swc",
+      vnet_id             = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/hub_rg/providers/Microsoft.Network/virtualNetworks/hub_vnet"
+      use_remote_gateways = false
+    },
     {
       name                = "nv-hub_to_nv-production",
       vnet_id             = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/800xa/providers/Microsoft.Network/virtualNetworks/800xa"
