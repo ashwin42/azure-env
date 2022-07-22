@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.28"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -45,7 +45,11 @@ inputs = {
     sku       = "19h2-evd",
   }
   os_profile_windows_config = {
-    enable_automatic_upgrades = true
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = true
+    timezone                   = null
+    winrm                      = null
+    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -59,7 +63,7 @@ inputs = {
           ipaddress                     = "10.44.1.101"
           subnet_id                     = dependency.global.outputs.subnet.siemens_sipass_controllers.id
           public_ip                     = false
-          private_ip_address_allocation = "Dynamic"
+          private_ip_address_allocation = "Static"
           ipconfig_name                 = "ipconfig"
         },
       ]
@@ -81,7 +85,7 @@ inputs = {
       priority               = "205"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.virtual_network.address_space[0]
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = 8742
       access                 = "Allow"
       description            = "Allow connections from local VNet"
