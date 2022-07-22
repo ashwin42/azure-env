@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpn_gateway?ref=v0.2.7"
-  #source = "../../../../../tf-mod-azure/vpn_gateway"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//virtual_network_gateway?ref=v0.4.0"
+  #source = "../../../../../tf-mod-azure/virtual_network_gateway"
 }
 
 include {
@@ -12,23 +12,40 @@ dependency "vnet" {
 }
 
 inputs = {
-  resource_group_name = "core_network"
-  vpn_gateways = [
+  gateways = [
     {
-      name           = "nw-hub-vpn-gw-core"
-      active_active  = "false"
-      public_ip_name = "public-vpn-gw-core"
-      ip_config_name = "vpn-gw-config-core"
-      subnet_id      = dependency.vnet.outputs.subnet.GatewaySubnet.id
-      enable_bgp     = true
+      name                = "nw-hub-vpn-gw-core"
+      resource_group_name = "core_network"
+      active_active       = "false"
+      public_ips = [
+        {
+          name              = "public-vpn-gw-core"
+          allocation_method = "Dynamic"
+          availability_zone = "No-Zone"
+        },
+      ]
+      ip_configuration = [
+        {
+          name                          = "vpn-gw-config-core"
+          private_ip_address_allocation = "Dynamic"
+          public_ip_address_id          = "public-vpn-gw-core"
+          subnet_id                     = dependency.vnet.outputs.subnet.GatewaySubnet.id
+        }
+      ]
+      enable_bgp = true
+      bgp_settings = [
+        {
+          asn         = "65515"
+          peer_weight = "0"
+          peering_addresses = [
+            {
+              apipa_addresses       = ["169.254.22.9"]
+              ip_configuration_name = "vpn-gw-config-core"
+            }
+          ]
+        }
+      ]
     },
-    #    {
-    #      name                = "test"
-    #      active_active       = "true"
-    #      subnet_id           = dependency.vnet.outputs.subnet.GatewaySubnet.id
-    #      bgp_asn             = "65511"
-    #      bgp_peering_address = "10.41.254.254"
-    #      bgp_peer_weight     = "3"
-    #    }
   ]
 }
+
