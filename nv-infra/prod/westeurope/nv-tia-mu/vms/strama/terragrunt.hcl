@@ -26,7 +26,7 @@ inputs = merge(
           {
             ipaddress                     = "10.46.1.68"
             subnet_id                     = dependency.vnet.outputs.subnet.tia-mu-subnet.id
-            private_ip_address_allocation = "Dynamic"
+            private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"
           }
         ]
