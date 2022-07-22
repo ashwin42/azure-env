@@ -61,7 +61,7 @@ inputs = {
           ipaddress                     = "10.46.0.148"
           subnet_id                     = dependency.vnet.outputs.subnet["ums-env-subnet-10.46.0.144_28"].id
           public_ip                     = false
-          private_ip_address_allocation = "Dynamic"
+          private_ip_address_allocation = "Static"
           ipconfig_name                 = "ipconfig"
         },
       ]
