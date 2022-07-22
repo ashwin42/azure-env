@@ -447,6 +447,7 @@ module "tia_sejfo" {
   subscription_id     = var.subscription_id
 }
 
+/*
 # [TOC-470] -- mplus --
 data "azurerm_key_vault_secret" "tia_mplus" {
   name         = "tia-mplus-nvadmin"
@@ -469,6 +470,7 @@ module "tia_mplus" {
   subscription_id     = var.subscription_id
 }
 
+
 # [TOC-470] -- pne --
 data "azurerm_key_vault_secret" "tia_pne" {
   name         = "tia-pne-nvadmin"
@@ -485,8 +487,10 @@ module "tia_pne" {
   subnet_id           = local.nv_automation_1
   dns_zone            = azurerm_dns_zone.tia_nvlt_co.name
   vault_id            = data.azurerm_key_vault.nv_core.id
+  #vault_id            = ""
   recovery_vault_name = data.terraform_remote_state.nv-shared.outputs.recovery_services.recovery_vault_name
   backup_policy_id    = data.terraform_remote_state.nv-shared.outputs.recovery_services.protection_policy_daily_id
-  ad_join             = true
+  ad_join             = ""
   subscription_id     = var.subscription_id
 }
+*/

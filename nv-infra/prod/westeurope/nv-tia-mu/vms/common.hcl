@@ -7,12 +7,17 @@ dependency "rv" {
 }
 
 locals {
-  name = basename(get_original_terragrunt_dir())
+  name     = format("%s%s", "tia-", basename(get_original_terragrunt_dir()))
 }
 
 inputs = {
   name                                   = local.name
   vm_name                                = local.name
+  dns_zone                               = "tia-mu.nvlt.co"
+  enable_dns                             = true
+  dns_subscription_id                    = "4312dfc3-8ec3-49c4-b95e-90a248341dd5" # nv hub
+  dns_resource_group_name                = "core_network"
+  dns_name                               = basename(get_original_terragrunt_dir())
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
