@@ -1,14 +1,34 @@
 resource "azuread_application" "nv-auth-dev" {
   available_to_other_tenants = false
   group_membership_claims    = "ApplicationGroup"
-  homepage                   = "https://account.activedirectory.windowsazure.com:444/applications/default.aspx?metadata=customappsso|ISV9.1|primary|z"
+  homepage                   = "http://cloud.dev.northvolt.com/"
   identifier_uris            = ["urn:amazon:cognito:sp:eu-west-1_oPiNz53Bm", ]
-  name                       = "nv-auth-dev"
+  name                       = "Northcloud Dev Portal"
   oauth2_allow_implicit_flow = false
   owners                     = ["50e4c26c-2bf0-4244-af96-c397265c7fbe", "8b9192b7-d730-48f2-85b0-383eecc2280e", "b12a84bf-ad06-476c-abb7-60a44df55607", "b49675c2-cdef-474d-94b3-de0b0342dc5a", "bf088366-c2ed-4095-bb7b-9995db7c2899"]
   public_client              = false
-  reply_urls                 = ["http://127.0.0.1:53122", "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/", "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/oauth2/idpresponse", "https://airflow.datalake.aws.nvlt.co/oauth2/idpresponse", "https://auth-dev.nvlt.co/saml2/idpresponse", "https://ca.dev.nvlt.co", "https://devhellos3.aut-dev.aws.nvlt.co/oauth2/idpresponse", "https://flink.datalake.aws.nvlt.co/oauth2/idpresponse", "https://gql-pub.aut-dev.aws.nvlt.co", "https://gql-pub.aut-dev.aws.nvlt.co/oauth2/idpresponse", "https://gql.aut-dev.aws.nvlt.co/oauth2/idpresponse", "https://gql.aut.aws.nvlt.co/oauth2/idpresponse", "https://search-ds-northvolt-hifsabjmw6acy6f2m565dkaswi.eu-west-1.es.amazonaws.com/_plugin/kibana/app/kibana", "https://superset.datalake.aws.nvlt.co/oauth2/idpresponse", "https://wirebonder.aut-dev.aws.nvlt.co", "https://wirebonder.aut-dev.aws.nvlt.co/oauth2/idpresponse"]
-  type                       = "webapp/api"
+  reply_urls = [
+    "http://127.0.0.1:53122",
+    "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/",
+    "https://013ce941-default-publicing-448e-1447706243.eu-west-1.elb.amazonaws.com/oauth2/idpresponse",
+    "https://airflow.datalake.aws.nvlt.co/oauth2/idpresponse",
+    "https://auth-dev.nvlt.co/saml2/idpresponse",
+    "https://ca.dev.nvlt.co",
+    "https://determined.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://devhellos3.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://flink.datalake.aws.nvlt.co/oauth2/idpresponse",
+    "https://flyte-kebab.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://gql-pub.aut-dev.aws.nvlt.co",
+    "https://gql-pub.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://gql.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://gql.aut.aws.nvlt.co/oauth2/idpresponse",
+    "https://search-ds-northvolt-hifsabjmw6acy6f2m565dkaswi.eu-west-1.es.amazonaws.com/_plugin/kibana/app/kibana",
+    "https://streamlit.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+    "https://superset.datalake.aws.nvlt.co/oauth2/idpresponse",
+    "https://wirebonder.aut-dev.aws.nvlt.co",
+    "https://wirebonder.aut-dev.aws.nvlt.co/oauth2/idpresponse",
+  ]
+  type = "webapp/api"
 
   app_role {
     allowed_member_types = [
