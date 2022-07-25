@@ -35,6 +35,7 @@ inputs = {
       ipaddress = "10.44.5.181"
       subnet    = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
       public_ip = false
+      private_ip_address_allocation = "Static"
     }
   ]
   data_disks = [
@@ -73,7 +74,7 @@ inputs = {
       priority               = "210"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.192-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"

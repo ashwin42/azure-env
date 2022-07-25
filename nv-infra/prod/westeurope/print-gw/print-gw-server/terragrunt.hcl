@@ -38,20 +38,20 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "${local.name}-nic1"
+      name      = "${local.name}-nic1"
       ipaddress = "10.44.5.230"
-      subnet = dependency.global.outputs.subnet.print-gw-subnet.id
+      subnet    = dependency.global.outputs.subnet.print-gw-subnet.id
       public_ip = false
     }
   ],
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
   ]
 }

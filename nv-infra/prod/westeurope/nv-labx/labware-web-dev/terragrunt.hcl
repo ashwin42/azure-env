@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -66,7 +66,7 @@ inputs = {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet.labx_subnet.address_prefix
+      source_address_prefix = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
       access                = "Allow"
       description           = "Allow connections from local subnet"
     }

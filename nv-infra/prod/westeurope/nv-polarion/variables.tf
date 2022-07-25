@@ -8,7 +8,7 @@ variable "default_tags" {
   default = {
     repo = "azure-env/nv-infra/nv-polarion"
   }
-  type = map
+  type = map(any)
 }
 
 variable "name" {

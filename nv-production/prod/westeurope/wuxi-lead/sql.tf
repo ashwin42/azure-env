@@ -17,6 +17,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "this" {
   storage_endpoint                        = azurerm_storage_account.this.primary_blob_endpoint
   storage_account_access_key_is_secondary = false
   retention_in_days                       = 30
+  log_monitoring_enabled                  = false
 }
 
 resource "azurerm_sql_database" "nv-wuxi-prismatic" {
@@ -27,7 +28,7 @@ resource "azurerm_sql_database" "nv-wuxi-prismatic" {
   create_mode         = "Default"
   edition             = "GeneralPurpose"
   collation           = "SQL_LATIN1_GENERAL_CP1_CI_AS"
-  max_size_bytes      = "1099511627776"
+  max_size_bytes      = "1649267441664"
 }
 
 resource "azurerm_sql_database" "nv-wuxi-cylindrical" {

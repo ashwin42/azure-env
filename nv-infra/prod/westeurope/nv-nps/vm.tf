@@ -13,12 +13,12 @@ resource "azurerm_virtual_machine" "main" {
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = false
 
-#  storage_image_reference {
-#    sku       = "2016-Datacenter"
-#    publisher = "MicrosoftWindowsServer"
-#    version   = "latest"
-#    offer     = "WindowsServer"
-#  }
+  #  storage_image_reference {
+  #    sku       = "2016-Datacenter"
+  #    publisher = "MicrosoftWindowsServer"
+  #    version   = "latest"
+  #    offer     = "WindowsServer"
+  #  }
 
   storage_os_disk {
     name              = "nps-osdisk-20200528-092614"

@@ -26,6 +26,7 @@ inputs = {
       description                  = null
       path                         = "C:\\Program Files\\Microsoft Power BI Desktop\\bin\\PBIDesktop.exe"
       icon_path                    = "C:\\Program Files\\Microsoft Power BI Desktop\\bin\\PBIDesktop.exe"
+      command_line_argument_policy = "DoNotAllow"
       icon_index                   = 0
       assign_groups                = [
         "NV TechOps Role",

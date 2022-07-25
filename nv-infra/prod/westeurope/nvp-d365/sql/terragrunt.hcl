@@ -13,11 +13,11 @@ dependency "global" {
 }
 
 inputs = {
-  resource_group_name     = dependency.global.outputs.resource_group.name
-  setup_prefix            = dependency.global.outputs.setup_prefix
-  subnet_id               = dependency.global.outputs.subnet.nvp-d365-subnet.id
-  key_vault_name          = "nv-infra-core"
-  key_vault_rg            = "nv-infra-core"
+  resource_group_name = dependency.global.outputs.resource_group.name
+  setup_prefix        = dependency.global.outputs.setup_prefix
+  subnet_id           = dependency.global.outputs.subnet.nvp-d365-subnet.id
+  key_vault_name      = "nv-infra-core"
+  key_vault_rg        = "nv-infra-core"
   #create_private_endpoint = true
   databases = [
     {
@@ -30,20 +30,20 @@ inputs = {
       subnet_id = dependency.global.outputs.subnet.nvp-d365-subnet.id
     },
     {
-      name      = "NVP Jeden"
+      name             = "NVP Jeden"
       start_ip_address = "188.252.120.146"
     },
     {
-      name      = "NVP Jeden Backup fiber"
+      name             = "NVP Jeden Backup fiber"
       start_ip_address = "85.219.139.46"
     },
     {
-      name      = "NV Labs"
+      name             = "NV Labs"
       start_ip_address = "213.50.54.193"
       end_ip_address   = "213.50.54.206"
     },
     {
-      name      = "NV Telia"
+      name             = "NV Telia"
       start_ip_address = "62.20.23.1"
       end_ip_address   = "62.20.23.14"
     },

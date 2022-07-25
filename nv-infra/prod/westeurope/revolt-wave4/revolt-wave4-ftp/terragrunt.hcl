@@ -39,28 +39,28 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "revolt-wave4-ftp-nic1"
+      name      = "revolt-wave4-ftp-nic1"
       ipaddress = "10.44.5.151"
-      subnet = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
+      subnet    = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
       public_ip = false
     }
   ],
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "Local_VNET"
-      priority               = "230"
-      direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].address_prefix
-      access                 = "Allow"
-      description            = "Allow connections from local VNET"
+      name                  = "Local_VNET"
+      priority              = "230"
+      direction             = "Inbound"
+      source_address_prefix = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].address_prefix
+      access                = "Allow"
+      description           = "Allow connections from local VNET"
     }
   ]
 }

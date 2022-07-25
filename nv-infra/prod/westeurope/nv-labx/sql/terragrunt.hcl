@@ -21,9 +21,6 @@ inputs = {
   create_private_endpoint = true
   databases = [
     {
-      name = "Labware"
-    },
-    {
       name = "Labware-Test"
     },
     {

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
 }
 
 include {
@@ -35,14 +35,18 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   wvd_register                           = true
+  boot_diagnostics_enabled               = true
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd",
   }
   os_profile_windows_config = {
-    enable_automatic_upgrades = true
-    timezone                  = "W. Europe Standard Time"
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = true
+    timezone                   = "W. Europe Standard Time"
+    winrm                      = null
+    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "nvadmin"
@@ -50,11 +54,17 @@ inputs = {
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
-      ipaddress = "10.46.0.69"
-      subnet    = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
-      public_ip = false
-    }
+      name = "${local.name}-nic"
+      ip_configuration = [
+        {
+          ipaddress                     = "10.46.0.69"
+          subnet_id                     = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic-ipconfig"
+        },
+      ]
+    },
   ]
   custom_rules = [
     {
