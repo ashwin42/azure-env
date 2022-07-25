@@ -165,6 +165,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from API Mgmt service"
     },
+    {
+      name                   = "Ett_MFA_VPN"
+      priority               = "225"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Labs MFA VPN clients"
+    },
   ]
 }
 

@@ -26,6 +26,11 @@ inputs = {
 
   ]
 
+  owners = [
+    "39f96895-f6b5-4af3-93a5-2a6f1fb78ff1",
+    "fb81d013-9fb8-4692-b220-e9f7b271110c",
+  ]
+
   id_token_issuance_enabled         = true
   create_delegated_permission_grant = false
   create_msgraph_principal          = false
