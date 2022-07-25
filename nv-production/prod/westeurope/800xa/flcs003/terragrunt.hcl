@@ -16,7 +16,7 @@ dependency "global" {
 inputs = {
   name                                   = "FLCS003"
   ipaddress                              = "10.60.60.23"
-  vm_size                                = "Standard_B2MS"
+  vm_size                                = "Standard_B4ms"
   resource_group_name                    = dependency.global.outputs.resource_group.name
   resource_group_name_alt                = dependency.global.outputs.resource_group.name
   resource_group_name_vm                 = "800XA"

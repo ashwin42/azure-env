@@ -29,14 +29,14 @@ resource "azurerm_private_endpoint" "nv_wuxi_sql_pe" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                      = "${var.name}-nic"
-  resource_group_name       = var.resource_group_name
-  location                  = var.location
+  name                = "${var.name}-nic"
+  resource_group_name = var.resource_group_name
+  location            = var.location
 
   ip_configuration {
     name                          = "${var.name}-nic_config"
     subnet_id                     = azurerm_subnet.wuxi-subnet.id
-    private_ip_address_allocation = "static"
+    private_ip_address_allocation = "Static"
     private_ip_address            = var.ipaddress
     public_ip_address_id          = azurerm_public_ip.FLP1PAHTS01KED1.id
   }
