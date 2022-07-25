@@ -12,7 +12,7 @@ inputs = {
   groups = [
     {
       display_name     = "ReVolt Wave4 WVD users"
-      description      = "Provides User access to ReVolt Wave4 Virtual Desktop"
+      description      = "Used in access package. Don't use. Provides User access to ReVolt Wave4 Virtual Desktop"
       security_enabled = true
       member_groups    = []
     },

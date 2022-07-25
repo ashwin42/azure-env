@@ -7,15 +7,15 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "revolt-wave4"
-  address_space             = [ "10.44.5.144/28" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  service_endpoints         = [ "Microsoft.Storage" ]
-  subnets                   = [
+  setup_prefix      = "revolt-wave4"
+  address_space     = ["10.44.5.144/28"]
+  dns_servers       = ["10.40.250.5", "10.40.250.4"]
+  service_endpoints = ["Microsoft.Storage"]
+  subnets = [
     {
-      name = "revolt-wave4-subnet-10.44.5.144-28"
-      address_prefixes  = [ "10.44.5.144/28" ]
-      service_endpoints = [ "Microsoft.Storage" ]
+      name                 = "revolt-wave4-subnet-10.44.5.144-28"
+      address_prefixes     = ["10.44.5.144/28"]
+      service_endpoints    = ["Microsoft.Storage"]
       enforce_private_link = true
     },
   ]
