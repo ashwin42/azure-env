@@ -7,13 +7,13 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "print-gw"
-  address_space             = [ "10.44.5.224/29" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  subnets                   = [
+  setup_prefix  = "print-gw"
+  address_space = ["10.44.5.224/29"]
+  dns_servers   = ["10.40.250.5", "10.40.250.4"]
+  subnets = [
     {
-      name = "print-gw-subnet"
-      address_prefixes = [ "10.44.5.224/29" ]
+      name             = "print-gw-subnet"
+      address_prefixes = ["10.44.5.224/29"]
     },
   ]
   peerings = [
