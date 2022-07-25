@@ -55,7 +55,7 @@ inputs = {
           ipaddress                     = "10.46.1.36"
           subnet_id                     = dependency.vnet.outputs.subnet["nv-plc-ews-10.46.1.32_28"].id
           public_ip                     = false
-          private_ip_address_allocation = "Dynamic"
+          private_ip_address_allocation = "Static"
           ipconfig_name                 = "ipconfig"
         },
       ]
