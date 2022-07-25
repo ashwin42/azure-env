@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
 }
 
 include {
@@ -10,6 +10,10 @@ dependency "global" {
   config_path = "../global"
 }
 
+locals {
+  name = "labx"
+}
+
 inputs = {
   setup_prefix                           = dependency.global.outputs.setup_prefix
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
@@ -17,9 +21,9 @@ inputs = {
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
   subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
-  vm_name                                = "labx"
+  vm_name                                = local.name
   managed_disk_type                      = "StandardSSD_LRS"
-  managed_disk_name                      = "labx-osdisk-20200422-082835"
+  managed_disk_name                      = "${local.name}-osdisk-20200422-082835"
   nsg0_name_alt                          = "nv_labx_nsg"
   create_avset                           = "true"
   avset_name                             = "nv_labx_avs"
@@ -28,25 +32,36 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
-  localadmin_key_name                    = "nv-labx"
+  localadmin_key_name                    = "nv-${local.name}"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   storage_image_reference = {
     sku = "2016-Datacenter",
   },
   os_profile_windows_config = {
-    enable_automatic_upgrades = "false",
-  },
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = false
+    timezone                   = "W. Europe Standard Time"
+    winrm                      = null
+    additional_unattend_config = null
+  }
   network_interfaces = [
     {
-      name      = "labx-nic"
-      ipaddress = "10.44.2.7"
-      subnet    = dependency.global.outputs.subnet.labx_subnet.id
-      public_ip = false
-    }
-  ],
+      name = "${local.name}-nic"
+      ip_configuration = [
+        {
+          ipaddress                     = "10.44.2.7"
+          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic-ipconfig"
+        },
+      ]
+    },
+  ]
   data_disks = [
     {
-      name                 = "labx-data1"
+      name                 = "${local.name}-data1"
       size                 = "80"
       lun                  = "5"
       storage_account_type = "Premium_LRS"

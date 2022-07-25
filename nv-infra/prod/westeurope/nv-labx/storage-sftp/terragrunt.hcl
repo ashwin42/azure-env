@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.2.19"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.5.0"
 }
 
 dependency "global" {
@@ -18,6 +18,7 @@ inputs = {
   skuname                        = "Standard_LRS"
   create_private_endpoints_names = ["file"]
   large_file_share_enabled       = true
+  min_tls_version                = "TLS1_0"
   file_shares = [
     { name = "qc-sftp", quota = "102400" },
   ]

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.37"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
 }
 
 include {
@@ -44,8 +44,11 @@ inputs = {
     sku       = "21h1-evd",
   }
   os_profile_windows_config = {
-    enable_automatic_upgrades = true
-    timezone                  = "W. Europe Standard Time"
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = true
+    timezone                   = "W. Europe Standard Time"
+    winrm                      = null
+    additional_unattend_config = null
   }
   network_interfaces = [
     {
@@ -76,8 +79,8 @@ inputs = {
       name                   = "Local_VNET_SQL"
       priority               = "230"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefix
-      protocol               = "tcp"
+      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
+      protocol               = "Tcp"
       destination_port_range = "1433"
       access                 = "Allow"
       description            = "Allow connections from local VNET"
@@ -86,8 +89,8 @@ inputs = {
       name                   = "Local_VNET_SQL_Browser"
       priority               = "235"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefix
-      protocol               = "udp"
+      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
+      protocol               = "Udp"
       destination_port_range = "1434"
       access                 = "Allow"
       description            = "Allow connections from local VNET"

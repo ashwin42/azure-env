@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
 }
 
 locals {
@@ -31,6 +31,7 @@ inputs = {
   localadmin_name                        = "nvadmin"
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   storage_image_reference = {
     offer     = "0001-com-ubuntu-minimal-focal-daily",
     publisher = "Canonical",
@@ -38,12 +39,18 @@ inputs = {
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic1"
-      ipaddress = "10.44.2.12"
-      subnet    = dependency.global.outputs.subnet.labx_subnet.id
-      public_ip = false
-    }
-  ],
+      name = "${local.name}-nic1"
+      ip_configuration = [
+        {
+          ipaddress                     = "10.44.2.12"
+          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic1-ipconfig"
+        },
+      ]
+    },
+  ]
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"

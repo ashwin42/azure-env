@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.16"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
 }
 
 include {
@@ -10,6 +10,10 @@ dependency "global" {
   config_path = "../global"
 }
 
+locals {
+  name = "labx2"
+}
+
 inputs = {
   setup_prefix                           = dependency.global.outputs.setup_prefix
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
@@ -17,9 +21,9 @@ inputs = {
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = "nv_labx2"
   subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
-  vm_name                                = "labx2"
+  vm_name                                = local.name
   managed_disk_type                      = "StandardSSD_LRS"
-  managed_disk_name                      = "labx2-os"
+  managed_disk_name                      = "${local.name}-os"
   nsg0_name_alt                          = "nv_labx2_nsg"
   create_avset                           = "true"
   avset_name                             = "nv_labx2_avs"
@@ -30,21 +34,35 @@ inputs = {
   localadmin_name                        = "nvadmin"
   localadmin_key_name                    = "nv-labx"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   ad_join                                = "true"
-  ipconfig_name                          = "labx2-nic_config"
   storage_image_reference = {
     sku = "2016-Datacenter",
   }
   os_profile_windows_config = {
-    enable_automatic_upgrades = "false",
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = false
+    timezone                   = "W. Europe Standard Time"
+    winrm                      = null
+    additional_unattend_config = null
+  }
+  os_profile = {
+    admin_username = "nvadmin"
+    computer_name  = local.name
   }
   network_interfaces = [
     {
-      name      = "labx2-nic"
-      ipaddress = "10.44.2.8"
-      subnet    = dependency.global.outputs.subnet.labx_subnet.id
-      public_ip = false
-    }
+      name = "${local.name}-nic"
+      ip_configuration = [
+        {
+          ipaddress                     = "10.44.2.8"
+          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic_config"
+        },
+      ]
+    },
   ]
   data_disks = [
     {
@@ -67,7 +85,7 @@ inputs = {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet.labx_subnet.address_prefix
+      source_address_prefix = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
       access                = "Allow"
       description           = "Allow connections from local subnet"
     },
