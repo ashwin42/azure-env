@@ -18,3 +18,4 @@ inputs = {
   internet_query_enabled     = true
   lock_resource              = true
 }
+
