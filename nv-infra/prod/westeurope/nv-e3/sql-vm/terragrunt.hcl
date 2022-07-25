@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  #source = "../../../../../../tf-mod-azure/vm/"
 }
 
 locals {
@@ -32,6 +33,7 @@ inputs = {
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   os_type                                = "Linux"
+  boot_diagnostics_enabled               = true
   storage_image_reference = {
     offer     = "SQL2017-Ubuntu1604",
     publisher = "MicrosoftSQLServer",
@@ -40,25 +42,33 @@ inputs = {
   network_interfaces = [
     {
       name = "${local.name}-nic1"
-      ipaddress = "10.44.5.133"
-      subnet = dependency.global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id
-      public_ip = false
-    }
-  ],
+      ip_configuration = [
+        {
+          ipaddress                     = "10.44.5.133"
+          subnet_id                     = dependency.global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic1-ipconfig"
+        },
+      ]
+    },
+  ]
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name      = "AllowLocalSubnet"
-      priority               = "220"
-      direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["nv-e3-subnet-10.44.5.128"].address_prefix
+      name                  = "AllowLocalSubnet"
+      priority              = "220"
+      direction             = "Inbound"
+      source_address_prefix = dependency.global.outputs.subnet["nv-e3-subnet-10.44.5.128"].address_prefixes.0
+      access                = "Allow"
+      description           = "Allow connections from local subnet"
     },
   ]
 }
