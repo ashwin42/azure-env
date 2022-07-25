@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.2.13"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.5.0"
 }
 
 dependency "global" {
@@ -40,8 +40,8 @@ inputs = {
   network_rules = [
     {
       name       = "Allow_VNETs"
-      subnet_ids = [ dependency.e3-global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id, dependency.labx-global.outputs.subnet.labx_subnet.id ]
-      bypass     = [ "AzureServices" ]
+      subnet_ids = [dependency.e3-global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id, dependency.labx-global.outputs.subnet.labx_subnet.id]
+      bypass     = ["AzureServices"]
     },
   ]
 }
