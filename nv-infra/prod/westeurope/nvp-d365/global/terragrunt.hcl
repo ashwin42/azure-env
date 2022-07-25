@@ -7,14 +7,14 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "nvp-d365"
-  address_space             = [ "10.44.5.216/29" ]
+  setup_prefix  = "nvp-d365"
+  address_space = ["10.44.5.216/29"]
   #dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  create_recovery_vault     = false
-  subnets                   = [
+  create_recovery_vault = false
+  subnets = [
     {
-      name = "nvp-d365-subnet"
-      address_prefixes = [ "10.44.5.216/29" ]
+      name             = "nvp-d365-subnet"
+      address_prefixes = ["10.44.5.216/29"]
     },
   ]
 }
