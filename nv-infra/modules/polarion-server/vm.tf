@@ -32,6 +32,11 @@ resource "azurerm_virtual_machine" "main" {
     provision_vm_agent = true
     timezone           = "W. Europe Standard Time"
   }
+
+  boot_diagnostics {
+    enabled     = true
+    storage_uri = "https://nvinfrabootdiag.blob.core.windows.net/"
+  }
 }
 
 resource "null_resource" "disk_encryption" {
