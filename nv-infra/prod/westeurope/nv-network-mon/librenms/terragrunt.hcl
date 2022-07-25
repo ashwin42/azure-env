@@ -47,54 +47,54 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "nv-network-mon-nic"
+      name      = "nv-network-mon-nic"
       ipaddress = "10.44.3.4"
-      subnet = dependency.global.outputs.subnet.nv_network_mon_subnet.id
+      subnet    = dependency.global.outputs.subnet.nv_network_mon_subnet.id
       public_ip = true
     }
   ],
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Labs_MFA_VPN"
+      priority              = "200"
+      direction             = "Inbound"
+      source_address_prefix = "10.16.8.0/23"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "Labs_MGMT"
-      priority               = "210"
-      direction              = "Inbound"
-      source_address_prefix  = "10.254.6.0/24"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MGMT network"
+      name                  = "Labs_MGMT"
+      priority              = "210"
+      direction             = "Inbound"
+      source_address_prefix = "10.254.6.0/24"
+      access                = "Allow"
+      description           = "Allow connections from Labs MGMT network"
     },
     {
-      name                   = "Factory"
-      priority               = "220"
-      direction              = "Inbound"
-      protocol               = "Tcp"
-      source_address_prefix  = "213.50.54.192/28"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Factory"
+      priority              = "220"
+      direction             = "Inbound"
+      protocol              = "Tcp"
+      source_address_prefix = "213.50.54.192/28"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "Temp_Office"
-      priority               = "230"
-      direction              = "Inbound"
-      source_address_prefix  = "62.20.55.58"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
+      name                  = "Temp_Office"
+      priority              = "230"
+      direction             = "Inbound"
+      source_address_prefix = "62.20.55.58"
+      access                = "Allow"
+      description           = "Allow connections from Labs MFA VPN clients"
     },
     {
-      name                   = "Factory_Telia"
-      priority               = "240"
-      direction              = "Inbound"
-      protocol               = "Tcp"
-      source_address_prefix  = "62.20.23.0/28"
-      access                 = "Allow"
-      description            = "Allow connections from Labs clients"
+      name                  = "Factory_Telia"
+      priority              = "240"
+      direction             = "Inbound"
+      protocol              = "Tcp"
+      source_address_prefix = "62.20.23.0/28"
+      access                = "Allow"
+      description           = "Allow connections from Labs clients"
     },
   ]
 }
