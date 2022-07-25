@@ -4,5 +4,5 @@ include {
 }
 
 inputs = {
-  resource_group_name       = "nv_nps"
+  resource_group_name = "nv_nps"
 }
