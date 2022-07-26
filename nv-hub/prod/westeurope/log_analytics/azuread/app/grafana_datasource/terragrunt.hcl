@@ -1,6 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.2.3"
-  #source = "../../../../../../../../tf-mod-azuread/app/"
+  #source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.2.3"
+  source = "../../../../../../../../tf-mod-azuread/app/"
 }
 
 include {
@@ -13,8 +13,9 @@ inputs = {
   id_token_issuance_enabled = false
   create_default_role       = false
   create_delegated_permission_grant = false
-  create_service_principal = false
   create_msgraph_principal = false
+  app_role_assignment_required = false
+  tag_hide = true
 
 
   required_resource_access = [{
