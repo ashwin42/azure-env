@@ -14,10 +14,6 @@ locals {
 inputs = {
   name        = local.name
   description = "Data Collection Rule for Linux Syslogs. Collects warning, error, critical, alert, emergency for syslog and daemon facilities - Managed by Terraform"
-  syslog = [
-    {
-      name = local.name
-    }
-  ]
+  syslog = [{}]
 }
 

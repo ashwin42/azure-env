@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//monitor_data_collection_rule?ref=v0.5.1"
-  #source = "../../../../../../../tf-mod-azure/monitor_data_collection_rule/"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//monitor_data_collection_rule?ref=v0.5.1"
+  source = "../../../../../../../tf-mod-azure/monitor_data_collection_rule/"
 }
 
 include {
@@ -19,5 +19,6 @@ inputs = {
       name = local.name
     }
   ]
+  log_analytics = [{}]
 }
 
