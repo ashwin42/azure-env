@@ -27,7 +27,5 @@ inputs = {
       },
     ]
   }]
-
-  #delegate_permission_claims = ["User.Read"]
-
 }
+
