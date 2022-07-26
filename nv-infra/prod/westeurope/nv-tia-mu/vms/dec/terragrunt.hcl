@@ -18,13 +18,12 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    create_localadmin_password = false
     network_interfaces = [
       {
-        name = "${local.common.inputs.name}-nic"
+        name = "${local.common.inputs.dns_name}-nic"
         ip_configuration = [
           {
-            private_ip_address            = "10.46.1.69"
+            private_ip_address            = "10.46.1.71"
             subnet_id                     = dependency.vnet.outputs.subnet.tia-mu-subnet.id
             private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"

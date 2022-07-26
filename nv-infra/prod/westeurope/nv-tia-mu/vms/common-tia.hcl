@@ -7,7 +7,7 @@ dependency "rv" {
 }
 
 locals {
-  name     = format("%s%s", "tia-", basename(get_original_terragrunt_dir()))
+  name = format("%s%s", "tia-", basename(get_original_terragrunt_dir()))
 }
 
 inputs = {
@@ -28,6 +28,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   localadmin_key_name                    = "${local.name}-vm-localadmin"
+  create_localadmin_password             = true
   storage_image_reference = {
     id = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/tia-mu-rg/providers/Microsoft.Compute/galleries/nvgallery2/images/tia-template/versions/0.0.1"
   }
@@ -57,7 +58,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = "10.16.8.0/23"
       protocol               = "*"
-      destination_port_range = "0-65535"
+      destination_port_range = "3389, 8735"
       access                 = "Allow"
       description            = "Allow connections from Labs MFA VPN clients"
     }
