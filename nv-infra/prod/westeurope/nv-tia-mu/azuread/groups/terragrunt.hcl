@@ -11,15 +11,41 @@ include {
 inputs = {
   groups = [
     {
-      display_name     = "TIA MU Strama Users"
-      description      = "Members in this group obtain access to TIA MU Strama Server"
+      display_name     = "TIA MU Administrators"
+      description      = "Used in access package, do not modify. Members in this group obtain admin access to TIA MU Servers"
       security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "TIA MU VPN AP"
+      description      = "Used in access package, do not modify. Members in this group obtain VPN access to TIA MU Servers"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "TIA MU Strama Approvers"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU Strama Server requests"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "TIA MU Strama Users"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Strama Server"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "TIA MU mPlus Approvers"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      security_enabled = true
+      member_users     = ["hamed@northvolt.com", "anton.frankel@northvolt.com", "c.pablo.gijon@northvolt.com"]
     },
     {
       display_name     = "TIA MU mPlus Users"
-      description      = "Members in this group obtain access to TIA MU mPlus Server"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
       security_enabled = true
-    },    
+      member_users     = []
+    },
   ]
 }
 
