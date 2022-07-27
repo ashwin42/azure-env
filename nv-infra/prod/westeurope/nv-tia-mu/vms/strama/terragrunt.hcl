@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.2"
   #source = "../../../../../../../tf-mod-azure//vm/"
 }
 
@@ -12,8 +12,7 @@ dependency "vnet" {
 }
 
 locals {
-  name   = basename(get_terragrunt_dir())
-  common = read_terragrunt_config(find_in_parent_folders("common.hcl"))
+  common = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
 }
 
 inputs = merge(
@@ -21,10 +20,10 @@ inputs = merge(
   {
     network_interfaces = [
       {
-        name = "${local.name}-nic"
+        name = "${local.common.inputs.dns_name}-nic"
         ip_configuration = [
           {
-            ipaddress                     = "10.46.1.68"
+            private_ip_address            = "10.46.1.68"
             subnet_id                     = dependency.vnet.outputs.subnet.tia-mu-subnet.id
             private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"
