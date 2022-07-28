@@ -16,3 +16,4 @@ locals {
   remote_state_azurerm_enabled              = true
   providers                                 = ["azurerm"]
 }
+
