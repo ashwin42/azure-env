@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  name = "nv_gen_infra"
+  name = "nv-d365-dev"
   retention_policy = [
     {
       enabled = "true",

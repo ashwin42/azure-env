@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  name = "nv_gen_infra"
+  name = "northvolt0"
   retention_policy = [
     {
       enabled = "true",
