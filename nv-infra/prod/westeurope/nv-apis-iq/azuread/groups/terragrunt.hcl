@@ -20,8 +20,7 @@ inputs = {
       display_name     = "APIS IQ AP Approvers"
       description      = "Members in this group can approve requests for APIS IQ AP"
       security_enabled = true
-      member_users = [
-      ]
+      member_users     = ["noemi.kiss@northvolt.com", "jesper.adolfsson@northvolt.com", "meral.metin-donmez@northvolt.com"]
     },
   ]
 }
