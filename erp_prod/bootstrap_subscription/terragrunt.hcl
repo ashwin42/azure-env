@@ -3,14 +3,13 @@ terraform {
   #source = "../../../tf-mod-azure/bootstrap_subscription/"
 }
 
-include "account_vars" {
-  path   = "../account.hcl"
+include "root" {
+  path   = find_in_parent_folders()
   expose = true
 }
 
+
 inputs = {
-  subscription_id      = include.account_vars.locals.subscription_id
-  name                 = include.account_vars.locals.subscription_name
-  storage_account_name = include.account_vars.locals.remote_state_azurerm_storage_account_name
-  rg_name              = include.account_vars.locals.remote_state_azurerm_resource_group_name
+  storage_account_name = include.root.locals.all_vars.remote_state_azurerm_storage_account_name
+  resource_group_name  = include.root.locals.all_vars.remote_state_azurerm_resource_group_name
 }
