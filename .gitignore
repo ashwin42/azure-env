@@ -8,5 +8,4 @@ kube*
 tg_generated_*.tf
 terragrunt-debug.tfvars.json
 .terragrunt-cache
-
-
+.swp
