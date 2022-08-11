@@ -91,6 +91,14 @@ inputs = {
       description           = "Allow connections from Labs MFA VPN clients"
     },
     {
+      name                  = "Ett_MFA_VPN"
+      priority              = "204"
+      direction             = "Inbound"
+      source_address_prefix = "10.240.0.0/21"
+      access                = "Allow"
+      description           = "Allow connections from Ett MFA VPN clients"
+    },
+    {
       name                  = "LocalVnet"
       priority              = "205"
       direction             = "Inbound"
