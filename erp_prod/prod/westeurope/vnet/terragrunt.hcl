@@ -14,7 +14,7 @@ inputs = {
   dns_servers           = include.root.locals.all_vars.dns_servers
   create_recovery_vault = false
   resource_group_name   = include.root.locals.all_vars.subscription_name
-  vnet_name             = include.root.locals.all_vars.subscription_name
+  vnet_name             = "${include.root.locals.all_vars.subscription_name}_vnet"
   subnets = [
     {
       name                 = "databases"
@@ -36,7 +36,7 @@ inputs = {
   ]
   peerings = [
     {
-      name                  = "nv_infra_to_nv-hub",
+      name                  = "erp_prod_to_nv-hub",
       vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
       allow_gateway_transit = false
     },
