@@ -141,6 +141,8 @@ locals {
     mysql_provider_version = ">= 3.0.16"
     # postgresql
     postgresql_provider_version = ">= 1.16.0"
+    # mssql
+    mssql_provider_version = ">= 0.2.5"
   }
 
   # load all hcl files
@@ -1338,6 +1340,35 @@ EOF
     }
   }
 
+  # generate mssql provider
+  generate_mssql_provider = {
+    mssql_provider = {
+      path      = "tg_generated_provider_mssql.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+provider "mssql" {
+}
+EOF
+    }
+  }
+
+  generate_mssql_provider_override = {
+    mssql_provider_override = {
+      path      = "tg_generated_provider_mssql_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    mssql = {
+      source  = "betr-io/mssql"
+      version = "${local.all_vars.mssql_provider_version}"
+    }
+  }
+}
+EOF
+    }
+  }
+
   all_providers = length(compact(local.all_vars.providers_override)) > 0 ? local.all_vars.providers_override : distinct(concat(
     try(local.default_vars.providers, []),
     try(local.global_vars.locals.providers, []),
@@ -1392,6 +1423,7 @@ generate = merge(
   try(contains(local.all_providers, "helm_eks") ? merge(local.generate_helm_eks_provider, local.generate_helm_eks_provider_override) : tomap(false), {}),
   try(contains(local.all_providers, "mysql") ? merge(local.generate_mysql_provider, local.generate_mysql_provider_override) : tomap(false), {}),
   try(contains(local.all_providers, "postgresql") ? merge(local.generate_postgresql_provider, local.generate_postgresql_provider_override) : tomap(false), {}),
+  try(contains(local.all_providers, "mssql") ? merge(local.generate_mssql_provider, local.generate_mssql_provider_override) : tomap(false), {}),
   local.global_vars.generate,
   local.provider_vars.generate,
   local.account_vars.generate,

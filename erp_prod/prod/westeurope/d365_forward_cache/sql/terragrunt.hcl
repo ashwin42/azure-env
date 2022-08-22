@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.5.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.5.5"
   #source = "../../../../../../tf-mod-azure/sql"
 }
 
@@ -16,6 +16,14 @@ dependency "vnet" {
   config_path = "../../vnet"
 }
 
+dependency "sql_group" {
+  config_path = "../sql_group"
+}
+
+dependency "sql_app" {
+  config_path = "../sql_app"
+}
+
 inputs = {
   resource_group_name           = dependency.resource_group.outputs.resource_group_name
   setup_prefix                  = dependency.resource_group.outputs.setup_prefix
@@ -27,10 +35,26 @@ inputs = {
   public_network_access_enabled = false
   allow_azure_ip_access         = false
   license_type                  = "LicenseIncluded"
+  enable_private_dns            = true
+  ad_admin_login_group          = values(dependency.sql_group.outputs.groups)[0].display_name
+  mssql_user_client_id          = dependency.sql_app.outputs.client_id
+  mssql_user_client_secret      = dependency.sql_app.outputs.service_principal_password
+  mssql_azuread_users = [
+    {
+      username = "NV Techops Role"
+      roles    = ["db_owner"]
+      database = dependency.resource_group.outputs.setup_prefix
+    },
+    {
+      username = values(dependency.sql_group.outputs.groups)[0].display_name
+      roles    = ["db_owner"]
+      database = dependency.resource_group.outputs.setup_prefix
+
+    }
+  ]
   databases = [
     {
       name = dependency.resource_group.outputs.setup_prefix
     },
   ]
 }
-
