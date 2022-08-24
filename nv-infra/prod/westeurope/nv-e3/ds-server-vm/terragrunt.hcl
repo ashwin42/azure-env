@@ -31,6 +31,7 @@ inputs = {
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
   localadmin_key_name                    = "${local.name}-nvadmin"
+  create_localadmin_password             = true
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
 
