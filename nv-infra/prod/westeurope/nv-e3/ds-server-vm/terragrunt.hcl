@@ -32,10 +32,8 @@ inputs = {
   localadmin_name                        = "nvadmin"
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
-  os_type                                = "Linux"
   boot_diagnostics_enabled               = true
 
-  ad_join                                = true
   storage_image_reference = {
     offer     = "WindowsServer",
     publisher = "MicrosoftWindowsServer",
