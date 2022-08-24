@@ -66,7 +66,7 @@ inputs = {
   data_disks = [
     {
       name                 = "${local.name}-data1"
-      size                 = "300"
+      size                 = "100"
       lun                  = "5"
       storage_account_type = "Standard_LRS"
     }
