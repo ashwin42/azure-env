@@ -13,6 +13,12 @@ inputs = {
   dns_servers           = ["10.40.250.4", "10.40.250.5"]
   create_recovery_vault = false
   lock_resources        = false
+  subnets = [
+    {
+      name             = "nv-gen-infra-vm-subnet"
+      address_prefixes = ["10.46.1.128/25"]
+    },
+  ]
   peerings = [
     {
       name                  = "nv-gen-infra_to_nv-hub",
