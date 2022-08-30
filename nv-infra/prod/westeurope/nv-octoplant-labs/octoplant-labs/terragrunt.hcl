@@ -91,6 +91,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow neccessary port 64021 from PLC Engineering Workstations subnet"
     },
+    {
+      name                   = "Allow_ICMP_Labs"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.16.8.0/23"
+      protocol               = "Icmp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow ICMP Echo Request"
+    },    
   ]
 }
 
