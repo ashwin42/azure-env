@@ -80,7 +80,17 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    }, 
+    },
+    {
+      name                   = "Allow_ICMP_Ett"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "Icmp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow ICMP Echo Request for Ett"
+    },    
   ]
 }
 
