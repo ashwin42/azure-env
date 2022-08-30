@@ -87,7 +87,7 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = "10.195.0.0/24"
       protocol               = "Tcp"
-      destination_port_range = "7110, 8110, 9010-9016"
+      destination_port_range = "7110,8110,9010-9016"
       access                 = "Allow"
       description            = "Allow connections from Tomteboda Controllers on 7110"
     },    
