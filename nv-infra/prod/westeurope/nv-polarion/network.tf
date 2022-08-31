@@ -30,14 +30,3 @@ resource "azurerm_subnet" "AG_subnet" {
   address_prefix       = "10.44.4.16/28"
 }
 
-#resource "azurerm_bastion_host" "polarion_bastion" {
-#  name                = "polarion_bastion"
-#  location            = var.location
-#  resource_group_name = var.resource_group_name
-
-#  ip_configuration {
-#    name                 = "configuration"
-#    subnet_id            = azurerm_subnet.AzureBastionSubnet.id
-#    public_ip_address_id = azurerm_public_ip.polarion-ip.id
-#  }
-#}
