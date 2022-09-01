@@ -18,6 +18,10 @@ output "subnet_3" {
   value = azurerm_subnet.abb_800xa_3
 }
 
+output "subnet_stop-and-log" {
+  value = azurerm_subnet.stop-and-log
+}
+
 output "vnet_peering" {
   value = azurerm_virtual_network_peering.abb800xa_to_nv-hub
 }
