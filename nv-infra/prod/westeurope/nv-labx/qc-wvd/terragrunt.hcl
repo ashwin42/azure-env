@@ -37,6 +37,7 @@ inputs = {
   localadmin_key_name                    = "nv-labx"
   ad_join                                = true
   wvd_register                           = true
+  managed_disk_size                      = "256"
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
