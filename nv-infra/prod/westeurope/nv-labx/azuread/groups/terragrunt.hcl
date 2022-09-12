@@ -21,7 +21,7 @@ inputs = {
       description      = "Used in access package, do not modify. Members in this group obtain access to the LabX Labs QC WVD"
       security_enabled = true
       member_users     = []
-    },    
+    },
   ]
 }
 

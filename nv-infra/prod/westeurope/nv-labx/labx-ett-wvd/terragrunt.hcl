@@ -83,7 +83,7 @@ inputs = {
       source_address_prefix = "10.16.8.0/23"
       access                = "Allow"
       description           = "Allow connections from Labs MFA VPN clients"
-    }
+    },
   ]
 }
 
