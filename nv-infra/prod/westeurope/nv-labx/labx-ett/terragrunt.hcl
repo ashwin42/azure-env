@@ -28,7 +28,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = "true"
   storage_image_reference = {
-    sku = "2016-Datacenter",
+    sku = "2019-Datacenter",
   }
   os_profile_windows_config = {
     provision_vm_agent         = true
