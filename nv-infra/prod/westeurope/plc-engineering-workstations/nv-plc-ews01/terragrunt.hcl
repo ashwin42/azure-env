@@ -109,7 +109,7 @@ inputs = {
       destination_port_range = "*"
       access                 = "Allow"
       description            = "Allow traffic from non-deterministic network in FL.P1"
-    },    
+    },
   ]
 }
 
