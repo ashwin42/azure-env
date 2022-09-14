@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.6.8"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -35,15 +35,13 @@ inputs = {
   ad_join                                = true
   storage_image_reference = {
     offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsDesktop",
+    publisher = "MicrosoftWindowsServer",
     sku       = "2019-Datacenter",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = local.localadmin_name
