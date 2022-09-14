@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//policy?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//policy?ref=v0.6.9"
   #source = "../../../../../../tf-mod-azure//policy/"
 }
 
@@ -39,6 +39,11 @@ inputs = {
       display_name         = "Deny NSG allowing inbound traffic on 3389 from internet",
       enforce              = true,
       parameters           = file("deny_assignment_parameters.json")
+      non_compliance_message = [
+        {
+          content         = "Please use Azure Bastion or VPN instead",
+        },
+      ]
     },
     {
       name                 = "deny-internet-ssh-policy",
@@ -48,6 +53,11 @@ inputs = {
       display_name         = "Deny NSG allowing inbound traffic on 22 from internet",
       enforce              = true,
       parameters           = file("deny_assignment_parameters.json")
+      non_compliance_message = [
+        {
+          content         = "Please use Azure Bastion or VPN instead",
+        },
+      ]      
     },    
   ]
 }
