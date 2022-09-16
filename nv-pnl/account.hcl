@@ -1,5 +1,4 @@
 locals {
-  #subscription_name                         = basename(get_parent_terragrunt_dir())
   subscription_name                         = "NV-PNL"
   azurerm_subscription_id                   = "30b428fc-5b94-408c-8c86-73cf2e46200c"
   remote_state_azurerm_enabled              = true
