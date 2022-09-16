@@ -140,7 +140,7 @@ inputs = {
     },
     {
       name                = "nv-hub_to_nv-pnl-vnet",
-      vnet_id             = "/subscriptions/30b428fc-5b94-408c-8c86-73cf2e46200c/resourceGroups/erp_prod/providers/Microsoft.Network/virtualNetworks/global"
+      vnet_id             = "/subscriptions/30b428fc-5b94-408c-8c86-73cf2e46200c/resourceGroups/global-rg/providers/Microsoft.Network/virtualNetworks/global"
       use_remote_gateways = false
     },
   ]
