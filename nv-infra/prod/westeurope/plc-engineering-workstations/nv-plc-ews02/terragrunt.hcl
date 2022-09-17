@@ -100,6 +100,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow neccessary port 64021 from octoplant-labs"
     },
+    {
+      name                   = "FL.F1"
+      priority               = "302"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.194.128/26"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.F1"
+    },
   ]
 }
 
