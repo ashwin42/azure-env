@@ -48,7 +48,15 @@ inputs = merge(
         destination_port_range = "3389, 8735"
         access                 = "Allow"
         description            = "Allow connections from Labs MFA VPN clients"
-      }
+      },
+      {
+        name                  = "NV-Cyclers"
+        priority              = "220"
+        direction             = "Inbound"
+        source_address_prefix = "10.100.250.0/23"
+        access                = "Allow"
+        description           = "Allow connections from NV-Cyclers"
+      },
     ]
   }
 )
