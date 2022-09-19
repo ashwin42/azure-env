@@ -13,6 +13,9 @@ inputs = {
   large_file_share_enabled = false
   skuname                  = "Standard_LRS"
   location                 = "westeurope"
+  tags = {
+    "ms-resource-usage" = "azure-cloud-shell"
+  }
 
   network_rules = [
     {
