@@ -17,5 +17,11 @@ inputs = {
   enable_rbac_authorization       = true
   enabled_for_deployment          = true
   enabled_for_template_deployment = true
+  iam_assignments = {
+    "Key Vault Secrets Officer" = {
+      groups = [
+        "NV TechOps Role",
+      ],
+    },
+  }
 }
-
