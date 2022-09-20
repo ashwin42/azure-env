@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.6.12"
   #source = "../../../../../tf-mod-azure/vnet"
 }
 
@@ -14,6 +14,7 @@ inputs = {
   vnet_name                = "hub_vnet"
   address_space            = ["10.48.0.0/23"]
   create_resource_group    = true
+  dns_servers              = []
   subnets = [
     {
       name              = "GatewaySubnet"
