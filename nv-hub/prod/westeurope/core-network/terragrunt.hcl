@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.4.0"
-  #source = "../../../tf-mod-azure/global"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.4.0"
+  source = "../../../../../tf-mod-azure/vnet"
 }
 
 include {
@@ -8,23 +8,99 @@ include {
 }
 
 inputs = {
-  resource_group_name   = "core_network"
-  setup_prefix          = "core_vnet"
-  vnet_name             = "core_vnet"
-  address_space         = ["10.40.0.0/16"]
-  dns_servers           = ["10.40.250.4", "10.40.250.5"]
-  create_recovery_vault = false
-  lock_resources        = true
+  create_resource_group    = true
+  resource_group_name      = "core_network"
+  vnet_resource_group_name = "core_network"
+  setup_prefix             = "core_vnet"
+  vnet_name                = "core_vnet"
+  address_space            = ["10.40.0.0/16"]
+  dns_servers              = ["10.40.250.4", "10.40.250.5"]
+  create_recovery_vault    = false
+  lock_resources           = true
+  route_tables = [
+    {
+      name = "nv-hub-we-default-rt"
+      routes = [
+        {
+          address_prefix         = "10.11.0.0/16" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5" #WE hub router
+        },
+        {
+          address_prefix         = "10.12.0.0/14" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.18.0.0/15" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.20.0.0/14" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.24.0.0/13" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.32.0.0/13" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    },
+    {
+      name = "nv-hub-we-hub-router-rt"
+      routes = [
+        {
+          address_prefix         = "10.11.0.0/16" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70" #SWC Hub router
+        },
+        {
+          address_prefix         = "10.12.0.0/14" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.18.0.0/15" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.20.0.0/14" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.24.0.0/13" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.32.0.0/13" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+      ]
+    },
+  ]
   subnets = [
     {
       name              = "hub-dmz"
       address_prefixes  = ["10.40.253.0/24"]
       service_endpoints = []
+      route_table_name  = "nv-hub-we-hub-router-rt"
     },
     {
       name              = "nv-domain-services"
       address_prefixes  = ["10.40.250.0/24"]
       service_endpoints = []
+      route_table_name  = "nv-hub-we-default-rt"
     },
     {
       name              = "GatewaySubnet"
