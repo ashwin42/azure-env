@@ -94,5 +94,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from local subnet"
     },
+    {
+      name                   = "QC_Network_Ett"
+      priority               = "210"
+      direction              = "Inbound"
+      source_address_prefix  = "10.192.16.0/23"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Ett Quality Control Network"
+    },    
   ]
 }
+
