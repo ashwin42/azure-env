@@ -90,6 +90,69 @@ inputs = {
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
     },
+    {
+      name                = "aws-network-prod-eu-north-1-tgw-01-a"
+      secret_name         = "aws-network-prod-eu-north-1-tgw-01-a-psk"
+      gateway_address     = "13.51.4.106"
+      address_space       = "10.11.0.0/16,10.12.0.0/14,10.18.0.0/15,10.20.0.0/14,10.24.0.0/13,10.32.0.0/13"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "aws-network-prod-eu-north-1-tgw-01-b"
+      secret_name         = "aws-network-prod-eu-north-1-tgw-01-b-psk"
+      gateway_address     = "16.170.125.155"
+      address_space       = "10.11.0.0/16,10.12.0.0/14,10.18.0.0/15,10.20.0.0/14,10.24.0.0/13,10.32.0.0/13"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "aws-network-prod-eu-north-1-tgw-02-a"
+      secret_name         = "aws-network-prod-eu-north-1-tgw-02-a-psk"
+      gateway_address     = "13.48.94.192"
+      address_space       = "10.11.0.0/16,10.12.0.0/14,10.18.0.0/15,10.20.0.0/14,10.24.0.0/13,10.32.0.0/13"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "aws-network-prod-eu-north-1-tgw-02-b"
+      secret_name         = "aws-network-prod-eu-north-1-tgw-02-b-psk"
+      gateway_address     = "13.48.158.217"
+      address_space       = "10.11.0.0/16,10.12.0.0/14,10.18.0.0/15,10.20.0.0/14,10.24.0.0/13,10.32.0.0/13"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
   ]
 }
-

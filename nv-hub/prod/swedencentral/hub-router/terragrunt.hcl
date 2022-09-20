@@ -61,6 +61,18 @@ inputs = {
       access                     = "Allow"
       description                = "Allow connections from Labs MFA VPN clients"
     },
+    # SSH from we hub router, To remove when routing is completed to/from on prem
+    {
+      name                       = "WestEurope_Hub_Router_SSH"
+      priority                   = "202"
+      direction                  = "Inbound"
+      source_address_prefix      = "10.40.253.5/32"
+      destination_address_prefix = "0.0.0.0/0"
+      protocol                   = "Tcp"
+      destination_port_range     = "22"
+      access                     = "Allow"
+      description                = "Allow connections from westeurope Hub router"
+    },
     {
       name                       = "Temp"
       priority                   = "201"

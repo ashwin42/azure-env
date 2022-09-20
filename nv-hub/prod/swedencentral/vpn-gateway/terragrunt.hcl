@@ -59,11 +59,11 @@ inputs = {
           peer_weight = "0"
           peering_addresses = [
             {
-              apipa_addresses       = ["169.254.22.29"]
+              apipa_addresses       = ["169.254.22.26", "169.254.22.22"]
               ip_configuration_name = "${local.vpn_gw_name}-ip-conf-1"
             },
             {
-              apipa_addresses       = ["169.254.22.30"]
+              apipa_addresses       = ["169.254.22.30", "169.254.22.34"]
               ip_configuration_name = "${local.vpn_gw_name}-ip-conf-2"
             },
           ]
