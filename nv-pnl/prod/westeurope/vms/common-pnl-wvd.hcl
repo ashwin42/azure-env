@@ -19,6 +19,5 @@ inputs = {
     "NV TechOps Role",
     "P&L Validation Labs PNE Virtual Desktop users",
     "NV-PNE-VPN-AP",
-    "P&L Validation Labs PNE VM Admins",
   ]
 }
