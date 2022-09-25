@@ -15,7 +15,8 @@ inputs = {
 
   assign_groups = [
     "NV TechOps Role",
-    #    "Labware Users",
+    #"Labware Users",
+    "Labware LIMS Developers",
   ]
 }
 
