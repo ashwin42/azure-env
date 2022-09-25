@@ -11,6 +11,12 @@ include {
 inputs = {
   groups = [
     {
+      display_name     = "Labware LIMS Developers"
+      description      = "Allow dev access to Labware Virtual Desktop"
+      security_enabled = true
+      member_users     = []
+    },
+    {
       display_name     = "Labware Users"
       description      = "Allow access to Labware Virtual Desktop"
       security_enabled = true
