@@ -1,12 +1,17 @@
 terraform {
-  source = "./"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//dns?ref=v0.6.13"
+  #source = "../../../../../../tf-mod-azure//dns/"
 }
-# Include all settings from the root terragrunt.hcl file
+
 include {
   path = find_in_parent_folders()
 }
 
 inputs = {
-  name                = "tia-mu.nvlt.co"
-  resource_group_name = "core_network"
+  dns_zones = [
+    {
+      name                = basename(get_terragrunt_dir())
+      resource_group_name = "core_network"
+    },
+  ]
 }
