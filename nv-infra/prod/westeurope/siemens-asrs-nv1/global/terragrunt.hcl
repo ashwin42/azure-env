@@ -1,11 +1,10 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=${include.root.locals.all_vars.tf_mod_azure_global_version}"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.18"
   #source = "../../../../../../tf-mod-azure/global/"
 }
 
-include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+include {
+  path = find_in_parent_folders()
 }
 
 inputs = {
