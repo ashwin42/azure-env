@@ -1,6 +1,6 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.0"
-  source = "../../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.1"
+  #source = "../../../../../../../tf-mod-azure//vm/"
 }
 
 include {
@@ -18,7 +18,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    create_localadmin_password = false
+    dns_record = "10.46.1.72"
     network_interfaces = [
       {
         name = "${local.common.inputs.name}-nic"
