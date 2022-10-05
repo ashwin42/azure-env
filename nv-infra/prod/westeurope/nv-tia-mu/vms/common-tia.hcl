@@ -48,7 +48,7 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true
-    timezone                  = null
+    timezone                  = "Central Standard Time"
   }
   custom_rules = [
     {
