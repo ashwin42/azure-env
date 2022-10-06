@@ -46,6 +46,18 @@ inputs = {
       security_enabled = true
       member_users     = []
     },
+    {
+      display_name     = "TIA MU PNE Approvers"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "TIA MU PNE Users"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
+      security_enabled = true
+      member_users     = []
+    },
   ]
 }
 
