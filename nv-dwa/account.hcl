@@ -1,5 +1,5 @@
 locals {
-  subscription_name                         = "NV-Dwa-Infra"
+  subscription_name                         = "NV-Dwa"
   azurerm_subscription_id                   = "8fd2d16b-30ef-4fd1-b2f2-0df001fd747d"
   remote_state_azurerm_enabled              = true
   remote_state_azurerm_storage_account_name = replace(lower("${local.subscription_name}tfstate"), "/[-_]/", "")
