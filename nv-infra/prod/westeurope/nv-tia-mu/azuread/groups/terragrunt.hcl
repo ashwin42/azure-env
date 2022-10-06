@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.1.0"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.3.4"
   #source = "../../../../../../../tf-mod-azuread/groups/"
 }
 
@@ -50,7 +50,7 @@ inputs = {
       display_name     = "TIA MU PNE Approvers"
       description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
       security_enabled = true
-      member_users     = []
+      member_users     = ["hamed@northvolt.com", "maria.chun@northvolt.com"]
     },
     {
       display_name     = "TIA MU PNE Users"
