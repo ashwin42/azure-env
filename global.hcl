@@ -12,4 +12,5 @@ locals {
   tf_mod_azuread_groups_version = "v1.3.2"
   tf_mod_azure_sql_version      = "v0.7.0"
   tf_mod_azure_global_version   = "v0.6.13"
+  tf_mod_azure_web_app_version  = "v0.7.0"
 }
