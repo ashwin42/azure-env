@@ -2222,8 +2222,13 @@ EOF
       contents  = <<-EOF
         provider "${provider.provider}" {
 %{for key, value in provider~}
-%{if key != "provider" && key != "blocks"~}
+%{if key != "provider" && key != "blocks" && key != "raw"~}
           ${key} = "${value}"
+%{endif~}
+%{if key == "raw"~}
+%{for k, v in provider[key]~}
+          ${k} = ${v}
+%{endfor~}
 %{endif~}
 %{if key == "blocks"~}
 %{for k, v in provider[key]~}
