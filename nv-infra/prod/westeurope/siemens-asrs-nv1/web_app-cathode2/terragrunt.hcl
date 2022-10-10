@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=${include.root.locals.all_vars.tf_mod_azure_web_app_version}"
+  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.4"
 }
 
 include "root" {

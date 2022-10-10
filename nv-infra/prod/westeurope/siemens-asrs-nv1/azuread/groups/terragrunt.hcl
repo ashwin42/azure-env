@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=${include.root.locals.all_vars.tf_mod_azuread_groups_version}"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.3.2"
   #source = "../../../../../../../tf-mod-azuread/groups/"
 }
 

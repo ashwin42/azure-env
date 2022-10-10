@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//sql?ref=${include.root.locals.all_vars.tf_mod_azure_sql_version}"
+  source = "git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.7.0"
   # source = "../../../../../../tf-mod-azure/sql"
 }
 
