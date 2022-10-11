@@ -25,7 +25,6 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
-  secrets_key_vault_rg                   = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   localadmin_key_name                    = "${local.name}-vm-localadmin"

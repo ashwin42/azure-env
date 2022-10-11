@@ -18,13 +18,13 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    dns_record = "10.46.1.72"
+    dns_record = "10.46.1.73"
     network_interfaces = [
       {
         name = "${local.common.inputs.name}-nic"
         ip_configuration = [
           {
-            private_ip_address            = "10.46.1.72"
+            private_ip_address            = "10.46.1.73"
             subnet_id                     = dependency.vnet.outputs.subnet.tia-mu-subnet.id
             private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"

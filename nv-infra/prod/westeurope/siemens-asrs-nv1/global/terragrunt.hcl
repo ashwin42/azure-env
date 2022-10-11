@@ -85,6 +85,32 @@ inputs = {
         },
       ]
     },
+    {
+      name                 = "cathode2-web-app-subnet"
+      address_prefixes     = ["10.46.2.0/29"]
+      service_endpoints    = []
+      enforce_private_link = false
+      delegation = [
+        {
+          name                       = "Microsoft.Web.serverFarms",
+          service_delegation_name    = "Microsoft.Web/serverFarms",
+          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+        },
+      ]
+    },
+    {
+      name                 = "anode2-web-app-subnet"
+      address_prefixes     = ["10.46.2.8/29"]
+      service_endpoints    = []
+      enforce_private_link = false
+      delegation = [
+        {
+          name                       = "Microsoft.Web.serverFarms",
+          service_delegation_name    = "Microsoft.Web/serverFarms",
+          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+        },
+      ]
+    },
   ]
 }
 

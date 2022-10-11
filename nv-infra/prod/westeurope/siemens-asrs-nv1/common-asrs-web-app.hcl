@@ -30,7 +30,7 @@ inputs = {
   }
 
   web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.48-28"].id
+  web_app_vnet_integration_subnet_id = dependency.global.outputs.subnet["${local.name}-web-app-subnet"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location
@@ -39,7 +39,7 @@ inputs = {
     private_service_connection = {
       name                 = "${dependency.global.outputs.setup_prefix}-pec"
       subresource_names    = ["sites"]
-      is_manual_connection = true
+      is_manual_connection = false
     }
   }
 
