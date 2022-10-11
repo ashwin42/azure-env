@@ -3,17 +3,18 @@ terraform {
   #source = "../../../../../../tf-mod-azuread/app/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
-dependency "resource_group" {
-  config_path = "../resource_group"
+dependency "global" {
+  config_path = "../global"
 }
 
 
 inputs = {
-  display_name               = dependency.resource_group.outputs.setup_prefix
+  display_name               = dependency.global.outputs.setup_prefix
   group_membership_claims    = ["SecurityGroup"]
   delegate_permission_claims = ["User.Read"]
   enterprise_app_password    = true
