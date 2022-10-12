@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.3"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -47,9 +47,6 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "domainjoin"
