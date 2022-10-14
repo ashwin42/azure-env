@@ -89,7 +89,7 @@ inputs = {
       create_secret = true
     },
     {
-      username      = "asrs_wcs_r2_user"
+      username      = "asrs_wcs_rw_user"
       roles         = ["db_datawriter"]
       database      = "siemens-wcs-anode2"
       create_secret = true
