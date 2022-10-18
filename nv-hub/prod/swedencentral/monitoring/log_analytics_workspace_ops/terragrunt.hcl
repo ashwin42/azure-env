@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.5.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.6"
   #source = "../../../../../../tf-mod-azure/log_analytics_workspace/"
 }
 
@@ -8,10 +8,7 @@ include {
 }
 
 inputs = {
-  setup_prefix               = "nv-hub-analytics-log"
-  name                       = "nv-hub-analytics-log"
-  resource_group_name        = "log_analytics-rg"
-  location                   = "West Europe"
+  name                       = "log-analytics-ws-ops"
   sku                        = "PerGB2018"
   retention_in_days          = "180"
   internet_ingestion_enabled = true
