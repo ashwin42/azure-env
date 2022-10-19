@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.2.2"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.3.4"
   #source = "../../../../../../../../tf-mod-azuread/app/"
 }
 
