@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  name                       = "log-analytics-ws-ops"
+  name                       = "log-analytics-ops-ws"
   sku                        = "PerGB2018"
   retention_in_days          = "180"
   internet_ingestion_enabled = true
