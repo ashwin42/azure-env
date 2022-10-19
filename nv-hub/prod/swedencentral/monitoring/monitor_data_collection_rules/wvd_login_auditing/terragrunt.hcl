@@ -14,7 +14,7 @@ locals {
 inputs = {
   name                         = local.name
   description                  = "Data Collection Rule for Windows Event Logs. Collects Audit Success events for use in WVD login logging  - Managed by Terraform"
-  log_analytics_workspace_name = "log-analytics-ws-ops"
+  log_analytics_workspace_name = "log-analytics-ops-ws"
   windows_event_log = [
     {
       name = local.name
