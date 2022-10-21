@@ -5,4 +5,8 @@ locals {
   setup_prefix               = "nv-pnl"
   resource_group_name        = "nv-pnl-vms-rg"
   location                   = "westeurope"
+  data_collection_rule_names = [
+    "wvd_login_auditing-dcr"
+  ]  
 }
+
