@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.2.30"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.8"
+  #source = "../../../../../../tf-mod-azure/wvd/"
 }
 
 include {
@@ -18,9 +19,17 @@ inputs = {
   wvd_ag_name          = "nv-pne-hp-DAG-tc11c"
   wvd_ws_name          = "nv-pne-hp-ws-tc11c"
   wvd_location         = "westeurope"
+
+  enable_wvd_hp_logs = true
+  log = [
+    {
+      category = "Connection"
+    },
+  ]
+
   assign_groups = [
     "NV TechOps Role",
     "P&L Validation Labs PNE Virtual Desktop users",
-    "AAD-PNE-VPN-AP",
+    "NV-PNE-VPN-AP",
   ]
 }

@@ -21,7 +21,7 @@ inputs = {
   wvd_location         = "westeurope"
 
   enable_wvd_hp_logs = true
-  logs = [
+  log = [
     {
       category = "Connection"
     },
@@ -30,7 +30,7 @@ inputs = {
   assign_groups = [
     "NV TechOps Role",
     "P&L Validation Labs PNE Virtual Desktop users",
-    "AAD-PNE-VPN-AP",
+    "NV-PNE-VPN-AP",
   ]
 }
 
