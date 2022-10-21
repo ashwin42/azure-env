@@ -19,15 +19,12 @@ inputs = {
   wvd_ag_name          = "nv-pne-hp-DAG-tc12b"
   wvd_ws_name          = "nv-pne-hp-ws-tc12b"
   wvd_location         = "westeurope"
-  
-  enable_wvd_hp_logs   = true
+
+  enable_wvd_hp_logs = true
   logs = [
     {
       category = "Connection"
     },
-    {
-      category = "Session Host Management Activity Logs"
-    }
   ]
 
   assign_groups = [
