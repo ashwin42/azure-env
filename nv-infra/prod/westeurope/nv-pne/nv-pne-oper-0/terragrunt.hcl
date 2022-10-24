@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
   #source = "../../../../../../tf-mod-azure/vm/"
 }
 
@@ -13,6 +13,10 @@ dependency "global" {
 
 dependency "wvd" {
   config_path = "../wvd"
+}
+
+locals {
+  name = basename(get_terragrunt_dir())
 }
 
 inputs = {
@@ -32,6 +36,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   storage_account_name                   = "nvinfrabootdiag"
   ipconfig_name                          = "ipconfig"
+  boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
   storage_image_reference = {
@@ -43,9 +48,7 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
+    #timezone                   = "W. Europe Standard Time"
   }
 
   os_profile = {
@@ -55,17 +58,17 @@ inputs = {
 
   network_interfaces = [
     {
-      name = "nv-pne-oper-0-nic"
+      name      = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.5.37"
-          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-          public_ip                     = false
-          private_ip_address_allocation = "Static"
-          ipconfig_name                 = "ipconfig"
-        },
+        ipaddress                     = "10.44.5.37"
+        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+        public_ip                     = false
+        private_ip_address_allocation = "Static"
+        ipconfig_name                 = "nv-pne-oper-0-nic-ipconfig"
+        }
       ]
-    },
+    }
   ]
 
   data_disks = [

@@ -33,7 +33,7 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
-  boot_diagnostics_enabled               = true  
+  boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
   storage_image_reference = {
@@ -44,7 +44,7 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"    
+    timezone                   = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
