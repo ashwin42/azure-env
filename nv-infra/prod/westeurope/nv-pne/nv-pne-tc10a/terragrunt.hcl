@@ -54,9 +54,8 @@ inputs = {
       name      = "${local.name}-nic"
       ip_configuration = [
         {
-        ipaddress                     = "10.44.5.42"
+        private_ip_address            = "10.44.5.42"
         subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        public_ip                     = false
         private_ip_address_allocation = "Static"
         ipconfig_name                 = "nv-pne-tc10a-nic-ipconfig"
         }

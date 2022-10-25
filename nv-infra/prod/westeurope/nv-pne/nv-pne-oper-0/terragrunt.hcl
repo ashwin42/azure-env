@@ -48,7 +48,6 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
-    #timezone                   = "W. Europe Standard Time"
   }
 
   os_profile = {
@@ -61,9 +60,8 @@ inputs = {
       name      = "${local.name}-nic"
       ip_configuration = [
         {
-        ipaddress                     = "10.44.5.37"
+        private_ip_address            = "10.44.5.37"
         subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        public_ip                     = false
         private_ip_address_allocation = "Static"
         ipconfig_name                 = "nv-pne-oper-0-nic-ipconfig"
         }
