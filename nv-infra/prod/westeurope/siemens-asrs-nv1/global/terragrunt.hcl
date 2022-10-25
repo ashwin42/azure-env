@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.18"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.6.13"
   #source = "../../../../../../tf-mod-azure/global/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {
@@ -74,6 +75,32 @@ inputs = {
     {
       name                 = "asrs-nv1-prod-subnet-10.46.0.112-28"
       address_prefixes     = ["10.46.0.112/28"]
+      service_endpoints    = []
+      enforce_private_link = false
+      delegation = [
+        {
+          name                       = "Microsoft.Web.serverFarms",
+          service_delegation_name    = "Microsoft.Web/serverFarms",
+          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+        },
+      ]
+    },
+    {
+      name                 = "cathode2-web-app-subnet"
+      address_prefixes     = ["10.46.2.0/29"]
+      service_endpoints    = []
+      enforce_private_link = false
+      delegation = [
+        {
+          name                       = "Microsoft.Web.serverFarms",
+          service_delegation_name    = "Microsoft.Web/serverFarms",
+          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+        },
+      ]
+    },
+    {
+      name                 = "anode2-web-app-subnet"
+      address_prefixes     = ["10.46.2.8/29"]
       service_endpoints    = []
       enforce_private_link = false
       delegation = [

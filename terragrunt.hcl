@@ -28,6 +28,8 @@ locals {
     remote_state_azurerm_key                  = null
     remote_state_azurerm_resource_group_name  = null
     remote_state_azurerm_subscription_id      = null
+    #additional providers
+    additional_providers = []
     # aws
     aws_provider_version = null
     aws_region           = null
@@ -2210,6 +2212,88 @@ EOF
       contents  = ""
     }
   }
+
+
+  generate_additional_providers = {
+    for provider in local.all_vars.additional_providers :
+    "${provider.provider}_${provider.alias}_provider" => {
+      path      = "tg_generated_provider_${provider.provider}_${provider.alias}.tf"
+      if_exists = "overwrite"
+      contents  = <<-EOF
+        provider "${provider.provider}" {
+%{for key, value in provider~}
+%{if key != "provider" && key != "blocks" && key != "raw"~}
+          ${key} = "${value}"
+%{endif~}
+%{if key == "raw"~}
+%{for k, v in provider[key]~}
+          ${k} = ${v}
+%{endfor~}
+%{endif~}
+%{if key == "blocks"~}
+%{for k, v in provider[key]~}
+          ${k}  {
+%{for block_k, block_v in provider[key][k]~}
+            ${block_k} = ${block_v}
+%{endfor~}
+          }
+%{endfor~}
+%{endif~}
+%{endfor~}
+        }
+        EOF
+    }
+  }
+  generate = merge(
+    local.generate_delete_files,
+    try(length(compact([local.all_vars.terraform_required_version])) > 0 ? local.generate_versions : tomap(false), {}),
+    try(contains(local.all_providers, "aws") ? local.generate_aws_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.aws_provider_version])) > 0 ? local.generate_aws_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "azurerm") ? local.generate_azurerm_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.azurerm_provider_version])) > 0 ? local.generate_azurerm_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "azuread") ? local.generate_azuread_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.azuread_provider_version])) > 0 ? local.generate_azuread_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "guacamole") ? local.generate_guacamole_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.guacamole_provider_version])) > 0 ? local.generate_guacamole_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "proxmox") ? local.generate_proxmox_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.proxmox_provider_version])) > 0 ? local.generate_proxmox_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "vsphere") ? local.generate_vsphere_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.vsphere_provider_version])) > 0 ? local.generate_vsphere_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "kubernetes_eks") ? local.generate_kubernetes_eks_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.kubernetes_eks_provider_version])) > 0 ? local.generate_kubernetes_eks_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "helm_eks") ? local.generate_helm_eks_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.helm_eks_provider_version])) > 0 ? local.generate_helm_eks_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "mysql") ? local.generate_mysql_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.mysql_provider_version])) > 0 ? local.generate_mysql_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "postgresql") ? local.generate_postgresql_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.postgresql_provider_version])) > 0 ? local.generate_postgresql_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "mssql") ? local.generate_mssql_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.mssql_provider_version])) > 0 ? local.generate_mssql_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "aci") ? local.generate_aci_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.aci_provider_version])) > 0 ? local.generate_aci_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "mongodbatlas") ? local.generate_mongodbatlas_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.mongodbatlas_provider_version])) > 0 ? local.generate_mongodbatlas_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "opsgenie") ? local.generate_opsgenie_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.opsgenie_provider_version])) > 0 ? local.generate_opsgenie_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "github") ? local.generate_github_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.github_provider_version])) > 0 ? local.generate_github_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "grafana") ? local.generate_grafana_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.grafana_provider_version])) > 0 ? local.generate_grafana_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "aviatrix") ? local.generate_aviatrix_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.aviatrix_provider_version])) > 0 ? local.generate_aviatrix_provider_override : tomap(false), {}),
+    try(length(local.generate_additional_providers) > 0 ? local.generate_additional_providers : tomap(false), {}),
+    local.global_vars.generate,
+    local.provider_vars.generate,
+    local.account_vars.generate,
+    local.environment_vars.generate,
+    local.region_vars.generate,
+    local.project_vars.generate,
+    local.general_vars.generate,
+    local.common_vars.generate,
+    local.local_vars.generate,
+    {},
+  )
+
 }
 
 remote_state = merge(
@@ -2219,54 +2303,7 @@ remote_state = merge(
   {},
 )
 
-generate = merge(
-  local.generate_delete_files,
-  try(length(compact([local.all_vars.terraform_required_version])) > 0 ? local.generate_versions : tomap(false), {}),
-  try(contains(local.all_providers, "aws") ? local.generate_aws_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.aws_provider_version])) > 0 ? local.generate_aws_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "azurerm") ? local.generate_azurerm_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.azurerm_provider_version])) > 0 ? local.generate_azurerm_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "azuread") ? local.generate_azuread_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.azuread_provider_version])) > 0 ? local.generate_azuread_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "guacamole") ? local.generate_guacamole_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.guacamole_provider_version])) > 0 ? local.generate_guacamole_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "proxmox") ? local.generate_proxmox_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.proxmox_provider_version])) > 0 ? local.generate_proxmox_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "vsphere") ? local.generate_vsphere_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.vsphere_provider_version])) > 0 ? local.generate_vsphere_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "kubernetes_eks") ? local.generate_kubernetes_eks_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.kubernetes_eks_provider_version])) > 0 ? local.generate_kubernetes_eks_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "helm_eks") ? local.generate_helm_eks_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.helm_eks_provider_version])) > 0 ? local.generate_helm_eks_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "mysql") ? local.generate_mysql_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.mysql_provider_version])) > 0 ? local.generate_mysql_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "postgresql") ? local.generate_postgresql_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.postgresql_provider_version])) > 0 ? local.generate_postgresql_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "mssql") ? local.generate_mssql_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.mssql_provider_version])) > 0 ? local.generate_mssql_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "aci") ? local.generate_aci_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.aci_provider_version])) > 0 ? local.generate_aci_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "mongodbatlas") ? local.generate_mongodbatlas_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.mongodbatlas_provider_version])) > 0 ? local.generate_mongodbatlas_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "opsgenie") ? local.generate_opsgenie_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.opsgenie_provider_version])) > 0 ? local.generate_opsgenie_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "github") ? local.generate_github_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.github_provider_version])) > 0 ? local.generate_github_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "grafana") ? local.generate_grafana_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.grafana_provider_version])) > 0 ? local.generate_grafana_provider_override : tomap(false), {}),
-  try(contains(local.all_providers, "aviatrix") ? local.generate_aviatrix_provider : tomap(false), {}),
-  try(length(compact([local.all_vars.aviatrix_provider_version])) > 0 ? local.generate_aviatrix_provider_override : tomap(false), {}),
-  local.global_vars.generate,
-  local.provider_vars.generate,
-  local.account_vars.generate,
-  local.environment_vars.generate,
-  local.region_vars.generate,
-  local.project_vars.generate,
-  local.general_vars.generate,
-  local.common_vars.generate,
-  local.local_vars.generate,
-  {},
-)
+generate = local.generate
 
 inputs = merge(
   { for k, v in local.all_vars : k => v if v != null && v != [] && v != "" && v != {} },

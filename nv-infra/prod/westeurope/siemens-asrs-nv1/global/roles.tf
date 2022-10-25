@@ -1,3 +1,7 @@
+variable "subscription_id" {
+  type = string
+}
+
 data "azurerm_role_definition" "this" {
   name  = "Reader"
   scope = "/subscriptions/${var.subscription_id}"
