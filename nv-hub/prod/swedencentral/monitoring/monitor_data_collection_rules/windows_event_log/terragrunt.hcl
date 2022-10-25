@@ -18,6 +18,7 @@ inputs = {
   windows_event_log = [
     {
       name = local.name
+      x_path_queries = ["Application!*[System[(Level=1 or Level=2)]]", "System!*[System[(Level=1 or Level=2)]]", "System!*[System[Provider[@Name='Service Control Manager']]]"]      
     }
   ]
   log_analytics = [{}]
