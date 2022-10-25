@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
 }
 
 include {
@@ -33,6 +33,7 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true  
   ad_join                                = true
   wvd_register                           = true
   storage_image_reference = {
@@ -41,6 +42,9 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = true
+    timezone                   = "W. Europe Standard Time"      
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -48,10 +52,15 @@ inputs = {
   network_interfaces = [
     {
       name      = "${local.name}-nic"
-      ipaddress = "10.44.5.47"
-      subnet    = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-      public_ip = false
-    }
+      ip_configuration = [
+        {
+        private_ip_address            = "10.44.5.47"
+        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+        private_ip_address_allocation = "Static"
+        ipconfig_name                 = "nv-pne-tc12a-nic-ipconfig"
+        }
+      ]
+    }    
   ]
   data_disks = [
     {

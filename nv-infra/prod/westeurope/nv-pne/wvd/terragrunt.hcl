@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.8"
+  #source = "../../../../../../tf-mod-azure/wvd/"
 }
 
 include {
@@ -16,4 +17,12 @@ inputs = {
   wvd_ws_friendly_name = "PNE Virtual Desktop TC6"
   wvd_hp_name          = "nv-pne-hp"
   wvd_ag_name          = "nv-pne-hp-DAG"
+
+  enable_wvd_hp_logs = true
+  log = [
+    {
+      category = "Connection"
+    },
+  ]
+
 }
