@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.5"
 }
 
 include {
@@ -29,7 +29,7 @@ inputs = {
   subnet_id                              = dependency.global.outputs.subnet["nv-gabi-lca-subnet-10.44.5.136"].id
   vm_name                                = local.name
   vm_size                                = "Standard_D3_v2"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
@@ -45,8 +45,6 @@ inputs = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
     timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -77,3 +75,4 @@ inputs = {
     }
   ]
 }
+
