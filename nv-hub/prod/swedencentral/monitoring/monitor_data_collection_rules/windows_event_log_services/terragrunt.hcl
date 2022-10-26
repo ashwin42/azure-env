@@ -13,12 +13,12 @@ locals {
 
 inputs = {
   name                         = local.name
-  description                  = "Data Collection Rule for Windows Event Logs. Collects warning, error, critical for Application and System logs, as well as Service Control Manager entries  - Managed by Terraform"
+  description                  = "Data Collection Rule for Windows Event Logs. Collects Service Control Manager entries  - Managed by Terraform"
   log_analytics_workspace_name = "log-analytics-ops-ws"
   windows_event_log = [
     {
       name = local.name
-      x_path_queries = ["Application!*[System[(Level=1 or Level=2)]]", "System!*[System[(Level=1 or Level=2)]]"]
+      x_path_queries = ["System!*[System[Provider[@Name='Service Control Manager']]]"]
     }
   ]
   log_analytics = [{}]
