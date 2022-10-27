@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.6.10"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.8"
+  #source = "../../../../../../../tf-mod-azure/wvd/"
 }
 
 include {
@@ -16,3 +17,4 @@ inputs = merge(
     wvd_ws_friendly_name = "PNE Virtual Desktop TC2 - 02.01 to 02.10"
   }
 )
+
