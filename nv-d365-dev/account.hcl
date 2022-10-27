@@ -6,7 +6,6 @@ locals {
   remote_state_azurerm_storage_account_name = "nvd365tfstate"
   remote_state_azurerm_container_name       = "nv-tf-state"
   remote_state_azurerm_resource_group_name  = "nv-d365-dev-core"
-  log_analytics_workspace_id                = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourcegroups/loganalytics-rg/providers/microsoft.operationalinsights/workspaces/log-analytics-ops-ws"
   providers                                 = ["azurerm"]
   azurerm_features                          = {}
 }
