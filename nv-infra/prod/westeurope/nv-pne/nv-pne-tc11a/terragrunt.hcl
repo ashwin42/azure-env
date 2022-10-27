@@ -68,6 +68,13 @@ inputs = {
       size                 = "2000"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
+    },
+    {
+      name                 = "${local.name}-datadisk01"
+      size                 = "5000"
+      lun                  = "5"
+      storage_account_type = "StandardSSD_LRS"
+      caching              = "None"
     }
   ]
   custom_rules = [
