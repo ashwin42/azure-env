@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.6.10"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
 }
 
 include {
@@ -35,6 +35,16 @@ inputs = merge(
             ipconfig_name                 = "ipconfig"
           }
         ]
+      }
+    ]
+
+    data_disks = [
+      {
+        name                 = "${local.name}-datadisk1"
+        size                 = "4096"
+        lun                  = "5"
+        storage_account_type = "StandardSSD_LRS"
+        caching              = "None"
       }
     ]
 

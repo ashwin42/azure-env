@@ -38,6 +38,16 @@ inputs = merge(
       }
     ]
 
+    data_disks = [
+      {
+        name                 = "${local.name}-datadisk1"
+        size                 = "4096"
+        lun                  = "5"
+        storage_account_type = "StandardSSD_LRS"
+        caching              = "None"
+      }
+    ]
+
     custom_rules = [
       {
         name                   = "Labs_MFA_VPN"
