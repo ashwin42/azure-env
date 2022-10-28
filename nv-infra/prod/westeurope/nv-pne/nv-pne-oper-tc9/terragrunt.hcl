@@ -71,11 +71,11 @@ inputs = {
     },
     {
       name                 = "${local.name}-datadisk01"
-      size                 = "5000"
+      size                 = "4096"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
       caching              = "None"
-    }
+    } 
   ]
   custom_rules = [
     {
