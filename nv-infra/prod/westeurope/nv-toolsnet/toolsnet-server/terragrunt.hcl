@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
 include {
@@ -32,7 +32,6 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   localadmin_key_name                    = "${local.name}-nvadmin"
-  #  managed_disk_type                      = "Premium_LRS"
   storage_image_reference = {
     sku     = "2019-Datacenter-smalldisk",
   }
@@ -40,8 +39,6 @@ inputs = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
     timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "nvadmin"
@@ -90,7 +87,17 @@ inputs = {
       destination_port_range = "7110,8110,9010-9016"
       access                 = "Allow"
       description            = "Allow connections from Tomteboda Controllers on 7110"
-    },    
+    },
+    {
+      name                   = "Nutrunner_Controller"
+      priority               = "207"
+      direction              = "Inbound"
+      source_address_prefix  = "10.195.0.20"
+      protocol               = "Tcp"
+      destination_port_range = "4545"
+      access                 = "Allow"
+      description            = "Allow connections from Nutrunner Controllers on 4545"
+    },
   ]
 
   data_disks = [
