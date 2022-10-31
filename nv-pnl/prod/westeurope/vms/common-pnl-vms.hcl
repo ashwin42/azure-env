@@ -16,7 +16,7 @@ inputs = {
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
-  vm_size                                = "Standard_F16"
+  vm_size                                = "Standard_D8_v4"
   backup_vm                              = true
   key_vault_rg                           = "global-rg"
   secrets_key_vault_rg                   = "global-rg"
@@ -38,15 +38,6 @@ inputs = {
     computer_name  = local.name
   }
 
-  data_disks = [
-    {
-      name                 = "${local.name}-datadisk1"
-      size                 = "5000"
-      lun                  = "5"
-      storage_account_type = "StandardSSD_LRS"
-      caching              = "None"
-    }
-  ]
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true

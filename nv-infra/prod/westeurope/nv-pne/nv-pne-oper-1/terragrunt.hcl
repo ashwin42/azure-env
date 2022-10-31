@@ -42,22 +42,22 @@ inputs = {
     sku       = "20h1-evd",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.38"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "nv-pne-oper-1-nic-ipconfig"
+          private_ip_address            = "10.44.5.38"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "nv-pne-oper-1-nic-ipconfig"
         }
       ]
     }
@@ -68,6 +68,13 @@ inputs = {
       size                 = "1000"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
+    },
+    {
+      name                 = "${local.name}-datadisk01"
+      size                 = "4096"
+      lun                  = "5"
+      storage_account_type = "StandardSSD_LRS"
+      caching              = "None"
     }
   ]
   custom_rules = [
