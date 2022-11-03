@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.1.0"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.3.4"
   #source = "../../../../../../../tf-mod-azuread/groups/"
 }
 
@@ -39,19 +39,19 @@ inputs = {
       member_users     = []
     },
     {
-      display_name     = "Desigo RND2.0 VPN AP"
-      description      = "Provides Administrator access to Desigo RND2.0"
+      display_name     = "Desigo VPN AP"
+      description      = "Provides Administrator access to Desigo Server"
       security_enabled = true
       member_groups    = []
       member_users     = []
     },
     {
-      display_name     = "Desigo RND2.0 VPN AP Approvers"
-      description      = "Approvers for Desigo RND2.0 VPN AP"
+      display_name     = "Desigo VPN AP Approvers"
+      description      = "Approvers for Desigo VPN AP"
       security_enabled = true
       member_groups    = []
       member_users     = ["karel.silha@northvolt.com"]
-    },
+    },    
   ]
 }
 
