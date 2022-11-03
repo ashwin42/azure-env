@@ -15,7 +15,7 @@ inputs = {
   peerings = [
     {
       name                  = "nv-prod-swe_to_nv-hub"
-      vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
+      vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/hub_rg/providers/Microsoft.Network/virtualNetworks/hub_vnet"
       allow_gateway_transit = false
     },
   ]
