@@ -15,7 +15,7 @@ inputs = {
     { name = "nv-tf-state", access_type = "private" }
   ]
   iam_assignments = {
-    "Storage Blob Data Contributor" = {
+    "Reader and Data Access" = {
       groups = [
         "NV IT Core Role",
       ],
