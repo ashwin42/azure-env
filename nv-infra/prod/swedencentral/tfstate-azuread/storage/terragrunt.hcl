@@ -11,7 +11,6 @@ include "root" {
 
 inputs = {
   name = replace(lower(include.root.inputs.setup_prefix), "/[-_]/", "")
-  location = "swedencentral"
   containers_list = [
     { name = "nv-tf-state", access_type = "private" }
   ]
