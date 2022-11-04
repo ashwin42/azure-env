@@ -88,16 +88,6 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from Tomteboda Controllers on 7110"
     },
-    {
-      name                   = "Nutrunner_Controller"
-      priority               = "207"
-      direction              = "Inbound"
-      source_address_prefix  = "10.195.0.20"
-      protocol               = "Tcp"
-      destination_port_range = "4545"
-      access                 = "Allow"
-      description            = "Allow connections from Nutrunner Controllers on 4545"
-    },
   ]
 
   data_disks = [
