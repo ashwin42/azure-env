@@ -16,12 +16,10 @@ inputs = {
     "ms-resource-usage" = "azure-cloud-shell"
   }
 
-  network_rules = [
-    {
-      name           = "default_rule"
-      bypass         = ["AzureServices"]
-      default_action = "Allow"
-      ip_rules       = []
-    },
-  ]
+  network_rules = {
+    name           = "default_rule"
+    bypass         = ["AzureServices"]
+    default_action = "Deny"
+    ip_rules       = []
+  },
 }
