@@ -39,7 +39,7 @@ inputs = {
       member_users     = []
     },
     {
-      display_name     = "Desigo VPN AP"
+      display_name     = "VPN Desigo AP"
       description      = "Provides Administrator access to Desigo Server"
       security_enabled = true
       member_groups    = []
