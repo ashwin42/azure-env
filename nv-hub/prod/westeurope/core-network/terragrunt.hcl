@@ -51,6 +51,16 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.48.0.0/23" #Azure SwedenCentral
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.64.0.0/19" #Azure SwedenCentral
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
       ]
     },
     {
@@ -83,6 +93,16 @@ inputs = {
         },
         {
           address_prefix         = "10.32.0.0/13" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.48.0.0/23" #Azure SwedenCentral
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.64.0.0/19" #Azure SwedenCentral
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },

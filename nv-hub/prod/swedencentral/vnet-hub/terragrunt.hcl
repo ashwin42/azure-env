@@ -15,6 +15,28 @@ inputs = {
   address_space            = ["10.48.0.0/23"]
   create_resource_group    = true
   dns_servers              = []
+  route_tables = [
+    {
+      name = "nv-hub-swc-default-rt"
+      routes = [
+        {
+          address_prefix         = "10.40.0.0/16" #Azure WestEurope Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+      ]
+    },
+    {
+      name = "nv-hub-swc-hub-router-rt"
+      routes = [
+        {
+          address_prefix         = "10.40.0.0/16" #Azure WestEurope Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
+  ]
   subnets = [
     {
       name              = "GatewaySubnet"
@@ -25,11 +47,13 @@ inputs = {
       name              = "hub-dmz"
       address_prefixes  = ["10.48.0.64/27"]
       service_endpoints = []
+      route_table_name  = "nv-hub-swc-hub-router-rt"
     },
     {
       name              = "nv-domain-services"
       address_prefixes  = ["10.48.0.96/28"]
       service_endpoints = []
+      route_table_name  = "nv-hub-swc-default-rt"
     },
   ]
   peerings = [
