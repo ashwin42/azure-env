@@ -100,6 +100,56 @@ inputs = {
       access                 = "Allow"
       description            = "Allow neccessary port 64021 from octoplant-labs"
     },
+    {
+      name                   = "FL.A1 Range 1"
+      priority               = "302"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.196.0/23"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.A1"
+    },
+    {
+      name                   = "FL.A1 Range 2"
+      priority               = "303"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.198.0/25"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.A1"
+    },
+    {
+      name                   = "FL.A1.CO.PHC01"
+      priority               = "304"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.192.0/26"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.A1"
+    },
+    {
+      name                   = "FL.C1 Range 1"
+      priority               = "305"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.198.128/25"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.C1"
+    },
+    {
+      name                   = "FL.C1 Range 2"
+      priority               = "306"
+      direction              = "Inbound"
+      source_address_prefix  = "10.101.199.0/24"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow traffic from non-deterministic network in FL.C1"
+    },
   ]
 }
 

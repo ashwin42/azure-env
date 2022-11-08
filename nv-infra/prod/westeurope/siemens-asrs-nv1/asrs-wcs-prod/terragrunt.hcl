@@ -18,7 +18,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
   vm_size                                = "Standard_B4ms"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
@@ -38,6 +38,7 @@ inputs = {
       public_ip = false
     }
   ]
+  dns_servers = null
   data_disks = [
     {
       name                 = "asrs-wcs-prod-data1"

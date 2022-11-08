@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
-  #source = "../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
+  #source = "${dirname(get_repo_root())}///tf-mod-azure//vm/"
 }
 
 include {
@@ -11,18 +11,25 @@ dependency "vnet" {
   config_path = "../core-network"
 }
 
+dependency "rv" {
+  config_path = "../recovery_vault"
+}
+
 locals {
   name = "hub-router"
 }
 
 inputs = {
-  name = local.name
-  resource_group_name = dependency.vnet.outputs.resource_group.name
-  vm_size             = "Standard_B2s"
-  managed_disk_type   = "Standard_LRS"
-  backup_vm           = false
-  localadmin_name     = "nvadmin"
-  localadmin_key_name = "hub-router-nvadmin"
+  name                                   = local.name
+  resource_group_name                    = dependency.vnet.outputs.resource_group.name
+  vm_size                                = "Standard_B2s"
+  managed_disk_type                      = "Standard_LRS"
+  recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
+  recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
+  backup_vm                              = true
+  localadmin_name                        = "nvadmin"
+  localadmin_key_name                    = "hub-router-nvadmin"
   storage_image_reference = {
     offer     = "0001-com-ubuntu-minimal-focal-daily",
     publisher = "Canonical",
@@ -60,6 +67,28 @@ inputs = {
       destination_port_range     = "0-65535"
       access                     = "Allow"
       description                = "Allow connections from Labs MFA VPN clients"
+    },
+    {
+      name                       = "Ett_MFA_VPN"
+      priority                   = "201"
+      direction                  = "Inbound"
+      source_address_prefix      = "10.240.0.0/21"
+      destination_address_prefix = "0.0.0.0/0"
+      protocol                   = "*"
+      destination_port_range     = "0-65535"
+      access                     = "Allow"
+      description                = "Allow connections from Ett MFA VPN clients"
+    },
+    {
+      name                       = "Labs_Jumphost"
+      priority                   = "202"
+      direction                  = "Inbound"
+      source_address_prefix      = "10.254.6.16/29"
+      destination_address_prefix = "0.0.0.0/0"
+      protocol                   = "*"
+      destination_port_range     = "0-65535"
+      access                     = "Allow"
+      description                = "Allow connections from Ett MFA VPN clients"
     },
     {
       name                       = "Deny_SSH"

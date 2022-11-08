@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.6.12"
   #source = "../../../../../tf-mod-azure/vnet"
 }
 
@@ -14,6 +14,7 @@ inputs = {
   vnet_name                = "hub_vnet"
   address_space            = ["10.48.0.0/23"]
   create_resource_group    = true
+  dns_servers              = []
   subnets = [
     {
       name              = "GatewaySubnet"
@@ -35,6 +36,11 @@ inputs = {
     {
       name                = "hub-swc2hub-we",
       vnet_id             = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
+      use_remote_gateways = false
+    },
+    {
+      name                = "hub-swc-to-nv-prod-swe",
+      vnet_id             = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-prod-swe-vnet-rg/providers/Microsoft.Network/virtualNetworks/nv-prod-swe-vnet"
       use_remote_gateways = false
     },
   ]

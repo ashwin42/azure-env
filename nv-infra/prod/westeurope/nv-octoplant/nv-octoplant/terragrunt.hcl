@@ -31,7 +31,7 @@ inputs = {
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
-  #localadmin_key_name                    = "domainjoin"
+  managed_disk_size                      = 256
   storage_image_reference = {
     sku = "2019-Datacenter",
   }
@@ -80,7 +80,17 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    }, 
+    },
+    {
+      name                   = "Allow_ICMP_Ett"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "Icmp"
+      destination_port_range = "*"
+      access                 = "Allow"
+      description            = "Allow ICMP Echo Request for Ett"
+    },    
   ]
 }
 

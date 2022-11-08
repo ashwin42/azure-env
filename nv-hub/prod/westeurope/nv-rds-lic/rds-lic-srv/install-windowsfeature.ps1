@@ -1,0 +1,1 @@
+Install-WindowsFeature RDS-Licensing –IncludeAllSubFeature -IncludeManagementTools

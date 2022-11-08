@@ -40,3 +40,11 @@ resource "azurerm_virtual_network_peering" "abb800xa_to_nv-hub" {
   allow_forwarded_traffic      = true
   use_remote_gateways          = true
 }
+
+resource "azurerm_subnet" "stop-and-log" {
+  resource_group_name  = azurerm_resource_group.abb_800xa.name
+  virtual_network_name = azurerm_virtual_network.abb_800xa.name
+  name                 = "stop-and-log"
+  address_prefix       = "10.60.46.0/29"
+}
+

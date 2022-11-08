@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.28"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.7.8"
   #source = "../../../../../../tf-mod-azure/global/"
 }
 
@@ -72,6 +72,12 @@ inputs = {
       use_remote_gateways          = false
     },
   ]
+
+  iam_assignments = {
+    "Reader" = {
+      users = ["karel.silha@northvolt.com"]
+    },
+  },  
 }
 
 

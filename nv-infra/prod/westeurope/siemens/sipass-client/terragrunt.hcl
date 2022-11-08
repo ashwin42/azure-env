@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -29,7 +29,7 @@ inputs = {
   vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_B4ms"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
@@ -47,9 +47,6 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
   }
   os_profile = {
     admin_username = "domainjoin"
