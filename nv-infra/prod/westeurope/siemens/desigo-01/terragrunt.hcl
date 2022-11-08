@@ -20,12 +20,15 @@ inputs = {
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
-  vm_name                                = local.name
+  name                                   = local.name
   vm_size                                = "Standard_D4s_v5"
   backup_vm                              = true
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
-  localadmin_key_name                    = "domainjoin"
+  key_vault_name                         = "nv-infra-core"
+  key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "${local.name}-nvadmin"
+  create_localadmin_password             = true  
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "StandardSSD_LRS"
   storage_image_reference = {
@@ -34,6 +37,7 @@ inputs = {
     sku       = "2016-Datacenter",
   }
   os_profile_windows_config = {
+    provision_vm_agent        = true
     enable_automatic_upgrades = false
     timezone                  = "W. Europe Standard Time"
   }
@@ -68,9 +72,20 @@ inputs = {
       priority              = "200"
       direction             = "Inbound"
       source_address_prefix = "10.16.8.0/23"
+      protocol              = "Tcp"
       access                = "Allow"
       description           = "Allow connections from Labs MFA VPN clients"
     },
+    {
+      name                   = "Ett_MFA_VPN"
+      priority               = "210"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "Tcp"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients"
+    },    
     {
       name                  = "LocalVnet"
       priority              = "205"
