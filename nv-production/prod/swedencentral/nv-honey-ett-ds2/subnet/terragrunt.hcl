@@ -12,8 +12,10 @@ inputs = {
   vnet_resource_group_name = "nv-prod-swe-vnet-rg"
   subnets = [
     {
-      name             = "nv-honey-subnet-10.64.1.0_28"
-      address_prefixes = ["10.64.1.0/28"]
+      name                            = "nv-honey-subnet-10.64.1.0_28"
+      address_prefixes                = ["10.64.1.0/28"]
+      route_table_name                = "nv-production-swc-default-rt"
+      route_table_resource_group_name = "nv-prod-swe-vnet-rg"
     },
   ]
 }

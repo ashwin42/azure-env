@@ -12,6 +12,18 @@ inputs = {
   vnet_resource_group_name = include.root.locals.all_vars.resource_group_name
   vnet_name                = include.root.locals.all_vars.setup_prefix
   address_space            = ["10.64.0.0/19"]
+  route_tables = [
+    {
+      name = "nv-production-swc-default-rt"
+      routes = [
+        {
+          address_prefix         = "10.40.0.0/16" #Azure WestEurope Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+      ]
+    }
+  ]
   peerings = [
     {
       name                  = "nv-prod-swe_to_nv-hub"
