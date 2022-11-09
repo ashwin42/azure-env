@@ -46,6 +46,7 @@ inputs = {
       public_ip = false
     }
   ]
+  dns_servers = null
   data_disks = [
     {
       name                 = "revolt-wave4-oper-0_datadisk"
