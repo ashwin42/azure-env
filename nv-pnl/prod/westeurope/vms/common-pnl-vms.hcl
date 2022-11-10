@@ -38,15 +38,6 @@ inputs = {
     computer_name  = local.name
   }
 
-  data_disks = [
-    {
-      name                 = "${local.name}-datadisk1"
-      size                 = "5000"
-      lun                  = "5"
-      storage_account_type = "StandardSSD_LRS"
-      caching              = "None"
-    }
-  ]
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true

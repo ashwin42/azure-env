@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.6.10"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
 }
 
 include {
@@ -38,6 +38,16 @@ inputs = merge(
       }
     ]
 
+    data_disks = [
+      {
+        name                 = "${local.name}-datadisk1"
+        size                 = "4096"
+        lun                  = "5"
+        storage_account_type = "StandardSSD_LRS"
+        caching              = "None"
+      }
+    ]
+
     custom_rules = [
       {
         name                   = "Labs_MFA_VPN"
@@ -50,13 +60,22 @@ inputs = merge(
         description            = "Allow connections from Labs MFA VPN clients"
       },
       {
-        name                  = "NV-Cyclers"
+        name                  = "NV-Cyclers_Old"
         priority              = "220"
         direction             = "Inbound"
         source_address_prefix = "10.100.250.0/23"
+        access                = "Allow"
+        description           = "Allow connections from NV-Cyclers old subnet"
+      },
+      {
+        name                  = "NV-Cyclers"
+        priority              = "221"
+        direction             = "Inbound"
+        source_address_prefix = "10.149.0.0/18"
         access                = "Allow"
         description           = "Allow connections from NV-Cyclers"
       },
     ]
   }
 )
+

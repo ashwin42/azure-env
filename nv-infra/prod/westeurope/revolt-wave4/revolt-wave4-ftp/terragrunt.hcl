@@ -18,7 +18,7 @@ inputs = {
   resource_group_name                    = dependency.global.outputs.resource_group.name
   vm_size                                = "Standard_DS1_v2"
   managed_disk_type                      = "StandardSSD_LRS"
-  backup_vm                              = false
+  backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_name                        = "nvadmin"
@@ -45,6 +45,7 @@ inputs = {
       public_ip = false
     }
   ],
+  dns_servers  = null
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"
