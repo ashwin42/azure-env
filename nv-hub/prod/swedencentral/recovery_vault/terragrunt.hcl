@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.13"
   #source = "${dirname(get_repo_root())}//tf-mod-azure/recovery_vault/"
 }
 
@@ -10,5 +10,6 @@ include {
 inputs = {
   setup_prefix        = "nv-hub-sc"
   resource_group_name = "nv-hub-core"
-  location            = "swedencentral"
+  location            = "swedencentral"  
 }
+
