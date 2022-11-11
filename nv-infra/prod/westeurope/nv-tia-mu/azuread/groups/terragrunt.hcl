@@ -74,7 +74,7 @@ inputs = {
       display_name     = "TIA MU Hanwha Approvers"
       description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
       security_enabled = true
-      member_users     = []
+      member_users     = ["c.david.gunstad@northvolt.com", "hamed@northvolt.com", "anton.frankel@northvolt.com"]
     },
     {
       display_name     = "TIA MU Hanwha Users"
