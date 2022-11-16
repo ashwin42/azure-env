@@ -36,49 +36,62 @@ inputs = {
     },
     {
       display_name     = "TIA MU PNE Approvers"
-      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU PNE Server requests"
       security_enabled = true
       member_users     = ["hamed@northvolt.com", "maria.chun@northvolt.com"]
     },
     {
       display_name     = "TIA MU PNE Users"
-      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU PNE Server"
       security_enabled = true
       member_users     = []
     },
     {
       display_name     = "TIA MU Munters Approvers"
-      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU Munters Server requests"
       security_enabled = true
       member_users     = ["hamed@northvolt.com", "maria.chun@northvolt.com"]
     },
     {
       display_name     = "TIA MU Munters Users"
-      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Munters Server"
       security_enabled = true
       member_users     = []
     },
     {
       display_name     = "TIA MU DEC Approvers"
-      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU Dec Server requests"
       security_enabled = true
       member_users     = []
     },
     {
       display_name     = "TIA MU DEC Users"
-      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Dec Server"
       security_enabled = true
       member_users     = []
     },
+    ### Hanwha    
     {
       display_name     = "TIA MU Hanwha Approvers"
-      description      = "Used in access package, do not modify. Members in this group will approve TIA MU mPlus Server requests"
+      description      = "Used in access package, do not modify. Members in this group will approve TIA MU Hanwha Server requests"
       security_enabled = true
       member_users     = ["c.david.gunstad@northvolt.com", "hamed@northvolt.com", "anton.frankel@northvolt.com"]
     },
     {
       display_name     = "TIA MU Hanwha Users"
-      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
+      description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Hanwha Server"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "FR.A2.CT.COT01.LC1.KEB1 VPN AP"
+      description      = "Used in access package, do not modify. Members in this group obtain access to PLCs and TIA MU Hanwha Server"
+      security_enabled = true
+      member_users     = []
+    },
+    {
+      display_name     = "FR.C2.CT.COT01.LC1.KEB1 VPN AP"
+      description      = "Used in access package, do not modify. Members in this group obtain access to PLCs and TIA MU Hanwha Server"
       security_enabled = true
       member_users     = []
     },
