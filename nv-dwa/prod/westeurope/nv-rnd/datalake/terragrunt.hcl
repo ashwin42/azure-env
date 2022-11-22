@@ -17,7 +17,7 @@ include {
 
 inputs = {
   name                = "rnd-datalake"
-  resource_group_name = "nv-rnd"
+  resource_group_name = dependency.rg.outputs.resource_group_name
   subnet_id           = dependency.global.outputs.subnet["subnet1"].id
   containers_list = [
     { name = "rnd-storage", access_type = "private" }
