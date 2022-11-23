@@ -14,12 +14,12 @@ from os import chdir
 
 # Variables to update in this block
 # ---------------------------------------------
-REGION = "westeurope"
+REGION          = "westeurope"
 SUBSCRIPTION_ID = "bd728441-1b83-4daa-a72f-91d5dc6284f1"
-SUBSCRIPTION = "nv-d365-dev"
-IMPORT = False  # Set to True to auto-import resources
-FORCE = True  # Set to True to re-create the existing terragrunt.hcl
-chdir(REGION) # Run the code in this directory
+SUBSCRIPTION    = "nv-d365-dev"
+IMPORT          = False  # Set to True to auto-import resources
+FORCE           = False  # Set to True to re-create the existing terragrunt.hcl
+chdir(REGION)            # Run the code in this directory
 # ---------------------------------------------
 
 # Acquire a credential object using CLI-based authentication.
@@ -67,7 +67,6 @@ for rg in rgs:
             if principal:
 
                 if p["principalType"] == "ServicePrincipal":
-                    print(principal)
                     principal = az_cli(f'ad sp show --id {principal}')["displayName"]
 
                 dict_perms[p["roleDefinitionName"]][p["principalType"]].append({principal: p["id"]})
@@ -77,7 +76,7 @@ for rg in rgs:
         continue
 
     Path(f"{rg}/resource_group").mkdir(parents=True, exist_ok=True)
-    # todo, ask before overriding file
+
     with open(f"{rg}/resource_group/terragrunt.hcl", "w") as f:
         terragrunt_hcl = r"""terraform {{
           source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.15"
