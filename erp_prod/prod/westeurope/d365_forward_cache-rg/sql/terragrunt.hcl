@@ -24,9 +24,13 @@ dependency "sql_app" {
   config_path = "../sql_app"
 }
 
+locals {
+  prefix = "d365_forward_cache"
+}
+
 inputs = {
   resource_group_name           = dependency.resource_group.outputs.resource_group_name
-  setup_prefix                  = dependency.resource_group.outputs.setup_prefix
+  setup_prefix                  = local.prefix
   subnet_id                     = dependency.vnet.outputs.subnet.databases.id
   key_vault_name                = replace("${include.root.locals.all_vars.subscription_name}-rg", "_", "-")
   key_vault_rg                  = replace("${include.root.locals.all_vars.subscription_name}-rg", "_", "-")
@@ -43,18 +47,18 @@ inputs = {
     {
       username = "NV Techops Role"
       roles    = ["db_owner"]
-      database = dependency.resource_group.outputs.setup_prefix
+      database = local.prefix
     },
     {
       username = values(dependency.sql_group.outputs.groups)[0].display_name
       roles    = ["db_owner"]
-      database = dependency.resource_group.outputs.setup_prefix
+      database = local.prefix
 
     }
   ]
   databases = [
     {
-      name = dependency.resource_group.outputs.setup_prefix
+      name = local.prefix
     },
   ]
 }

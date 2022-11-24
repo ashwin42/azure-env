@@ -7,13 +7,8 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "resource_group" {
-  config_path = "../resource_group"
-}
-
-
 inputs = {
-  display_name               = dependency.resource_group.outputs.setup_prefix
+  display_name               = "d365_forward_cache"
   group_membership_claims    = ["SecurityGroup"]
   delegate_permission_claims = ["User.Read"]
   enterprise_app_password    = true
