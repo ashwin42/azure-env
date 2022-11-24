@@ -15,12 +15,12 @@ from sys import exit
 
 # Variables to update in this block
 # ---------------------------------------------
-SUBSCRIPTION_ID = "810a32ab-57c8-430a-a3ba-83c5ad49e012"
-SUBSCRIPTION    = "erp_prod"
-ENV             = "prod"
-REGION          = "westeurope"
+SUBSCRIPTION_ID = "bd728441-1b83-4daa-a72f-91d5dc6284f1"
+SUBSCRIPTION    = "nv-d365-dev"
+ENV             = "dev"
+REGION          = "northeurope"
 IMPORT          = False  # Set to True to auto-import resources
-FORCE           = False  # Set to True to re-create the existing terragrunt.hcl
+FORCE           = True  # Set to True to re-create the existing terragrunt.hcl
 DIRECTORY       = f"{SUBSCRIPTION}/{ENV}/{REGION}"  # Run the code in this directory
 # ---------------------------------------------
 
@@ -90,8 +90,7 @@ for rg in rgs:
     with open(f"{rg}/project.hcl", "w") as f:
         project_hcl = r"""locals {
             resource_group_name = basename(get_terragrunt_dir())
-        }
-        """
+        }"""
         f.write(project_hcl)
 
     with open(f"{rg}/resource_group/terragrunt.hcl", "w") as f:
@@ -99,18 +98,15 @@ for rg in rgs:
           source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16"
         }
 
-        include "root" {
-          expose = true
+        include {
           path = find_in_parent_folders()
-        }
-
-        inputs = {
-            resource_group_name = include.root.locals.all_vars.resource_group_name
-        """
+        }"""
 
         f.write(terragrunt_hcl)
 
         if dict_perms:
+            f.write("\n\n")
+            f.write("inputs = {\n")
             f.write("iam_assignments     = {\n")
             for role in dict_perms:
                 f.write(f"\"{role}\" = {{\n")
@@ -130,7 +126,7 @@ for rg in rgs:
                     f.write("],\n")
                 f.write("},\n")
             f.write("}\n")
-        f.write("}")
+            f.write("}")
 
     # Run terragrunt import
     if IMPORT:
