@@ -79,7 +79,7 @@ for rg in rgs:
 
     with open(f"{rg}/resource_group/terragrunt.hcl", "w") as f:
         terragrunt_hcl = r"""terraform {{
-          source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.15"
+          source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16"
         }}
 
         include {{
@@ -88,7 +88,6 @@ for rg in rgs:
 
         inputs = {{
             resource_group_name = "{resource_group}"
-            setup_prefix        = ""
         """.format(resource_group=rg)
 
         f.write(terragrunt_hcl)
