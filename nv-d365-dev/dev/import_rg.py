@@ -14,11 +14,11 @@ from os import chdir
 
 # Variables to update in this block
 # ---------------------------------------------
-REGION          = "westeurope"
+REGION          = "northeurope"
 SUBSCRIPTION_ID = "bd728441-1b83-4daa-a72f-91d5dc6284f1"
 SUBSCRIPTION    = "nv-d365-dev"
 IMPORT          = False  # Set to True to auto-import resources
-FORCE           = False  # Set to True to re-create the existing terragrunt.hcl
+FORCE           = True  # Set to True to re-create the existing terragrunt.hcl
 chdir(REGION)            # Run the code in this directory
 # ---------------------------------------------
 
@@ -79,7 +79,7 @@ for rg in rgs:
 
     with open(f"{rg}/resource_group/terragrunt.hcl", "w") as f:
         terragrunt_hcl = r"""terraform {{
-          source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.15"
+          source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16"
         }}
 
         include {{
@@ -88,7 +88,6 @@ for rg in rgs:
 
         inputs = {{
             resource_group_name = "{resource_group}"
-            setup_prefix        = ""
         """.format(resource_group=rg)
 
         f.write(terragrunt_hcl)
