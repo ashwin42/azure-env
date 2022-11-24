@@ -17,8 +17,8 @@ from os import chdir
 REGION          = "northeurope"
 SUBSCRIPTION_ID = "810a32ab-57c8-430a-a3ba-83c5ad49e012"
 SUBSCRIPTION    = "erp_prod"
-IMPORT          = True  # Set to True to auto-import resources
-FORCE           = True  # Set to True to re-create the existing terragrunt.hcl
+IMPORT          = False # Set to True to auto-import resources
+FORCE           = False # Set to True to re-create the existing terragrunt.hcl
 chdir(REGION)            # Run the code in this directory
 # ---------------------------------------------
 
