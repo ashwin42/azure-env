@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 '''
 This script imports all resource groups and iam permission from a region
-and creates the terraform structure for each resource group and their
-iam permissions
+in a subscription and creates the terraform structure for each resource
+group and their iam permissions
 '''
 
 from azure.identity import AzureCliCredential
@@ -11,16 +11,24 @@ from azure.cli.core import get_default_cli
 from pathlib import Path
 import subprocess
 from os import chdir
+from sys import exit
 
 # Variables to update in this block
 # ---------------------------------------------
-REGION          = "northeurope"
-SUBSCRIPTION_ID = "bd728441-1b83-4daa-a72f-91d5dc6284f1"
-SUBSCRIPTION    = "nv-d365-dev"
+SUBSCRIPTION_ID = "810a32ab-57c8-430a-a3ba-83c5ad49e012"
+SUBSCRIPTION    = "erp_prod"
+ENV             = "prod"
+REGION          = "westeurope"
 IMPORT          = False  # Set to True to auto-import resources
-FORCE           = True  # Set to True to re-create the existing terragrunt.hcl
-chdir(REGION)            # Run the code in this directory
+FORCE           = False  # Set to True to re-create the existing terragrunt.hcl
+DIRECTORY       = f"{SUBSCRIPTION}/{ENV}/{REGION}"  # Run the code in this directory
 # ---------------------------------------------
+
+# cd into directory
+try:
+    chdir(DIRECTORY)
+except:
+    exit(f"{DIRECTORY} not found")
 
 # Acquire a credential object using CLI-based authentication.
 credential = AzureCliCredential()
@@ -52,7 +60,6 @@ def az_cli(args_str):
 
 
 for rg in rgs:
-    print(f"Updating resource_group: {rg}")
     permissions = az_cli(f'role assignment list --resource-group {rg} --subscription {SUBSCRIPTION}')
     dict_perms = {}
     if permissions is not True:
@@ -73,22 +80,33 @@ for rg in rgs:
 
     # Don't recreate existing resources
     if Path(f"{rg}/resource_group/terragrunt.hcl").is_file() and not FORCE:
+        print(f"{rg} already in code and FORCE not set, skipping..,")
         continue
+
+    print(f"Updating resource_group: {rg}")
 
     Path(f"{rg}/resource_group").mkdir(parents=True, exist_ok=True)
 
+    with open(f"{rg}/project.hcl", "w") as f:
+        project_hcl = r"""locals {
+            resource_group_name = basename(get_terragrunt_dir())
+        }
+        """
+        f.write(project_hcl)
+
     with open(f"{rg}/resource_group/terragrunt.hcl", "w") as f:
-        terragrunt_hcl = r"""terraform {{
+        terragrunt_hcl = r"""terraform {
           source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16"
-        }}
+        }
 
-        include {{
+        include "root" {
+          expose = true
           path = find_in_parent_folders()
-        }}
+        }
 
-        inputs = {{
-            resource_group_name = "{resource_group}"
-        """.format(resource_group=rg)
+        inputs = {
+            resource_group_name = include.root.locals.all_vars.resource_group_name
+        """
 
         f.write(terragrunt_hcl)
 
