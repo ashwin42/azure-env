@@ -19,11 +19,6 @@ inputs = {
           ttl     = 300
         },
         {
-          name    = "nv-cmx-sql"
-          records = ["10.46.0.68"]
-          ttl     = 300
-        },
-        {
           name    = "nv-e3-sql"
           records = ["10.44.5.133"]
           ttl     = 300
