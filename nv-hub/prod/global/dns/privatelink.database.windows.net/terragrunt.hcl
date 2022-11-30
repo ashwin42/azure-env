@@ -24,11 +24,6 @@ inputs = {
           ttl     = 300
         },
         {
-          name    = "nv-labx-sql"
-          records = ["10.44.2.4"]
-          ttl     = 300
-        },
-        {
           name    = "nv-siemens-sql"
           records = ["10.44.1.132"]
           ttl     = 300
