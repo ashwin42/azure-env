@@ -30,7 +30,11 @@ inputs = {
       friendly_name                = "DS2 Honeywell Operator VM"
       default_desktop_display_name = "DS2 Honeywell Operator VM"
       description                  = "Remote desktop to operate DS2 Honeywell beta gauges"
-      assign_groups                = ["NV TechOps Role"]
+      assign_groups = [
+        "NV TechOps Role",
+        "Ett-Supplier-Honeywell-VPN",
+        "NV Automation Member",
+      ]
     },
     )
   ]

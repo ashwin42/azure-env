@@ -20,7 +20,7 @@ inputs = {
       name                  = "${local.name}-hp"
       resource_group_name   = include.root.locals.all_vars.resource_group_name
       location              = "westeurope"
-      custom_rdp_properties = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1"
+      custom_rdp_properties = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"
       scheduled_agent_updates = {
         enabled  = true
         timezone = "W. Europe Standard Time"
@@ -35,7 +35,7 @@ inputs = {
   ]
   application_groups = [
     {
-      name                = "${local.name}-ap"
+      name                = "${local.name}-ag"
       resource_group_name = include.root.locals.all_vars.resource_group_name
       location            = "westeurope"
       host_pool_name      = "${local.name}-hp"
