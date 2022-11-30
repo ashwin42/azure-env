@@ -1,6 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//sql?ref=v0.7.5"
-  # source = "../../../../../../tf-mod-azure/sql"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.18"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
 dependency "global" {
@@ -19,15 +19,30 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name     = dependency.global.outputs.resource_group.name
-  setup_prefix            = dependency.global.outputs.setup_prefix
-  key_vault_name          = "nv-infra-core"
-  key_vault_rg            = "nv-infra-core"
-  subnet_id               = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
-  create_private_endpoint = true
-  lock_resources          = false
-  minimum_tls_version     = "Disabled"
-  ad_admin_login_group    = "Siemens ASRS Database Administrators"
+  resource_group_name = dependency.global.outputs.resource_group.name
+  setup_prefix        = dependency.global.outputs.setup_prefix
+  key_vault_name      = "nv-infra-core"
+  key_vault_rg        = "nv-infra-core"
+  private_endpoints = {
+    "asrs-nv1-prod-pe" = {
+      subnet_id = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
+      private_service_connection = {
+        name              = "asrs-nv1-prod-pec"
+        subresource_names = ["sqlServer"]
+      }
+      create_dns_record            = true
+      dns_zone_name                = "privatelink.database.windows.net"
+      dns_zone_resource_group_name = "core_network"
+      dns_record_name              = "asrs-nv1-prod-sql"
+      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+      dns_record_ttl               = 300
+    }
+  }
+  lock_resources      = false
+  minimum_tls_version = "Disabled"
+  azuread_administrator = {
+    group = "Siemens ASRS Database Administrators"
+  }
   databases = [
     {
       name = "siemens-wcs-cathode"
