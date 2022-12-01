@@ -17,8 +17,8 @@ inputs = {
       member_users     = []
     },
     {
-      display_name     = "TIA MU VPN AP"
-      description      = "Used in access package, do not modify. Members in this group obtain VPN access to TIA MU Servers"
+      display_name     = "NV TIA-MU-VPN AP"
+      description      = "Used in access package, do not modify. Members in this group obtain VPN access to TIA MU Servers and PLCs"
       security_enabled = true
       member_users     = []
     },
@@ -29,7 +29,7 @@ inputs = {
       member_users     = ["hamed@northvolt.com", "anton.frankel@northvolt.com", "c.pablo.gijon@northvolt.com"]
     },
     {
-      display_name     = "TIA MU mPlus Users"
+      display_name     = "TIA MU mPlus VPN Users"
       description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU mPlus Server"
       security_enabled = true
       member_users     = []
@@ -41,7 +41,7 @@ inputs = {
       member_users     = ["hamed@northvolt.com", "maria.chun@northvolt.com"]
     },
     {
-      display_name     = "TIA MU PNE Users"
+      display_name     = "TIA MU PNE VPN Users"
       description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU PNE Server"
       security_enabled = true
       member_users     = []
@@ -53,7 +53,7 @@ inputs = {
       member_users     = ["hamed@northvolt.com", "maria.chun@northvolt.com"]
     },
     {
-      display_name     = "TIA MU Munters Users"
+      display_name     = "TIA MU Munters VPN Users"
       description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Munters Server"
       security_enabled = true
       member_users     = []
@@ -65,7 +65,7 @@ inputs = {
       member_users     = []
     },
     {
-      display_name     = "TIA MU DEC Users"
+      display_name     = "TIA MU DEC VPN Users"
       description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Dec Server"
       security_enabled = true
       member_users     = []
@@ -78,20 +78,8 @@ inputs = {
       member_users     = ["c.david.gunstad@northvolt.com", "hamed@northvolt.com", "anton.frankel@northvolt.com"]
     },
     {
-      display_name     = "TIA MU Hanwha Users"
+      display_name     = "TIA MU Hanwha VPN Users"
       description      = "Used in access package, do not modify. Members in this group obtain access to TIA MU Hanwha Server"
-      security_enabled = true
-      member_users     = []
-    },
-    {
-      display_name     = "FR.A2.CT.COT01.LC1.KEB1 VPN AP"
-      description      = "Used in access package, do not modify. Members in this group obtain access to PLCs and TIA MU Hanwha Server"
-      security_enabled = true
-      member_users     = []
-    },
-    {
-      display_name     = "FR.C2.CT.COT01.LC1.KEB1 VPN AP"
-      description      = "Used in access package, do not modify. Members in this group obtain access to PLCs and TIA MU Hanwha Server"
       security_enabled = true
       member_users     = []
     },
