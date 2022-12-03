@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.20"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -16,20 +16,20 @@ include {
 }
 
 inputs = {
-  name                = "rnd-datalake"
+  name                = "rndstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
-  subnet_id           = dependency.global.outputs.subnet["subnet1"].id
+  subnet_id           = dependency.vnet.outputs.subnet["general_subnet1"].id
   containers_list = [
-    { name = "rnd-storage", access_type = "private" }
+    { name = "qc-testresults", access_type = "private" }
   ]
 
   is_hns_enabled        = true
   data_lake_owner_group = "NV TechOps Role"
   data_lake_ace = [
     {
-      scope       = "access"
+      scope       = "default"
       type        = "group"
-      user        = "Department 306065 R&D - PL"
+      group       = "Dwa RND Data Lake Storage Admin"
       permissions = "rwx"
     }
   ]
@@ -37,8 +37,8 @@ inputs = {
   lifecycles = [
     {
       base_blob = {
-        tier_to_archive_after_days = 60
-        delete_after_days          = 1885
+        tier_to_archive_after_days = 1095
+        delete_after_days          = 4380
       }
     }
   ]
@@ -52,13 +52,6 @@ inputs = {
     "Storage Blob Data Contributor" = {
       groups = [
         "NV TechOps Role",
-        "Department 306065 R&D - PL",
-      ],
-    },
-    "Storage Blob Data Reader" = {
-      groups = [
-        "NV TechOps Role",
-        "Department 306065 R&D - PL",
       ],
     },
   }
