@@ -23,7 +23,6 @@ inputs = {
   file_shares = [
     { name = "nv-pne-tc6", quota = null },
     { name = "nv-pne-tc7", quota = null },
-    { name = "nv-pne-tc8", quota = null },
     { name = "nv-pne-tc9", quota = null },
   ]
   network_rules = [
