@@ -19,9 +19,6 @@ inputs = {
   name                = "dwarndstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
   subnet_id           = dependency.vnet.outputs.subnet["general_subnet1"].id
-  containers_list = [
-    { name = "qc-testresults", access_type = "private" }
-  ]
 
   is_hns_enabled        = true
   data_lake_owner_group = "NV TechOps Role"
@@ -31,6 +28,20 @@ inputs = {
       type        = "group"
       group       = "Dwa RND Data Lake Storage Admin"
       permissions = "rwx"
+    }
+  ]
+
+  data_lake_path = [
+    {
+      path = "qc-testresults"
+      ace = [
+        {
+          scope      = "default"
+          type       = "group"
+          group      = "Dwa RND Data Lake QC Storage"
+          permissions = "rwx"
+        }
+      ]
     }
   ]
 
