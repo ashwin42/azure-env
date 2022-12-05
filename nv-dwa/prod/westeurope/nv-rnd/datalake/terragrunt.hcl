@@ -36,9 +36,9 @@ inputs = {
       path = "qc-testresults"
       ace = [
         {
-          scope      = "default"
-          type       = "group"
-          group      = "Dwa RND Data Lake QC Storage"
+          scope       = "default"
+          type        = "group"
+          group       = "Dwa RND Data Lake QC Storage"
           permissions = "rwx"
         }
       ]
