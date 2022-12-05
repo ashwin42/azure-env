@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.20"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.20"
+  source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
 dependency "vnet" {
@@ -16,7 +16,7 @@ include {
 }
 
 inputs = {
-  name                = "rndstorage"
+  name                = "dwarndstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
   subnet_id           = dependency.vnet.outputs.subnet["general_subnet1"].id
   containers_list = [
