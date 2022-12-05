@@ -51,7 +51,7 @@ inputs = {
   }
   os_profile = {
     admin_username = local.localadmin_name
-    computer_name  = "lims-app"
+    computer_name  = "labware"
   }
   network_interfaces = [
     {
