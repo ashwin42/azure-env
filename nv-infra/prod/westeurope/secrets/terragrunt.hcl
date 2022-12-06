@@ -22,6 +22,7 @@ inputs = {
     "Key Vault Secrets Officer" = {
       groups = [
         "NV TechOps Consultants Member",
+        "NV TechOps Role"
       ],
     },
   }
