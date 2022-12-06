@@ -20,6 +20,7 @@ inputs = {
   wvd_ws_name          = "nv-pne-hp-ws-tc10b"
   wvd_location         = "westeurope"
 
+  custom_rdp_properties = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"  
   enable_wvd_hp_logs = true
   log = [
     {
