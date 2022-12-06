@@ -62,6 +62,16 @@ inputs = {
       access                = "Allow"
       description           = "Allow connections from Labs MFA VPN clients"
     },
+    {
+      name                   = "Ett_MFA_VPN"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients"
+    },
   ]
 }
 
