@@ -1,0 +1,67 @@
+terraform {
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.20"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
+}
+
+include {
+  path = find_in_parent_folders()
+}
+
+inputs = {
+  name                          = "ataccamadevstorage"
+  is_hns_enabled                = true
+  data_lake_owner_group         = "NV TechOps Consultants Member"
+  min_tls_version               = "TLS1_2"
+
+  data_lake_ace = [
+    {
+      scope       = "default"
+      type        = "group"
+      group       = "NV TechOps Consultants Member"
+      permissions = "rwx"
+    }
+  ]
+
+  data_lake_path = [
+    {
+      path = "ataccama-data"
+      ace = [
+        {
+          scope       = "default"
+          type        = "group"
+          group       = "NV TechOps Consultants Member"
+          permissions = "rwx"
+        }
+      ]
+    }
+  ]
+
+  lifecycles = [
+    {
+      base_blob = {
+        tier_to_archive_after_days = 1095
+        delete_after_days          = 4380
+      }
+    }
+  ]
+
+  network_rules = {
+      name           = "default_rule"
+      bypass         = ["AzureServices"]
+      default_action = "Allow"
+      ip_rules       = ["16.170.65.157","13.49.218.90"]
+  }
+
+  iam_assignments = {
+    "Storage Account Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
+      ],
+    },
+    "Storage Blob Data Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
+      ],
+    },
+  }
+}
