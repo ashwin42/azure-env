@@ -19,14 +19,11 @@ inputs = {
   }
   databases = [
     {
-      name     = "nv-ataccama-dev"
-      sku_name = "GP_S_Gen5_1"
+      name                        = "nv-ataccama-dev"
+      sku_name                    = "GP_S_Gen5_1"
+      min_capacity                = "0.5"
+      max_size_gb                 = "50"
+      auto_pause_delay_in_minutes = "60"
     },
-  ]
-  custom_rules = [
-    {
-      name             = "Sumit's test IP"
-      start_ip_address = "205.254.163.130"
-    },    
-  ]
+  ]  
 }
