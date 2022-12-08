@@ -50,8 +50,8 @@ inputs = {
   lifecycles = [
     {
       base_blob = {
-        tier_to_archive_after_days = 1095
-        delete_after_days          = 4380
+        tier_to_cool_after_days    = 30
+        tier_to_archive_after_days = 365
       }
     }
   ]
@@ -60,7 +60,7 @@ inputs = {
       name           = "default_rule"
       bypass         = ["AzureServices"]
       default_action = "Allow"
-      ip_rules       = ["16.170.65.157","13.49.218.90"]
+      ip_rules       = ["0.0.0.0","16.170.65.157","13.49.218.90"]
   }
 
   iam_assignments = {
