@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  name                          = "ataccamadevstorage"
+  name                          = "dlmasterdataataccamadev"
   is_hns_enabled                = true
   data_lake_owner_group         = "NV TechOps Consultants Member"
 
@@ -59,8 +59,8 @@ inputs = {
   network_rules = {
       name           = "default_rule"
       bypass         = ["AzureServices"]
-      default_action = "Allow"
-      ip_rules       = ["0.0.0.0","16.170.65.157","13.49.218.90"]
+      default_action = "Deny"
+      ip_rules       = ["16.170.65.157","13.49.218.90"]
   }
 
   iam_assignments = {
