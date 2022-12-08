@@ -11,13 +11,18 @@ inputs = {
   name                          = "ataccamadevstorage"
   is_hns_enabled                = true
   data_lake_owner_group         = "NV TechOps Consultants Member"
-  min_tls_version               = "TLS1_2"
 
   data_lake_ace = [
     {
       scope       = "default"
       type        = "group"
       group       = "NV TechOps Consultants Member"
+      permissions = "rwx"
+    },
+    {
+      scope       = "default"
+      type        = "group"
+      group       = "NV TechOps Role"
       permissions = "rwx"
     }
   ]
@@ -30,6 +35,12 @@ inputs = {
           scope       = "default"
           type        = "group"
           group       = "NV TechOps Consultants Member"
+          permissions = "rwx"
+        },
+        {
+          scope       = "default"
+          type        = "group"
+          group       = "NV TechOps Role"
           permissions = "rwx"
         }
       ]
@@ -55,12 +66,12 @@ inputs = {
   iam_assignments = {
     "Storage Account Contributor" = {
       groups = [
-        "NV TechOps Consultants Member",
+        "NV TechOps Consultants Member","NV TechOps Role"
       ],
     },
     "Storage Blob Data Contributor" = {
       groups = [
-        "NV TechOps Consultants Member",
+        "NV TechOps Consultants Member","NV TechOps Role"
       ],
     },
   }
