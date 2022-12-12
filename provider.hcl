@@ -1,5 +1,7 @@
 locals {
   log_analytics_workspace_id         = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourcegroups/loganalytics-rg/providers/microsoft.operationalinsights/workspaces/log-analytics-ops-ws"
+  log_analytics_subscription_id      = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+  log_analytics_resource_group_name  = "loganalytics-rg"  
   windows_data_collection_rule_names = [
     "win_eventlogs_sentinel-datacollectionrule",
     "windows_event_log-dcr"
