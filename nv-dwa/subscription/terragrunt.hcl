@@ -30,5 +30,10 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
+    "Monitoring Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
+      ],
+    },    
   }
 }

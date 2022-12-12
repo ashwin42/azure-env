@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  subscription_name = "NV-Hub"
+  subscription_name = "NV-Production"
   iam_assignments = {
     "Billing Reader" = {
       groups = [
@@ -19,16 +19,11 @@ inputs = {
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
-        "aviatrix_controller_app_dev"
       ],
     },
     "Reader" = {
       groups = [
         "Azure Subscriptions Reader Access",
-        "AWS Admins",
-      ],
-      users = [
-        "christian@northvolt.com",
       ],
     },
     "Support Request Contributor" = {
@@ -36,16 +31,11 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
-    "Log Analytics Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
-      ],
-    },
     "Monitoring Reader" = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
-    },    
+    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",

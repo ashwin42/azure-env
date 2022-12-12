@@ -30,5 +30,16 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
-  }
+    "User Access Administrator" = {
+      service_principals = [
+        "MS-PIM",
+      ],
+    },
+    "Monitoring Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
+      ],
+    },
+  },  
 }
+
