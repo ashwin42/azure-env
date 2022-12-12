@@ -50,8 +50,8 @@ inputs = {
   lifecycles = [
     {
       base_blob = {
-        tier_to_cool_after_days    = 30
-        tier_to_archive_after_days = 365
+        tier_to_cool_after_days    = 7
+        tier_to_archive_after_days = 180
       }
     }
   ]
