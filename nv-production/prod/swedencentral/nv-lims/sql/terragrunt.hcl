@@ -45,6 +45,60 @@ inputs = {
   mssql_user_client_secret = dependency.sql_app.outputs.service_principal_password
   mssql_local_users = [
     {
+      username    = "nv_rw_user]"
+      roles       = ["db_datawriter"]
+      database    = "Labware-Prod"
+      secret_name = "${local.secret_name}-Labware-Prod-nvrwuser"
+    },
+    {
+      username    = "nv_rw_user]"
+      roles       = ["db_datawriter"]
+      database    = "Labware-Test"
+      secret_name = "${local.secret_name}-Labware-Test-nvrwuser"
+    },
+    {
+      username    = "nv_rw_user]"
+      roles       = ["db_datawriter"]
+      database    = "Labware-Dev"
+      secret_name = "${local.secret_name}-Labware-Dev-nvrwuser"
+    },
+    {
+      username    = "nv_ro_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Prod"
+      secret_name = "${local.secret_name}-Labware-Prod-nvrouser"
+    },
+    {
+      username    = "nv_ro_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Test"
+      secret_name = "${local.secret_name}-Labware-Test-nvrouser"
+    },
+    {
+      username    = "nv_ro_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Dev"
+      secret_name = "${local.secret_name}-Labware-Dev-nvrouser"
+    },
+    {
+      username    = "nv_report_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Prod"
+      secret_name = "${local.secret_name}-Labware-Prod-nvreportuser"
+    },
+    {
+      username    = "nv_report_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Test"
+      secret_name = "${local.secret_name}-Labware-Test-nvreportuser"
+    },
+    {
+      username    = "nv_report_user"
+      roles       = ["db_datareader"]
+      database    = "Labware-Dev"
+      secret_name = "${local.secret_name}-Labware-Dev-nvreportuser"
+    },
+    {
       username    = "nv_db_owner"
       roles       = ["db_owner"]
       database    = "Labware-Prod"
