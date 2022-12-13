@@ -13,6 +13,7 @@ inputs = {
     "Billing Reader" = {
       groups = [
         "Azure Subscriptions Billing Reader Access",
+        "NV BI Subscription Contributor",
       ],
     },
     "Owner" = {
