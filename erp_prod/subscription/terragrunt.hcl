@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.6.10"
-  #source = "../../../tf-mod-azure//subscription"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.20"
+  #source = "${dirname(get_repo_root())}/subscription"
 }
 
 include "root" {
@@ -30,10 +30,16 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
+    "User Access Administrator" = {
+      service_principals = [
+        "MS-PIM",
+      ],
+    },
     "Monitoring Reader" = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
-    },    
-  }
+    },
+  },  
 }
+
