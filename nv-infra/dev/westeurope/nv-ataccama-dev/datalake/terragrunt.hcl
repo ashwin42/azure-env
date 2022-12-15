@@ -10,7 +10,7 @@ include {
 inputs = {
   name                          = "dlmasterdataataccamadev"
   is_hns_enabled                = true
-  data_lake_owner_group         = "NV TechOps Consultants Member"
+  data_lake_owner_group         = "NV TechOps Role"
 
   data_lake_ace = [
     {
@@ -60,19 +60,26 @@ inputs = {
       name           = "default_rule"
       bypass         = ["AzureServices"]
       default_action = "Deny"
-      ip_rules       = ["16.170.65.157","13.49.218.90"]
+      ip_rules       = [
+        "16.170.65.157",
+        "13.49.218.90",
+        "213.50.54.196"
+        ]
   }
 
   iam_assignments = {
     "Storage Account Contributor" = {
       groups = [
-        "NV TechOps Consultants Member","NV TechOps Role"
+        "NV TechOps Consultants Member",
+        "NV TechOps Role"
       ],
     },
     "Storage Blob Data Contributor" = {
       groups = [
-        "NV TechOps Consultants Member","NV TechOps Role"
+        "NV TechOps Consultants Member",
+        "NV TechOps Role"
       ],
     },
   }
 }
+
