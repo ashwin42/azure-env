@@ -14,7 +14,7 @@ inputs = {
   subnets = [
     {
       name             = "nv-ataccama-subnet"
-      address_prefixes = ["10.46.1.128/28"]
+      address_prefixes = ["10.46.2.16/28"]
       service_endpoints = [
         "Microsoft.Sql",
         "Microsoft.Storage",
@@ -36,7 +36,7 @@ inputs = {
           source_address_prefix = "10.240.0.0/21"
           protocol              = "Tcp"
           access                = "Allow"
-          description           = "Allow connections from Labs MFA VPN clients"
+          description           = "Allow connections from Ett MFA VPN clients"
         },
       ]
     },
