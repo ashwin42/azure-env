@@ -17,13 +17,14 @@ inputs = {
   data_lake_owner_group          = "NV TechOps Role"
 
   private_endpoints = {
-    "nv-ataccama-dev-pe" = {
+    nv-ataccama-dev-pe = {
       subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
       private_service_connection = {
         name              = "nv-ataccama-dev-pec"
         subresource_names = ["dfs"]
       }
       private_dns_zone_group = {
+        name                         = "nv-ataccama-dev-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.blob.core.windows.net"
         dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
@@ -95,7 +96,8 @@ inputs = {
       virtual_network_subnet_ids = [dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id,]
       ip_rules       = [
         "16.170.65.157",
-        "13.49.218.90"
+        "13.49.218.90",
+        "213.50.54.196",
         ]
   }
 
