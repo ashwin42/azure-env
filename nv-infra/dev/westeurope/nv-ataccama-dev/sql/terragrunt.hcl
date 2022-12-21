@@ -20,6 +20,9 @@ inputs = {
   create_administrator_password = true
   public_network_access_enabled = true
   lock_resources                = false
+  identity = {
+    type         = "SystemAssigned"
+  }
   mssql_azuread_users = [
     {
       username = "Ataccama - Datalake Admins Dev"
