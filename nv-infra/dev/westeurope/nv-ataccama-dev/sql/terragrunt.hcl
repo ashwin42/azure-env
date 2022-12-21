@@ -3,6 +3,10 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
+dependency "subnet" {
+  config_path = "../../../../prod/westeurope/nv-ataccama/subnet"
+}
+
 # Include all settings from the root terragrunt.hcl file
 include {
   path = find_in_parent_folders()
@@ -15,7 +19,19 @@ inputs = {
   minimum_tls_version           = "1.2"
   create_administrator_password = true
   public_network_access_enabled = true
-  lock_resources                = false 
+  lock_resources                = false
+  mssql_azuread_users = [
+    {
+      username = "Ataccama - Datalake Admins Dev"
+      roles    = ["db_owner"]
+      database = "ivaluadev"
+    },
+    {
+      username = "Ataccama - Datalake Admins Dev"
+      roles    = ["db_owner"]
+      database = "masterdatatransfdev"
+    }
+  ] 
   azuread_administrator = {
     group = "NV TechOps Consultants Member"
   }
@@ -30,6 +46,27 @@ inputs = {
     {
       name                        = "ivaluadev"
       max_size_gb                 = "50"
+    }
+  ]
+  private_endpoints = {
+    nv-ataccama-dev-sql-pe = {
+      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+      private_service_connection = {
+        name              = "nv-ataccama-dev-sql-pec"
+        subresource_names = ["sqlServer"]
+      }
+      create_dns_record            = true
+      dns_zone_name                = "privatelink.database.windows.net"
+      dns_zone_resource_group_name = "core_network"
+      dns_record_name              = "nv-ataccama-dev-sql"
+      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+      dns_record_ttl               = 300
+    }
+  }
+  custom_rules = [
+    {
+      name      = "AllowLocalSubnet"
+      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
     }
   ]  
 }
