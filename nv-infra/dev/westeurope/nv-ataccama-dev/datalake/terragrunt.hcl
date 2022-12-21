@@ -31,6 +31,20 @@ inputs = {
 
       }
     }
+    nv-ataccama-dev-blob-pe = {
+      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+      private_service_connection = {
+        name              = "nv-ataccama-dev-blob-pec"
+        subresource_names = ["blob"]
+      }
+      private_dns_zone_group = {
+        name                         = "nv-ataccama-dev-blob-pec"
+        dns_zone_resource_group_name = "core_network"
+        dns_zone_name                = "privatelink.blob.core.windows.net"
+        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+
+      }
+    }
   }
 
   data_lake_ace = [
