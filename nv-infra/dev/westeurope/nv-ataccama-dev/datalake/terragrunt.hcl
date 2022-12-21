@@ -26,7 +26,7 @@ inputs = {
       private_dns_zone_group = {
         name                         = "nv-ataccama-dev-pec"
         dns_zone_resource_group_name = "core_network"
-        dns_zone_name                = "privatelink.blob.core.windows.net"
+        dns_zone_name                = "privatelink.dfs.core.windows.net"
         dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
 
       }
@@ -97,7 +97,6 @@ inputs = {
       ip_rules       = [
         "16.170.65.157",
         "13.49.218.90",
-        "213.50.54.196",
         ]
   }
 
