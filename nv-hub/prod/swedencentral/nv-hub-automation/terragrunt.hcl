@@ -8,8 +8,8 @@ include {
 }
 
 inputs = {
-    name = "nv-hub-automation"
-    location = "swedencentral"
-    resource_group_name = "core_utils"
+  name                = "nv-hub-automation"
+  location            = "westeurope"
+  resource_group_name = "core_utils"
 }
 
