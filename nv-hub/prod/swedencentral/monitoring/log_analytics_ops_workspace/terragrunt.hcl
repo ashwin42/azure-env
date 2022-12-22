@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.25"
   #source = "../../../../../../tf-mod-azure/log_analytics_workspace/"
 }
 
@@ -14,5 +14,12 @@ inputs = {
   internet_ingestion_enabled = true
   internet_query_enabled     = true
   lock_resource              = true
+
+  linked_automation_account = {
+    nv-hub-automation = {
+      automation_account_name = "nv-hub-automation"
+      automation_account_rg   = "core_utils"
+    }
+  }
 }
 
