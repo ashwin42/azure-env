@@ -23,6 +23,22 @@ inputs = {
   identity = {
     type         = "SystemAssigned"
   }
+  
+  mssql_local_users = [
+    {
+      username      = "ataccama_sql_ivalua_user"
+      roles         = ["db_owner"]
+      database      = "ivaluadev"
+      create_secret = true
+    },
+    {
+      username      = "ataccama_sql_masterdata_user"
+      roles         = ["db_owner"]
+      database      = "masterdatatransfdev"
+      create_secret = true
+    }
+  ]
+
   mssql_azuread_users = [
     {
       username = "Ataccama - Datalake Admins Dev"
