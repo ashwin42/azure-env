@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.23"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.25"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -12,9 +12,9 @@ include {
 }
 
 inputs = {
-  name                           = "dlmasterdataataccamadev"
-  is_hns_enabled                 = true
-  data_lake_owner_group          = "NV TechOps Role"
+  name                  = "dlmasterdataataccamadev"
+  is_hns_enabled        = true
+  data_lake_owner_group = "NV TechOps Role"
 
   private_endpoints = {
     nv-ataccama-dev-pe = {
@@ -104,14 +104,14 @@ inputs = {
   ]
 
   network_rules = {
-      name           = "default_rule"
-      bypass         = ["AzureServices"]
-      default_action = "Deny"
-      virtual_network_subnet_ids = [dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id,]
-      ip_rules       = [
-        "16.170.65.157",
-        "13.49.218.90",
-        ]
+    name                       = "default_rule"
+    bypass                     = ["AzureServices"]
+    default_action             = "Deny"
+    virtual_network_subnet_ids = [dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id, ]
+    ip_rules = [
+      "16.170.65.157",
+      "13.49.218.90",
+    ]
   }
 
   iam_assignments = {
