@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.25"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.26"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/log_analytics_workspace/"
 }
 
