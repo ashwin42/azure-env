@@ -8,11 +8,19 @@ include {
 }
 
 inputs = {
-  name                       = "log-analytics-ops-ws"
+  name                       = "log-analytics-automation-ws"
+  resource_group_name        = "log-analytics-automation"
   sku                        = "PerGB2018"
   retention_in_days          = "180"
   internet_ingestion_enabled = true
   internet_query_enabled     = true
   lock_resource              = true
+
+  linked_automation_account = {
+    nv-hub-automation = {
+      automation_account_name = "nv-hub-automation"
+      automation_account_rg   = "core_utils"
+    }
+  }
 }
 
