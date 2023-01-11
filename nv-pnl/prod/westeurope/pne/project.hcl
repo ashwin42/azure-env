@@ -5,7 +5,7 @@ locals {
   setup_prefix                      = "nv-pnl"
   resource_group_name               = "nv-pnl-vms-rg"
   location                          = "westeurope"
-  loganalytics_resource_group_name  = "loganalytics-rg"  
+  loganalytics_resource_group_name  = "loganalytics-rg"   ## remove this line once pne vms are moved to new wvd module
   data_collection_rule_names        = [
     "wvd_login_auditing-dcr"
   ]
