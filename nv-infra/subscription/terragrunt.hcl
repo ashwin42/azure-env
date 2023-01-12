@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.23"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/subscription"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.23"
+  source = "${dirname(get_repo_root())}/tf-mod-azure/subscription"
 }
 
 include "root" {
@@ -10,6 +10,8 @@ include "root" {
 
 inputs = {
   subscription_name = "NV_Gen_Infra"
+  management_group = "Tenant Root Group"
+
   iam_assignments = {
     "Billing Reader" = {
       groups = [
