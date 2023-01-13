@@ -1,6 +1,6 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.26"
-  source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.26"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
 }
 
 include "root" {
@@ -9,7 +9,61 @@ include "root" {
 }
 
 inputs = {
-  name                       = "706c5db9-5278-483b-b622-70084f823a12"
-  display_name               = "Tenant Root Group"
+  name         = "706c5db9-5278-483b-b622-70084f823a12"
+  display_name = "Tenant Root Group"
+
+  iam_assignments = {
+    "Billing Reader" = {
+      groups = [
+        "Azure Subscriptions Billing Reader Access",
+        "NV TechOps Role",
+      ],
+    },
+    "Contributor" = {
+      apps = [
+        "DefenderOnboarding",
+      ],
+      groups = [
+        "NV TechOps Role",
+      ],
+    },
+    "Log Analytics Contributor" = {
+      user_assigned_identities = [
+        {
+          name                = "log_analytics_policy",
+          resource_group_name = "techops-rg"
+        }
+      ],
+    },
+    "Owner" = {
+      users = [
+        "johannes.hedberg@northvolt.com",
+      ],
+      groups = [
+        "NV TechOps Lead Role",
+      ],
+    },
+    "Reader" = {
+      groups = [
+        "NV TechOps Read Member",
+        "NV TechOps Role",
+      ],
+    },
+    "Resource Policy Contributor" = {
+      groups = [
+        "NV TechOps Role",
+      ],
+    },
+    "Security Reader" = {
+      apps = [
+        "DefenderOnboarding",
+      ],
+    },
+    "Support Request Contributor" = {
+      groups = [
+        "Azure Subscriptions Support Request Contributor",
+      ],
+    }
+  }
 }
 
