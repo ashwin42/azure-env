@@ -1,4 +1,4 @@
-# Include all settings from some parent .hcl files
+/* commented out until we know if operator client on wvd is needed
 include "root" {
   path   = find_in_parent_folders()
   expose = true
@@ -33,3 +33,4 @@ inputs = {
     },
   ]
 }
+*/

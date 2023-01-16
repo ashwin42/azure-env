@@ -6,10 +6,6 @@ dependency "vnet" {
   config_path = "../subnet"
 }
 
-dependency "wvd" {
-  config_path = "../wvd/pqms-ett-wvd-01/"
-}
-
 locals {
   name = basename(get_original_terragrunt_dir())
 }
@@ -27,9 +23,6 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   managed_disk_size                      = 127
-  wvd_register                           = true
-  token                                  = values(dependency.wvd.outputs.tokens)[0]
-  host_pool_name                         = keys(dependency.wvd.outputs.host_pools)[0]
   storage_image_reference = {
     sku = "2019-Datacenter"
   }

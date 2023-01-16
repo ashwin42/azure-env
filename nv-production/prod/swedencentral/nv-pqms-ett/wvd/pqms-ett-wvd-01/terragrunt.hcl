@@ -1,3 +1,4 @@
+/* commented out until we know if operator client on wvd is needed
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.9"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
@@ -39,3 +40,4 @@ inputs = {
     )
   ]
 }
+*/
