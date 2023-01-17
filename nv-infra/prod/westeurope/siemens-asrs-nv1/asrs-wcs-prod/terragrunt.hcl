@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.16"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.26"
 }
 
 include {
@@ -29,16 +29,26 @@ inputs = {
     sku = "2016-Datacenter-smalldisk",
   }
   os_profile_windows_config = {
+    enable_automatic_upgrades = true
+    provision_vm_agent        = true
+    timezone                  = "W. Europe Standard Time"
   }
+  ipconfig_name = "asrs-wcs-prod-nic1-ipconfig"
   network_interfaces = [
     {
-      name      = "asrs-wcs-prod-nic1"
-      ipaddress = "10.46.0.6"
-      subnet    = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
-      public_ip = false
+      primary             = true
+      security_group_name = "asrs-wcs-prod-vm-nsg"
+      name                = "asrs-wcs-prod-nic1"
+      ipaddress           = "10.46.0.6"
+      public_ip           = false
+      ip_configuration = [{
+        subnet_id                     = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
+        private_ip_address_allocation = "Static"
+      }]
     }
   ]
-  dns_servers = null
+  boot_diagnostics_enabled = true
+  dns_servers              = null
   data_disks = [
     {
       name                 = "asrs-wcs-prod-data1"
@@ -75,7 +85,7 @@ inputs = {
       priority               = "210"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.32-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711,5005"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
@@ -85,7 +95,7 @@ inputs = {
       priority               = "211"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.48-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711,5006"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
@@ -95,7 +105,7 @@ inputs = {
       priority               = "212"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.80-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711,5007"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
@@ -105,7 +115,7 @@ inputs = {
       priority               = "213"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.96-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711,5008"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
@@ -115,7 +125,7 @@ inputs = {
       priority               = "214"
       direction              = "Inbound"
       source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.112-28"].address_prefix
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "4711,5009"
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
@@ -125,7 +135,7 @@ inputs = {
       priority               = "215"
       direction              = "Inbound"
       source_address_prefix  = "10.44.6.0/25"
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "5005-5009"
       access                 = "Allow"
       description            = "Allow connections from API Mgmt service"
@@ -151,20 +161,20 @@ inputs = {
       priority               = "222"
       direction              = "Inbound"
       source_address_prefix  = "10.21.0.0/16"
-      protocol               = "TCP"
+      protocol               = "Tcp"
       destination_port_range = "5005-5009"
       access                 = "Allow"
       description            = "Allow connections from API Mgmt service"
     },
     {
-      name                   = "AWS_Automation_Ireland_Prod_ICMP"
+      name                   = "ICMP"
       priority               = "223"
       direction              = "Inbound"
-      source_address_prefix  = "10.21.0.0/16"
-      protocol               = "ICMP"
+      source_address_prefix  = "10.0.0.0/8"
+      protocol               = "Icmp"
       destination_port_range = "*"
       access                 = "Allow"
-      description            = "Allow connections from API Mgmt service"
+      description            = "Allow ICMP"
     },
     {
       name                   = "Ett_MFA_VPN"
@@ -175,6 +185,16 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Labs MFA VPN clients"
+    },
+    {
+      name                   = "AWS_Ett_DS1_Stockholm_Prod"
+      priority               = "230"
+      direction              = "Inbound"
+      source_address_prefix  = "10.22.76.0/22"
+      protocol               = "Tcp"
+      destination_port_range = "5005-5009"
+      access                 = "Allow"
+      description            = "Allow connections from API Mgmt service"
     },
   ]
 }
