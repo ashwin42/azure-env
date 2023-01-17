@@ -1,3 +1,12 @@
+terraform {
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.26"
+  #source = "../../../../../../tf-mod-azure//vm/"
+}
+
+include {
+  path = find_in_parent_folders()
+}
+
 dependency "rv" {
   config_path = "../recovery_vault"
 }
@@ -7,7 +16,7 @@ dependency "vnet" {
 }
 
 locals {
-  name = basename(get_original_terragrunt_dir())
+  name   = basename(get_original_terragrunt_dir())
 }
 
 inputs = {
@@ -17,6 +26,7 @@ inputs = {
   vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_B4ms"
+  create_avset                           = true
   backup_vm                              = true
   create_localadmin_password             = true
   storage_account_name                   = "nvprodbootdiagswc"
@@ -39,6 +49,19 @@ inputs = {
       storage_account_type = "StandardSSD_LRS"
       caching              = "None"
     }
+  ]
+  network_interfaces = [
+    {
+      name = "${local.name}-nic"
+      ip_configuration = [
+        {
+          private_ip_address            = "10.64.1.149"
+          subnet_id                     = dependency.vnet.outputs.subnet["pqms-subnet"].id
+          public_ip                     = false
+          private_ip_address_allocation = "Static"
+        },
+      ]
+    },
   ]  
   custom_rules = [
     {

@@ -15,7 +15,8 @@ include "root" {
 inputs = {
   create_administrator_password = true
   allow_azure_ip_access         = false
-  public_network_access_enabled = false
+  public_network_access_enabled = true
+  connection_policy             = "Redirect"
   private_endpoints = {
     "pqms-ett-mssql-pe" = {
       name      = "pqms-ett-mssql-pe"
@@ -36,7 +37,7 @@ inputs = {
     {
       name      = "AllowLocalSubnet"
       subnet_id = dependency.vnet.outputs.subnet["pqms-subnet"].id
-    }
+    },
   ]
   azuread_administrator = {
     group = "NV TechOps Role"
