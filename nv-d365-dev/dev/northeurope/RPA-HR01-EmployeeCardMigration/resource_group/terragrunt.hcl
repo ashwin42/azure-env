@@ -23,5 +23,10 @@ inputs = {
         "vladimir.kosilko@northvolt.com",
       ],
     },
+    "Reader" = {
+      "users" = [
+        "c.sonia.joshi@northvolt.com",
+      ],
+    },
   }
 }
