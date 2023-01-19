@@ -32,7 +32,8 @@ inputs = {
   create_administrator_password = true
   databases = [
     {
-      name = "Labware-Prod"
+      name     = "Labware-Prod"
+      sku_name = "GP_Gen5_4"
     },
     {
       name = "Labware-Test"
