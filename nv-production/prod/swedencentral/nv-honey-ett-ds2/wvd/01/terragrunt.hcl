@@ -34,6 +34,12 @@ inputs = {
         "NV TechOps Role",
         "Ett-Supplier-Honeywell-VPN",
         "NV Automation Member",
+        "NV F1.C21.CT.COT01",
+        "NV F1.C21.CT.COT02",
+        "NV F1.C21.CT.COT03",
+        "NV F1.A21.CT.COT01",
+        "NV F1.A21.CT.COT02",
+        "NV F1.A21.CT.COT03",
       ]
     },
     )
