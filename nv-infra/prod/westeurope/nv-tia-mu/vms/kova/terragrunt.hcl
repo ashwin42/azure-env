@@ -13,7 +13,7 @@ dependency "vnet" {
 
 locals {
   common = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
-  ip_address = "10.46.1.74"
+  ip_address = "10.46.1.75"
 }
 
 inputs = merge(
