@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.15"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -8,11 +8,7 @@ include {
 }
 
 dependency "vnet" {
-  config_path = "../../nv-labx/global"
-}
-
-dependency "wvd" {
-  config_path = "../wvd-ett"
+  config_path = "../subnet"
 }
 
 dependency "rv" {
@@ -25,35 +21,34 @@ locals {
 }
 
 inputs = {
-  token                                  = dependency.wvd.outputs.token
-  host_pool_name                         = dependency.wvd.outputs.host_pool.name
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_DS4_v2"
+  vm_size                                = "Standard_B2ms"
   backup_vm                              = true
-  key_vault_name                         = "nv-infra-core"
-  key_vault_rg                           = "nv-infra-core"
+  key_vault_name                         = "nv-production-core"
+  key_vault_rg                           = "nv-production-core"
   localadmin_name                        = local.localadmin_name
   localadmin_key_name                    = "${local.name}-${local.localadmin_name}"
-  create_localadmin_password             = true
-  storage_account_name                   = "nvinfrabootdiag"
+  storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
-  ad_join                                = true
-  wvd_register                           = true
+  ad_join                                = false
+  managed_disk_name                      = "lims-wd-osd"
+  identity = {
+    type         = "SystemAssigned"
+    identity_ids = null
+  }
   storage_image_reference = {
-    offer     = "Windows-10",
-    publisher = "MicrosoftWindowsDesktop",
-    sku       = "21h1-evd-g2",
+    offer     = "WindowsServer",
+    publisher = "MicrosoftWindowsServer",
+    sku       = "2019-Datacenter-smalldisk",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = local.localadmin_name
@@ -64,8 +59,8 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          private_ip_address            = "10.44.2.20"
-          subnet_id                     = dependency.vnet.outputs.subnet["labx_subnet"].id
+          private_ip_address            = "10.64.1.48"
+          subnet_id                     = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
@@ -93,6 +88,14 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
     },
+    {
+      name                  = "LocalSubnet"
+      priority              = "205"
+      direction             = "Inbound"
+      source_address_prefix = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].address_prefixes.0
+      access                = "Allow"
+      description           = "Allow connections from local subnet"
+    }
   ]
 }
 
