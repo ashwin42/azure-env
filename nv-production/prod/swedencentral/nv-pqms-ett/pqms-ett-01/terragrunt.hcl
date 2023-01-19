@@ -78,6 +78,14 @@ inputs = {
       source_address_prefix = "10.240.0.0/21"
       description           = "Allow connections from Ett MFA VPN clients"
     },
+    {
+      name                  = "Ett_FF_UDP_Telemetry"
+      priority              = "300"
+      direction             = "Inbound"
+      protocol              = "Udp"
+      source_address_prefix = "10.194.12.0/22"
+      description           = "Allow connections from Ett MFA VPN clients"
+    },
   ]
 }
 
