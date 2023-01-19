@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.27"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.27"
+  source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
 }
 
 include "root" {
@@ -46,6 +46,7 @@ inputs = {
       groups = [
         "NV TechOps Read Member",
         "NV TechOps Role",
+        "NV Aviatrix Admin",
       ],
     },
     "Resource Policy Contributor" = {
@@ -62,7 +63,17 @@ inputs = {
       groups = [
         "Azure Subscriptions Support Request Contributor",
       ],
-    }
+    },
+    "Network Contributor" = {
+      groups = [
+        "NV Aviatrix Admin",
+      ],
+    },
+    "Virtual Machine Contributor" = {
+      groups = [
+        "NV Aviatrix Admin",
+      ],
+    },
   }
 }
 
