@@ -45,6 +45,11 @@ inputs = {
         "ermal@northvolt.com",
       ],
     },
+    "Cognitive Services Contributor" = {
+      "users" = [
+        "daniel.hjelm@northvolt.com",
+      ],
+    },
     "Monitoring Metrics Publisher" = {
       "service_principals" = [
         "IT-Ticket-Label-Prediction",
