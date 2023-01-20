@@ -46,6 +46,7 @@ inputs = {
       groups = [
         "NV TechOps Read Member",
         "NV TechOps Role",
+        "NV Aviatrix Admin",
       ],
     },
     "Resource Policy Contributor" = {
@@ -62,7 +63,17 @@ inputs = {
       groups = [
         "Azure Subscriptions Support Request Contributor",
       ],
-    }
+    },
+    "Network Contributor" = {
+      groups = [
+        "NV Aviatrix Admin",
+      ],
+    },
+    "Virtual Machine Contributor" = {
+      groups = [
+        "NV Aviatrix Admin",
+      ],
+    },
   }
 }
 
