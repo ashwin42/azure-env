@@ -196,6 +196,26 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from API Mgmt service"
     },
+    {
+      name                   = "LocalSubnetWebCathode2"
+      priority               = "240"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.global.outputs.subnet["cathode2-web-app-subnet"].address_prefix
+      protocol               = "Tcp"
+      destination_port_range = "4711,5005,5011"
+      access                 = "Allow"
+      description            = "Allow connections from local web delegated subnet"
+    },
+    {
+      name                   = "LocalSubnetWebAnode2"
+      priority               = "241"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.global.outputs.subnet["anode2-web-app-subnet"].address_prefix
+      protocol               = "Tcp"
+      destination_port_range = "4711,5006,5010"
+      access                 = "Allow"
+      description            = "Allow connections from local web delegated subnet"
+    },
   ]
 }
 
