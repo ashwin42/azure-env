@@ -10,12 +10,7 @@ inputs = {
   iam_assignments = {
     "Contributor" = {
       "groups" = [
-        "CostCenter 109035061 Tools & Products",
-      ],
-    },
-    "Owner" = {
-      "users" = [
-        "vladimir.kosilko@northvolt.com",
+        "NV Tools & Products Member",
       ],
     },
   }
