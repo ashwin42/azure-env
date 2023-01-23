@@ -68,11 +68,8 @@ JSON
     }
   }
 
-  iam_assignments = {
-    "Synapse Contributor" = {
-      groups = [
-        "VPN-Ataccama-System-AP",
-      ],
-    },
-  }
+  role_assignments = [{
+    role_name = "Synapse Contributor",
+    group     = "Ataccama - Datalake Admins Dev"
+  }]
 }

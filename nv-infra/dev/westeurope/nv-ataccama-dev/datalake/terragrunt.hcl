@@ -119,14 +119,14 @@ inputs = {
       groups = [
         "NV TechOps Consultants Member",
         "NV TechOps Role",
-        "VPN-Ataccama-System-AP"
+        "Ataccama - Datalake Admins Dev",
       ],
     },
     "Storage Blob Data Contributor" = {
       groups = [
         "NV TechOps Consultants Member",
         "NV TechOps Role",
-        "VPN-Ataccama-System-AP"
+        "Ataccama - Datalake Admins Dev",
       ],
     },
   }
