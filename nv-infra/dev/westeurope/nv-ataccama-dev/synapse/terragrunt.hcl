@@ -69,9 +69,9 @@ JSON
   }
 
   iam_assignments = {
-    "Log Analytics Contributor" = {
+    "Synapse Contributor" = {
       groups = [
-        "Ataccama - Datalake Admins Dev",
+        "VPN-Ataccama-System-AP",
       ],
     },
   }
