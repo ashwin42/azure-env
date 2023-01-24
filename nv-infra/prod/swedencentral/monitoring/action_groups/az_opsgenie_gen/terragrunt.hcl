@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  resource_group_name     = "techops-rg"
+  resource_group_name     = "monitoring-ops"
   action_group_name       = "techops_azure_opsgenie"
   action_group_short_name = "techops_og"
   action_group_webhook_receivers = [
