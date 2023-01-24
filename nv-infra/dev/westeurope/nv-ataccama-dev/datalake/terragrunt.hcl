@@ -118,14 +118,15 @@ inputs = {
     "Storage Account Contributor" = {
       groups = [
         "NV TechOps Consultants Member",
-        "NV TechOps Role"
+        "NV TechOps Role",
+        "Ataccama - Datalake Admins Dev",
       ],
     },
     "Storage Blob Data Contributor" = {
       groups = [
         "NV TechOps Consultants Member",
         "NV TechOps Role",
-        "Ataccama - Datalake Admins Dev"
+        "Ataccama - Datalake Admins Dev",
       ],
     },
   }
