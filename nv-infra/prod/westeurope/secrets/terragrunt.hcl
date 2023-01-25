@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//keyvault?ref=v0.6.10"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//keyvault?ref=v0.7.26"
 }
 
 include "root" {
@@ -25,5 +25,10 @@ inputs = {
         "NV TechOps Role"
       ],
     },
+    "Key Vault Administrator" = {
+      service_principals = [
+        "Backup Management Service",
+      ],
+    }
   }
 }
