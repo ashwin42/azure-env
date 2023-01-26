@@ -44,12 +44,11 @@ inputs = merge(
         description            = "Allow connections from Labs MFA VPN clients"
       },
       {
-        name                  = "NV-Cyclers_Old"
-        priority              = "220"
+        name                  = "Ett_MFA_VPN"
+        priority              = "201"
         direction             = "Inbound"
-        source_address_prefix = "10.100.250.0/23"
-        access                = "Allow"
-        description           = "Allow connections from NV-Cyclers old subnet"
+        source_address_prefix = "10.240.0.0/21"
+        description           = "Allow connections from Ett MFA VPN clients"
       },
     ]
   }
