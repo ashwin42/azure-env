@@ -1,0 +1,1172 @@
+{
+  "version": 4,
+  "terraform_version": "1.1.4",
+  "serial": 8,
+  "lineage": "b3e34f26-e660-a63a-9845-aee5ee606021",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "azurerm_key_vault",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "access_policy": [
+              {
+                "application_id": "",
+                "certificate_permissions": [
+                  "Get",
+                  "List",
+                  "Update",
+                  "Create",
+                  "Import",
+                  "Delete",
+                  "Recover",
+                  "Backup",
+                  "Restore",
+                  "ManageContacts",
+                  "ManageIssuers",
+                  "GetIssuers",
+                  "ListIssuers",
+                  "SetIssuers",
+                  "DeleteIssuers"
+                ],
+                "key_permissions": [
+                  "Get",
+                  "List",
+                  "Update",
+                  "Create",
+                  "Import",
+                  "Delete",
+                  "Recover",
+                  "Backup",
+                  "Restore"
+                ],
+                "object_id": "7d2c7582-8c8a-4bcb-a5c6-3d265b9333bd",
+                "secret_permissions": [
+                  "Get",
+                  "List",
+                  "Set",
+                  "Delete",
+                  "Recover",
+                  "Backup",
+                  "Restore"
+                ],
+                "storage_permissions": [],
+                "tenant_id": "706c5db9-5278-483b-b622-70084f823a12"
+              },
+              {
+                "application_id": "",
+                "certificate_permissions": [
+                  "Get",
+                  "List",
+                  "Update",
+                  "Create",
+                  "Import",
+                  "Delete",
+                  "Recover",
+                  "ManageContacts",
+                  "ManageIssuers",
+                  "GetIssuers",
+                  "ListIssuers",
+                  "SetIssuers",
+                  "DeleteIssuers"
+                ],
+                "key_permissions": [
+                  "Get",
+                  "List",
+                  "Update",
+                  "Create",
+                  "Import",
+                  "Delete",
+                  "Recover",
+                  "Restore",
+                  "Backup"
+                ],
+                "object_id": "e9006970-432c-40ad-94c5-3c910496dfce",
+                "secret_permissions": [
+                  "Get",
+                  "List",
+                  "Set",
+                  "Delete",
+                  "Backup",
+                  "Recover",
+                  "Restore"
+                ],
+                "storage_permissions": [],
+                "tenant_id": "706c5db9-5278-483b-b622-70084f823a12"
+              },
+              {
+                "application_id": "",
+                "certificate_permissions": [
+                  "Get",
+                  "List",
+                  "Delete",
+                  "Create",
+                  "Import",
+                  "Update",
+                  "ManageContacts",
+                  "GetIssuers",
+                  "ListIssuers",
+                  "SetIssuers",
+                  "DeleteIssuers",
+                  "ManageIssuers",
+                  "Recover"
+                ],
+                "key_permissions": [
+                  "Get",
+                  "Create",
+                  "Delete",
+                  "List",
+                  "Update",
+                  "Import",
+                  "Backup",
+                  "Restore",
+                  "Recover"
+                ],
+                "object_id": "50e4c26c-2bf0-4244-af96-c397265c7fbe",
+                "secret_permissions": [
+                  "Get",
+                  "List",
+                  "Set",
+                  "Delete",
+                  "Backup",
+                  "Restore",
+                  "Recover"
+                ],
+                "storage_permissions": [
+                  "Get",
+                  "List",
+                  "Delete",
+                  "Set",
+                  "Update",
+                  "RegenerateKey",
+                  "SetSAS",
+                  "ListSAS",
+                  "GetSAS",
+                  "DeleteSAS"
+                ],
+                "tenant_id": "706c5db9-5278-483b-b622-70084f823a12"
+              }
+            ],
+            "enable_rbac_authorization": true,
+            "enabled_for_deployment": false,
+            "enabled_for_disk_encryption": false,
+            "enabled_for_template_deployment": false,
+            "id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/nv-hub-core/providers/Microsoft.KeyVault/vaults/nv-hub-core",
+            "location": "westeurope",
+            "name": "nv-hub-core",
+            "network_acls": [],
+            "purge_protection_enabled": false,
+            "resource_group_name": "nv-hub-core",
+            "sku_name": "standard",
+            "tags": {},
+            "tenant_id": "706c5db9-5278-483b-b622-70084f823a12",
+            "timeouts": null,
+            "vault_uri": "https://nv-hub-core.vault.azure.net/"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "azurerm_key_vault_secret",
+      "name": "avx-controller",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content_type": "",
+            "id": "https://nv-hub-core.vault.azure.net/secrets/avx-controller/237049996ae648029a4309025acd5428",
+            "key_vault_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/nv-hub-core/providers/Microsoft.KeyVault/vaults/nv-hub-core",
+            "name": "avx-controller",
+            "resource_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/nv-hub-core/providers/Microsoft.KeyVault/vaults/nv-hub-core/secrets/avx-controller/versions/237049996ae648029a4309025acd5428",
+            "resource_versionless_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/nv-hub-core/providers/Microsoft.KeyVault/vaults/nv-hub-core/secrets/avx-controller",
+            "tags": {},
+            "timeouts": null,
+            "value": "M4k3oilhistory@",
+            "version": "237049996ae648029a4309025acd5428",
+            "versionless_id": "https://nv-hub-core.vault.azure.net/secrets/avx-controller"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "data",
+      "type": "aviatrix_firewall_instance_images",
+      "name": "fw_images",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "firewall_images": [
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1",
+                "firewall_image_version": [
+                  "9.1.0",
+                  "9.0.9",
+                  "9.0.6",
+                  "9.0.4",
+                  "9.0.1"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 2",
+                "firewall_image_version": [
+                  "9.1.0",
+                  "9.0.9",
+                  "9.0.6",
+                  "9.0.4",
+                  "9.0.1"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Next-Generation Firewall (BYOL)",
+                "firewall_image_version": [
+                  "9.1.0",
+                  "9.0.9",
+                  "9.0.6",
+                  "9.0.4",
+                  "9.0.1"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Flex Next-Generation Firewall Bundle 1",
+                "firewall_image_version": [
+                  "10.2.2",
+                  "10.2.1",
+                  "10.2.0",
+                  "10.1.6",
+                  "10.1.5"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Flex Next-Generation Firewall Bundle 2",
+                "firewall_image_version": [
+                  "10.2.2",
+                  "10.2.1",
+                  "10.2.0",
+                  "10.1.6",
+                  "10.1.5"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Palo Alto Networks VM-Series Flex Next-Generation Firewall (BYOL)",
+                "firewall_image_version": [
+                  "10.2.2",
+                  "10.2.1",
+                  "10.2.0",
+                  "10.1.6",
+                  "10.1.5"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.30 - Bring Your Own License",
+                "firewall_image_version": [
+                  "8030.900273.0978",
+                  "8030.900273.0950",
+                  "8030.900273.0907",
+                  "8030.900273.0819",
+                  "8030.900273.0801"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.30 - Pay As You Go (NGTP)",
+                "firewall_image_version": [
+                  "8030.900273.0590",
+                  "8030.900273.0562"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.30 - Pay As You Go (NGTX)",
+                "firewall_image_version": [
+                  "8030.900273.0590",
+                  "8030.900273.0562"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.40 - Bring Your Own License",
+                "firewall_image_version": [
+                  "8040.900294.0978",
+                  "8040.900294.0907",
+                  "8040.900294.0801",
+                  "8040.900294.0728",
+                  "8040.900294.0682"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.40 - Pay As You Go (NGTP)",
+                "firewall_image_version": [
+                  "8040.900294.0978",
+                  "8040.900294.0907",
+                  "8040.900294.0801",
+                  "8040.900294.0728",
+                  "8040.900294.0682"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R80.40 - Pay As You Go (NGTX)",
+                "firewall_image_version": [
+                  "8040.900294.0978",
+                  "8040.900294.0907",
+                  "8040.900294.0801",
+                  "8040.900294.0728",
+                  "8040.900294.0682"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Standalone (gateway + management) R80.40 - Bring Your Own License",
+                "firewall_image_version": [
+                  "8040.900294.0978",
+                  "8040.900294.0752",
+                  "8040.900294.0586"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81 - Bring Your Own License",
+                "firewall_image_version": [
+                  "8100.900392.1029",
+                  "8100.900392.0979",
+                  "8100.900392.0915",
+                  "8100.900392.0906",
+                  "8100.900392.0807"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81 - Pay As You Go (NGTP)",
+                "firewall_image_version": [
+                  "8100.900392.1029",
+                  "8100.900392.0979",
+                  "8100.900392.0915",
+                  "8100.900392.0906",
+                  "8100.900392.0807"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81 - Pay As You Go (NGTX)",
+                "firewall_image_version": [
+                  "8100.900392.1029",
+                  "8100.900392.0979",
+                  "8100.900392.0915",
+                  "8100.900392.0906",
+                  "8100.900392.0807"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81.10 - Bring Your Own License",
+                "firewall_image_version": [
+                  "8110.900335.0985",
+                  "8110.900335.0979",
+                  "8110.900335.0883"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81.10 - Pay As You Go (NGTP)",
+                "firewall_image_version": [
+                  "8110.900335.0985",
+                  "8110.900335.0979",
+                  "8110.900335.0883"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Check Point CloudGuard IaaS Single Gateway R81.10 - Pay As You Go (NGTX)",
+                "firewall_image_version": [
+                  "8110.900335.0985",
+                  "8110.900335.0979",
+                  "8110.900335.0883"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Fortinet FortiGate (BYOL) Next-Generation Firewall",
+                "firewall_image_version": [
+                  "7.2.1",
+                  "7.2.0",
+                  "7.0.6",
+                  "7.0.5",
+                  "7.0.4"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Fortinet FortiGate (PAYG) Next-Generation Firewall",
+                "firewall_image_version": [
+                  "6.0.4",
+                  "6.0.3",
+                  "6.0.02",
+                  "5.6.6",
+                  "5.6.5"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              },
+              {
+                "firewall_image": "Fortinet FortiGate (PAYG_20190624) Next-Generation Firewall Latest Release",
+                "firewall_image_version": [
+                  "7.0.5",
+                  "7.0.4",
+                  "7.0.3",
+                  "7.0.2",
+                  "7.0.1"
+                ],
+                "firewall_size": [
+                  "Standard_D3_v2",
+                  "Standard_DS3_v2",
+                  "Standard_D4_v2",
+                  "Standard_DS4_v2",
+                  "Standard_D5_v2",
+                  "Standard_DS5_v2",
+                  "Standard_D16_v3"
+                ]
+              }
+            ],
+            "id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099",
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "managed",
+      "type": "aviatrix_firenet",
+      "name": "firenet",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "east_west_inspection_excluded_cidrs": null,
+            "egress_enabled": true,
+            "egress_static_cidrs": null,
+            "fail_close_enabled": true,
+            "firewall_instance_association": [],
+            "hashing_algorithm": "5-Tuple",
+            "id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099",
+            "inspection_enabled": false,
+            "keep_alive_via_lan_interface_enabled": false,
+            "manage_firewall_instance_association": false,
+            "tgw_segmentation_for_egress_enabled": false,
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.firenet.aviatrix_firewall_instance.firewall_instance_1",
+            "module.firenet.aviatrix_firewall_instance_association.firenet_instance1",
+            "module.firenet.aviatrix_firewall_instance_association.firenet_instance2",
+            "module.firenet.aviatrix_gateway.egress_instance_1",
+            "module.firenet.aviatrix_gateway.egress_instance_2",
+            "module.firenet.aviatrix_vpc.egress_vpc",
+            "module.mc_transit.aviatrix_transit_gateway.default",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "managed",
+      "type": "aviatrix_firewall_instance_association",
+      "name": "firenet_instance1",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "attached": true,
+            "egress_interface": "",
+            "firenet_gw_name": "westeurope-nv-hub-avx-tgw",
+            "firewall_name": "",
+            "id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099~~westeurope-nv-hub-avx-tgw~~westeurope-nv-hub-avx-tvpc-az1-egress-gw1",
+            "instance_id": "westeurope-nv-hub-avx-tvpc-az1-egress-gw1",
+            "lan_interface": "av-nic-westeurope-nv-hub-avx-tvpc-az1-egress-gw1_eth1",
+            "management_interface": "",
+            "vendor_type": "fqdn_gateway",
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.firenet.aviatrix_firewall_instance.firewall_instance_1",
+            "module.firenet.aviatrix_gateway.egress_instance_1",
+            "module.firenet.aviatrix_vpc.egress_vpc",
+            "module.mc_transit.aviatrix_transit_gateway.default",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "managed",
+      "type": "aviatrix_firewall_instance_association",
+      "name": "firenet_instance2",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "attached": true,
+            "egress_interface": "",
+            "firenet_gw_name": "westeurope-nv-hub-avx-tgw-hagw",
+            "firewall_name": "",
+            "id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099~~westeurope-nv-hub-avx-tgw-hagw~~westeurope-nv-hub-avx-tvpc-az2-egress-gw1",
+            "instance_id": "westeurope-nv-hub-avx-tvpc-az2-egress-gw1",
+            "lan_interface": "av-nic-westeurope-nv-hub-avx-tvpc-az2-egress-gw1_eth1",
+            "management_interface": "",
+            "vendor_type": "fqdn_gateway",
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.azurerm_key_vault.this",
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.firenet.aviatrix_firewall_instance.firewall_instance_2",
+            "module.firenet.aviatrix_gateway.egress_instance_2",
+            "module.firenet.aviatrix_vpc.egress_vpc",
+            "module.firenet.aviatrix_vpc.management_vpc",
+            "module.firenet.data.aviatrix_firewall_instance_images.fw_images",
+            "module.mc_transit.aviatrix_transit_gateway.default",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "managed",
+      "type": "aviatrix_gateway",
+      "name": "egress_instance_1",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "account_name": "NV-Hub",
+            "additional_cidrs": "",
+            "additional_cidrs_designated_gateway": "",
+            "allocate_new_eip": true,
+            "availability_domain": null,
+            "azure_eip_name_resource_group": null,
+            "cloud_instance_id": "av-gw-westeurope-nv-hub-avx-tvpc-az1-egress-gw1",
+            "cloud_type": 8,
+            "customer_managed_keys": null,
+            "duo_api_hostname": "",
+            "duo_integration_key": "",
+            "duo_push_mode": "",
+            "duo_secret_key": null,
+            "eip": "20.238.235.227",
+            "elb_dns_name": null,
+            "elb_name": "",
+            "enable_designated_gateway": false,
+            "enable_elb": false,
+            "enable_encrypt_volume": false,
+            "enable_jumbo_frame": true,
+            "enable_ldap": false,
+            "enable_monitor_gateway_subnets": false,
+            "enable_public_subnet_filtering": false,
+            "enable_spot_instance": null,
+            "enable_vpc_dns_server": false,
+            "enable_vpn_nat": true,
+            "fault_domain": null,
+            "fqdn_lan_cidr": "100.64.12.80/28",
+            "fqdn_lan_interface": "av-nic-westeurope-nv-hub-avx-tvpc-az1-egress-gw1_eth1",
+            "fqdn_lan_vpc_id": null,
+            "gw_name": "westeurope-nv-hub-avx-tvpc-az1-egress-gw1",
+            "gw_size": "Standard_D3_v2",
+            "id": "westeurope-nv-hub-avx-tvpc-az1-egress-gw1",
+            "idle_timeout": -1,
+            "image_version": "aviatrix-companion-gateway-v9",
+            "insane_mode": false,
+            "insane_mode_az": "",
+            "ldap_base_dn": "",
+            "ldap_bind_dn": "",
+            "ldap_password": null,
+            "ldap_server": "",
+            "ldap_username_attribute": "",
+            "max_vpn_conn": "",
+            "monitor_exclude_list": null,
+            "name_servers": "",
+            "okta_token": null,
+            "okta_url": "",
+            "okta_username_suffix": "",
+            "otp_mode": "",
+            "peering_ha_availability_domain": "",
+            "peering_ha_azure_eip_name_resource_group": "",
+            "peering_ha_cloud_instance_id": "",
+            "peering_ha_eip": "",
+            "peering_ha_fault_domain": "",
+            "peering_ha_gw_name": "",
+            "peering_ha_gw_size": "",
+            "peering_ha_image_version": "",
+            "peering_ha_insane_mode_az": "",
+            "peering_ha_private_ip": "",
+            "peering_ha_security_group_id": "",
+            "peering_ha_software_version": "",
+            "peering_ha_subnet": "",
+            "peering_ha_zone": "",
+            "private_ip": "100.64.12.4",
+            "public_dns_server": "8.8.8.8",
+            "public_subnet_filtering_guard_duty_enforced": true,
+            "public_subnet_filtering_ha_route_tables": null,
+            "public_subnet_filtering_route_tables": null,
+            "renegotiation_interval": -1,
+            "rx_queue_size": "",
+            "saml_enabled": false,
+            "search_domains": "",
+            "security_group_id": "",
+            "single_az_ha": true,
+            "single_ip_snat": false,
+            "software_version": "6.7.1186",
+            "split_tunnel": true,
+            "spot_price": null,
+            "subnet": "100.64.12.0/28",
+            "tag_list": null,
+            "tags": null,
+            "tunnel_detection_time": 60,
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099",
+            "vpc_reg": "West Europe",
+            "vpn_access": false,
+            "vpn_cidr": "",
+            "vpn_protocol": "",
+            "zone": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.firenet.aviatrix_vpc.egress_vpc",
+            "module.mc_transit.aviatrix_transit_gateway.default",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.firenet",
+      "mode": "managed",
+      "type": "aviatrix_gateway",
+      "name": "egress_instance_2",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "account_name": "NV-Hub",
+            "additional_cidrs": "",
+            "additional_cidrs_designated_gateway": "",
+            "allocate_new_eip": true,
+            "availability_domain": null,
+            "azure_eip_name_resource_group": null,
+            "cloud_instance_id": "av-gw-westeurope-nv-hub-avx-tvpc-az2-egress-gw1",
+            "cloud_type": 8,
+            "customer_managed_keys": null,
+            "duo_api_hostname": "",
+            "duo_integration_key": "",
+            "duo_push_mode": "",
+            "duo_secret_key": null,
+            "eip": "20.101.197.233",
+            "elb_dns_name": null,
+            "elb_name": "",
+            "enable_designated_gateway": false,
+            "enable_elb": false,
+            "enable_encrypt_volume": false,
+            "enable_jumbo_frame": true,
+            "enable_ldap": false,
+            "enable_monitor_gateway_subnets": false,
+            "enable_public_subnet_filtering": false,
+            "enable_spot_instance": null,
+            "enable_vpc_dns_server": false,
+            "enable_vpn_nat": true,
+            "fault_domain": null,
+            "fqdn_lan_cidr": "100.64.12.128/28",
+            "fqdn_lan_interface": "av-nic-westeurope-nv-hub-avx-tvpc-az2-egress-gw1_eth1",
+            "fqdn_lan_vpc_id": null,
+            "gw_name": "westeurope-nv-hub-avx-tvpc-az2-egress-gw1",
+            "gw_size": "Standard_D3_v2",
+            "id": "westeurope-nv-hub-avx-tvpc-az2-egress-gw1",
+            "idle_timeout": -1,
+            "image_version": "aviatrix-companion-gateway-v9",
+            "insane_mode": false,
+            "insane_mode_az": "",
+            "ldap_base_dn": "",
+            "ldap_bind_dn": "",
+            "ldap_password": null,
+            "ldap_server": "",
+            "ldap_username_attribute": "",
+            "max_vpn_conn": "",
+            "monitor_exclude_list": [],
+            "name_servers": "",
+            "okta_token": null,
+            "okta_url": "",
+            "okta_username_suffix": "",
+            "otp_mode": "",
+            "peering_ha_availability_domain": "",
+            "peering_ha_azure_eip_name_resource_group": "",
+            "peering_ha_cloud_instance_id": "",
+            "peering_ha_eip": "",
+            "peering_ha_fault_domain": "",
+            "peering_ha_gw_name": "",
+            "peering_ha_gw_size": "",
+            "peering_ha_image_version": "",
+            "peering_ha_insane_mode_az": "",
+            "peering_ha_private_ip": "",
+            "peering_ha_security_group_id": "",
+            "peering_ha_software_version": "",
+            "peering_ha_subnet": "",
+            "peering_ha_zone": "",
+            "private_ip": "100.64.12.20",
+            "public_dns_server": "8.8.8.8",
+            "public_subnet_filtering_guard_duty_enforced": true,
+            "public_subnet_filtering_ha_route_tables": [],
+            "public_subnet_filtering_route_tables": [],
+            "renegotiation_interval": -1,
+            "rx_queue_size": "",
+            "saml_enabled": false,
+            "search_domains": "",
+            "security_group_id": "",
+            "single_az_ha": true,
+            "single_ip_snat": false,
+            "software_version": "6.7.1186",
+            "split_tunnel": true,
+            "spot_price": null,
+            "subnet": "100.64.12.16/28",
+            "tag_list": null,
+            "tags": {},
+            "tunnel_detection_time": 60,
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099",
+            "vpc_reg": "West Europe",
+            "vpn_access": false,
+            "vpn_cidr": "",
+            "vpn_protocol": "",
+            "zone": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "data.azurerm_key_vault.this",
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.firenet.aviatrix_vpc.egress_vpc",
+            "module.mc_transit.aviatrix_transit_gateway.default",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.mc_transit",
+      "mode": "managed",
+      "type": "aviatrix_transit_gateway",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "account_name": "NV-Hub",
+            "allocate_new_eip": true,
+            "approved_learned_cidrs": [],
+            "availability_domain": null,
+            "azure_eip_name_resource_group": null,
+            "bgp_ecmp": false,
+            "bgp_hold_time": 180,
+            "bgp_lan_interfaces": [],
+            "bgp_lan_ip_list": [],
+            "bgp_manual_spoke_advertise_cidrs": "",
+            "bgp_polling_time": "50",
+            "cloud_instance_id": "av-gw-westeurope-nv-hub-avx-tgw",
+            "cloud_type": 8,
+            "connected_transit": true,
+            "customer_managed_keys": null,
+            "customized_spoke_vpc_routes": "",
+            "customized_transit_vpc_routes": [],
+            "eip": "20.101.198.20",
+            "enable_active_standby": false,
+            "enable_active_standby_preemptive": false,
+            "enable_advertise_transit_cidr": false,
+            "enable_bgp_over_lan": false,
+            "enable_egress_transit_firenet": false,
+            "enable_encrypt_volume": false,
+            "enable_firenet": false,
+            "enable_gateway_load_balancer": false,
+            "enable_hybrid_connection": false,
+            "enable_jumbo_frame": true,
+            "enable_learned_cidrs_approval": false,
+            "enable_monitor_gateway_subnets": false,
+            "enable_multi_tier_transit": false,
+            "enable_preserve_as_path": false,
+            "enable_private_oob": false,
+            "enable_s2c_rx_balancing": false,
+            "enable_segmentation": true,
+            "enable_spot_instance": null,
+            "enable_transit_firenet": true,
+            "enable_transit_summarize_cidr_to_tgw": false,
+            "enable_vpc_dns_server": false,
+            "excluded_advertised_spoke_routes": "",
+            "fault_domain": null,
+            "filtered_spoke_vpc_routes": "",
+            "gw_name": "westeurope-nv-hub-avx-tgw",
+            "gw_size": "Standard_D3_v2",
+            "ha_availability_domain": null,
+            "ha_azure_eip_name_resource_group": null,
+            "ha_bgp_lan_interfaces": [],
+            "ha_bgp_lan_ip_list": [],
+            "ha_cloud_instance_id": "av-gw-westeurope-nv-hub-avx-tgw-hagw",
+            "ha_eip": "20.23.83.205",
+            "ha_fault_domain": null,
+            "ha_gw_name": "westeurope-nv-hub-avx-tgw-hagw",
+            "ha_gw_size": "Standard_D3_v2",
+            "ha_image_version": "aviatrix-companion-gateway-v9",
+            "ha_insane_mode_az": "",
+            "ha_lan_interface_cidr": "100.64.12.128/28",
+            "ha_oob_availability_zone": null,
+            "ha_oob_management_subnet": null,
+            "ha_private_ip": "100.64.12.52",
+            "ha_public_ip": "20.23.83.205",
+            "ha_security_group_id": "",
+            "ha_software_version": "6.7.1186",
+            "ha_subnet": "100.64.12.48/28",
+            "ha_zone": "az-2",
+            "id": "westeurope-nv-hub-avx-tgw",
+            "image_version": "aviatrix-companion-gateway-v9",
+            "insane_mode": false,
+            "insane_mode_az": "",
+            "lan_interface_cidr": "100.64.12.80/28",
+            "lan_private_subnet": null,
+            "lan_vpc_id": null,
+            "learned_cidrs_approval_mode": "gateway",
+            "local_as_number": "65539",
+            "monitor_exclude_list": [],
+            "oob_availability_zone": null,
+            "oob_management_subnet": null,
+            "prepend_as_path": [],
+            "private_ip": "100.64.12.36",
+            "public_ip": "20.101.198.20",
+            "rx_queue_size": "",
+            "security_group_id": "",
+            "single_az_ha": true,
+            "single_ip_snat": false,
+            "software_version": "6.7.1186",
+            "spot_price": null,
+            "subnet": "100.64.12.32/28",
+            "tag_list": null,
+            "tags": {},
+            "tunnel_detection_time": 60,
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099",
+            "vpc_reg": "West Europe",
+            "zone": "az-1"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "data.azurerm_key_vault.this",
+            "data.azurerm_key_vault_secret.avx-controller",
+            "module.mc_transit.aviatrix_vpc.default",
+            "module.mc_transit.aviatrix_vpc.lan_vpc"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.mc_transit",
+      "mode": "managed",
+      "type": "aviatrix_vpc",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/aviatrixsystems/aviatrix\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "account_name": "NV-Hub",
+            "availability_domains": [],
+            "aviatrix_firenet_vpc": true,
+            "aviatrix_transit_vpc": false,
+            "azure_vnet_resource_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc",
+            "cidr": "100.64.12.0/24",
+            "cloud_type": 8,
+            "enable_native_gwlb": false,
+            "enable_private_oob_subnet": false,
+            "fault_domains": [],
+            "id": "westeurope-nv-hub-avx-tvpc",
+            "name": "westeurope-nv-hub-avx-tvpc",
+            "num_of_subnet_pairs": null,
+            "private_subnets": [],
+            "public_subnets": [
+              {
+                "cidr": "100.64.12.0/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-1",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-1"
+              },
+              {
+                "cidr": "100.64.12.16/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-2",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-2"
+              },
+              {
+                "cidr": "100.64.12.32/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-1",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-1"
+              },
+              {
+                "cidr": "100.64.12.48/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-2",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-2"
+              }
+            ],
+            "region": "West Europe",
+            "resource_group": "avx-prod-sc-rg",
+            "route_tables": [
+              "av-gw-westeurope-nv-hub-avx-tgw-hagw-dmz-firewall-lan:avx-prod-sc-rg",
+              "aviatrix-westeurope-nv-hub-avx-tvpc-gw_rtb:avx-prod-sc-rg",
+              "av-gw-westeurope-nv-hub-avx-tgw-hagw-dmz-firewall:avx-prod-sc-rg",
+              "av-gw-westeurope-nv-hub-avx-tgw-dmz-firewall:avx-prod-sc-rg",
+              "av-gw-westeurope-nv-hub-avx-tgw-dmz-firewall-lan:avx-prod-sc-rg"
+            ],
+            "subnet_size": null,
+            "subnets": [
+              {
+                "cidr": "100.64.12.0/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-1",
+                "region": "",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-1"
+              },
+              {
+                "cidr": "100.64.12.16/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-2",
+                "region": "",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-FW-ingress-egress-2"
+              },
+              {
+                "cidr": "100.64.12.32/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-1",
+                "region": "",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-1"
+              },
+              {
+                "cidr": "100.64.12.48/28",
+                "name": "westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-2",
+                "region": "",
+                "subnet_id": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc/subnets/westeurope-nv-hub-avx-tvpc-Public-gateway-and-firewall-mgmt-2"
+              }
+            ],
+            "vpc_id": "westeurope-nv-hub-avx-tvpc:avx-prod-sc-rg:70cef2d0-4fa7-4438-9bc1-f554f7c61099"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "data.azurerm_key_vault.this",
+            "data.azurerm_key_vault_secret.avx-controller"
+          ]
+        }
+      ]
+    }
+  ]
+}
+

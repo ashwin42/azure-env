@@ -9,17 +9,13 @@ include "root" {
   expose = true
 }
 
-dependency "rg" {
-  config_path = "../../resource_group"
-}
-
 inputs = {
   cloud  = "Azure"
-  cidr   = "100.64.6.0/24"
-  region = "Sweden Central"
+  cidr   = "100.64.12.0/24"
+  region = "West Europe"
 
   # Aviatrix Controller account name
-  account = "azure-hub-dev"
+  account = "NV-Hub"
 
   # Name of transit VNET 30 characters limit & only hyphens/underscores
   name = "${include.root.locals.all_vars.location}-${include.root.locals.all_vars.subscription_name}-avx-tvpc"
@@ -28,15 +24,15 @@ inputs = {
   gw_name = "${include.root.locals.all_vars.location}-${include.root.locals.all_vars.subscription_name}-avx-tgw"
 
   instance_size  = "Standard_D3_v2"
-  resource_group = dependency.rg.outputs.resource_group_name
+  resource_group = include.root.locals.all_vars.resource_group_name
 
   # ASN (hampusrosvall): Just picked random one.
-  local_as_number = "63910"
+  local_as_number = "65539"
 
   enable_transit_firenet = true
   firewall_image         = "aviatrix"
   enable_segmentation    = true
 
-  lan_subnet    = "100.64.6.80/28"
-  ha_lan_subnet = "100.64.6.128/28"
+  lan_subnet    = "100.64.12.80/28"
+  ha_lan_subnet = "100.64.12.128/28"
 }

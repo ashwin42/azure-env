@@ -21,7 +21,8 @@ inputs = {
   name             = "${include.root.inputs.location}-${include.root.inputs.subscription_name}-dev-spoke-gw-2"
   region           = "Sweden Central"
   account          = "azure-hub-dev"
-  transit_gw       = "swedencentral-nv-hub-dev-avx-tgw"
+  # TODO: (hampusrosvall) change name of tgw when transit + firenet module is fixed by Aviatrix in Azure
+  transit_gw       = "swedencentral-nv-hub-avx-tgw"
   use_existing_vpc = true
   network_domain   = "blue"
   vpc_id           = "${dependency.spoke.outputs.virtual_network.name}:${dependency.rg.outputs.resource_group_name}"

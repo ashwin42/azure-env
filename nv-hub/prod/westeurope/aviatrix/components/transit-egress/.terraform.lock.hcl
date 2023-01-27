@@ -3,9 +3,9 @@
 
 provider "registry.terraform.io/aviatrixsystems/aviatrix" {
   version     = "2.22.3"
-  constraints = ">= 2.22.0"
+  constraints = ">= 2.22.0, ~> 2.22.0, ~> 2.22.1"
   hashes = [
-    "h1:BQXs9Gmn0OIizpNyACcJGAGpFu0koZnZGeGGXHPCZE0=",
+    "h1:WtFlOaYnnQqnixKr3noC2azKkHc6kO0/Uc8YHqXuuok=",
     "zh:142189f61a4bbc3911eae6f4010ec23e4fca966c24920e38500c998cf047b14b",
     "zh:252417e9393e312b701e47df27ab1546f1ba8d2376a2fdb7f29f550bf28f6639",
     "zh:3b75bdf03c03f51009336aa4a4f3de2105a12f00300a4e82bd0d30442e99f2e1",
@@ -27,7 +27,7 @@ provider "registry.terraform.io/hashicorp/azurerm" {
   version     = "3.17.0"
   constraints = ">= 2.66.0"
   hashes = [
-    "h1:3AnFUj0foLpWWHsBvIRE6v3DycJziM3lJGiYFeg7kH0=",
+    "h1:F3JekbiJ1K4eZadbgZ4FzdWflo5/h9Jg+Y2DKdm933g=",
     "zh:03d2c6e49cd1392c583db88e2c9dcaef53d16d6bb0452a4c9a55baaca7fcd821",
     "zh:05e797f57b91284a2a3deb5c75134c330301635932a28d01b55135ae633ee387",
     "zh:092e8356721ff4c2965fc99359a8cba9430576ac5f03bbc4c3ffbcdfe89c6519",
