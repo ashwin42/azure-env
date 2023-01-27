@@ -35,7 +35,7 @@ generate "versions_override_aviatrix" {
 terraform {
   required_providers {
     aviatrix = {
-      source = "AviatrixSystems/aviatrix"
+      source = "aviatrixsystems/aviatrix"
       version = ">= 2.22.0"
     }
   }
