@@ -2129,7 +2129,7 @@ variable "aviatrix_path_to_ca_certificate" {
 
 module "aviatrix_provider_secret" {
   count           = length(compact([var.aviatrix_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.aviatrix_secret_name), "aviatrix/controller")
   secret_name_key = try(coalesce(var.aviatrix_secret_name_key), "password")
   secret_path     = try(coalesce(var.aviatrix_secret_path), "/aviatrix")
@@ -2169,7 +2169,7 @@ EOF
 terraform {
   required_providers {
     aviatrix = {
-      source  = "AviatrixSystems/aviatrix"
+      source  = "aviatrixsystems/aviatrix"
       version = "${try(coalesce(local.all_vars.aviatrix_provider_version), "")}"
     }
   }

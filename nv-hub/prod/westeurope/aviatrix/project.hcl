@@ -7,3 +7,4 @@ locals {
   aviatrix_secret_aws_region  = "eu-north-1"
   aviatrix_provider_version   = "~> 2.24.0"
 }
+
