@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.6.10"
-  #source = "../../../tf-mod-azure/storage/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage/"
 }
 
 include "root" {
@@ -16,4 +16,11 @@ inputs = {
   containers_list = [
     { name = include.root.inputs.remote_state_azurerm_container_name, access_type = "private" }
   ]
+  iam_assignments = {
+    "Storage Blob Data Reader" = {
+      groups = [
+        "NV TechOps Read Member",
+      ],
+    },
+  }
 }
