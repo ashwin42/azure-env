@@ -1,5 +1,5 @@
 locals {
-  azurerm_provider_version   = "~> 2.99"
+  azurerm_provider_version   = ">= 2.99"
   terraform_required_version = ">= 1.0"
   subscription_id            = "11dd160f-0e01-4b4d-a7a0-59407e357777"
   azurerm_features           = {}
