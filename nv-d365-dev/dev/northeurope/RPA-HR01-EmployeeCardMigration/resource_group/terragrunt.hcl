@@ -18,6 +18,11 @@ inputs = {
         "CostCenter 109035061 Tools & Products",
       ],
     },
+    "Logic App Contributor" = {
+      "users" = [
+        "akshay.kumar@northvolt.com",
+      ],
+    },
     "Owner" = {
       "users" = [
         "vladimir.kosilko@northvolt.com",
