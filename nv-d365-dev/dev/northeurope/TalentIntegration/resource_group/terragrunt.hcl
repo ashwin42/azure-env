@@ -16,6 +16,7 @@ inputs = {
     "Logic App Contributor" = {
       "users" = [
         "vladimir.kosilko@northvolt.com",
+        "akshay.kumar@northvolt.com",
       ],
     },
     "Reader" = {
