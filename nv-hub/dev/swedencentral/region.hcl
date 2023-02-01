@@ -4,4 +4,7 @@ locals {
   secrets_key_vault_rg      = "vm-secrets-kv-rg"
   encryption_key_vault_name = "nv-swc-hub-vm-enc-kv"
   encryption_key_vault_rg   = "nv-swc-hub-vm-enc-kv-rg"
+  tags = {
+    region = basename(get_parent_terragrunt_dir())
+  }
 }
