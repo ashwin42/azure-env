@@ -9,8 +9,8 @@ include "root" {
 }
 
 inputs = {
-  name                    = "Northvolt"
-  display_name            = "Northvolt AB"
-  parent_management_group = "NV Root"
+  name                    = "nv_managed"
+  display_name            = "Managed"
+  parent_management_group = "Northvolt AB"
 }
 
