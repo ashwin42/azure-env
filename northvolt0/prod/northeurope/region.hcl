@@ -1,6 +1,6 @@
 locals {
   location = basename(get_parent_terragrunt_dir())
   tags = {
-    region = "northeurope"
+    region = basename(get_parent_terragrunt_dir())
   }
 }
