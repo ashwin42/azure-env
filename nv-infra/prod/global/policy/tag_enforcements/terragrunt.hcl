@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//policy?ref=v0.7.32"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//policy/"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//policy?ref=v0.7.32"
+  source = "${dirname(get_repo_root())}/tf-mod-azure//policy/"
 }
 
 include {
@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-  management_group_name = "Managed"
+  management_group_name = "NV Root"
   management_group_policy_assignment = [
     {
       name                 = "tagging_strategy_cc"
@@ -48,6 +48,33 @@ inputs = {
           content = "Please define tag: business-unit",
         },
       ]
+    },
+  ]
+
+  management_group_policy_exemption = [
+    {
+      name                   = "selfmanaged-tag-cc"
+      display_name           = "Exemption from cost-center tag for self managed subscriptions"
+      description            = "Exemption from cost-center tag enforcement for self-managed subscriptions"
+      exemption_category     = "Waiver"
+      policy_assignment_name = "tagging_strategy_cc"
+      management_group_name  = "nv_self_managed"
+    },
+    {
+      name                   = "selfmanaged-tag-bu"
+      display_name           = "Exemption from business-unit tag for self managed subscriptions"
+      description            = "Exemption from businessunit tag enforcement for self-managed subscriptions"
+      exemption_category     = "Waiver"
+      policy_assignment_name = "tagging_strategy_bu"
+      management_group_name  = "nv_self_managed"
+    },
+    {
+      name                   = "selfmanaged-tag-dep"
+      display_name           = "Exemption from department tag for self managed subscriptions"
+      description            = "Exemption from department tag enforcement for self-managed subscriptions"
+      exemption_category     = "Waiver"
+      policy_assignment_name = "tagging_strategy_dep"
+      management_group_name  = "nv_self_managed"
     },
   ]
 }
