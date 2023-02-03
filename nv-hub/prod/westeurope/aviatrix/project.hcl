@@ -6,5 +6,6 @@ locals {
   aviatrix_secret_aws_profile = "nv-network"
   aviatrix_secret_aws_region  = "eu-north-1"
   aviatrix_provider_version   = "~> 2.24.0"
+  resource_group_name         = "avx-prod-sc-rg"
 }
 

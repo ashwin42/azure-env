@@ -1,7 +1,6 @@
-# Deploys Transit VPC and high availability pair of Transit Gateways
 terraform {
-  # source = "git::git@github.com:northvolt/tf-mod-aviatrix.git//avtx-transit-egress?ref=v0.0.15"
-  source = "../../../../../../../tf-mod-aviatrix/avx-transit-egress"
+  source = "git::git@github.com:northvolt/tf-mod-aviatrix.git//avx-transit-egress?ref=v0.1.9"
+  # source = "../../../../../../../tf-mod-aviatrix/avx-transit-egress"
 }
 
 include "root" {
@@ -25,3 +24,4 @@ inputs = {
   lan_subnet             = "100.64.12.80/28"
   ha_lan_subnet          = "100.64.12.128/28"
 }
+
