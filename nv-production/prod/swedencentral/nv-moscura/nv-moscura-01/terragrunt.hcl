@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.33"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -26,7 +26,6 @@ inputs = {
   vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_B2ms"
-  create_avset                           = true
   backup_vm                              = true
   create_localadmin_password             = true
   storage_account_name                   = "nvprodbootdiagswc"

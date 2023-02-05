@@ -5,9 +5,9 @@ locals {
   key_vault_rg        = "nv-production-core"
 
   tags = {
-    business-unit = ""
-    department    = ""
-    cost-center   = ""
+    business-unit = "104 R&D AB"
+    department    = "104020 R&D Common - AB"
+    cost-center   = "104020015 SW & Automation"
     project       = "RD2-727"
   }
 }
