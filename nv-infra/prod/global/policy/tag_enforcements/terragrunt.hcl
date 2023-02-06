@@ -15,7 +15,7 @@ inputs = {
       policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99"
       display_name         = "Tagging Strategy: cost-center enforcement"
       description          = "Denies the creation of resources not tagged with cost-center"
-      enforce              = true
+      enforce              = false
       parameters           = file("parameter_cost_center.json")
       non_compliance_message = [
         {
@@ -28,7 +28,7 @@ inputs = {
       policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99"
       display_name         = "Tagging Strategy: business-unit enforcement"
       description          = "Denies the creation of resources not tagged with business-unit"
-      enforce              = true
+      enforce              = false
       parameters           = file("parameter_business-unit.json")
       non_compliance_message = [
         {
@@ -41,11 +41,11 @@ inputs = {
       policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/871b6d14-10aa-478d-b590-94f262ecfa99"
       display_name         = "Tagging Strategy: department enforcement"
       description          = "Denies the creation of resources not tagged with department"
-      enforce              = true
+      enforce              = false
       parameters           = file("parameter_department.json")
       non_compliance_message = [
         {
-          content = "Please define tag: business-unit",
+          content = "Please define tag: department",
         },
       ]
     },
