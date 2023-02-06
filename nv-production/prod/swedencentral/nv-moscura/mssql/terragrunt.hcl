@@ -54,6 +54,6 @@ inputs = {
       database      = "moscura-db-01"
       create_secret = true
     },
-  ]
+  ],
 }
 
