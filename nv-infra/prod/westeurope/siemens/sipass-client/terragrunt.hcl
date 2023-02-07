@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -33,6 +33,7 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
   ad_join_extension_name                 = "joindomain"
@@ -45,8 +46,8 @@ inputs = {
     sku       = "19h2-evd",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
   }
   os_profile = {
     admin_username = "domainjoin"
