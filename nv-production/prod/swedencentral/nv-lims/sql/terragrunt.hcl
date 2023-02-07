@@ -117,6 +117,13 @@ inputs = {
       database    = "Labware-Dev"
       secret_name = "${local.secret_name}-Labware-Dev-nvdbowner"
     },
+    {
+      username      = "nv_db_viewreader_bi"
+      roles         = ["db_viewreader_bi"]
+      database      = "Labware-Dev"
+      secret_name   = "${local.secret_name}-Labware-Dev-nvdbviewreaderbi"
+      create_secret = true
+    },
   ]
   private_endpoints = {
     "nv-lims-pe" = {
