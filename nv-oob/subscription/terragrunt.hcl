@@ -10,4 +10,11 @@ include "root" {
 
 inputs = {
   management_group = "Tenant Root Group"
+  iam_assignments = {
+    "Owner" = {
+      groups = [
+        "NV TechOps Lead Role",
+      ],
+    },
+  }
 }
