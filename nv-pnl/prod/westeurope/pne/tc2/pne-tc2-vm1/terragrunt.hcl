@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -29,7 +30,7 @@ inputs = merge(
         name = "${local.name}-nic"
         ip_configuration = [
           {
-            private_ip_address            = "10.46.40.7"
+            private_ip_address            = "10.46.40.5"
             subnet_id                     = dependency.vnet.outputs.subnet.subnet1.id
             private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"
@@ -41,7 +42,7 @@ inputs = merge(
     data_disks = [
       {
         name                 = "${local.name}-datadisk1"
-        size                 = "4096"
+        size                 = "5000"
         lun                  = "5"
         storage_account_type = "StandardSSD_LRS"
         caching              = "None"
@@ -78,3 +79,4 @@ inputs = merge(
     ]
   }
 )
+

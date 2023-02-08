@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
 }
 
 include {
@@ -10,8 +10,8 @@ dependency "vnet" {
   config_path = "../../../global/vnet/"
 }
 
-dependency "wvd" {
-  config_path = "../${replace("${local.name}", "vm", "wvd")}"
+dependency "avd" {
+  config_path = "../avd"
 }
 
 locals {
@@ -22,14 +22,14 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    token          = dependency.wvd.outputs.token
-    host_pool_name = dependency.wvd.outputs.host_pool.name
+    token          = dependency.avd.outputs.tokens["pne-tc13-vm2-hp"]
+    host_pool_name = "pne-tc13-vm2-hp"
     network_interfaces = [
       {
         name = "${local.name}-nic"
         ip_configuration = [
           {
-            private_ip_address            = "10.46.40.11"
+            private_ip_address            = "10.46.40.13"
             subnet_id                     = dependency.vnet.outputs.subnet.subnet1.id
             private_ip_address_allocation = "Static"
             ipconfig_name                 = "ipconfig"
@@ -60,14 +60,6 @@ inputs = merge(
         description            = "Allow connections from Labs MFA VPN clients"
       },
       {
-        name                  = "NV-Cyclers_Old"
-        priority              = "220"
-        direction             = "Inbound"
-        source_address_prefix = "10.100.250.0/23"
-        access                = "Allow"
-        description           = "Allow connections from NV-Cyclers old subnet"
-      },
-      {
         name                  = "NV-Cyclers"
         priority              = "221"
         direction             = "Inbound"
@@ -76,5 +68,12 @@ inputs = merge(
         description           = "Allow connections from NV-Cyclers"
       },
     ]
+
+    tags = {
+      business-unit = "104 R&D AB"
+      department    = "104014 Validation Group - AB"
+      cost-center   = "104014012 Validation Team - AB"
+      project       = "LHW-19"
+    }
   }
 )
