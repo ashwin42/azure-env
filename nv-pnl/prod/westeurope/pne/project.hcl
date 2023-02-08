@@ -1,0 +1,19 @@
+locals {
+  azurerm_provider_version          = ">=3.23.0"
+  terraform_required_version        = ">= 1.2.6"
+  azurerm_features                  = {}
+  setup_prefix                      = "nv-pnl"
+  resource_group_name               = "nv-pnl-vms-rg"
+  location                          = "westeurope"
+  loganalytics_resource_group_name  = "loganalytics-rg"   ## remove this line once pne vms are moved to new wvd module
+  data_collection_rule_names        = [
+    "wvd_login_auditing-dcr"
+  ]
+
+  tags = {
+    business-unit = "104 R&D AB"
+    department    = "104014 Validation Group - AB"
+    cost-center   = "104014012 Validation Team - AB"
+  }
+}
+
