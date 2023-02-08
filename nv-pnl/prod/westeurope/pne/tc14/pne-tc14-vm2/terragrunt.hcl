@@ -71,8 +71,8 @@ inputs = merge(
 
     tags = {
       business-unit = "104 R&D AB"
-      department    = "104014 Validation Group - AB"
-      cost-center   = "104014012 Validation Team - AB"
+      department    = "113049 P&L Facility - AB"
+      cost-center   = "113049074 P&L Facility AB"
       project       = "LHW-19"
     }
   }
