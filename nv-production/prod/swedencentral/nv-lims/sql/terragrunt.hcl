@@ -124,6 +124,20 @@ inputs = {
       secret_name   = "${local.secret_name}-Labware-Dev-nvdbviewreaderbi"
       create_secret = true
     },
+    {
+      username      = "nv_db_viewreader_bi"
+      roles         = ["db_viewreader_bi"]
+      database      = "Labware-Test"
+      secret_name   = "${local.secret_name}-Labware-Test-nvdbviewreaderbi"
+      create_secret = true
+    },
+    {
+      username      = "nv_db_viewreader_bi"
+      roles         = ["db_viewreader_bi"]
+      database      = "Labware-Prod"
+      secret_name   = "${local.secret_name}-Labware-Prod-nvdbviewreaderbi"
+      create_secret = true
+    },
   ]
   private_endpoints = {
     "nv-lims-pe" = {
