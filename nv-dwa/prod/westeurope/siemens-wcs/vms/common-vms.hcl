@@ -113,6 +113,5 @@ inputs = {
       description           = "Allow ICMP"
     },
   ]
-  windows_data_collection_rule_names = ["windows_event_log-dcr"]
 }
 

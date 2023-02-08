@@ -79,25 +79,25 @@ inputs = {
   ]
   mssql_local_users = [
     {
-      username      = "${local.name}_rw"
+      username      = "${local.name}-rw"
       roles         = ["db_datawriter"]
       database      = "${local.name}-outbound"
       create_secret = true
     },
     {
-      username      = "${local.name}_ro"
+      username      = "${local.name}-ro"
       roles         = ["db_datareader"]
       database      = "${local.name}-outbound"
       create_secret = true
     },
     {
-      username      = "${local.name}_rw"
+      username      = "${local.name}-rw"
       roles         = ["db_datawriter"]
       database      = "${local.name}-inbound"
       create_secret = true
     },
     {
-      username      = "${local.name}_ro"
+      username      = "${local.name}-ro"
       roles         = ["db_datareader"]
       database      = "${local.name}-inbound"
       create_secret = true
