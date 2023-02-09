@@ -28,9 +28,9 @@ locals {
     },
   ]
   tags = {
-    business-unit = "tochange"
-    department    = "tochange"
-    cost-center   = "tochange"
+    business-unit = "Battery Systems"
+    department    = "Factory Engineering"
+    cost-center   = "250006020 Factory Development & Material Flow - BS"
     project       = "NDW-56"
   }
 }
