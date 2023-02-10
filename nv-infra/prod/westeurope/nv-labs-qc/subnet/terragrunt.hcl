@@ -44,6 +44,15 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from Ett MFA VPN clients"
         },
+        {
+          name                   = "Labs_QC"
+          priority               = "202"
+          direction              = "Inbound"
+          source_address_prefix  = "10.192.1.0/24"
+          protocol               = "Tcp"
+          access                 = "Allow"
+          description            = "Allow connections from Ett MFA VPN clients"
+        },
       ]
     },
   ]
