@@ -99,5 +99,13 @@ inputs = {
       description            = "Allow connections from Cellhouse"
     },
   ]
+  
+  iam_assignments = {
+    "Virtual Machine Contributor" = {
+      groups = [
+        "Physical Security Server Administrators",
+      ],
+    },
+  }
 }
 
