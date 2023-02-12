@@ -14,13 +14,16 @@ include {
 inputs = {
   setup_prefix                    = dependency.global.outputs.setup_prefix
   resource_group_name             = dependency.global.outputs.resource_group.name
-  #subnet_id                       = dependency.global.outputs.subnet["labx_subnet"].id
+  subnet_id                       = dependency.global.outputs.subnet["labx_subnet"].id
   storage_account_name            = "qcsftpstorage"
   account_replication_type        = "LRS"
   allow_nested_items_to_be_public = false
   large_file_share_enabled        = true
   min_tls_version                 = "TLS1_0"
   access_tier                     = "Cool"
+  identity = {
+    type = "SystemAssigned"
+  }
   file_shares = [
     {
       name        = "qc-sftp",
@@ -35,12 +38,6 @@ inputs = {
         name              = "qcsftpstorage-pe-file"
         subresource_names = ["file"]
       }
-      /*private_dns_zone_group = {
-        name                         = "qcsftpstorage.d923f236-f279-4344-88ad-1f7335ab965f"
-        dns_zone_resource_group_name = "nv_infra"
-        dns_zone_name                = "privatelink.file.core.windows.net"
-        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
-      }*/
     }
   }
 
@@ -48,7 +45,7 @@ inputs = {
     name           = "default_rule"
     bypass         = ["AzureServices"]
     default_action = "Deny"
-    subnet_ids     = dependency.global.outputs.subnet["labx_subnet"].id
+    virtual_network_subnet_ids     = [dependency.global.outputs.subnet["labx_subnet"].id]
   }
 }
 
