@@ -14,7 +14,6 @@ include {
 inputs = {
   setup_prefix                    = dependency.global.outputs.setup_prefix
   resource_group_name             = dependency.global.outputs.resource_group.name
-  subnet_id                       = dependency.global.outputs.subnet["labx_subnet"].id
   storage_account_name            = "qcsftpstorage"
   account_replication_type        = "LRS"
   allow_nested_items_to_be_public = false
