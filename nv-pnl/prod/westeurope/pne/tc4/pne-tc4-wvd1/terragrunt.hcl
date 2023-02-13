@@ -14,6 +14,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    wvd_ws_friendly_name = "PNE Virtual Desktop TC4 - 04.02 to 04.08"
+    wvd_ws_friendly_name         = "PNE - TC4"
+    default_desktop_display_name = "04.02 - 04.08"
   }
 )
