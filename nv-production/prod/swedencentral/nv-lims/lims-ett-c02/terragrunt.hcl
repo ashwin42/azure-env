@@ -32,7 +32,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_B16ms"
+  vm_size                                = "Standard_D8s_v3"
   backup_vm                              = true
   key_vault_name                         = "nv-production-core"
   key_vault_rg                           = "nv-production-core"
@@ -71,6 +71,16 @@ inputs = {
     },
   ]
   custom_rules = [
+    {
+      name                   = "Allow_LIMS"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.64.1.32/27"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Lims clients"
+    },
     {
       name                   = "Labs_MFA_VPN"
       priority               = "200"

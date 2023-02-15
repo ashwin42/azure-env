@@ -58,5 +58,12 @@ inputs = {
         "Labware Users - Labs",
       ],
     },
+    "Reader and Data Access" = {
+      groups = [
+        "Labware LIMS Developers",
+        "Labware Users - Labs",
+        "Labware Users - Ett",
+      ],
+    },
   }
 }
