@@ -72,6 +72,16 @@ inputs = {
   ]
   custom_rules = [
     {
+      name                   = "Allow_LIMS"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.64.1.32/27"
+      protocol               = "*"
+      destination_port_range = "0-65535"
+      access                 = "Allow"
+      description            = "Allow connections from Lims clients"
+    },
+    {
       name                   = "Labs_MFA_VPN"
       priority               = "200"
       direction              = "Inbound"
