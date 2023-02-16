@@ -13,15 +13,7 @@ inputs = {
   workspaces = [
     {
       name          = "nv-pne-hp-ws-tc11a"
-      friendly_name = "PNE TC11 11.01 to 11.10"
-    },
-    {
-      name          = "nv-pne-hp-ws-tc11b"
-      friendly_name = "PNE TC11 11.11 to 11.20"
-    },
-    {
-      name          = "nv-pne-hp-ws-tc11c"
-      friendly_name = "PNE TC11 11.21 to 11.25"
+      friendly_name = "PNE TC11"
     },
   ]
 
@@ -55,7 +47,7 @@ inputs = {
       friendly_name                = "11.11 - 11.20"
       default_desktop_display_name = "11.11 - 11.20"
       host_pool_name               = "nv-pne-hp-tc11b"
-      workspace_name               = "nv-pne-hp-ws-tc11b"
+      workspace_name               = "nv-pne-hp-ws-tc11a"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
@@ -66,7 +58,7 @@ inputs = {
       friendly_name                = "11.21 - 11.25"
       default_desktop_display_name = "11.21 - 11.25"
       host_pool_name               = "nv-pne-hp-tc11c"
-      workspace_name               = "nv-pne-hp-ws-tc11c"
+      workspace_name               = "nv-pne-hp-ws-tc11a"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",

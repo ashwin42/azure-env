@@ -12,11 +12,7 @@ inputs = {
   workspaces = [
     {
       name          = "pne-tc3-wvd1-ws"
-      friendly_name = "PNE - TC3 03.01 to 03.10"
-    },
-    {
-      name          = "pne-tc3-wvd2-ws"
-      friendly_name = "PNE - TC3 03.11 to 03.22"
+      friendly_name = "PNE - TC3"
     },
   ]
 
@@ -47,7 +43,7 @@ inputs = {
       friendly_name = "03.11 - 03.22"
       default_desktop_display_name = "03.11 - 03.22"
       host_pool_name = "pne-tc3-wvd2-hp"
-      workspace_name = "pne-tc3-wvd2-ws"
+      workspace_name = "pne-tc3-wvd1-ws"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
