@@ -33,6 +33,7 @@ inputs = {
     {
       name = "pne-tc3-wvd1-ag"
       friendly_name = "03.01 - 03.10"
+      default_desktop_display_name = "03.01 - 03.10"
       host_pool_name = "pne-tc3-wvd1-hp"
       workspace_name = "pne-tc3-wvd1-ws"
       assign_groups = [
@@ -44,6 +45,7 @@ inputs = {
     {
       name = "pne-tc3-wvd2-ag"
       friendly_name = "03.11 - 03.22"
+      default_desktop_display_name = "03.11 - 03.22"
       host_pool_name = "pne-tc3-wvd2-hp"
       workspace_name = "pne-tc3-wvd2-ws"
       assign_groups = [

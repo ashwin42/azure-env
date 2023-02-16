@@ -40,6 +40,7 @@ inputs = {
     {
       name = "pne-tc5-wvd1-ag"
       friendly_name = "05.01 - 05.10"
+      default_desktop_display_name = "05.01 - 05.10"
       host_pool_name = "pne-tc5-wvd1-hp"
       workspace_name = "pne-tc5-wvd1-ws"
       assign_groups = [
@@ -51,6 +52,7 @@ inputs = {
     {
       name = "pne-tc5-wvd2-ag"
       friendly_name = "05.11 - 05.20"
+      default_desktop_display_name = "05.11 - 05.20"
       host_pool_name = "pne-tc5-wvd2-hp"
       workspace_name = "pne-tc5-wvd2-ws"
       assign_groups = [
@@ -62,6 +64,7 @@ inputs = {
     {
       name = "pne-tc5-wvd3-ag"
       friendly_name = "05.21 - 05.29"
+      default_desktop_display_name = "05.21 - 05.29"
       host_pool_name = "pne-tc5-wvd3-hp"
       workspace_name = "pne-tc5-wvd3-ws"
       assign_groups = [
