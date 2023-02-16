@@ -27,6 +27,16 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.48.0.0/22" #Azure Sweden Central Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.12.0.0/14" #AWS
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
       ]
     }
   ]

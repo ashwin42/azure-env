@@ -81,5 +81,14 @@ inputs = {
       source_address_prefix = "10.240.0.0/21"
       description           = "Allow connections from Labs MFA VPN clients"
     },
+    {
+      name                  = "Allow_ICMP"
+      priority              = "300"
+      direction             = "Inbound"
+      source_address_prefix = "10.0.0.0/8"
+      port                  = "*"
+      protocol              = "Icmp"
+      description           = "Allow ICMP from all"
+    }
   ]
 }
