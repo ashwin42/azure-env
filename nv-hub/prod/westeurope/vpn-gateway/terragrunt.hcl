@@ -29,7 +29,7 @@ inputs = {
           name                          = "vpn-gw-config-core"
           private_ip_address_allocation = "Dynamic"
           public_ip_address_id          = "public-vpn-gw-core"
-          subnet_id                     = dependency.vnet.outputs.subnet.GatewaySubnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.GatewaySubnet.id
         }
       ]
       enable_bgp = true

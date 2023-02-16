@@ -48,6 +48,38 @@ inputs = {
       enable_bgp                 = "false"
     },
     {
+      name                = "aws-network-prod-eu-west-1-tgw-01-a"
+      secret_name         = "aws-network-prod-eu-west-1-tgw-01-a-psk"
+      gateway_address     = "34.253.167.76"
+      address_space       = "10.21.17.0/24"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "aws-network-prod-eu-west-1-tgw-01-b"
+      secret_name         = "aws-network-prod-eu-west-1-tgw-01-b-psk"
+      gateway_address     = "52.212.88.129"
+      address_space       = "10.21.17.0/24"
+      enable_bgp          = false
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
       name                = "azure-to-labs-s2s"
       secret_name         = "azure-to-labs-s2s"
       gateway_address     = "213.50.54.194"
