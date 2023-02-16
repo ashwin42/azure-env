@@ -81,5 +81,23 @@ inputs = {
       source_address_prefix = "10.240.0.0/21"
       description           = "Allow connections from Labs MFA VPN clients"
     },
+    {
+      name                  = "Prometheus_Windows_exporter"
+      priority              = "202"
+      direction             = "Inbound"
+      source_address_prefix = "10.15.16.0/21" # Prometheus cluster
+      port                  = "9182"
+      description           = "Allow connections from Prometheus Windows exporter"
+    },
+    # add block for ICMP
+    {
+      name                  = "Allow_ICMP"
+      priority              = "300"
+      direction             = "Inbound"
+      source_address_prefix = "10.0.0.0/8"
+      port                  = "*"
+      protocol              = "Icmp"
+      description           = "Allow ICMP from all"
+    }
   ]
 }
