@@ -1,0 +1,3 @@
+locals {
+    setup_prefix = ""
+}
