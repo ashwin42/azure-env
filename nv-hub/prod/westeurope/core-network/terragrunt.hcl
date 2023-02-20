@@ -185,11 +185,6 @@ inputs = {
       allow_forwarded_traffic = true
     },
     {
-      name                    = "nv-hub_to_nv_test_wvd_vnet",
-      vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-test-wvd-rg/providers/Microsoft.Network/virtualNetworks/nv-test-wvd-vnet"
-      allow_forwarded_traffic = true
-    },
-    {
       name                    = "nv-hub_to_siemens",
       vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_siemens/providers/Microsoft.Network/virtualNetworks/nv_siemens_vnet"
       allow_forwarded_traffic = true
