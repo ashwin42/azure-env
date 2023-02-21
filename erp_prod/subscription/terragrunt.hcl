@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  management_group = "Tenant Root Group"
+  management_group = "Self Managed"
   iam_assignments = {
     "Billing Reader" = {
       groups = [
@@ -42,5 +42,11 @@ inputs = {
       ],
     },
   },
+
+  tags = {
+    business-unit = "109 Digitalization IT - AB"
+    department    = "109033 Business Systems"
+    cost-center   = "109033054 ERP & Microsoft"
+  }
 }
 
