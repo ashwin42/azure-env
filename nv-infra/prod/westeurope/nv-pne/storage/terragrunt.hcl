@@ -31,7 +31,7 @@ inputs = {
       tier_to_cool_after_days    = 90
       tier_to_archive_after_days = null
       delete_after_days          = null
-      snapshot_delete_after_days = null
+      snapshot_delete_after_days = 99999
     },
   ]
 
