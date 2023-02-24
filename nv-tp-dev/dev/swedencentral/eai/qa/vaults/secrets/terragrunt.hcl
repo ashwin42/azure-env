@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  name                            = "EAI-UAT-KeyVault"
+  name                            = "EAI-QA-KeyVault"
   resource_group_name             = include.root.inputs.resource_group_name
   enable_rbac_authorization       = true
   enabled_for_deployment          = true
