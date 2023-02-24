@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
-  #source = "../../../../../../tf-mod-azure/vm/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
 include {
@@ -27,6 +27,9 @@ inputs = {
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
+  loganalytics_resource_group_name       = "loganalytics-rg"
+  loganalytics_workspace_id              = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/loganalytics-rg/providers/Microsoft.OperationalInsights/workspaces/log-analytics-ops-ws"
+  loganalytics_subscription_id           = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
   vm_name                                = "nv-pne-oper-0"
   vm_size                                = "Standard_F16"
   backup_vm                              = true
@@ -70,13 +73,6 @@ inputs = {
   ]
 
   data_disks = [
-    {
-      name                 = "nv-pne-oper-0_datadisk"
-      size                 = "4000"
-      lun                  = "0"
-      storage_account_type = "StandardSSD_LRS"
-      caching              = "ReadWrite"
-    },
     {
       name                 = "nv-pne-oper-0_datadisk1"
       size                 = "5000"

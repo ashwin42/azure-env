@@ -26,6 +26,9 @@ inputs = {
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
+  loganalytics_resource_group_name       = "loganalytics-rg"
+  loganalytics_workspace_id              = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/loganalytics-rg/providers/Microsoft.OperationalInsights/workspaces/log-analytics-ops-ws"
+  loganalytics_subscription_id           = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
   name                                   = local.name
   vm_name                                = local.name
   vm_size                                = "Standard_D8_v4"
@@ -63,12 +66,6 @@ inputs = {
     }
   ]
   data_disks = [
-    {
-      name                 = "${local.name}_datadisk"
-      size                 = "2000"
-      lun                  = "0"
-      storage_account_type = "StandardSSD_LRS"
-    },
     {
       name                 = "${local.name}-datadisk01"
       size                 = "4096"
