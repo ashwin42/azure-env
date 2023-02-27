@@ -18,7 +18,7 @@ inputs = {
     {
       name                = "pne-tc13-avd-ws"
       resource_group_name = "nv-pnl-vms-rg"
-      friendly_name       = "P&L: PNE TC13"
+      friendly_name       = "PNE TC13"
       tags = {
         project = "LHW-19"
       }

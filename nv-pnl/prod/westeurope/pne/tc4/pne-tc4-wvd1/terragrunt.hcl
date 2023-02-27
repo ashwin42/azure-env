@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.8"
-  #source = "../../../../../../../tf-mod-azure/wvd/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
 include {
@@ -14,6 +14,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    wvd_ws_friendly_name = "PNE Virtual Desktop TC4 - 04.02 to 04.08"
+    wvd_ws_friendly_name         = "PNE - TC4"
+    default_desktop_display_name = "04.02 - 04.08"
   }
 )
