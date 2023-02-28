@@ -24,6 +24,12 @@ inputs = {
         "Sev1",
       ],
     }
+    description = {
+      operator = "DoesNotContain"
+      values = [
+        "Backup data for this backup item has been deleted"
+      ]
+    }
   }
 }
 
