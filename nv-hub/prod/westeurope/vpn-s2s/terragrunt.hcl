@@ -15,7 +15,7 @@ inputs = {
   resource_group_name           = "core_network"
   key_vault_name                = "nv-hub-core"
   key_vault_resource_group_name = "nv-hub-core"
-  virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateway.nw-hub-vpn-gw-core.id
+  virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateways.nw-hub-vpn-gw-core.id
   tunnels = [
     {
       name                       = "aws_ireland_dev_tgw"
