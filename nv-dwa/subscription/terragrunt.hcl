@@ -37,4 +37,10 @@ inputs = {
       ],
     },    
   }
+
+  resource_provider_registrations = [
+    {
+      name = "Microsoft.PowerPlatform"
+    },
+  ]
 }
