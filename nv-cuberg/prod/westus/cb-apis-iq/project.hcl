@@ -5,9 +5,9 @@ locals {
   setup_prefix               = "cb-apis-iq"
   resource_group_name        = "cb-apis-iq-rg"
   tags = {
-    business-unit = "Cuberg Placeholder"
-    department    = "Cuberg Placeholder"
-    cost-center   = "Cuberg Placeholder"
+    business-unit = "Cuberg"
+    department    = "Cuberg"
+    cost-center   = "Cuberg"
   }
 }
 
