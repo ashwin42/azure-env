@@ -28,16 +28,6 @@ inputs = {
       enable_bgp                 = "false"
     },
     {
-      name                       = "aws_ireland_prod_tgw"
-      local_network_gateway_name = "aws-ireland-prod-tgw"
-      routing_table_name         = "aws_ireland_prod_tgw_routingtable"
-      secret_name                = "vpn-aws-ireland-prod-tgw-psk"
-      gateway_address            = "52.19.7.38"
-      address_space              = "10.21.17.0/24"
-      address_prefix             = "10.21.17.0/24"
-      enable_bgp                 = "false"
-    },
-    {
       name                       = "aws_stockholm_prod_tgw"
       local_network_gateway_name = "aws-stockholm-prod-tgw"
       routing_table_name         = "aws_stockholm_prod_tgw_routingtable"
