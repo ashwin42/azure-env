@@ -24,8 +24,8 @@ locals {
 inputs = {
   setup_prefix                  = local.name
   create_administrator_password = true
-  key_vault_name                = "nv-infra-core"
-  key_vault_rg                  = "nv-infra-core"
+  key_vault_name                = "nv-production-core"
+  key_vault_rg                  = "nv-production-core"
   private_endpoints = {
     "${local.name}-sql-pe" = {
       name      = "${local.name}-sql-pe"
