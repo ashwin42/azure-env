@@ -67,7 +67,7 @@ inputs = {
       ip_configuration = [{
         subnet_id                     = dependency.subnet.outputs.subnets["${local.subnet}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = "10.46.2.84"
+        private_ip_address            = "10.46.2.85"
       }]
     }
   ]

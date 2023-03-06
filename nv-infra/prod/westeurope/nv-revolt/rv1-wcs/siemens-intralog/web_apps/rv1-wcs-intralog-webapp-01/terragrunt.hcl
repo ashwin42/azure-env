@@ -40,11 +40,11 @@ inputs = {
   }
 
   web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.subnet.outputs.subnets["${local.intergration_subnet}"].id
+  web_app_vnet_integration_subnet_id = dependency.subnet.outputs.subnets["${local.subnet}"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location
-    subnet_id           = dependency.subnet.outputs.subnets["${local.subnet}"].id
+    subnet_id           = dependency.subnet.outputs.subnets["${local.intergration_subnet}"].id
     resource_group_name = dependency.resource_group.outputs.resource_group_name
     private_dns_zone_group = {
       dns_zone_resource_group_name = "core_network"
