@@ -17,6 +17,13 @@ inputs = {
         "LucidChart Cloud Insights Access",
       ],
     },
+    "Reader" = {
+      users = [
+        "alex.ga@northvolt.com",
+        "mihajlo.ga@northvolt.com",
+        "andreas.axelsson.admin@northvolt.com",
+      ],
+    },
   }
 }
 
