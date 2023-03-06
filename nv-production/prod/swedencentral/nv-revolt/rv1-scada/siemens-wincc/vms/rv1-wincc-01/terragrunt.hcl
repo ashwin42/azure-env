@@ -20,7 +20,7 @@ dependency "subnet" {
 
 locals {
   vm_name = "rv1-scada-siemens-wincc-01"
-  subnet  = "revolt-scada-subnet1"
+  subnet  = "revolt-scada-subnet"
 }
 
 inputs = {
@@ -33,7 +33,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   create_avset                           = true
   ad_join                                = true
-  storage_account_name                   = "nvinfrabootdiag"
+  storage_account_name                   = "nvprodbootdiagswc"
   create_localadmin_password             = true
   localadmin_name                        = "${local.vm_name}-nvadmin"
   vm_size                                = "Standard_B8ms"
@@ -69,7 +69,7 @@ inputs = {
       ip_configuration = [{
         subnet_id                     = dependency.subnet.outputs.subnets["${local.subnet}"].id
         private_ip_address_allocation = "Static"
-        private_ip_address            = "10.46.2.68"
+        private_ip_address            = "10.64.1.212"
       }]
     }
   ]
@@ -88,15 +88,6 @@ inputs = {
       direction             = "Inbound"
       source_address_prefix = "10.240.0.0/21"
       description           = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                   = "FC.D1.NG.NGS01.IT_TCP_80"
-      priority               = "210"
-      direction              = "Inbound"
-      source_address_prefix  = "10.108.160.0/28"
-      protocol               = "Tcp"
-      destination_port_range = "80"
-      description            = "Allow TCP connections from FC.D1.NG.NGS01.IT on port 80"
     },
     {
       name                   = "FC.D1.NG.NGS01.IT_TCP_102"
@@ -151,15 +142,6 @@ inputs = {
       protocol               = "Udp"
       destination_port_range = "161-162"
       description            = "Allow UDP connections from FC.D1.NG.NGS01.IT on port 161-162"
-    },
-    {
-      name                   = "FC.D1.SC.SCO01.IT_TCP_80"
-      priority               = "220"
-      direction              = "Inbound"
-      source_address_prefix  = "10.108.160.16/28"
-      protocol               = "Tcp"
-      destination_port_range = "80"
-      description            = "Allow TCP connections from FC.D1.SC.SCO01.IT on port 80"
     },
     {
       name                   = "FC.D1.SC.SCO01.IT_TCP_102"
