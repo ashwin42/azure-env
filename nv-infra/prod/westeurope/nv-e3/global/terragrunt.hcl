@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.5.0"
-  #source = "../../../../../../tf-mod-azure/global/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.7.44"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/global/"
 }
 
 include {
@@ -11,6 +11,7 @@ inputs = {
   setup_prefix  = "nv-e3"
   address_space = ["10.44.5.128/29"]
   dns_servers   = ["10.40.250.5", "10.40.250.4"]
+
   subnets = [
     {
       name                 = "nv-e3-subnet-10.44.5.128"
@@ -19,6 +20,7 @@ inputs = {
       enforce_private_link = true
     },
   ]
+
   peerings = [
     {
       name                  = "nv-e32nv-hub",
@@ -33,3 +35,4 @@ inputs = {
     }
   ]
 }
+

@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
-  #source = "../../../../../../tf-mod-azure/vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.44"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
 include {
@@ -16,7 +16,7 @@ dependency "wvd" {
 }
 
 locals {
-  name = "nv-e3-0"
+  name = basename(get_terragrunt_dir())
 }
 
 inputs = {
@@ -32,28 +32,36 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "nv-e3-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "20h1-evd",
   }
+
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
+
+  os_profile = {
+    admin_username = "nv-e3-nvadmin"
+    computer_name  = "nv-e3-vm"
+  }
+
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "nv-e3-vm-nsg"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.5.132"
+          private_ip_address            = "10.44.5.132"
           subnet_id                     = dependency.global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
@@ -62,6 +70,7 @@ inputs = {
       ]
     },
   ]
+
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"
