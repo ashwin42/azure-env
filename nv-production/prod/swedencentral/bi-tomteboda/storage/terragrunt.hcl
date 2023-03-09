@@ -29,6 +29,9 @@ inputs = {
       groups = [
         "NV Tomteboda Prod Data",
       ],
+      service_principals = [
+        "Tomteboda Datalake"
+      ],
     },
     "Storage Blob Data Owner" = {
       groups = [

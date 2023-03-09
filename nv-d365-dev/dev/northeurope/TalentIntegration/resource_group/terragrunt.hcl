@@ -10,13 +10,18 @@ inputs = {
   iam_assignments = {
     "Contributor" = {
       "users" = [
-        "c.rahul.bhandari@northvolt.com",
         "switee.patel@northvolt.com",
       ],
     },
     "Logic App Contributor" = {
       "users" = [
         "vladimir.kosilko@northvolt.com",
+        "akshay.kumar@northvolt.com",
+      ],
+    },
+    "Reader" = {
+      "users" = [
+        "c.sonia.joshi@northvolt.com",
       ],
     },
   }

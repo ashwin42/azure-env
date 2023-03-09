@@ -107,5 +107,12 @@ inputs = {
       description            = "Allow connections from QCS Server for Web and API"
     },
   ]
+  iam_assignments = {
+    "Desktop Virtualization Power On Off Contributor" = {
+      groups = [
+        "NV Automation Member",
+      ],
+    },
+  }
 }
 

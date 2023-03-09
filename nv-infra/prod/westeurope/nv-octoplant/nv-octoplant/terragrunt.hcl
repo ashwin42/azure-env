@@ -77,7 +77,67 @@ inputs = {
       direction              = "Inbound"
       source_address_prefix  = "10.240.0.0/21"
       protocol               = "*"
-      destination_port_range = "0-65535"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow RDP connections from Ett MFA VPN clients"
+    },
+    {
+      name                   = "Ett_MFA_VPN_80"
+      priority               = "300"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "80"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients on port 80"
+    },
+    {
+      name                   = "Ett_MFA_VPN_443"
+      priority               = "301"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "443"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients on port 443"
+    },
+    {
+      name                   = "Ett_MFA_VPN_64001-64004"
+      priority               = "302"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "64001-64004"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients on ports 64001-64004"
+    },
+    {
+      name                   = "Ett_MFA_VPN_64006"
+      priority               = "303"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "64006"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients on port 64006"
+    },
+    {
+      name                   = "Ett_MFA_VPN_64021"
+      priority               = "304"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "64021"
+      access                 = "Allow"
+      description            = "Allow connections from Ett MFA VPN clients on port 64021"
+    },
+    {
+      name                   = "Ett_MFA_VPN_64023"
+      priority               = "305"
+      direction              = "Inbound"
+      source_address_prefix  = "10.240.0.0/21"
+      protocol               = "*"
+      destination_port_range = "64023"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
     },

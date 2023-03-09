@@ -2,13 +2,15 @@ locals {
   # default variables, can be overridden in each subsequent included hcl file
   default_vars = {
     # general
-    terraform_required_version = null
-    environment                = null
-    tags                       = {}
-    providers                  = []
-    providers_override         = null
-    delete_files               = []
-    delete_files_override      = null
+    terraform_required_version    = null
+    environment                   = null
+    tags                          = {}
+    providers                     = []
+    providers_override            = null
+    delete_files                  = []
+    delete_files_override         = null
+    additional_providers          = []
+    additional_providers_override = null
     # local backend
     local_state_enabled = null
     local_state_path    = "${get_terragrunt_dir()}/terraform.tfstate"
@@ -16,6 +18,7 @@ locals {
     remote_state_s3_enabled                = null
     remote_state_s3_bucket                 = null
     remote_state_s3_key_prefix             = null
+    remote_state_s3_path                   = null
     remote_state_s3_encrypt                = null
     remote_state_s3_bucket                 = null
     remote_state_s3_region                 = null
@@ -28,8 +31,6 @@ locals {
     remote_state_azurerm_key                  = null
     remote_state_azurerm_resource_group_name  = null
     remote_state_azurerm_subscription_id      = null
-    #additional providers
-    additional_providers = []
     # aws
     aws_provider_version = null
     aws_region           = null
@@ -42,108 +43,51 @@ locals {
     # azurerm
     azurerm_provider_version             = null
     azurerm_features                     = null
-    azurerm_client_id                    = null
-    azurerm_environment                  = null
     azurerm_subscription_id              = null
-    azurerm_tenant_id                    = null
-    azurerm_auxiliary_tenant_ids         = null
-    azurerm_client_certificate_password  = null
-    azurerm_client_certificate_path      = null
-    azurerm_client_secret                = null
     azurerm_oidc_request_token           = null
     azurerm_oidc_request_url             = null
     azurerm_use_oidc                     = null
-    azurerm_msi_endpoint                 = null
-    azurerm_use_msi                      = null
     azurerm_disable_terraform_partner_id = null
     azurerm_metadata_host                = null
-    azurerm_partner_id                   = null
-    azurerm_skip_provider_registration   = null
     azurerm_storage_use_azuread          = null
-    azurerm_use_msal                     = null
+    # azapi
+    azapi_provider_version = null
     # azuread
-    azuread_provider_version             = null
-    azuread_client_id                    = null
-    azuread_environment                  = null
-    azuread_tenant_id                    = null
-    azuread_client_certificate           = null
-    azuread_client_certificate_password  = null
-    azuread_client_certificate_path      = null
-    azuread_client_secret                = null
-    azuread_oidc_request_token           = null
-    azuread_oidc_request_url             = null
-    azuread_use_oidc                     = null
-    azuread_msi_endpoint                 = null
-    azuread_use_msi                      = null
-    azuread_use_cli                      = null
-    azuread_disable_terraform_partner_id = null
-    azuread_partner_id                   = null
+    azuread_provider_version   = null
+    azuread_client_certificate = null
+    azuread_oidc_request_token = null
+    azuread_oidc_request_url   = null
+    azuread_use_oidc           = null
+    azuread_use_cli            = null
     # guacamole
-    guacamole_provider_version         = null
-    guacamole_url                      = null
-    guacamole_username                 = null
-    guacamole_password                 = null
-    guacamole_secret_name              = null
-    guacamole_secret_name_key          = null
-    guacamole_secret_store             = null
-    guacamole_secret_path              = null
-    guacamole_url                      = null
-    guacamole_disable_tls_verification = null
-    guacamole_disable_cookies          = null
-    guacamole_secret_aws_profile       = null
-    guacamole_secret_aws_region        = null
+    guacamole_provider_version   = null
+    guacamole_secret_aws_profile = null
+    guacamole_secret_aws_region  = null
     # proxmox
     pm_provider_version   = null
-    pm_provider_version   = null
-    pm_api_url            = null
-    pm_user               = null
-    pm_password           = null
-    pm_api_token_id       = null
-    pm_api_token_secret   = null
-    pm_otp                = null
-    pm_tls_insecure       = true
-    pm_parallel           = 4
-    pm_log_enable         = false
-    pm_log_levels         = {}
-    pm_log_file           = null
-    pm_timeout            = 30
-    pm_debug              = false
-    pm_proxy_server       = null
-    target_node           = null
-    pm_secret_name        = null
-    pm_secret_name_key    = null
-    pm_secret_store       = null
-    pm_secret_path        = null
     pm_secret_aws_profile = null
     pm_secret_aws_region  = null
     # vsphere
-    vsphere_provider_version      = null
-    vsphere_secret_name           = null
-    vsphere_secret_name_key       = null
-    vsphere_secret_store          = null
-    vsphere_secret_path           = null
-    vsphere_server                = null
-    vsphere_user                  = null
-    vsphere_password              = null
-    vsphere_allow_unverified_ssl  = null
-    vsphere_vim_keep_alive        = null
-    vsphere_api_timeout           = null
-    vsphere_persist_session       = null
-    vsphere_vim_session_path      = null
-    vsphere_rest_session_path     = null
-    vsphere_client_debug          = null
-    vsphere_client_debug_path     = null
-    vsphere_client_debug_path_run = null
-    vsphere_secret_aws_profile    = null
-    vsphere_secret_aws_region     = null
+    vsphere_provider_version   = null
+    vsphere_secret_aws_profile = null
+    vsphere_secret_aws_region  = null
     # kubernetes_eks
-    kubernetes_eks_provider_version = null
-    kubernetes_eks_cluster_name     = null
-    kubernetes_eks_api_version      = "client.authentication.k8s.io/v1alpha1"
+    kubernetes_eks_provider_version  = null
+    kubernetes_eks_cluster_name      = null
+    kubernetes_eks_api_version       = "client.authentication.k8s.io/v1alpha1"
+    kubernetes_eks_aws_profile       = null
+    kubernetes_eks_aws_region        = null
+    kubernetes_greenfield_deployment = false
+    # rancher2
+    rancher2_provider_version = null
+    # kubernetes_alpha_eks
+    kubernetes_alpha_eks_provider_version = null
     # helm_eks
     helm_eks_provider_version        = null
     helm_eks_kubernetes_cluster_name = null
     helm_eks_kubernetes_api_version  = "client.authentication.k8s.io/v1alpha1"
+    helm_eks_aws_profile             = null
+    helm_eks_aws_region              = null
     # mysql
     mysql_provider_version   = null
     mysql_secret_aws_profile = null
@@ -177,27 +121,47 @@ locals {
     aviatrix_contoller_ip       = null
     aviatrix_secret_aws_profile = null
     aviatrix_secret_aws_region  = null
+    # restapi
+    restapi_provider_version   = null
+    restapi_secret_aws_profile = null
+    restapi_secret_aws_region  = null
+    # phillbaker/elasticsearch
+    elasticsearch_provider_version = null
+    # tls
+    tls_provider_version = null
   }
 
   # load all hcl files
-  global_vars      = read_terragrunt_config(find_in_parent_folders("global.hcl", "global.hcl"), { locals = {}, generate = {} })
-  provider_vars    = read_terragrunt_config(find_in_parent_folders("provider.hcl", "provider.hcl"), { locals = {}, generate = {} })
-  account_vars     = read_terragrunt_config(find_in_parent_folders("account.hcl", "account.hcl"), { locals = {}, generate = {} })
-  environment_vars = read_terragrunt_config(find_in_parent_folders("environment.hcl", "environment.hcl"), { locals = {}, generate = {} })
-  region_vars      = read_terragrunt_config(find_in_parent_folders("region.hcl", "region.hcl"), { locals = {}, generate = {} })
-  project_vars     = read_terragrunt_config(find_in_parent_folders("project.hcl", "project.hcl"), { locals = {}, generate = {} })
-  general_vars     = read_terragrunt_config(find_in_parent_folders("general.hcl", "general.hcl"), { locals = {}, generate = {} })
-  common_vars      = read_terragrunt_config(find_in_parent_folders("common.hcl", "common.hcl"), { locals = {}, generate = {} })
-  local_vars       = read_terragrunt_config("local.hcl", { locals = {}, generate = {} })
+  global_vars       = read_terragrunt_config(find_in_parent_folders("global.hcl", "global.hcl"), { locals = {}, generate = {} })
+  provider_vars     = read_terragrunt_config(find_in_parent_folders("provider.hcl", "provider.hcl"), { locals = {}, generate = {} })
+  tenant_vars       = read_terragrunt_config(find_in_parent_folders("tenant.hcl", "tenant.hcl"), { locals = {}, generate = {} })
+  enterprise_vars   = read_terragrunt_config(find_in_parent_folders("enterprise.hcl", "enterprise.hcl"), { locals = {}, generate = {} })
+  organization_vars = read_terragrunt_config(find_in_parent_folders("organization.hcl", "organization.hcl"), { locals = {}, generate = {} })
+  site_vars         = read_terragrunt_config(find_in_parent_folders("site.hcl", "site.hcl"), { locals = {}, generate = {} })
+  account_vars      = read_terragrunt_config(find_in_parent_folders("account.hcl", "account.hcl"), { locals = {}, generate = {} })
+  environment_vars  = read_terragrunt_config(find_in_parent_folders("environment.hcl", "environment.hcl"), { locals = {}, generate = {} })
+  region_vars       = read_terragrunt_config(find_in_parent_folders("region.hcl", "region.hcl"), { locals = {}, generate = {} })
+  cluster_vars      = read_terragrunt_config(find_in_parent_folders("cluster.hcl", "cluster.hcl"), { locals = {}, generate = {} })
+  server_vars       = read_terragrunt_config(find_in_parent_folders("server.hcl", "server.hcl"), { locals = {}, generate = {} })
+  project_vars      = read_terragrunt_config(find_in_parent_folders("project.hcl", "project.hcl"), { locals = {}, generate = {} })
+  general_vars      = read_terragrunt_config(find_in_parent_folders("general.hcl", "general.hcl"), { locals = {}, generate = {} })
+  common_vars       = read_terragrunt_config(find_in_parent_folders("common.hcl", "common.hcl"), { locals = {}, generate = {} })
+  local_vars        = read_terragrunt_config("local.hcl", { locals = {}, generate = {} })
 
   # merge all variables from loaded hcl files in specific order
   all_vars = merge(
     local.default_vars,
     local.global_vars.locals,
     local.provider_vars.locals,
+    local.tenant_vars.locals,
+    local.enterprise_vars.locals,
+    local.organization_vars.locals,
+    local.site_vars.locals,
     local.account_vars.locals,
     local.environment_vars.locals,
     local.region_vars.locals,
+    local.cluster_vars.locals,
+    local.server_vars.locals,
     local.project_vars.locals,
     local.general_vars.locals,
     local.common_vars.locals,
@@ -219,9 +183,15 @@ locals {
     try(lookup(local.default_vars, "tags", {}), {}),
     try(lookup(local.global_vars.locals, "tags", {}), {}),
     try(lookup(local.provider_vars.locals, "tags", {}), {}),
+    try(lookup(local.tenant_vars.locals, "tags", {}), {}),
+    try(lookup(local.enterprise_vars.locals, "tags", {}), {}),
+    try(lookup(local.organization_vars.locals, "tags", {}), {}),
+    try(lookup(local.site_vars.locals, "tags", {}), {}),
     try(lookup(local.account_vars.locals, "tags", {}), {}),
     try(lookup(local.environment_vars.locals, "tags", {}), {}),
     try(lookup(local.region_vars.locals, "tags", {}), {}),
+    try(lookup(local.cluster_vars.locals, "tags", {}), {}),
+    try(lookup(local.server_vars.locals, "tags", {}), {}),
     try(lookup(local.project_vars.locals, "tags", {}), {}),
     try(lookup(local.general_vars.locals, "tags", {}), {}),
     try(lookup(local.common_vars.locals, "tags", {}), {}),
@@ -248,6 +218,7 @@ locals {
   remote_state_s3_encrypt                = try(coalesce(local.all_vars.remote_state_s3_encrypt), true)
   remote_state_s3_bucket                 = try(coalesce(local.all_vars.remote_state_s3_bucket), format("%s-%s", "nv-tf-state", "${length(compact([local.account_name])) > 0 ? local.account_name : "undefined"}"))
   remote_state_s3_key_prefix             = try(coalesce(local.all_vars.remote_state_s3_key_prefix), "infra")
+  remote_state_s3_path                   = try(coalesce(local.all_vars.remote_state_s3_path), "${path_relative_to_include()}")
   remote_state_s3_region                 = try(coalesce(local.all_vars.remote_state_s3_region), "eu-north-1")
   remote_state_s3_dynamodb_table         = try(coalesce(local.all_vars.remote_state_s3_dynamodb_table), "terraform-locks")
   remote_state_s3_skip_region_validation = try(coalesce(local.all_vars.remote_state_s3_skip_region_validation), true)
@@ -284,7 +255,7 @@ locals {
     config = {
       encrypt                = tobool(local.remote_state_s3_encrypt)
       bucket                 = local.remote_state_s3_bucket
-      key                    = "${local.remote_state_s3_key_prefix}/${path_relative_to_include()}/terraform.tfstate"
+      key                    = "${local.remote_state_s3_key_prefix}/${local.remote_state_s3_path}/terraform.tfstate"
       region                 = local.remote_state_s3_region
       dynamodb_table         = local.remote_state_s3_dynamodb_table
       skip_region_validation = tobool(local.remote_state_s3_skip_region_validation)
@@ -412,7 +383,7 @@ variable "azurerm_tenant_id" {
 
 variable "azurerm_auxiliary_tenant_ids" {
   type    = list(string)
-  default = []
+  default = null
 }
 
 variable "azurerm_client_certificate_password" {
@@ -480,24 +451,19 @@ variable "azurerm_storage_use_azuread" {
   default = null
 }
 
-variable "azurerm_use_msal" {
-  type    = bool
-  default = null
-}
-
 provider "azurerm" {
-  subscription_id              = try(coalesce(var.azurerm_subscription_id), null)
-  client_id                    = try(coalesce(var.azurerm_client_id), null)
-  environment                  = try(coalesce(var.azurerm_environment), null)
-  tenant_id                    = try(coalesce(var.azurerm_tenant_id), null)
-  client_certificate_password  = try(coalesce(var.azurerm_client_certificate_password), null)
-  client_certificate_path      = try(coalesce(var.azurerm_client_certificate_path), null)
-  client_secret                = try(coalesce(var.azurerm_client_secret), null)
-  msi_endpoint                 = try(coalesce(var.azurerm_msi_endpoint), null)
-  use_msi                      = try(coalesce(var.azurerm_use_msi), null)
-  partner_id                   = try(coalesce(var.azurerm_partner_id), null)
-  auxiliary_tenant_ids         = try(coalesce(var.azurerm_auxiliary_tenant_ids), null)
-  skip_provider_registration   = try(coalesce(var.azurerm_skip_provider_registration), null)
+  subscription_id              = var.azurerm_subscription_id
+  client_id                    = var.azurerm_client_id
+  environment                  = var.azurerm_environment
+  tenant_id                    = var.azurerm_tenant_id
+  client_certificate_password  = var.azurerm_client_certificate_password
+  client_certificate_path      = var.azurerm_client_certificate_path
+  client_secret                = var.azurerm_client_secret
+  msi_endpoint                 = var.azurerm_msi_endpoint
+  use_msi                      = var.azurerm_use_msi
+  partner_id                   = var.azurerm_partner_id
+  auxiliary_tenant_ids         = var.azurerm_auxiliary_tenant_ids
+  skip_provider_registration   = var.azurerm_skip_provider_registration
 %{~if try(coalesce(local.all_vars.azurerm_features), null) != null}
   features {
 %{~for key, value in local.all_vars.azurerm_features}
@@ -510,22 +476,22 @@ provider "azurerm" {
   }
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_disable_terraform_partner_id), null) != null}
-  disable_terraform_partner_id = try(coalesce(var.azurerm_disable_terraform_partner_id), null)
+  disable_terraform_partner_id = var.azurerm_disable_terraform_partner_id
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_oidc_request_token), null) != null}
-  oidc_request_token           = try(coalesce(var.azurerm_oidc_request_token), null)
+  oidc_request_token           = var.azurerm_oidc_request_token
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_oidc_request_url), null) != null}
-  oidc_request_url             = try(coalesce(var.azurerm_oidc_request_url), null)
+  oidc_request_url             = var.azurerm_oidc_request_url
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_use_oidc), null) != null}
-  use_oidc                     = try(coalesce(var.azurerm_use_oidc), null)
+  use_oidc                     = var.azurerm_use_oidc
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_metadata_host), null) != null}
-  metadata_host                = try(coalesce(var.azurerm_metadata_host), null)
+  metadata_host                = var.azurerm_metadata_host
 %{endif}
 %{~if try(coalesce(local.all_vars.azurerm_storage_use_azuread), null) != null}
-  storage_use_azuread          = try(coalesce(var.azurerm_storage_use_azuread), null)
+  storage_use_azuread          = var.azurerm_storage_use_azuread
 %{endif}
 }
 EOF
@@ -542,6 +508,161 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "${try(coalesce(local.all_vars.azurerm_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
+  # generate azapi provider
+  generate_azapi_provider = {
+    azapi_provider = {
+      path      = "tg_generated_provider_azapi.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+variable "azapi_client_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_environment" {
+  type    = string
+  default = null
+}
+
+variable "azapi_subscription_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_tenant_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_tags" {
+  type    = map(string)
+  default = {}
+}
+
+variable "azapi_default_location" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_name" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_naming_prefix" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_naming_suffix" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_certificate_password" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_certificate_path" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_secret" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_request_token" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_request_url" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_token" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_token_file_path" {
+  type    = string
+  default = null
+}
+
+variable "azapi_use_oidc" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_disable_correlation_request_id" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_disable_terraform_partner_id" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_partner_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_skip_provider_registration" {
+  type    = bool
+  default = null
+}
+
+provider "azapi" {
+  client_id                      = var.azapi_client_id
+  environment                    = var.azapi_environment
+  subscription_id                = var.azapi_subscription_id
+  tenant_id                      = var.azapi_tenant_id
+  default_tags                   = var.azapi_default_tags
+  default_location               = var.azapi_default_location
+  default_name                   = var.azapi_default_name
+  default_naming_prefix          = var.azapi_default_naming_prefix
+  default_naming_suffix          = var.azapi_default_naming_suffix
+  client_certificate_password    = var.azapi_client_certificate_password
+  client_certificate_path        = var.azapi_client_certificate_path
+  client_secret                  = var.azapi_client_secret
+  oidc_request_token             = var.azapi_oidc_request_token
+  oidc_request_url               = var.azapi_oidc_request_url
+  oidc_token                     = var.azapi_oidc_token
+  oidc_token_file_path           = var.azapi_oidc_token_file_path
+  use_oidc                       = var.azapi_use_oidc
+  disable_correlation_request_id = var.azapi_disable_correlation_request_id
+  disable_terraform_partner_id   = var.azapi_disable_terraform_partner_id
+  partner_id                     = var.azapi_partner_id
+  skip_provider_registration     = var.azapi_skip_provider_registration
+}
+EOF
+    }
+  }
+
+  generate_azapi_provider_override = {
+    azapi_provider_override = {
+      path      = "tg_generated_provider_azapi_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    azapi = {
+      source  = "Azure/azapi"
+      version = "${try(coalesce(local.all_vars.azapi_provider_version), "")}"
     }
   }
 }
@@ -617,30 +738,30 @@ variable "azuread_partner_id" {
 }
 
 provider "azuread" {
-  client_id                    = try(coalesce(var.azuread_client_id), null)
-  environment                  = try(coalesce(var.azuread_environment), null)
-  tenant_id                    = try(coalesce(var.azuread_tenant_id), null)
-  client_certificate_password  = try(coalesce(var.azuread_client_certificate_password), null)
-  client_certificate_path      = try(coalesce(var.azuread_client_certificate_path), null)
-  client_secret                = try(coalesce(var.azuread_client_secret), null)
-  msi_endpoint                 = try(coalesce(var.azuread_msi_endpoint), null)
-  use_msi                      = try(coalesce(var.azuread_use_msi), null)
-  disable_terraform_partner_id = try(coalesce(var.azuread_disable_terraform_partner_id), null)
-  partner_id                   = try(coalesce(var.azuread_partner_id), null)
+  client_id                    = var.azuread_client_id
+  environment                  = var.azuread_environment
+  tenant_id                    = var.azuread_tenant_id
+  client_certificate_password  = var.azuread_client_certificate_password
+  client_certificate_path      = var.azuread_client_certificate_path
+  client_secret                = var.azuread_client_secret
+  msi_endpoint                 = var.azuread_msi_endpoint
+  use_msi                      = var.azuread_use_msi
+  disable_terraform_partner_id = var.azuread_disable_terraform_partner_id
+  partner_id                   = var.azuread_partner_id
 %{~if try(coalesce(local.all_vars.azuread_client_certificate), null) != null}
-  client_certificate           = try(coalesce(var.azuread_client_certificate), null)
+  client_certificate           = var.azuread_client_certificate
 %{endif}
 %{~if try(coalesce(local.all_vars.azuread_oidc_request_token), null) != null}
-  oidc_request_token           = try(coalesce(var.azuread_oidc_request_token), null)
+  oidc_request_token           = var.azuread_oidc_request_token
 %{endif}
 %{~if try(coalesce(local.all_vars.azuread_oidc_request_url), null) != null}
-  oidc_request_url             = try(coalesce(var.azuread_oidc_request_url), null)
+  oidc_request_url             = var.azuread_oidc_request_url
 %{endif}
 %{~if try(coalesce(local.all_vars.azuread_use_oidc), null) != null}
-  use_oidc                     = try(coalesce(var.azuread_use_oidc), null)
+  use_oidc                     = var.azuread_use_oidc
 %{endif}
 %{~if try(coalesce(local.all_vars.azuread_use_cli), null) != null}
-  use_cli                      = try(coalesce(var.azuread_use_cli), null)
+  use_cli                      = var.azuread_use_cli
 %{endif}
 }
 EOF
@@ -685,12 +806,12 @@ variable "guacamole_password" {
 
 variable "guacamole_disable_tls_verification" {
   type    = bool
-  default = null
+  default = false
 }
 
 variable "guacamole_disable_cookies" {
   type    = bool
-  default = null
+  default = false
 }
 
 variable "guacamole_secret_name" {
@@ -705,7 +826,7 @@ variable "guacamole_secret_name_key" {
 
 variable "guacamole_secret_store" {
   type    = string
-  default = null
+  default = "secrets-manager"
 }
 
 variable "guacamole_secret_path" {
@@ -719,11 +840,11 @@ locals {
 
 module "guacamole_provider_secret" {
   count           = length(compact([var.guacamole_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.guacamole_secret_name), local.guacamole_hostname)
   secret_name_key = try(coalesce(var.guacamole_secret_name_key), var.guacamole_username)
-  secret_path     = try(coalesce(var.guacamole_secret_path), null)
-  store           = try(coalesce(var.guacamole_secret_store), "secrets-manager")
+  secret_path     = var.guacamole_secret_path
+  store           = var.guacamole_secret_store
 %{if local.all_vars.guacamole_secret_aws_profile != null~}
   providers = {
     aws = aws.guacamole_secret
@@ -732,11 +853,11 @@ module "guacamole_provider_secret" {
 }
 
 provider "guacamole" {
-  url                      = try(coalesce(var.guacamole_url), null)
-  username                 = coalesce(var.guacamole_username, "guacadmin")
+  url                      = var.guacamole_url
+  username                 = var.guacamole_username
   password                 = try(coalesce(var.guacamole_password), module.guacamole_provider_secret[0].secret)
-  disable_tls_verification = try(coalesce(var.guacamole_disable_tls_verification), false)
-  disable_cookies          = try(coalesce(var.guacamole_disable_cookies), false)
+  disable_tls_verification = var.guacamole_disable_tls_verification
+  disable_cookies          = var.guacamole_disable_cookies
 }
 
 %{if local.all_vars.guacamole_secret_aws_profile != null~}
@@ -789,7 +910,7 @@ variable "pm_secret_name_key" {
 
 variable "pm_secret_store" {
   type    = string
-  default = null
+  default = "secrets-manager"
 }
 
 variable "pm_secret_path" {
@@ -827,22 +948,22 @@ variable "pm_otp" {
 }
 
 variable "pm_tls_insecure" {
-  type    = string
-  default = null
+  type    = bool
+  default = true
 }
 
 variable "pm_parallel" {
-  type    = string
-  default = null
+  type    = number
+  default = 4
 }
 
 variable "pm_log_enable" {
-  type    = string
-  default = null
+  type    = bool
+  default = false
 }
 
 variable "pm_log_levels" {
-  type = map(any)
+  type = map(string)
   default = {}
 }
 
@@ -852,13 +973,13 @@ variable "pm_log_file" {
 }
 
 variable "pm_timeout" {
-  type    = string
-  default = null
+  type    = number
+  default = 30
 }
 
 variable "pm_debug" {
-  type    = string
-  default = null
+  type    = bool
+  default = false
 }
 
 variable "pm_proxy_server" {
@@ -873,11 +994,11 @@ module "proxmox_provider_secret" {
     length(compact([var.pm_api_token_id])) > 0 ? "" : "pm_api_token_id",
     length(compact([var.pm_api_token_secret])) > 0 ? "" : "pm_api_token_secret"
   ]))
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
-  secret_name     = try(coalesce(var.pm_secret_name), local.proxmox_hostname)
-  secret_name_key = each.value
-  secret_path     = try(coalesce(var.pm_secret_path), null)
-  store           = try(coalesce(var.pm_secret_store), "secrets-manager")
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.pm_secret_name, local.proxmox_hostname)
+  secret_name_key = coalesce(var.pm_secret_name_key, each.value)
+  secret_path     = var.pm_secret_path
+  store           = var.pm_secret_store
 %{if local.all_vars.pm_secret_aws_profile != null~}
   providers = {
     aws = aws.pm_secret
@@ -948,7 +1069,7 @@ variable "vsphere_secret_name_key" {
 
 variable "vsphere_secret_store" {
   type    = string
-  default = null
+  default = "secrets-manager"
 }
 
 variable "vsphere_secret_path" {
@@ -1018,11 +1139,11 @@ variable "vsphere_client_debug_path_run" {
 
 module "vsphere_provider_secret" {
   count           = length(compact([var.vsphere_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
-  secret_name     = try(coalesce(var.vsphere_secret_name), var.vsphere_server)
-  secret_name_key = try(coalesce(var.vsphere_secret_name_key), var.vsphere_user)
-  secret_path     = try(coalesce(var.vsphere_secret_path), null)
-  store           = try(coalesce(var.vsphere_secret_store), "secrets-manager")
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.vsphere_secret_name, var.vsphere_server)
+  secret_name_key = coalesce(var.vsphere_secret_name_key, var.vsphere_user)
+  secret_path     = var.vsphere_secret_path
+  store           = var.vsphere_secret_store
 %{if local.all_vars.vsphere_secret_aws_profile != null~}
   providers = {
     aws = aws.vsphere_secret
@@ -1034,15 +1155,15 @@ provider "vsphere" {
   user                  = var.vsphere_user
   password              = try(coalesce(var.vsphere_password), module.vsphere_provider_secret[0].secret)
   vsphere_server        = var.vsphere_server
-  allow_unverified_ssl  = try(coalesce(var.vsphere_allow_unverified_ssl), null)
-  vim_keep_alive        = try(coalesce(var.vsphere_vim_keep_alive), null)
-  api_timeout           = try(coalesce(var.vsphere_api_timeout), null)
-  persist_session       = try(coalesce(var.vsphere_persist_session), null)
-  vim_session_path      = try(coalesce(var.vsphere_vim_session_path), null)
-  rest_session_path     = try(coalesce(var.vsphere_rest_session_path), null)
-  client_debug          = try(coalesce(var.vsphere_client_debug), null)
-  client_debug_path     = try(coalesce(var.vsphere_client_debug_path), null)
-  client_debug_path_run = try(coalesce(var.vsphere_client_debug_path_run), null)
+  allow_unverified_ssl  = var.vsphere_allow_unverified_ssl
+  vim_keep_alive        = var.vsphere_vim_keep_alive
+  api_timeout           = var.vsphere_api_timeout
+  persist_session       = var.vsphere_persist_session
+  vim_session_path      = var.vsphere_vim_session_path
+  rest_session_path     = var.vsphere_rest_session_path
+  client_debug          = var.vsphere_client_debug
+  client_debug_path     = var.vsphere_client_debug_path
+  client_debug_path_run = var.vsphere_client_debug_path_run
 }
 
 %{if local.all_vars.vsphere_secret_aws_profile != null~}
@@ -1079,13 +1200,33 @@ EOF
       path      = "tg_generated_provider_kubernetes_eks.tf"
       if_exists = "overwrite"
       contents  = <<EOF
+locals {
+  kubernetes_eks_aws_region  = "${try(coalesce(local.all_vars.kubernetes_eks_aws_region), local.aws_region)}"
+  kubernetes_eks_aws_profile = "${try(coalesce(local.all_vars.kubernetes_eks_aws_profile, local.aws_profile), "")}"
+}
+
+%{if local.all_vars.kubernetes_eks_aws_profile != null~}
+provider "aws" {
+  region  = local.kubernetes_eks_aws_region
+  profile = local.kubernetes_eks_aws_profile
+  alias   = "kubernetes"
+}
+%{endif~}
 variable "kubernetes_eks_cluster_name" {
   type    = string
   default = null
 }
 
 data "aws_eks_cluster" "kubernetes_eks" {
+%{if local.all_vars.kubernetes_greenfield_deployment~}
+  name = module.eks_main.cluster_id
+%{else~}
   name = var.kubernetes_eks_cluster_name
+%{endif~}
+
+%{if local.all_vars.kubernetes_eks_aws_profile != null~}
+  provider = aws.kubernetes
+%{endif~}
 }
 
 provider "kubernetes" {
@@ -1095,8 +1236,8 @@ provider "kubernetes" {
     exec {
       api_version = "${local.all_vars.kubernetes_eks_api_version}"
       command     = "aws"
-%{if length(compact([local.aws_profile])) > 0~}
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", "${local.aws_profile}"]
+%{if length(compact([try(coalesce(local.all_vars.kubernetes_eks_aws_profile), local.aws_profile)])) > 0~}
+      args        = ["eks", "get-token", "--region", local.kubernetes_eks_aws_region, "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", local.kubernetes_eks_aws_profile]
 %{else~}
       args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt"]
 %{endif}
@@ -1123,19 +1264,149 @@ EOF
     }
   }
 
+  # generate rancher2 provider for Rancher
+  generate_rancher2_provider = {
+    rancher2_provider = {
+      path      = "tg_generated_provider_rancher2.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+
+locals {
+  rancher2_hostname = format("https://%s", local.rancher_hostname)
+}
+
+provider "rancher2" {
+  alias     = "bootstrap"
+
+  api_url = try(coalesce(local.rancher2_hostname), "")
+  bootstrap = true
+}
+
+# Provider config for admin
+provider "rancher2" {
+  alias     = "admin"
+
+  api_url   = rancher2_bootstrap.admin.url
+  token_key = rancher2_bootstrap.admin.token
+  insecure  = true
+}
+EOF
+    }
+  }
+
+  generate_rancher2_provider_override = {
+    rancher2_provider_override = {
+      path      = "tg_generated_provider_rancher2_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    rancher2 = {
+      source = "rancher/rancher2"
+      version = "${try(coalesce(local.all_vars.rancher2_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
+
+  # generate kubernetes alpha provider for EKS
+  generate_kubernetes_alpha_eks_provider = {
+    kubernetes_alpha_eks_provider = {
+      path      = "tg_generated_provider_kubernetes_alpha_eks.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+locals {
+  kubernetes_alpha_eks_aws_region  = "${try(coalesce(local.all_vars.kubernetes_eks_aws_region), local.aws_region)}"
+  kubernetes_alpha_eks_aws_profile = "${try(coalesce(local.all_vars.kubernetes_eks_aws_profile, local.aws_profile), "")}"
+}
+
+%{if local.all_vars.kubernetes_eks_aws_profile != null~}
+provider "aws" {
+  region  = local.kubernetes_alpha_eks_aws_region
+  profile = local.kubernetes_alpha_eks_aws_profile
+  alias   = "kubernetes-alpha"
+}
+%{endif~}
+variable "kubernetes_alpha_eks_cluster_name" {
+  type    = string
+  default = null
+}
+
+data "aws_eks_cluster" "kubernetes_alpha_eks" {
+  name = var.kubernetes_alpha_eks_cluster_name
+%{if local.all_vars.kubernetes_eks_aws_profile != null~}
+  provider = aws.kubernetes-alpha
+%{endif~}
+}
+
+provider "kubernetes-alpha" {
+    host                   = data.aws_eks_cluster.kubernetes_eks.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.kubernetes_eks.certificate_authority.0.data)
+
+    exec = {
+      api_version = "${local.all_vars.kubernetes_eks_api_version}"
+      command     = "aws"
+      env         = {}
+%{if length(compact([try(coalesce(local.all_vars.kubernetes_eks_aws_profile), local.aws_profile)])) > 0~}
+      args        = ["eks", "get-token", "--region", local.kubernetes_alpha_eks_aws_region, "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", local.kubernetes_alpha_eks_aws_profile]
+%{else~}
+      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt"]
+%{endif}
+    }
+}
+EOF
+    }
+  }
+
+  generate_kubernetes_alpha_eks_provider_override = {
+    kubernetes_alpha_eks_provider_override = {
+      path      = "tg_generated_provider_kubernetes_eks_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    kubernetes-alpha = {
+      source = "hashicorp/kubernetes-alpha"
+      version = "${try(coalesce(local.all_vars.kubernetes_alpha_eks_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
   # generate helm provider
   generate_helm_eks_provider = {
     helm_eks_provider = {
       path      = "tg_generated_provider_helm_eks.tf"
       if_exists = "overwrite"
       contents  = <<EOF
+locals {
+  helm_eks_aws_region  = "${try(coalesce(local.all_vars.helm_eks_aws_region, local.all_vars.kubernetes_eks_aws_region), local.aws_region)}"
+  helm_eks_aws_profile = "${try(coalesce(local.all_vars.helm_eks_aws_profile, local.all_vars.kubernetes_eks_aws_profile, local.aws_profile), "")}"
+}
+
+%{if length(compact([try(coalesce(local.all_vars.helm_eks_aws_profile, local.all_vars.kubernetes_eks_aws_profile), "")])) > 0~}
+provider "aws" {
+  region  = local.helm_eks_aws_region
+  profile = local.helm_eks_aws_profile
+  alias   = "helm"
+}
+%{endif~}
+
 variable "helm_eks_kubernetes_cluster_name" {
   type    = string
   default = null
 }
 
 data "aws_eks_cluster" "helm_eks" {
-  name = var.helm_eks_kubernetes_cluster_name
+  name     = var.helm_eks_kubernetes_cluster_name
+%{if length(compact([try(coalesce(local.all_vars.helm_eks_aws_profile, local.all_vars.kubernetes_eks_aws_profile), "")])) > 0~}
+  provider = aws.helm
+%{endif~}
 }
 
 provider "helm" {
@@ -1146,8 +1417,8 @@ provider "helm" {
     exec {
       api_version = "${local.all_vars.helm_eks_kubernetes_api_version}"
       command     = "aws"
-%{if length(compact([local.aws_profile])) > 0~}
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", "${local.aws_profile}"]
+%{if length(compact([try(coalesce(local.all_vars.helm_eks_aws_profile), local.aws_profile)])) > 0~}
+      args        = ["eks", "get-token", "--region", local.helm_eks_aws_region, "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", local.helm_eks_aws_profile]
 %{else~}
       args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt"]
 %{endif}
@@ -1253,7 +1524,7 @@ variable "mysql_connect_retry_timeout_sec" {
 
 module "mysql_provider_secret" {
   count           = length(compact([var.mysql_master_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.mysql_secret_name), var.mysql_endpoint)
   secret_name_key = try(coalesce(var.mysql_secret_name_key), var.mysql_master_username)
   secret_path     = try(coalesce(var.mysql_secret_path), null)
@@ -1404,7 +1675,7 @@ variable "postgresql_expected_version" {
 
 module "postgresql_provider_secret" {
   count           = length(compact([var.postgresql_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.postgresql_secret_name), var.postgresql_host)
   secret_name_key = try(coalesce(var.postgresql_secret_name_key), var.postgresql_username)
   secret_path     = try(coalesce(var.postgresql_secret_path), null)
@@ -1579,7 +1850,7 @@ locals {
 
 module "aci_provider_secret" {
   count           = length(compact([var.aci_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.aci_secret_name), local.aci_hostname)
   secret_name_key = try(coalesce(var.aci_secret_name_key), var.aci_username)
   secret_path     = try(coalesce(var.aci_secret_path), null)
@@ -1673,11 +1944,11 @@ module "mongodbatlas_provider_secret" {
     length(compact([var.mongodbatlas_public_key])) > 0 ? "" : "public_key",
     length(compact([var.mongodbatlas_private_key])) > 0 ? "" : "private_key",
   ]))
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
-  secret_name     = try(coalesce(var.mongodbatlas_secret_name), "mongodbatlas")
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.mongodbatlas_secret_name, "mongodbatlas")
   secret_name_key = each.value
-  secret_path     = try(coalesce(var.mongodbatlas_secret_path), null)
-  store           = try(coalesce(var.mongodbatlas_secret_store), "secrets-manager")
+  secret_path     = var.mongodbatlas_secret_path
+  store           = coalesce(var.mongodbatlas_secret_store, "secrets-manager")
 %{if local.all_vars.mongodbatlas_secret_aws_profile != null~}
   providers = {
     aws = aws.mongodbatlas_secret
@@ -1686,8 +1957,8 @@ module "mongodbatlas_provider_secret" {
 }
 
 provider "mongodbatlas" {
-  public_key  = length(compact([var.mongodbatlas_public_key])) > 0 ? var.mongodbatlas_public_key : module.mongodbatlas_provider_secret["public_key"].secret
-  private_key = length(compact([var.mongodbatlas_private_key])) > 0 ? var.mongodbatlas_private_key : module.mongodbatlas_provider_secret["private_key"].secret
+  public_key  = coalesce(var.mongodbatlas_public_key, try(module.mongodbatlas_provider_secret["public_key"].secret, null))
+  private_key = coalesce(var.mongodbatlas_private_key, try(module.mongodbatlas_provider_secret["private_key"].secret, null))
 }
 
 %{if local.all_vars.mongodbatlas_secret_aws_profile != null~}
@@ -1759,7 +2030,7 @@ module "opsgenie_provider_secret" {
     length(compact([var.opsgenie_api_key])) > 0 ? "" : "api_key",
     length(compact([var.opsgenie_api_url])) > 0 ? "" : "api_url",
   ]))
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.opsgenie_secret_name), "opsgenie")
   secret_name_key = each.value
   secret_path     = try(coalesce(var.opsgenie_secret_path), null)
@@ -2009,7 +2280,7 @@ variable "grafana_url" {
 
 module "grafana_provider_secret" {
   count           = length(compact([var.grafana_auth])) == 0 ? 1 : 0
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.grafana_secret_name), "api_key")
   secret_name_key = try(coalesce(var.grafana_secret_name_key), "api_key")
   secret_path     = try(coalesce(var.grafana_secret_path), "/grafana")
@@ -2129,7 +2400,7 @@ variable "aviatrix_path_to_ca_certificate" {
 
 module "aviatrix_provider_secret" {
   count           = length(compact([var.aviatrix_password])) > 0 ? 0 : 1
-  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.0"
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
   secret_name     = try(coalesce(var.aviatrix_secret_name), "aviatrix/controller")
   secret_name_key = try(coalesce(var.aviatrix_secret_name_key), "password")
   secret_path     = try(coalesce(var.aviatrix_secret_path), "/aviatrix")
@@ -2169,8 +2440,362 @@ EOF
 terraform {
   required_providers {
     aviatrix = {
-      source  = "AviatrixSystems/aviatrix"
+      source  = "aviatrixsystems/aviatrix"
       version = "${try(coalesce(local.all_vars.aviatrix_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
+  # generate restapi provider
+  generate_restapi_provider = {
+    restapi_provider = {
+      path      = "tg_generated_provider_restapi.tf"
+      if_exists = "overwrite"
+      contents  = <<-EOF
+
+variable "restapi_fetch_secret" {
+  description = "Take the secret for the provider in AWS (secrets manager or parameter store)"
+  type        = bool
+  default     = false
+}
+
+variable "restapi_secret_type" {
+  description = "restapi_fetch_secret will return a secret for which variable (password or header)"
+  type        = string
+  default     = "header"
+}
+
+variable "restapi_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "restapi_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "restapi_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "restapi_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "restapi_uri" {
+  type = string
+  description = "uri (String, Required) URI of the REST API endpoint. This serves as the base of all requests."
+}
+
+variable "restapi_cert_file" {
+  description = "(String, Optional) When set with the key_file parameter, the provider will load a client certificate as a file for mTLS authentication."
+  type = string
+  default = null
+}
+
+variable "restapi_cert_string" {
+  description = "(String, Optional) When set with the key_string parameter, the provider will load a client certificate as a string for mTLS authentication."
+  type = string
+  default = null
+}
+
+variable "restapi_copy_keys" {
+  description = "(List of String, Optional) When set, any PUT to the API for an object will copy these keys from the data the provider has gathered about the object. This is useful if internal API information must also be provided with updates, such as the revision of the object."
+  type = list(any)
+  default = null
+}
+
+variable "restapi_create_method" {
+  description = "(String, Optional) Defaults to POST. The HTTP method used to CREATE objects of this type on the API server."
+  type = string
+  default = null
+}
+
+variable "restapi_create_returns_object" {
+  description = "(Boolean, Optional) Set this when the API returns the object created only on creation operations (POST). This is used by the provider to refresh internal data structures."
+  type = string
+  default = null
+}
+
+variable "restapi_debug" {
+  description = "(Boolean, Optional) Enabling this will cause lots of debug information to be printed to STDOUT by the API client."
+  type = string
+  default = null
+}
+
+variable "restapi_destroy_method" {
+  description = "(String, Optional) Defaults to DELETE. The HTTP method used to DELETE objects of this type on the API server."
+  type = string
+  default = null
+}
+
+variable "restapi_headers" {
+  description = "(Map of String, Optional) A map of header names and values to set on all outbound requests. This is useful if you want to use a script via the 'external' provider or provide a pre-approved token or change Content-Type from application/json. If username and password are set and Authorization is one of the headers defined here, the BASIC auth credentials take precedence."
+  type = map(string)
+  default = null
+}
+
+variable "restapi_id_attribute" {
+  description = "(String, Optional) When set, this key will be used to operate on REST objects. For example, if the ID is set to 'name', changes to the API object will be to http://foo.com/bar/VALUE_OF_NAME."
+  type = string
+  default = null
+}
+
+variable "restapi_insecure" {
+  description = "(Boolean, Optional) When using https, this disables TLS verification of the host."
+  type = string
+  default = null
+}
+
+variable "restapi_key_file" {
+  description = "(String, Optional) When set with the cert_file parameter, the provider will load a client certificate as a file for mTLS authentication. Note that this mechanism simply delegates to golang's tls.LoadX509KeyPair which does not support passphrase protected private keys. The most robust security protections available to the key_file are simple file system permissions."
+  type = string
+  default = null
+}
+
+variable "restapi_key_string" {
+  description = "(String, Optional) When set with the cert_string parameter, the provider will load a client certificate as a string for mTLS authentication. Note that this mechanism simply delegates to golang's tls.LoadX509KeyPair which does not support passphrase protected private keys. The most robust security protections available to the key_file are simple file system permissions."
+  type = string
+  default = null
+}
+
+variable "restapi_oauth_client_credentials" {
+  description = "(Block List, Max: 1) Configuration for oauth client credential flow (see below for nested schema)"
+  type = map(any)
+  default = null
+}
+
+variable "restapi_password" {
+  description = "(String, Optional) When set, will use this password for BASIC auth to the API."
+  type = string
+  default = null
+}
+
+variable "restapi_rate_limit" {
+  description = "(Number, Optional) Set this to limit the number of requests per second made to the API."
+  type = string
+  default = null
+}
+
+variable "restapi_read_method" {
+  description = "(String, Optional) Defaults to GET. The HTTP method used to READ objects of this type on the API server."
+  type = string
+  default = null
+}
+
+variable "restapi_test_path" {
+  description = "(String, Optional) If set, the provider will issue a read_method request to this path after instantiation requiring a 200 OK response before proceeding. This is useful if your API provides a no-op endpoint that can signal if this provider is configured correctly. Response data will be ignored."
+  type = string
+  default = null
+}
+
+variable "restapi_timeout" {
+  description = "(Number, Optional) When set, will cause requests taking longer than this time (in seconds) to be aborted."
+  type = string
+  default = null
+}
+
+variable "restapi_update_method" {
+  description = "(String, Optional) Defaults to PUT. The HTTP method used to UPDATE objects of this type on the API server."
+  type = string
+  default = null
+}
+
+variable "restapi_use_cookies" {
+  description = "(Boolean, Optional) Enable cookie jar to persist session."
+  type = string
+  default = null
+}
+
+variable "restapi_username" {
+  description = "(String, Optional) When set, will use this username for BASIC auth to the API."
+  type = string
+  default = null
+}
+
+variable "restapi_write_returns_object" {
+  description = "(Boolean, Optional) Set this when the API returns the object created on all write operations (POST, PUT). This is used by the provider to refresh internal data structures."
+  type = string
+  default = true
+}
+
+variable "restapi_xssi_prefix" {
+  description = "(String, Optional) Trim the xssi prefix from response string, if present, before parsing."
+  type = string
+  default = null
+}
+module "restapi_provider_secret" {
+
+  count           = var.restapi_fetch_secret ? 1 : 0
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.restapi_secret_name), "api_key")
+  secret_name_key = try(coalesce(var.restapi_secret_name_key), "api_key")
+  secret_path     = try(coalesce(var.restapi_secret_path), "/tf-restapi")
+  store           = try(coalesce(var.restapi_secret_store), "parameter-store")
+%{if local.all_vars.restapi_secret_aws_profile != null~}
+  providers = {
+    aws = aws.restapi_secret
+  }
+%{endif~}
+}
+
+provider "restapi" {
+  uri = var.restapi_uri
+  cert_file = var.restapi_cert_file
+  cert_string = var.restapi_cert_string
+  copy_keys = var.restapi_copy_keys
+  create_method = var.restapi_create_method
+  create_returns_object = var.restapi_create_returns_object
+  debug = var.restapi_debug
+  destroy_method = var.restapi_destroy_method
+  headers = try(coalesce(var.restapi_headers), var.restapi_secret_type == "header" ? jsondecode(module.restapi_provider_secret[0].secret) : null, null)
+  id_attribute = var.restapi_id_attribute
+  insecure = var.restapi_insecure
+  key_file = var.restapi_key_file
+  key_string = var.restapi_key_string
+  password = try(coalesce(var.restapi_password), var.restapi_secret_type == "password" ? module.restapi_provider_secret[0].secret : null, null)
+  rate_limit = var.restapi_rate_limit
+  read_method = var.restapi_read_method
+  test_path = var.restapi_test_path
+  timeout = var.restapi_timeout
+  update_method = var.restapi_update_method
+  use_cookies = var.restapi_use_cookies
+  username = var.restapi_username
+  write_returns_object = var.restapi_write_returns_object
+  xssi_prefix = var.restapi_xssi_prefix
+
+  dynamic "oauth_client_credentials" {
+    for_each = var.restapi_oauth_client_credentials != null ? [1] : []
+
+    content {
+      oauth_client_id = var.restapi_oauth_client_credentials.oauth_client_id
+      oauth_client_secret = var.restapi_oauth_client_credentials.oauth_client_secret
+      oauth_token_endpoint = var.restapi_oauth_client_credentials.oauth_token_endpoint
+      endpoint_params = try(var.restapi_oauth_client_credentials.endpoint_params, null)
+      oauth_scopes = try(var.restapi_oauth_client_credentials.oauth_scopes, null)
+    }
+  }
+}
+
+%{if local.all_vars.restapi_secret_aws_profile != null~}
+provider "aws" {
+  region  = "${coalesce(local.all_vars.restapi_secret_aws_region, local.aws_region, "eu-north-1")}"
+  profile = "${local.all_vars.restapi_secret_aws_profile}"
+  alias   = "restapi_secret"
+}
+%{endif~}
+EOF
+    }
+  }
+
+  generate_restapi_provider_override = {
+    restapi_provider_override = {
+      path      = "tg_generated_provider_restapi_override.tf"
+      if_exists = "overwrite"
+      contents  = <<-EOF
+terraform {
+  required_providers {
+    restapi = {
+      source = "Mastercard/restapi"
+      version = "${try(coalesce(local.all_vars.restapi_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
+  # generate elasticsearch provider
+  generate_elasticsearch_provider = {
+    elasticsearch_provider = {
+      path      = "tg_generated_provider_elasticsearch.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+variable "aws_region" {
+  type    = string
+  default = null
+}
+
+variable "elasticsearch_url" {
+  type    = string
+  default = null
+}
+
+provider "elasticsearch" {
+  aws_region = "${coalesce(local.aws_region, "eu-north-1")}"
+  url        = var.elasticsearch_url
+%{if length(compact([local.aws_profile])) > 0~}
+  aws_profile    = "${local.aws_profile}"
+%{endif~}
+}
+EOF
+    }
+  }
+
+  generate_elasticsearch_provider_override = {
+    elasticsearch_provider_override = {
+      path      = "tg_generated_provider_elasticsearch_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    elasticsearch = {
+      source = "phillbaker/elasticsearch"
+      version = "${try(coalesce(local.all_vars.elasticsearch_provider_version), "")}"
+    }
+  }
+}
+EOF
+    }
+  }
+
+  # generate tls provider
+  generate_tls_provider = {
+    tls_provider = {
+      path      = "tg_generated_provider_tls.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+variable "tls_proxy" {
+  type    = object({
+    from_env = optional(bool, false)
+    password = optional(string)
+    url      = optional(string)
+    username = optional(string)
+  })
+  default = null
+}
+
+provider "tls" {
+  dynamic "proxy" {
+    for_each = var.tls_proxy != null ? [var.tls_proxy] : []
+    content {
+      from_env = tls.value.from_env
+      password = tls.value.password
+      url      = tls.value.url
+      username = tls.value.username
+    }
+  }
+}
+EOF
+    }
+  }
+
+  generate_tls_provider_override = {
+    tls_provider_override = {
+      path      = "tg_generated_provider_tls_override.tf"
+      if_exists = "overwrite"
+      contents  = <<EOF
+terraform {
+  required_providers {
+    tls = {
+      source = "hashicorp/tls"
+      version = "${try(coalesce(local.all_vars.tls_provider_version), "")}"
     }
   }
 }
@@ -2182,22 +2807,86 @@ EOF
     try(local.default_vars.providers, []),
     try(local.global_vars.locals.providers, []),
     try(local.provider_vars.locals.providers, []),
+    try(local.tenant_vars.locals.providers, []),
+    try(local.enterprise_vars.locals.providers, []),
+    try(local.organization_vars.locals.providers, []),
+    try(local.site_vars.locals.providers, []),
     try(local.account_vars.locals.providers, []),
     try(local.environment_vars.locals.providers, []),
     try(local.region_vars.locals.providers, []),
+    try(local.cluster_vars.locals.providers, []),
+    try(local.server_vars.locals.providers, []),
     try(local.project_vars.locals.providers, []),
     try(local.general_vars.locals.providers, []),
     try(local.common_vars.locals.providers, []),
     try(local.local_vars.locals.providers, []),
   ))
 
+  all_additional_providers = try(local.all_vars.additional_providers_override != null ? local.all_vars.additional_providers_override : tomap(false), [
+    for i in merge(
+      { for i in try(local.default_vars.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.global_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.provider_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.tenant_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.enterprise_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.organization_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.site_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.account_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.environment_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.region_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.cluster_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.server_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.project_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.general_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.common_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
+      { for i in try(local.local_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i }
+    ) : i
+  ])
+
+  generate_additional_providers = {
+    for provider in local.all_additional_providers :
+    "${provider.provider}_${provider.alias}_provider" => {
+      path      = "tg_generated_provider_${provider.provider}_${provider.alias}.tf"
+      if_exists = "overwrite"
+      contents  = <<-EOF
+         provider "${provider.provider}" {
+ %{for key, value in provider~}
+ %{if key != "provider" && key != "blocks" && key != "raw"~}
+           ${key} = "${value}"
+ %{endif~}
+ %{if key == "raw"~}
+ %{for k, v in provider[key]~}
+           ${k} = ${v}
+ %{endfor~}
+ %{endif~}
+ %{if key == "blocks"~}
+ %{for k, v in provider[key]~}
+           ${k}  {
+ %{for block_k, block_v in provider[key][k]~}
+             ${block_k} = ${block_v}
+ %{endfor~}
+           }
+ %{endfor~}
+ %{endif~}
+ %{endfor~}
+         }
+         EOF
+    }
+  }
+
   all_delete_files = local.all_vars.delete_files_override != null ? local.all_vars.delete_files_override : distinct(concat(
     try(local.default_vars.delete_files, []),
     try(local.global_vars.locals.delete_files, []),
     try(local.provider_vars.locals.delete_files, []),
+    try(local.tenant_vars.locals.delete_files, []),
+    try(local.enterprise_vars.locals.delete_files, []),
+    try(local.organization_vars.locals.delete_files, []),
+    try(local.site_vars.locals.delete_files, []),
     try(local.account_vars.locals.delete_files, []),
     try(local.environment_vars.locals.delete_files, []),
     try(local.region_vars.locals.delete_files, []),
+    try(local.cluster_vars.locals.delete_files, []),
+    try(local.server_vars.locals.delete_files, []),
     try(local.project_vars.locals.delete_files, []),
     try(local.general_vars.locals.delete_files, []),
     try(local.common_vars.locals.delete_files, []),
@@ -2213,37 +2902,6 @@ EOF
     }
   }
 
-
-  generate_additional_providers = {
-    for provider in local.all_vars.additional_providers :
-    "${provider.provider}_${provider.alias}_provider" => {
-      path      = "tg_generated_provider_${provider.provider}_${provider.alias}.tf"
-      if_exists = "overwrite"
-      contents  = <<-EOF
-        provider "${provider.provider}" {
-%{for key, value in provider~}
-%{if key != "provider" && key != "blocks" && key != "raw"~}
-          ${key} = "${value}"
-%{endif~}
-%{if key == "raw"~}
-%{for k, v in provider[key]~}
-          ${k} = ${v}
-%{endfor~}
-%{endif~}
-%{if key == "blocks"~}
-%{for k, v in provider[key]~}
-          ${k}  {
-%{for block_k, block_v in provider[key][k]~}
-            ${block_k} = ${block_v}
-%{endfor~}
-          }
-%{endfor~}
-%{endif~}
-%{endfor~}
-        }
-        EOF
-    }
-  }
   generate = merge(
     local.generate_delete_files,
     try(length(compact([local.all_vars.terraform_required_version])) > 0 ? local.generate_versions : tomap(false), {}),
@@ -2251,12 +2909,14 @@ EOF
     try(length(compact([local.all_vars.aws_provider_version])) > 0 ? local.generate_aws_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "azurerm") ? local.generate_azurerm_provider : tomap(false), {}),
     try(length(compact([local.all_vars.azurerm_provider_version])) > 0 ? local.generate_azurerm_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "azapi") ? local.generate_azapi_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.azapi_provider_version])) > 0 ? local.generate_azapi_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "azuread") ? local.generate_azuread_provider : tomap(false), {}),
     try(length(compact([local.all_vars.azuread_provider_version])) > 0 ? local.generate_azuread_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "guacamole") ? local.generate_guacamole_provider : tomap(false), {}),
     try(length(compact([local.all_vars.guacamole_provider_version])) > 0 ? local.generate_guacamole_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "proxmox") ? local.generate_proxmox_provider : tomap(false), {}),
-    try(length(compact([local.all_vars.proxmox_provider_version])) > 0 ? local.generate_proxmox_provider_override : tomap(false), {}),
+    try(length(compact([local.all_vars.pm_provider_version])) > 0 ? local.generate_proxmox_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "vsphere") ? local.generate_vsphere_provider : tomap(false), {}),
     try(length(compact([local.all_vars.vsphere_provider_version])) > 0 ? local.generate_vsphere_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "kubernetes_eks") ? local.generate_kubernetes_eks_provider : tomap(false), {}),
@@ -2281,19 +2941,26 @@ EOF
     try(length(compact([local.all_vars.grafana_provider_version])) > 0 ? local.generate_grafana_provider_override : tomap(false), {}),
     try(contains(local.all_providers, "aviatrix") ? local.generate_aviatrix_provider : tomap(false), {}),
     try(length(compact([local.all_vars.aviatrix_provider_version])) > 0 ? local.generate_aviatrix_provider_override : tomap(false), {}),
+    try(contains(local.all_providers, "tls") ? local.generate_tls_provider : tomap(false), {}),
+    try(length(compact([local.all_vars.tls_provider_version])) > 0 ? local.generate_tls_provider_override : tomap(false), {}),
     try(length(local.generate_additional_providers) > 0 ? local.generate_additional_providers : tomap(false), {}),
     local.global_vars.generate,
     local.provider_vars.generate,
+    local.tenant_vars.generate,
+    local.enterprise_vars.generate,
+    local.organization_vars.generate,
+    local.site_vars.generate,
     local.account_vars.generate,
     local.environment_vars.generate,
     local.region_vars.generate,
+    local.cluster_vars.generate,
+    local.server_vars.generate,
     local.project_vars.generate,
     local.general_vars.generate,
     local.common_vars.generate,
     local.local_vars.generate,
     {},
   )
-
 }
 
 remote_state = merge(
@@ -2307,6 +2974,7 @@ generate = local.generate
 
 inputs = merge(
   { for k, v in local.all_vars : k => v if v != null && v != [] && v != "" && v != {} },
+  { tags = local.all_tags },
   try(contains(local.all_providers, "azurerm") || contains(local.all_providers, "proxmox") ? { repo_tag = { "repo" : "${basename(get_parent_terragrunt_dir())}/${path_relative_to_include()}" } } : tomap(false), {}),
   try(contains(local.all_providers, "azurerm") ? { env_tag = { "environment" : "${local.environment}" } } : tomap(false), {}),
   contains(local.all_providers, "proxmox") ? length(local.all_vars.tags) > 0 ? { tags = join("\n", [for k in local.all_vars.tags : k]) } : { tags = "" } : {},

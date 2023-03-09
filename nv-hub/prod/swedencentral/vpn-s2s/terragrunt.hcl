@@ -13,10 +13,10 @@ dependency "vpn_gateway" {
 }
 
 inputs = {
-  resource_group_name           = dependency.vpn_gateway.outputs.virtual_network_gateway.nv-hub-swc-vpn-gw.resource_group_name
+  resource_group_name           = dependency.vpn_gateway.outputs.virtual_network_gateways.nv-hub-swc-vpn-gw.resource_group_name
   key_vault_name                = include.root.inputs.secrets_key_vault_name
   key_vault_resource_group_name = include.root.inputs.secrets_key_vault_rg
-  virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateway.nv-hub-swc-vpn-gw.id
+  virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateways.nv-hub-swc-vpn-gw.id
   tunnels = [
     {
       name                = "ett-cloudvpn-01-internet-swc"

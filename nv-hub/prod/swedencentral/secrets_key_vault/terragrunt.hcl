@@ -14,6 +14,10 @@ inputs = {
   enabled_for_template_deployment = true
   purge_protection_enabled        = true
   create_resource_group           = true
-
+  tags = {
+    business-unit = "109 Digitalization IT - AB"
+    department    = "109035 Operations & Infrastructure - AB"
+    cost-center   = "109035060 TechOps"
+  }
 }
 

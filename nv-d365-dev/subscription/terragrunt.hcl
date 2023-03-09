@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.6.10"
-  #source = "../../../tf-mod-azure//subscription"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.33"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//subscription"
 }
 
 include "root" {
@@ -9,6 +9,7 @@ include "root" {
 }
 
 inputs = {
+  management_group = "Self Managed"
   name            = "NV-D365-Dev"
   iam_assignments = {
     "Billing Reader" = {
@@ -26,6 +27,12 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
+  }
+
+  tags = {
+    business-unit = "109 Digitalization IT - AB"
+    department    = "109035 Operations & Infrastructure - AB"
+    cost-center   = "109035061 Tools & Products"
   }
 }
 

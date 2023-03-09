@@ -22,6 +22,9 @@ inputs = {
       "groups" = [
         "NVP LogicApp Administrators",
       ],
+      "users" = [
+        "wojciech.bloch@northvolt.com",
+      ],
     },
   }
 }

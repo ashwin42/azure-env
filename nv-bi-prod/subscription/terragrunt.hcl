@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.6.10"
-  #source = "../../../tf-mod-azure//subscription"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.33"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//subscription"
 }
 
 include "root" {
@@ -9,6 +9,7 @@ include "root" {
 }
 
 inputs = {
+  management_group = "Self Managed"
   iam_assignments = {
     "Billing Reader" = {
       groups = [
@@ -69,5 +70,11 @@ inputs = {
         "NV BI Subscription Contributor",
       ],
     },
+  }
+
+  tags = {
+    business-unit = "109 Digitalization IT - AB"
+    department    = "109033 Business Systems"
+    cost-center   = "109033057 Business Intelligence"
   }
 }

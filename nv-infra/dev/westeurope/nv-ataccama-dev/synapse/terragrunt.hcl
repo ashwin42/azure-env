@@ -68,11 +68,8 @@ JSON
     }
   }
 
-  iam_assignments = {
-    "Log Analytics Contributor" = {
-      groups = [
-        "Ataccama - Datalake Admins Dev",
-      ],
-    },
-  }
+  role_assignments = [{
+    role_name = "Synapse Contributor",
+    group     = "Ataccama - Datalake Admins Dev"
+  }]
 }

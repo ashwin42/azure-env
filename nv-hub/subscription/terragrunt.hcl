@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.20"
-  #source = "${dirname(get_repo_root())}/subscription"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.33"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/subscription"
 }
 
 include "root" {
@@ -10,6 +10,7 @@ include "root" {
 
 inputs = {
   subscription_name = "NV-Hub"
+  management_group  = "Managed"
   iam_assignments = {
     "Billing Reader" = {
       groups = [
@@ -45,7 +46,7 @@ inputs = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
-    },    
+    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
@@ -54,7 +55,18 @@ inputs = {
     "Lucidchart Cloud Insights import" = {
       service_principals = [
         "LucidChart Cloud Insights Access"
+      ],
+    },
+    "Network Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
+      ],
+    },
+    "Private DNS Zone Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
       ]
-    }
+    },
   }
 }
+

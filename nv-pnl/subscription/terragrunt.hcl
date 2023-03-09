@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.6.10"
-  #source = "../../../tf-mod-azure//subscription"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.33"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//subscription"
 }
 
 include "root" {
@@ -9,6 +9,7 @@ include "root" {
 }
 
 inputs = {
+  management_group = "Managed"
   iam_assignments = {
     "Billing Reader" = {
       groups = [
@@ -34,6 +35,6 @@ inputs = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
-    },    
+    },
   }
 }
