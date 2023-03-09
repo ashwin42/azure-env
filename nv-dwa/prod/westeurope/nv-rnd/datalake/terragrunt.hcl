@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.25"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.42"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -19,6 +19,114 @@ inputs = {
   name                = "dwarndstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
   subnet_id           = dependency.subnet.outputs.subnet["nv-dwa-rnd"].id
+  sftp_enabled        = true
+  is_hns_enabled      = true
+
+  data_lake_gen2_filesystems = [
+    {
+      group_name = "NV TechOps Role"
+      name       = "dwarndstorage-dl"
+
+      ace = [
+        {
+          group       = "Dwa RND Data Lake QC Storage"
+          permissions = "rwx"
+          scope       = "default"
+          type        = "group"
+        },
+      ]
+      iam_assignments = {
+        "Storage Blob Data Owner" = {
+          groups = [
+            "NV TechOps Role",
+          ],
+        },
+      }
+
+      paths = [
+        {
+          path       = "qc-testresults"
+          group_name = "NV TechOps Role"
+          ace = [
+            {
+              permissions = "rwx"
+              scope       = "default"
+              type        = "group"
+              group       = "Dwa RND Data Lake QC Storage"
+            },
+          ]
+        }
+      ]
+    }
+  ]
+
+  lifecycles = [
+    {
+      base_blob = {
+        tier_to_archive_after_days = 1095
+        delete_after_days          = 4380
+      }
+    }
+  ]
+
+  local_users = [
+    {
+      name                 = "dwaqcdatalakeadmin"
+      home_directory       = "dwarndstorage-dl/qc-testresults"
+      ssh_password_enabled = true
+      permission_scopes = [
+        {
+          resource_name = "dwarndstorage-dl"
+          service       = "blob"
+
+          permissions = {
+            create = true
+            delete = true
+            list   = true
+            read   = true
+            write  = true
+          }
+        },
+      ]
+    },
+    {
+      name                 = "dwaqcdatalakewriter"
+      home_directory       = "dwarndstorage-dl/qc-testresults"
+      ssh_password_enabled = true
+      permission_scopes = [
+        {
+          resource_name = "dwarndstorage-dl"
+          service       = "blob"
+
+          permissions = {
+            create = true
+            delete = false
+            list   = true
+            read   = true
+            write  = true
+          }
+        },
+      ]
+    },
+    {
+      name                 = "dwarnddatalakeadmin"
+      ssh_password_enabled = true
+      permission_scopes = [
+        {
+          resource_name = "dwarndstorage-dl"
+          service       = "blob"
+
+          permissions = {
+            create = true
+            delete = true
+            list   = true
+            read   = true
+            write  = true
+          }
+        },
+      ]
+    },
+  ]
 
   private_endpoints = {
     nv-dwa-rnd-pe = {
@@ -50,41 +158,6 @@ inputs = {
     }
   }
 
-  sftp_enabled          = true
-  is_hns_enabled        = true
-  data_lake_owner_group = "NV TechOps Role"
-  data_lake_ace = [
-    {
-      scope       = "default"
-      type        = "group"
-      group       = "Dwa RND Data Lake Storage Admin"
-      permissions = "rwx"
-    }
-  ]
-
-  data_lake_path = [
-    {
-      path = "qc-testresults"
-      ace = [
-        {
-          scope       = "default"
-          type        = "group"
-          group       = "Dwa RND Data Lake QC Storage"
-          permissions = "rwx"
-        }
-      ]
-    }
-  ]
-
-  lifecycles = [
-    {
-      base_blob = {
-        tier_to_archive_after_days = 1095
-        delete_after_days          = 4380
-      }
-    }
-  ]
-
   network_rules = {
     name           = "default_rule"
     bypass         = ["AzureServices"]
@@ -94,16 +167,12 @@ inputs = {
     ]
     ip_rules = [
       "81.233.195.87",
+      "213.50.54.196"
     ]
   }
 
   iam_assignments = {
     "Storage Account Contributor" = {
-      groups = [
-        "NV TechOps Role",
-      ],
-    },
-    "Storage Blob Data Contributor" = {
       groups = [
         "NV TechOps Role",
       ],
