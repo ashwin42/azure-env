@@ -1,16 +1,5 @@
 locals {
-  azurerm_provider_version = ">= 2.99"
   additional_providers = [
-    {
-      alias    = "localadmin_keyvault"
-      provider = "azurerm"
-      raw = {
-        subscription_id = "var.azurerm_subscription_id"
-      }
-      blocks = {
-        features = {},
-      },
-    },
     {
       alias           = "that"
       provider        = "azurerm"
