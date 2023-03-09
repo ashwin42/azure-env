@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.18"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.44"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -17,6 +17,8 @@ inputs = {
   setup_prefix        = dependency.global.outputs.setup_prefix
   key_vault_name      = "nv-infra-core"
   key_vault_rg        = "nv-infra-core"
+  secret_name         = "nv-cmx-sqladmin"
+
   private_endpoints = {
     "nv-cmx-pe" = {
       subnet_id = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
@@ -32,11 +34,14 @@ inputs = {
       dns_record_ttl               = 300
     }
   }
+
   lock_resources                = false
   public_network_access_enabled = false
+
   azuread_administrator = {
     username = "domainjoin@northvolt.com"
   }
+
   databases = [
     {
       name     = "cmx-ds1"
@@ -80,6 +85,7 @@ inputs = {
       max_size = "268435456000"
     },
   ]
+
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
