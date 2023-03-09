@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.4"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.44"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -42,7 +42,9 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
   ad_join                                = false
-  azuread_join                           = true
+  aad_join                               = true
+  aad_join_extension_name                = "AADLogin"
+  mdm_register                           = true
   wvd_register                           = true
   identity = {
     type         = "SystemAssigned"
@@ -54,11 +56,9 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = local.localadmin_name
@@ -66,7 +66,8 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "nv-d365-dra-nsg"
       ip_configuration = [
         {
           private_ip_address            = "10.46.1.134"
