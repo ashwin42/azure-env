@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.44"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -36,6 +37,7 @@ inputs = {
   ad_join                                = true
   wvd_register                           = true
   boot_diagnostics_enabled               = true
+  localadmin_key_name                    = "nv-cmx-nvadmin"
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
@@ -54,7 +56,8 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "cmx-server-nsg"
       ip_configuration = [
         {
           ipaddress                     = "10.46.0.69"
