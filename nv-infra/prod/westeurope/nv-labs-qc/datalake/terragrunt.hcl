@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.32"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.42"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -18,17 +18,22 @@ include {
 inputs = {
   name                = "labsqcstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
-  subnet_id           = dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id
+  sftp_enabled        = true
+  is_hns_enabled      = true
 
-  sftp_enabled          = true
-  is_hns_enabled        = true
-  data_lake_owner_group = "NV TechOps Role"
-  data_lake_ace = [
+  data_lake_gen2_filesystems = [
     {
-      scope       = "default"
-      type        = "group"
-      group       = "Labs QC Datalake Admin AP"
-      permissions = "rwx"
+      group_name = "NV TechOps Role"
+      name       = "labsqcstorage-dl"
+
+      ace = [
+        {
+          group       = "Labs QC Datalake Admin AP"
+          permissions = "rwx"
+          scope       = "default"
+          type        = "group"
+        },
+      ]
     }
   ]
 
@@ -80,6 +85,7 @@ inputs = {
     ]
     ip_rules = [
       "213.50.54.196",
+      "81.233.195.87",
     ]
   }
 
@@ -89,11 +95,52 @@ inputs = {
         "NV TechOps Role",
       ],
     },
-    "Storage Blob Data Contributor" = {
+    "Storage Blob Data Owner" = {
       groups = [
         "NV TechOps Role",
       ],
     },
   }
+
+  local_users = [
+    {
+      name                 = "labsqcdatalakeadmin"
+      home_directory       = "labsqcstorage-dl/qc-testresults"
+      ssh_password_enabled = true
+      permission_scopes = [
+        {
+          resource_name = "labsqcstorage-dl"
+          service       = "blob"
+
+          permissions = {
+            create = true
+            delete = true
+            list   = true
+            read   = true
+            write  = true
+          }
+        },
+      ]
+    },
+    {
+      name                 = "labsqcdatalakewriter"
+      home_directory       = "labsqcstorage-dl/qc-testresults"
+      ssh_password_enabled = true
+      permission_scopes = [
+        {
+          resource_name = "labsqcstorage-dl"
+          service       = "blob"
+
+          permissions = {
+            create = true
+            delete = false
+            list   = true
+            read   = true
+            write  = true
+          }
+        },
+      ]
+    },
+  ]
 }
 
