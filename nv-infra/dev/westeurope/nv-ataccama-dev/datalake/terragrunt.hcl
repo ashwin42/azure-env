@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.25"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.44"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -15,6 +15,75 @@ inputs = {
   name                  = "dlmasterdataataccamadev"
   is_hns_enabled        = true
   data_lake_owner_group = "NV TechOps Role"
+
+  iam_assignments = {
+    "Storage Account Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
+        "NV TechOps Role",
+        "Ataccama - Datalake Admins Dev",
+      ],
+    },
+    "Storage Blob Data Owner" = {
+      groups = [
+        "NV TechOps Role",
+      ]
+    }
+    "Storage Blob Data Contributor" = {
+      groups = [
+        "NV TechOps Consultants Member",
+        "Ataccama - Datalake Admins Dev",
+      ]
+      service_principals = [
+        "nv-ataccama-synapse-ws-dev",
+      ]
+    },
+  }
+
+  data_lake_gen2_filesystems = [
+    {
+      name        = "dlmasterdataataccamadev-dl"
+      owner_group = "NV TechOps Role"
+      group_name  = "NV TechOps Role"
+      ace = [
+        {
+          scope       = "default"
+          type        = "group"
+          permissions = "rwx"
+        },
+        {
+          scope       = "default"
+          type        = "group"
+          group       = "Ataccama - Datalake Admins Dev"
+          permissions = "rwx"
+        },
+        {
+          scope             = "default"
+          type              = "user"
+          service_principal = "nv-ataccama-synapse-ws-dev"
+          permissions       = "rwx"
+        },
+        {
+          scope       = "access"
+          type        = "group"
+          group       = "Ataccama - Datalake Admins Dev"
+          permissions = "rwx"
+        },
+        {
+          scope             = "access"
+          type              = "user"
+          service_principal = "nv-ataccama-synapse-ws-dev"
+          permissions       = "rwx"
+        },
+      ]
+
+      paths = [
+        {
+          path = "ataccama-data"
+        },
+      ]
+    },
+  ]
 
   private_endpoints = {
     nv-ataccama-dev-pe = {
@@ -42,57 +111,9 @@ inputs = {
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.blob.core.windows.net"
         dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-
       }
     }
   }
-
-  data_lake_ace = [
-    {
-      scope       = "default"
-      type        = "group"
-      group       = "NV TechOps Consultants Member"
-      permissions = "rwx"
-    },
-    {
-      scope       = "default"
-      type        = "group"
-      group       = "NV TechOps Role"
-      permissions = "rwx"
-    },
-    {
-      scope       = "default"
-      type        = "group"
-      group       = "Ataccama - Datalake Admins Dev"
-      permissions = "rwx"
-    }
-  ]
-
-  data_lake_path = [
-    {
-      path = "ataccama-data"
-      ace = [
-        {
-          scope       = "default"
-          type        = "group"
-          group       = "NV TechOps Consultants Member"
-          permissions = "rwx"
-        },
-        {
-          scope       = "default"
-          type        = "group"
-          group       = "NV TechOps Role"
-          permissions = "rwx"
-        },
-        {
-          scope       = "default"
-          type        = "group"
-          group       = "Ataccama - Datalake Admins Dev"
-          permissions = "rwx"
-        }
-      ]
-    }
-  ]
 
   lifecycles = [
     {
@@ -111,24 +132,10 @@ inputs = {
     ip_rules = [
       "16.170.65.157",
       "13.49.218.90",
+      "98.128.134.222",
+      "13.50.139.136",
     ]
   }
 
-  iam_assignments = {
-    "Storage Account Contributor" = {
-      groups = [
-        "NV TechOps Consultants Member",
-        "NV TechOps Role",
-        "Ataccama - Datalake Admins Dev",
-      ],
-    },
-    "Storage Blob Data Contributor" = {
-      groups = [
-        "NV TechOps Consultants Member",
-        "NV TechOps Role",
-        "Ataccama - Datalake Admins Dev",
-      ],
-    },
-  }
 }
 

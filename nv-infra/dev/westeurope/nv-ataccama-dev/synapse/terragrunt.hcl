@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//synapse?ref=v0.7.24"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//synapse?ref=v0.7.44"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//synapse"
 }
 
@@ -22,16 +22,28 @@ include {
 
 inputs = {
   name                                   = "nv-ataccama-synapse-ws-dev"
-  storage_data_lake_gen2_filesystem_id   = dependency.datalake.outputs.storage_data_lake_gen2_filesystem.id
+  storage_data_lake_gen2_filesystem_id   = dependency.datalake.outputs.data_lake_gen2_filesystems.dlmasterdataataccamadev-dl.id
   sql_administrator_login                = "nvadmin"
   fetch_sql_administrator_login_password = true
   public_network_access_enabled          = true
   managed_virtual_network_enabled        = false
   allow_azure_ip_access                  = true
 
+  sql_aad_admin = {
+    group = "NV TechOps Role"
+  }
+
   identity = {
     type = "SystemAssigned"
   }
+
+  firewall_rules = [
+    {
+      name             = "ALL"
+      start_ip_address = "0.0.0.0"
+      end_ip_address   = "255.255.255.255"
+    },
+  ]
 
   linked_services = [
     {
@@ -68,8 +80,18 @@ JSON
     }
   }
 
-  role_assignments = [{
-    role_name = "Synapse Contributor",
-    group     = "Ataccama - Datalake Admins Dev"
-  }]
+  role_assignments = [
+    {
+      role_name = "Synapse Administrator"
+      group     = "NV TechOps Role"
+    },
+    {
+      role_name = "Synapse Contributor"
+      group     = "Ataccama - Datalake Admins Dev"
+    },
+    {
+      role_name = "Synapse SQL Administrator"
+      group     = "Ataccama - Datalake Admins Dev"
+    },
+  ]
 }

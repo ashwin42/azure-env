@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.25"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.44"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -19,6 +19,7 @@ inputs = {
   minimum_tls_version           = "1.2"
   create_administrator_password = true
   public_network_access_enabled = true
+  secret_name                   = "nv-ataccama-dev-sqladmin"
   lock_resources                = false
   identity = {
     type = "SystemAssigned"
@@ -51,9 +52,11 @@ inputs = {
       database = "masterdatatransfdev"
     }
   ]
+
   azuread_administrator = {
-    group = "NV TechOps Consultants Member"
+    group = "NV TechOps Role"
   }
+
   databases = [
     {
       name                        = "masterdatatransfdev"
@@ -67,6 +70,7 @@ inputs = {
       max_size_gb = "50"
     }
   ]
+
   private_endpoints = {
     nv-ataccama-dev-sql-pe = {
       subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
