@@ -18,7 +18,6 @@ include {
 inputs = {
   name                = "dwarndstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
-  subnet_id           = dependency.subnet.outputs.subnet["nv-dwa-rnd"].id
   sftp_enabled        = true
   is_hns_enabled      = true
 
