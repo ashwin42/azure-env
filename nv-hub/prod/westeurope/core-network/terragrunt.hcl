@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.32"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.46"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vnet"
 }
 
@@ -8,15 +8,11 @@ include {
 }
 
 inputs = {
-  create_resource_group    = true
-  resource_group_name      = "core_network"
-  vnet_resource_group_name = "core_network"
-  setup_prefix             = "core_vnet"
-  vnet_name                = "core_vnet"
-  address_space            = ["10.40.0.0/16"]
-  dns_servers              = ["10.40.250.4", "10.40.250.5"]
-  create_recovery_vault    = false
-  lock_resources           = false
+  create_resource_group = true
+  resource_group_name   = "core_network"
+  name                  = "core_vnet"
+  address_space         = ["10.40.0.0/16"]
+  dns_servers           = ["10.40.250.4", "10.40.250.5"]
 
   route_tables = [
     {
@@ -110,19 +106,19 @@ inputs = {
       ]
     },
   ]
+
   subnets = [
     {
-      name              = "hub-dmz"
-      address_prefixes  = ["10.40.253.0/24"]
-      service_endpoints = []
-      route_table_name  = "nv-hub-we-hub-router-rt"
+      name             = "hub-dmz"
+      address_prefixes = ["10.40.253.0/24"]
+      route_table_name = "nv-hub-we-hub-router-rt"
     },
     {
-      name              = "GatewaySubnet"
-      address_prefixes  = ["10.40.254.0/24"]
-      service_endpoints = []
+      name             = "GatewaySubnet"
+      address_prefixes = ["10.40.254.0/24"]
     },
   ]
+
   peerings = [
     {
       name                    = "hub-we2hub-swc",
