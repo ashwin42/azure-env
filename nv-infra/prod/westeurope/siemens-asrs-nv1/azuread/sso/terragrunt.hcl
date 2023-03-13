@@ -1,6 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.2.1"
-  #source = "../../../../../../../tf-mod-azuread/app/"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//app?ref=v1.4.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azuread/app/"
 }
 
 include {
@@ -9,7 +9,9 @@ include {
 
 inputs = {
   display_name            = "Siemens-ASRS-prod"
+  sign_in_audience        = "AzureADMyOrg"
   group_membership_claims = ["SecurityGroup"]
+
   redirect_uris = [
     "http://localhost:5000/",
     "http://localhost:5000/signin-oidc",
@@ -23,77 +25,82 @@ inputs = {
     "https://asrs-nv1-prod-fa1-as.azurewebsites.net/signin-oidc",
     "https://asrs-nv1-prod-spw-as.azurewebsites.net/",
     "https://asrs-nv1-prod-spw-as.azurewebsites.net/signin-oidc",
-
+    "https://asrs-nv1-prod-anode2-wa.azurewebsites.net/",
+    "https://asrs-nv1-prod-anode2-wa.azurewebsites.net/signin-oidc",
+    "https://asrs-nv1-prod-cathode2-wa.azurewebsites.net/",
+    "https://asrs-nv1-prod-cathode2-wa.azurewebsites.net/signin-oidc",
   ]
 
-  owners = [
-    "39f96895-f6b5-4af3-93a5-2a6f1fb78ff1",
-    "fb81d013-9fb8-4692-b220-e9f7b271110c",
+  owners_groups = [
+    "NV TechOps Role",
   ]
 
-  id_token_issuance_enabled         = true
-  create_delegated_permission_grant = false
-  create_msgraph_principal          = false
-  app_role_assignment_required      = false
-  create_default_role               = false
+  create_default_role          = false
+  id_token_issuance_enabled    = true
+  app_role_assignment_required = false
 
-  optional_claims = [
-    {
-      id_token = {
-        additional_properties = []
-        essential             = false
-        name                  = "xms_pl"
-      }
-    },
-    {
-      id_token = {
-        additional_properties = []
-        essential             = false
-        name                  = "xms_tpl"
-      }
-    },
-    {
-      id_token = {
+  api = {
+    mapped_claims_enabled = false
+  }
+
+  implicit_grant = {
+    access_token_issuance_enabled = false
+    id_token_issuance_enabled     = true
+  }
+
+  service_principal_feature_tags = {
+    hide       = true
+    enterprise = true
+  }
+
+  optional_claims = {
+    id_token = [
+      {
+        name = "xms_pl"
+      },
+      {
+        name = "xms_tpl"
+      },
+      {
         additional_properties = [
           "netbios_domain_and_sam_account_name"
         ]
-        essential = false
-        name      = "groups"
-      }
-    },
-    {
-      saml2_token = {
-        additional_properties = [
-          "netbios_domain_and_sam_account_name"
-        ]
-        essential = false
-        name      = "groups"
-      }
-    },
-    {
-      access_token = {
-        additional_properties = [
-          "netbios_domain_and_sam_account_name"
-        ]
-        essential = false
-        name      = "groups"
-      }
-    },
-  ]
+        name = "groups"
+      },
+    ]
 
-  tag_hide = true
+    access_token = [
+      {
+        additional_properties = [
+          "netbios_domain_and_sam_account_name"
+        ]
+        name = "groups"
+      },
+    ]
+
+    saml2_token = [
+      {
+        additional_properties = [
+          "netbios_domain_and_sam_account_name"
+        ]
+        name = "groups"
+      },
+    ]
+  }
 
   # Default permissions for microsoft graph
   required_resource_access = [{
-    resource_app_id = "00000003-0000-0000-c000-000000000000"
+    resource_app_name = "MicrosoftGraph"
 
     resource_access = [
       {
-        id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read	
+        name = "User.Read"
         type = "Scope"
       },
     ]
   }]
 
+  delegate_permission_claims = ["User.Read"]
+  tags                       = null
 }
 
