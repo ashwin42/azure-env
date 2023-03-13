@@ -65,6 +65,13 @@ inputs = {
       direction             = "Inbound"
     },
     {
+      name                  = "Ett_MFA_VPN"
+      source_address_prefix = "10.240.0.0/21"
+      description           = "Allow connections from Ett MFA VPN clients"
+      priority              = "201"
+      direction             = "Inbound"
+    },
+    {
       name                  = "Labs-800xa-1"
       source_address_prefix = "10.0.0.0/23"
       description           = "Allow connections from Labx-800xa"
