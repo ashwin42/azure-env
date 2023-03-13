@@ -29,6 +29,12 @@ inputs = {
     },
   }
 
+  resource_provider_registrations = [
+    {
+      name = "Microsoft.PowerPlatform"
+    },
+  ]
+
   tags = {
     business-unit = "109 Digitalization IT - AB"
     department    = "109035 Operations & Infrastructure - AB"
