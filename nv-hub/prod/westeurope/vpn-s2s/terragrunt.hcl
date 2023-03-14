@@ -245,6 +245,42 @@ inputs = {
       address_prefix             = "10.17.0.0/22,10.193.9.0/24"
       enable_bgp                 = "false"
     },
+    {
+      name                = "dwa-01-internet"
+      secret_name         = "dwa-01-internet-psk"
+      gateway_address     = "37.128.85.102"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65362"
+      bgp_peering_address = "169.254.0.136"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "dwa-02-internet"
+      secret_name         = "dwa-02-internet-psk"
+      gateway_address     = "37.128.85.103"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65362"
+      bgp_peering_address = "169.254.0.137"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
   ]
 }
 
