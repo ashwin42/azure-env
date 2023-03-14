@@ -49,28 +49,33 @@ inputs = {
   }
   databases = [
     {
-      name = local.name
+      name = "Log_DB"
     },
-  ]
-  mssql_azuread_users = [
     {
-      username = "NV TechOps Role"
-      roles    = ["db_owner"]
-      database = local.name
+      name = "Results_DB"
     },
-    #  {
-    #    username = "Add Strama LDS AAD group here"
-    #    roles    = ["db_owner"]
-    #    database = local.name
-    #  },
+    {
+      name = "Station_DB"
+    },
   ]
   mssql_local_users = [
     {
       username      = "${local.name}-owner"
       roles         = ["db_owner"]
-      database      = local.name
+      database      = "Log_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-owner"
+      roles         = ["db_owner"]
+      database      = "Results_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-owner"
+      roles         = ["db_owner"]
+      database      = "Station_DB"
       create_secret = true
     },
   ]
-
 }
