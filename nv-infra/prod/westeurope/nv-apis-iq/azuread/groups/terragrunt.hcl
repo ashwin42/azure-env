@@ -1,6 +1,6 @@
 terraform {
   source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.1.0"
-  #source = "../../../../../../tf-mod-azuread/groups/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azuread/groups/"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -20,7 +20,7 @@ inputs = {
       display_name     = "APIS IQ AP Approvers"
       description      = "Members in this group can approve requests for APIS IQ AP"
       security_enabled = true
-      member_users     = ["noemi.kiss@northvolt.com", "jesper.adolfsson@northvolt.com", "meral.metin-donmez@northvolt.com"]
+      member_users     = ["noemi.kiss@northvolt.com", "jesper.adolfsson@northvolt.com"]
     },
   ]
 }
