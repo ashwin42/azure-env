@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
 include {
@@ -31,7 +31,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_B4ms"
+  vm_size                                = "Standard_B8ms"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
