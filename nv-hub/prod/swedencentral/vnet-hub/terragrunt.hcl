@@ -29,6 +29,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.46.40.0/22" #Azure WestEurope hub - PNL
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
       ]
     },
     {
@@ -41,6 +46,11 @@ inputs = {
         },
         {
           address_prefix         = "10.46.96.0/19" #Azure WestEurope hub - DWA
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.46.40.0/22" #Azure WestEurope hub - PNL
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },

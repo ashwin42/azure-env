@@ -1,5 +1,6 @@
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "rv" {
@@ -8,6 +9,48 @@ dependency "rv" {
 
 locals {
   name = basename(get_original_terragrunt_dir())
+  custom_rules = [
+    {
+      name                   = "Labs_MFA_VPN"
+      priority               = "200"
+      direction              = "Inbound"
+      source_address_prefix  = include.root.locals.all_vars.vpn_subnet_labs
+      protocol               = "*"
+      destination_port_range = "3389, 8735, 9182"
+      access                 = "Allow"
+      description            = "Allow connections from Labs MFA VPN clients"
+    },
+    {
+      name                   = "WinRM"
+      priority               = "205"
+      direction              = "Inbound"
+      source_address_prefix  = include.root.locals.all_vars.vpn_subnet_labs
+      protocol               = "Tcp"
+      destination_port_range = "5986"
+      access                 = "Allow"
+      description            = "Allow connections from Labs MFA VPN clients for WinRM"
+    },
+    {
+      name                   = "Windows_Node_Exporter_1"
+      priority               = "206"
+      direction              = "Inbound"
+      source_address_prefix  = "10.15.17.192/26" # prometheus subnet
+      protocol               = "Tcp"
+      destination_port_range = "9182"
+      access                 = "Allow"
+      description            = "Allow connection from prometheus to node_exporter"
+    },
+    {
+      name                   = "Windows_Node_Exporter_2"
+      priority               = "207"
+      direction              = "Inbound"
+      source_address_prefix  = "10.15.18.0/25" # prometheus subnet
+      protocol               = "Tcp"
+      destination_port_range = "9182"
+      access                 = "Allow"
+      description            = "Allow connection from prometheus to node_exporter"
+    },
+  ]
 }
 
 inputs = {
@@ -26,6 +69,8 @@ inputs = {
   wvd_register                           = true
   localadmin_key_name                    = "${local.name}-vm-localadmin"
   create_localadmin_password             = true
+  boot_diagnostics_enabled               = true
+  install_winrm                          = true
 
   storage_image_reference = {
     offer     = "Windows-10",
@@ -41,6 +86,6 @@ inputs = {
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true
-    timezone                  = null
+    timezone                  = ""
   }
 }
