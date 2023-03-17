@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.46"
 }
 
 include {
@@ -48,17 +48,7 @@ inputs = merge(
       }
     ]
 
-    custom_rules = [
-      {
-        name                   = "Labs_MFA_VPN"
-        priority               = "200"
-        direction              = "Inbound"
-        source_address_prefix  = "10.16.8.0/23"
-        protocol               = "*"
-        destination_port_range = "3389, 8735"
-        access                 = "Allow"
-        description            = "Allow connections from Labs MFA VPN clients"
-      },
+    custom_rules = concat(local.common.locals.custom_rules, [
       {
         name                  = "NV-Cyclers"
         priority              = "221"
@@ -67,7 +57,7 @@ inputs = merge(
         access                = "Allow"
         description           = "Allow connections from NV-Cyclers"
       },
-    ]
+    ])
 
     tags = {
       business-unit = "104 R&D AB"

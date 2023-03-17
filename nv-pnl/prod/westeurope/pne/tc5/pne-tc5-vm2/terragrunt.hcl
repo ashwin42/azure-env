@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.32"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.46"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
@@ -12,7 +12,7 @@ dependency "vnet" {
 }
 
 dependency "wvd" {
-  config_path = "../${replace("${local.name}", "vm", "wvd")}"
+  config_path = "../avd"
 }
 
 locals {
@@ -23,8 +23,8 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    token          = dependency.wvd.outputs.token
-    host_pool_name = dependency.wvd.outputs.host_pool.name
+    token          = dependency.wvd.outputs.tokens["pne-tc5-wvd2-hp"]
+    host_pool_name = dependency.wvd.outputs.host_pools["pne-tc5-wvd2-hp"].name
     network_interfaces = [
       {
         name = "${local.name}-nic"
@@ -49,17 +49,7 @@ inputs = merge(
       }
     ]
 
-    custom_rules = [
-      {
-        name                   = "Labs_MFA_VPN"
-        priority               = "200"
-        direction              = "Inbound"
-        source_address_prefix  = "10.16.8.0/23"
-        protocol               = "*"
-        destination_port_range = "3389, 8735"
-        access                 = "Allow"
-        description            = "Allow connections from Labs MFA VPN clients"
-      },
+    custom_rules = concat(local.common.locals.custom_rules, [
       {
         name                  = "NV-Cyclers_Old"
         priority              = "220"
@@ -76,6 +66,6 @@ inputs = merge(
         access                = "Allow"
         description           = "Allow connections from NV-Cyclers"
       },
-    ]
+    ])
   }
 )
