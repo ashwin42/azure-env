@@ -14,11 +14,14 @@ inputs = {
     "Billing Reader" = {
       groups = [
         "Azure Subscriptions Billing Reader Access",
+        "NV Tools & Products Engineering Manager",
+        "NV Tools & Products Leads",
       ],
     },
     "Reader" = {
       groups = [
         "Azure Subscriptions Reader Access",
+        "NV Tools & Products Member",
       ],
     },
     "Support Request Contributor" = {
