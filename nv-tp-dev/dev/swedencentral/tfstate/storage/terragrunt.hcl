@@ -15,4 +15,11 @@ inputs = {
   containers_list = [
     { name = include.root.inputs.remote_state_azurerm_container_name, access_type = "private" }
   ]
+  iam_assignments = {
+    "Reader and Data Access" = {
+      groups = [
+        "NV TechOps Read Member",
+      ],
+    },
+  }
 }
