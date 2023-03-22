@@ -231,5 +231,10 @@ inputs = {
       allow_forwarded_traffic = true
       allow_gateway_transit   = true
     },
+    {
+      name                    = "nv-hub_to_nv-aviatrix-migration-vnet",
+      vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-rg/providers/Microsoft.Network/virtualNetworks/nv-aviatrix-migration-vnet"
+      allow_forwarded_traffic = true
+    },
   ]
 }
