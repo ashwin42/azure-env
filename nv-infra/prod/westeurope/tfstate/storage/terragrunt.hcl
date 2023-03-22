@@ -23,7 +23,7 @@ inputs = {
         "NV TechOps Consultants Member",
       ],
     },
-    "Storage Blob Data Reader" = {
+    "Reader and Data Access" = {
       groups = [
         "NV TechOps Read Member",
       ],

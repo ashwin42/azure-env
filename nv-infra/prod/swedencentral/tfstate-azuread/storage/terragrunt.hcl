@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.6.10"
-  #source = "../../../tf-mod-azure/storage/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage/"
 }
 
 include "root" {
@@ -18,6 +18,7 @@ inputs = {
     "Reader and Data Access" = {
       groups = [
         "NV IT Core Role",
+        "NV TechOps Read Member"
       ],
     },
   }
