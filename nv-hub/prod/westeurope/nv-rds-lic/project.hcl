@@ -6,8 +6,8 @@ locals {
   resource_group_name        = "nv-rds-lic"
   tags = {
     business-unit = "109 Digitalization IT - AB"
-    department    = "109035 Operations & Infrastructure - AB"
-    cost-center   = "109035060 TechOps"
+    department    = "109037 IT Common - AB"
+    cost-center   = "109037064 IT Common - AB"
   }
 }
 
