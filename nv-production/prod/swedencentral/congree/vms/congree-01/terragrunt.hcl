@@ -20,7 +20,7 @@ inputs = merge(
         ip_configuration = [
           {
             private_ip_address            = "10.64.1.132"
-            subnet_id                     = local.common.dependency.vnet.outputs.subnet["congree-subnet"].id
+            subnet_id                     = local.common.dependency.vnet.outputs.subnets["congree-subnet"].id
             public_ip                     = false
             private_ip_address_allocation = "Static"
           },

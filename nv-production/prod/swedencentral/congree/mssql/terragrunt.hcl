@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.21"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.48"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -14,45 +14,100 @@ include "root" {
 }
 
 inputs = {
-  private_endpoints = {
-    "congree-mssql-pe" = {
-      name      = "congree-mssql-pe"
-      subnet_id = dependency.vnet.outputs.subnet["congree-subnet"].id
-      private_service_connection = {
-        name              = "congree-mssql-pec"
-        subresource_names = ["sqlServer"]
-      }
-      private_dns_zone_group = {
-        dns_zone_resource_group_name = "core_network"
-        dns_zone_name                = "privatelink.database.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-      }
-    }
-  }
+  create_mssql_server           = false
+  create_mssql_managed_instance = true
+  subnet_id                     = dependency.vnet.outputs.subnets["congree-subnet-sql"].id
   create_administrator_password = true
-  allow_azure_ip_access         = false
-  public_network_access_enabled = false
+  name                          = "congree-managed-sql"
   azuread_administrator = {
     group = "NV TechOps Role"
   }
-  databases = [
+  managed_instance_identity = {
+    type = "UserAssigned"
+  }
+
+  # Imported databases from congree script
+  managed_databases = [
     {
-      name = "congree-db-01"
+      name                      = "Congree_AuthoringMemory"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
     },
-  ]
-  mssql_azuread_users = [
     {
-      username = "NV TechOps Role"
-      roles    = ["db_owner"]
-      database = "congree-db-01"
+      name                      = "Congree_Reporting"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
     },
-  ]
-  mssql_local_users = [
     {
-      username      = "congree-admin"
-      roles         = ["db_owner"]
-      database      = "congree-db-01"
-      create_secret = true
+      name                      = "Congree_ScheduledJobs"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_UserManagement"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_Settings"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_Licensing"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_TermTiger"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_DataGrooming"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
+    },
+    {
+      name                      = "Congree_Linguistic_English"
+      short_term_retention_days = 7
+      long_term_retention_policy = {
+        weekly_retention  = "P1W"
+        monthly_retention = "P1M"
+        week_of_year      = 0
+      }
     },
   ]
 }
