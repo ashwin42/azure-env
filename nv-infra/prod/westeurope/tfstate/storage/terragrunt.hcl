@@ -26,7 +26,9 @@ inputs = {
     "Reader and Data Access" = {
       groups = [
         "NV TechOps Read Member",
+        "NV Aviatrix Admin"
       ],
     },
   }
 }
+
