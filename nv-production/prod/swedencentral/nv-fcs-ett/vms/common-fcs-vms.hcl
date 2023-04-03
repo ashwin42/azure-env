@@ -43,7 +43,7 @@ inputs = {
   data_disks = [
     {
       name                 = "${local.name}-datadisk1"
-      size                 = "127"
+      size                 = "1090"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
       caching              = "None"
