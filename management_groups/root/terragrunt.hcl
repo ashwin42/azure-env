@@ -22,6 +22,7 @@ inputs = {
         "alex.ga@northvolt.com",
         "mihajlo.ga@northvolt.com",
         "andreas.axelsson.admin@northvolt.com",
+        "johannes.ga@northvolt.com",
       ],
     },
   }
