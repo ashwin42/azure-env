@@ -26,10 +26,12 @@ inputs = {
 
   settings = {
     site_config = {
-      always_on         = true
-      use_32_bit_worker = true
+      always_on          = true
+      use_32_bit_worker  = true
+      websockets_enabled = true
+      ftps_state         = "FtpsOnly"
       application_stack = {
-        dotnet_version = "v4.0"
+        dotnet_version = "v6.0"
       }
     }
   }
@@ -56,7 +58,7 @@ inputs = {
   iam_assignments = {
     Contributor = {
       groups = [
-        "VPN-Siemens-ASRS-AP",
+        "VPN Siemens ASRS AP",
       ],
     }
   }
