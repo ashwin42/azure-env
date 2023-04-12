@@ -36,6 +36,7 @@ inputs = {
       ]
       service_principals = [
         "nv-ataccama-synapse-ws-dev",
+        "synwbiprod"
       ]
     },
   }
