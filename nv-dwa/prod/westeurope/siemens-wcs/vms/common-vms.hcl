@@ -105,6 +105,22 @@ inputs = {
       description            = "Allow connections from local web delegated subnet"
     },
     {
+      name                   = "DWACoreAWSAccountCIDR1"
+      priority               = "220"
+      direction              = "Inbound"
+      source_address_prefix  = "10.18.67.0/24"
+      description            = "Allow connections from DWA-Core AWS Account"
+      destination_port_range = "5000-5010"
+    },
+    {
+      name                   = "DWACoreAWSAccountCIDR2"
+      priority               = "221"
+      direction              = "Inbound"
+      source_address_prefix  = "10.18.68.0/23"
+      description            = "Allow connections from DWA-Core AWS Account"
+      destination_port_range = "5000-5010"
+    },
+    {
       name                  = "ICMP"
       priority              = "300"
       direction             = "Inbound"
