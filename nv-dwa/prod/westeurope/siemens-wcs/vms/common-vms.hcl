@@ -109,6 +109,7 @@ inputs = {
       priority               = "220"
       direction              = "Inbound"
       source_address_prefix  = "10.18.67.0/24"
+      protocol               = "Tcp"
       description            = "Allow connections from DWA-Core AWS Account"
       destination_port_range = "5000-5010"
     },
@@ -117,6 +118,7 @@ inputs = {
       priority               = "221"
       direction              = "Inbound"
       source_address_prefix  = "10.18.68.0/23"
+      protocol               = "Tcp"
       description            = "Allow connections from DWA-Core AWS Account"
       destination_port_range = "5000-5010"
     },
