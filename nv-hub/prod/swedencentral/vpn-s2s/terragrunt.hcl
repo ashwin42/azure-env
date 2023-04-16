@@ -19,42 +19,6 @@ inputs = {
   virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateways.nv-hub-swc-vpn-gw.id
   tunnels = [
     {
-      name                = "ett-cloudvpn-01-internet-swc"
-      secret_name         = "ett-cloudvpn-01-internet-swc-psk"
-      gateway_address     = "195.198.29.234"
-      address_space       = ""
-      enable_bgp          = "true"
-      bgp_asn             = "65327"
-      bgp_peering_address = "169.254.0.30"
-      dh_group            = "DHGroup14"
-      ike_encryption      = "GCMAES256"
-      ike_integrity       = "SHA256"
-      ipsec_encryption    = "GCMAES256"
-      ipsec_integrity     = "GCMAES256"
-      pfs_group           = "PFS24"
-      sa_lifetime         = "27000"
-      sa_datasize         = "2147483647"
-      dpd_timeout_seconds = "45"
-    },
-    {
-      name                = "ett-cloudvpn-02-internet-swc"
-      secret_name         = "ett-cloudvpn-02-internet-swc-psk"
-      gateway_address     = "195.198.29.235"
-      address_space       = ""
-      enable_bgp          = "true"
-      bgp_asn             = "65327"
-      bgp_peering_address = "169.254.0.33"
-      dh_group            = "DHGroup14"
-      ike_encryption      = "GCMAES256"
-      ike_integrity       = "SHA256"
-      ipsec_encryption    = "GCMAES256"
-      ipsec_integrity     = "GCMAES256"
-      pfs_group           = "PFS24"
-      sa_lifetime         = "27000"
-      sa_datasize         = "2147483647"
-      dpd_timeout_seconds = "45"
-    },
-    {
       name                = "ett-cloudvpn-03-internet-swc"
       secret_name         = "ett-cloudvpn-03-internet-swc-psk"
       gateway_address     = "195.198.29.231"
