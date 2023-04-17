@@ -5,3 +5,13 @@ terraform {
 include {
   path = find_in_parent_folders()
 }
+
+inputs = {
+  iam_assignments = {
+    "Contributor" = {
+      users = [
+        "switee.patel@northvolt.com",
+      ],
+    },
+  },
+}
