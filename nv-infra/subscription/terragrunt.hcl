@@ -13,11 +13,6 @@ inputs = {
   management_group = "Managed"
 
   iam_assignments = {
-    "Billing Reader" = {
-      groups = [
-        "Azure Subscriptions Billing Reader Access",
-      ],
-    },
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
@@ -30,27 +25,12 @@ inputs = {
         "Azure Subscriptions Reader Access",
       ],
     },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
-      ],
-    },
-    "Monitoring Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
         "MoveCollection-ne-we-ne",
       ],
     },
-    "Lucidchart Cloud Insights import" = {
-      service_principals = [
-        "LucidChart Cloud Insights Access"
-      ]
-    }
   }
 
   resource_provider_registrations = [

@@ -12,19 +12,9 @@ inputs = {
   management_group = "Self Managed"
   name            = "NV-D365-Dev"
   iam_assignments = {
-    "Billing Reader" = {
-      groups = [
-        "Azure Subscriptions Billing Reader Access",
-      ],
-    },
     "Reader" = {
       groups = [
         "Azure Subscriptions Reader Access",
-      ],
-    },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
       ],
     },
   }
