@@ -11,11 +11,6 @@ include "root" {
 inputs = {
   management_group = "Self Managed"
   iam_assignments = {
-    "Billing Reader" = {
-      groups = [
-        "Azure Subscriptions Billing Reader Access",
-      ],
-    },
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
@@ -26,19 +21,9 @@ inputs = {
         "Azure Subscriptions Reader Access",
       ],
     },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
-      ],
-    },
-    "Monitoring Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
       ],
     },
   },
