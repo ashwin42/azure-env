@@ -19,6 +19,11 @@ inputs = {
         "Azure Self Managed Management Group Reader",
       ],
     },
+    "Subscriptions Alias Reader" = {
+      groups = [
+        "Azure Self Managed Management Group Reader",
+      ],
+    },
   }
 }
 
