@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.33"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.46"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
 }
 
@@ -28,14 +28,6 @@ inputs = {
         "Azure Tenant Contributor Access",
       ],
     },
-    "Log Analytics Contributor" = {
-      user_assigned_identities = [
-        {
-          name                = "log_analytics_policy",
-          resource_group_name = "techops-rg"
-        }
-      ],
-    },
     "Owner" = {
       groups = [
         "NV TechOps Lead Role",
@@ -62,6 +54,16 @@ inputs = {
     "Support Request Contributor" = {
       groups = [
         "Azure Subscriptions Support Request Contributor",
+      ],
+    },
+    "Log Analytics Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
+      ],
+    },
+    "Monitoring Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
       ],
     },
     "Network Contributor" = {
