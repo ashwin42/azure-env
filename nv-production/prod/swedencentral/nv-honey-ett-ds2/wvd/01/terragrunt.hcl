@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.9"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.50"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 include {
@@ -34,6 +34,7 @@ inputs = {
         "NV TechOps Role",
         "Ett-Supplier-Honeywell-VPN",
         "NV Automation Member",
+        "VPN-Ett-Electrode-AP",
         "NV F1.C21.CT.COT01",
         "NV F1.C21.CT.COT02",
         "NV F1.C21.CT.COT03",
