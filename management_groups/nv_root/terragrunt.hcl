@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.33"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//management_group?ref=v0.7.46"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/management_group/"
 }
 
@@ -63,6 +63,11 @@ inputs = {
       groups = [
         "Azure Subscriptions Support Request Contributor",
       ],
+    },
+    "Network Reader" = {
+      groups = [
+        "NV Network Member",
+      ]
     },
     "Network Contributor" = {
       groups = [
