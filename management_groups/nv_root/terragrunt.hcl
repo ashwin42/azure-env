@@ -24,7 +24,6 @@ inputs = {
         "DefenderOnboarding",
       ],
       groups = [
-        "NV TechOps Role",
         "Azure Tenant Contributor Access",
       ],
     },
@@ -37,7 +36,6 @@ inputs = {
     "Reader" = {
       groups = [
         "NV TechOps Read Member",
-        "NV TechOps Role",
         "NV Aviatrix Admin",
       ],
     },

@@ -23,6 +23,9 @@ inputs = {
       ],
     },
     "Reader" = {
+      groups = [
+        "NV TechOps Role",
+      ]
       users = [
         "alex.ga@northvolt.com",
         "mihajlo.ga@northvolt.com",
