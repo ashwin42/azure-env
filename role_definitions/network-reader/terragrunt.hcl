@@ -19,6 +19,10 @@ inputs = {
           actions = [
             "Microsoft.Network/*/read",
             "Microsoft.Network/networkInterfaces/effectiveRouteTable/action",
+            "microsoft.network/virtualnetworkgateways/getbgppeerstatus/action",
+            "microsoft.network/virtualnetworkgateways/getlearnedroutes/action",
+            "microsoft.network/virtualnetworkgateways/getadvertisedroutes/action",
+            "microsoft.network/vpngateways/getbgppeerstatus/action",
             "Microsoft.ResourceHealth/availabilityStatuses/read",
             "Microsoft.Resources/subscriptions/resourceGroups/read",
           ]
