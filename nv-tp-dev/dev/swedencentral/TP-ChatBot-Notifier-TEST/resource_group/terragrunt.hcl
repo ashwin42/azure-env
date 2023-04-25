@@ -12,6 +12,7 @@ inputs = {
       "groups" = [
         "NV Tools & Products Member",
       ],
+    },
     "Owner" = {
       "users" = [
         "vladimir.kosilko@northvolt.com",
