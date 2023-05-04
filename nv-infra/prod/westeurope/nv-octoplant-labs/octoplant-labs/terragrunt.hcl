@@ -112,17 +112,17 @@ inputs = {
       description            = "Allow connections from Labs MFA VPN clients on port 443"
     },
     {
-      name                   = "Labs_MFA_VPN_64001-64003"
+      name                   = "Labs_MFA_VPN_64001-64004"
       priority               = "304"
       direction              = "Inbound"
       source_address_prefix  = "10.16.8.0/23"
       protocol               = "*"
-      destination_port_range = "64001-64003"
+      destination_port_range = "64001-64004"
       access                 = "Allow"
       description            = "Allow connections from Labs MFA VPN clients on ports 64001-64003"
     },
     {
-      name                   = "Labs_MFA_VPN_64004"
+      name                   = "Labs_MFA_VPN_64006"
       priority               = "305"
       direction              = "Inbound"
       source_address_prefix  = "10.16.8.0/23"
