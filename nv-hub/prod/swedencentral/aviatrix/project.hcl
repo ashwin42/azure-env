@@ -1,6 +1,6 @@
 locals {
   providers                   = ["aviatrix"]
-  aviatrix_controller_ip      = "13.53.36.212"
+  aviatrix_controller_ip      = "13.48.70.51"
   aviatrix_username           = "admin"
   aviatrix_secret_store       = "secrets-manager"
   aviatrix_secret_aws_profile = "nv-network"
