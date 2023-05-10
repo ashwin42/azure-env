@@ -9,9 +9,15 @@ include {
 inputs = {
   iam_assignments = {
     "Contributor" = {
-      users = [
-        "switee.patel@northvolt.com",
+      "groups" = [
+        "NV Tools & Products Member",
       ],
     },
-  },
+    "Owner" = {
+      "users" = [
+        "vladimir.kosilko@northvolt.com",
+        "clinton.east@northvolt.com",
+      ],
+    },
+  }
 }

@@ -43,6 +43,11 @@ inputs = {
   storage_image_reference = {
     sku = "2022-Datacenter-smalldisk",
   }
+  storage_os_disk = {
+    create_option = "FromImage"
+    caching       = "ReadWrite"
+    disk_size_gb  = "64"
+  }
   os_profile_windows_config = {
     enable_automatic_upgrades = true
     provision_vm_agent        = true

@@ -9,19 +9,21 @@ include "root" {
 }
 
 inputs = {
-  cloud                  = "Azure"
-  cidr                   = "100.64.12.0/24"
-  region                 = "West Europe"
-  account                = "NV-Hub"
-  name                   = "${include.root.inputs.location}-${include.root.inputs.subscription_name}-avx-tvpc"
-  gw_name                = "${include.root.inputs.location}-${include.root.inputs.subscription_name}-avx-tgw"
-  instance_size          = "Standard_D3_v2"
-  resource_group         = include.root.inputs.resource_group_name
-  local_as_number        = "64601"
-  enable_transit_firenet = true
-  firewall_image         = "aviatrix"
-  enable_segmentation    = true
-  lan_subnet             = "100.64.12.80/28"
-  ha_lan_subnet          = "100.64.12.128/28"
+  cloud                    = "Azure"
+  cidr                     = "100.64.36.0/23"
+  region                   = "West Europe"
+  account                  = "NV-Hub"
+  name                     = "${include.root.inputs.location}-${include.root.inputs.subscription_name}-avx-tvpc"
+  gw_name                  = "${include.root.inputs.location}-${include.root.inputs.subscription_name}-avx-tgw"
+  instance_size            = "Standard_D4_v2"
+  resource_group           = include.root.inputs.resource_group_name
+  local_as_number          = "64601"
+  enable_transit_firenet   = true
+  firewall_image           = "aviatrix"
+  enable_segmentation      = true
+  insane_mode              = true
+  enable_bgp_over_lan      = true
+  lan_subnet               = "100.64.36.80/28"
+  ha_lan_subnet            = "100.64.36.144/28"
+  bgp_lan_interfaces_count = 1
 }
-

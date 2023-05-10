@@ -63,6 +63,10 @@ inputs = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
+    "Network Reader" = {
+      groups = [
+        "NV Network Member",
+      ]
     },
     "Network Contributor" = {
       groups = [
