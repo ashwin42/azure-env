@@ -11,11 +11,6 @@ include "root" {
 inputs = {
   management_group = "Managed"
   iam_assignments = {
-    "Billing Reader" = {
-      groups = [
-        "Azure Subscriptions Billing Reader Access",
-      ],
-    },
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
@@ -24,16 +19,6 @@ inputs = {
     "Reader" = {
       groups = [
         "Azure Subscriptions Reader Access",
-      ],
-    },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
-      ],
-    },
-    "Monitoring Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
       ],
     },
   }

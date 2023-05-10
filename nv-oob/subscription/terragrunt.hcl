@@ -13,7 +13,7 @@ inputs = {
   iam_assignments = {
     "Owner" = {
       groups = [
-        "NV TechOps Lead Role",
+        "Azure Tenant Owner Access",
       ],
     },
   }

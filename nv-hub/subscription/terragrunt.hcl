@@ -12,11 +12,6 @@ inputs = {
   subscription_name = "NV-Hub"
   management_group  = "Managed"
   iam_assignments = {
-    "Billing Reader" = {
-      groups = [
-        "Azure Subscriptions Billing Reader Access",
-      ],
-    },
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
@@ -32,29 +27,9 @@ inputs = {
         "christian@northvolt.com",
       ],
     },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
-      ],
-    },
-    "Log Analytics Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
-      ],
-    },
-    "Monitoring Reader" = {
-      service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
-      ],
-    },
-    "Lucidchart Cloud Insights import" = {
-      service_principals = [
-        "LucidChart Cloud Insights Access"
       ],
     },
     "Network Contributor" = {

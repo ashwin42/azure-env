@@ -13,7 +13,6 @@ inputs = {
   iam_assignments = {
     "Billing Reader" = {
       groups = [
-        "Azure Subscriptions Billing Reader Access",
         "NV BI Subscription Contributor",
       ],
     },
@@ -33,11 +32,6 @@ inputs = {
     "Reader" = {
       groups = [
         "Azure Subscriptions Reader Access",
-      ],
-    },
-    "Support Request Contributor" = {
-      groups = [
-        "Azure Subscriptions Support Request Contributor",
       ],
     },
     "User Access Administrator" = {

@@ -24,16 +24,7 @@ inputs = {
         "DefenderOnboarding",
       ],
       groups = [
-        "NV TechOps Role",
         "Azure Tenant Contributor Access",
-      ],
-    },
-    "Log Analytics Contributor" = {
-      user_assigned_identities = [
-        {
-          name                = "log_analytics_policy",
-          resource_group_name = "techops-rg"
-        }
       ],
     },
     "Owner" = {
@@ -45,7 +36,6 @@ inputs = {
     "Reader" = {
       groups = [
         "NV TechOps Read Member",
-        "NV TechOps Role",
         "NV Aviatrix Admin",
       ],
     },
@@ -64,6 +54,15 @@ inputs = {
         "Azure Subscriptions Support Request Contributor",
       ],
     },
+    "Log Analytics Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
+      ],
+    },
+    "Monitoring Reader" = {
+      service_principals = [
+        "Grafana Dev - Azure Monitor Datasource",
+      ],
     "Network Reader" = {
       groups = [
         "NV Network Member",
