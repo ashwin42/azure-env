@@ -1,6 +1,6 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.50"
-  source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.51"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
 include {
@@ -27,7 +27,7 @@ inputs = {
   vm_name                                = local.name
   vm_size                                = "Standard_E4ds_v5"
   backup_vm                              = true
-  backup_sql                             = true
+  create_sql_backup_policy               = true
   ad_join                                = true
   create_localadmin_password             = true
   managed_disk_size                      = 127
