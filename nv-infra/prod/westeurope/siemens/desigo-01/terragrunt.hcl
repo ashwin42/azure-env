@@ -21,20 +21,20 @@ inputs = {
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
   name                                   = local.name
-  vm_size                                = "Standard_D4s_v5"
+  vm_size                                = "Standard_D8s_v5"
   backup_vm                              = true
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_key_name                    = "${local.name}-nvadmin"
-  create_localadmin_password             = true  
+  create_localadmin_password             = true
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "StandardSSD_LRS"
   storage_image_reference = {
     offer     = "WindowsServer",
     publisher = "MicrosoftWindowsServer",
-    sku       = "2016-Datacenter",
+    sku       = "2022-Datacenter",
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
@@ -61,7 +61,7 @@ inputs = {
   data_disks = [
     {
       name                 = "${local.name}-data1"
-      size                 = "512"
+      size                 = "1024"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
     }
@@ -85,7 +85,7 @@ inputs = {
       destination_port_range = "0-65535"
       access                 = "Allow"
       description            = "Allow connections from Ett MFA VPN clients"
-    },    
+    },
     {
       name                  = "LocalVnet"
       priority              = "205"

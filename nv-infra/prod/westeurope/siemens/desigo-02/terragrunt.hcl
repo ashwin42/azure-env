@@ -21,7 +21,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
   resource_group_name                    = dependency.global.outputs.resource_group.name
   name                                   = local.name
-  vm_size                                = "Standard_D4s_v5"
+  vm_size                                = "Standard_D8s_v5"
   backup_vm                              = true
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
@@ -34,7 +34,7 @@ inputs = {
   storage_image_reference = {
     offer     = "WindowsServer",
     publisher = "MicrosoftWindowsServer",
-    sku       = "2019-Datacenter",
+    sku       = "2022-Datacenter",
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
