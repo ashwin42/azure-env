@@ -1,0 +1,16 @@
+---
+name: Terragrunt plan on PR (groups)
+on:
+  pull_request:
+    paths:
+      - "**/resource_group/*.hcl"
+    branches:
+      - master
+
+jobs:
+  terragrunt-plan:
+    uses: northvolt/shared-workflows/.github/workflows/terragrunt-plan-azure-oidc.yml@TOC-2257
+    secrets:
+      ssh_key: ${{ secrets.NV_CI_SSH_KEY }}
+      arm_client_id: ${{ secrets.arm_client_id }}
+      arm_tenant_id: ${{ secrets.arm_tenant_id }}
