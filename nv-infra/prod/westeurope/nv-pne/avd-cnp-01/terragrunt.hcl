@@ -39,6 +39,7 @@ inputs = {
       workspace_name               = "${local.name}-ws"
       assign_groups = [
         "NV TechOps Role",
+        "RD2 PNE Coin & Pouch VM",
       ]
     },
   ]
