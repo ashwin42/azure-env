@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.32"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.48"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -50,12 +50,21 @@ inputs = {
   databases = [
     {
       name = "Log_DB"
+      long_term_retention_policy = {
+        weekly_retention = "P8W"
+      }
     },
     {
       name = "Results_DB"
+      long_term_retention_policy = {
+        weekly_retention = "P8W"
+      }
     },
     {
       name = "Station_DB"
+      long_term_retention_policy = {
+        weekly_retention = "P8W"
+      }
     },
   ]
   mssql_local_users = [
