@@ -8,7 +8,7 @@ include {
 
 inputs = {
   iam_assignments = {
-    "Contributor" = {
+    "Owner" = {
       "groups" = [
         "NV Tools & Products Member",
       ],
