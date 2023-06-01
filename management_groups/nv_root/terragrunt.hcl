@@ -63,6 +63,7 @@ inputs = {
       service_principals = [
         "Grafana Dev - Azure Monitor Datasource",
       ],
+    },
     "Network Reader" = {
       groups = [
         "NV Network Member",
@@ -78,6 +79,10 @@ inputs = {
         "NV Aviatrix Admin",
       ],
     },
+    "Terraform Resource Groups Contributor" = {
+      service_principals = [
+        "Terraform pipeline Azure Resource Groups",
+      ],
+    }
   }
 }
-

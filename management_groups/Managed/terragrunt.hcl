@@ -12,12 +12,5 @@ inputs = {
   name                    = "nv_managed"
   display_name            = "Managed"
   parent_management_group = "Northvolt AB"
-  iam_assignments = {
-    "Terraform Resource Groups Contributor" = {
-      service_principals = [
-        "Terraform pipeline Azure Resource Groups",
-      ],
-    },
-  }
 }
 

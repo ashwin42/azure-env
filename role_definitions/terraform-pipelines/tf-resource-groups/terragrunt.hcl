@@ -13,7 +13,7 @@ inputs = {
     {
       name                          = "Terraform Resource Groups Contributor"
       description                   = "Allows creation of resource groups and assignment of roles within them."
-      management_group_display_name = "Managed"
+      management_group_display_name = "NV Root"
       permissions = [
         {
           actions = [
