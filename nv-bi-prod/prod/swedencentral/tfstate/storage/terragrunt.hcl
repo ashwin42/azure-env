@@ -10,9 +10,9 @@ include "root" {
 
 
 inputs = {
-  name                 = include.root.inputs.remote_state_azurerm_storage_account_name
-  resource_group_name  = include.root.inputs.remote_state_azurerm_resource_group_name
-  location             = "swedencentral"
+  name                = include.root.inputs.remote_state_azurerm_storage_account_name
+  resource_group_name = include.root.inputs.remote_state_azurerm_resource_group_name
+  location            = "swedencentral"
   containers_list = [
     { name = include.root.inputs.remote_state_azurerm_container_name, access_type = "private" }
   ]
@@ -21,6 +21,9 @@ inputs = {
       groups = [
         "NV TechOps Read Member",
       ],
+      service_principals = [
+        "Terraform pipeline Azure Resource Groups"
+      ],
     },
-  }  
+  }
 }
