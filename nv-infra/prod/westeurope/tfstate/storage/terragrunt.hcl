@@ -28,6 +28,9 @@ inputs = {
         "NV TechOps Read Member",
         "NV Aviatrix Admin"
       ],
+      service_principals = [
+        "Terraform pipeline Azure Resource Groups"
+      ],
     },
   }
 }

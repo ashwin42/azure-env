@@ -17,8 +17,12 @@ inputs = {
   iam_assignments = {
     "Reader and Data Access" = {
       groups = [
-        "NV IT Core Role",
+        "NV IT Core Member",
         "NV TechOps Read Member"
+      ],
+      service_principals = [
+        "Terraform pipeline AzureAD",
+        "Terraform pipeline Azure Resource Groups"
       ],
     },
   }

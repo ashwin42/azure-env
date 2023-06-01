@@ -23,6 +23,9 @@ inputs = {
       groups = [
         "NV TechOps Read Member",
       ],
+      service_principals = [
+        "Terraform pipeline Azure Resource Groups"
+      ],
     },
   }
 }
