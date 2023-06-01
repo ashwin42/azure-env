@@ -8,5 +8,12 @@ include {
 }
 
 inputs = {
+  iam_assignments = {
+    "Reader and Data Access" = {
+      groups = [
+        "NV TechOps Read Member",
+      ],
+    },
+  }
 }
 
