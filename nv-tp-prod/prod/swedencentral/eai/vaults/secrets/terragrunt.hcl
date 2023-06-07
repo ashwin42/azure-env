@@ -18,7 +18,8 @@ inputs = {
       "Key Vault Administrator" = {
           "users" = [
               "andreas.wejde@northvolt.com",
-              "galen.lanphier@northvolt.com"
+              "galen.lanphier@northvolt.com",
+              "hampus.westerman@northvolt.com"
           ]
       }
   }
