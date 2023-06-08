@@ -14,3 +14,5 @@ jobs:
       ssh_key: ${{ secrets.NV_CI_SSH_KEY }}
       arm_client_id: ${{ secrets.arm_client_id }}
       arm_tenant_id: ${{ secrets.arm_tenant_id }}
+    with:
+      limit_directories: "**/resource_group/**"
