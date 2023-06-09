@@ -15,6 +15,7 @@ inputs = {
       "users" = [
         "oskar.zacharoff@northvolt.com",
         "emma.rosen@northvolt.com",
+        "erik.simensen@northvolt.com"
       ],
     },
   }
