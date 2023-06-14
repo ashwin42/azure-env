@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.50"
+  #source = "${dirname(get_repo_root())}//tf-mod-azure//vm/"
 }
 
 include {
@@ -28,7 +28,7 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   localadmin_key_name                    = "${local.name}-nvadmin"
-  create_localadmin_password             = true
+  create_localadmin_password             = true  
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "StandardSSD_LRS"
   storage_image_reference = {
@@ -50,7 +50,7 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          private_ip_address            = "10.44.1.144"
+          private_ip_address            = "10.44.1.146"
           subnet_id                     = dependency.global.outputs.subnet.siemens_system_subnet.id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
@@ -61,7 +61,7 @@ inputs = {
   data_disks = [
     {
       name                 = "${local.name}-data1"
-      size                 = "1024"
+      size                 = "512"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
     }
