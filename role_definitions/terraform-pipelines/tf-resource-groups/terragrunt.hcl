@@ -20,7 +20,8 @@ inputs = {
             "Microsoft.Resources/subscriptions/resourceGroups/read",
             "Microsoft.Resources/subscriptions/resourceGroups/write",
             "Microsoft.Resources/subscriptions/resourceGroups/delete",
-            "Microsoft.Authorization/roleAssignments/*"
+            "Microsoft.Authorization/roleAssignments/*",
+            "Microsoft.Authorization/locks/*"
           ]
         }
       ],
