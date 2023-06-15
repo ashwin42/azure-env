@@ -43,6 +43,11 @@ inputs = {
   mssql_azuread_users = [
     {
       username = "Ataccama - Datalake Admins Dev"
+      roles    = ["dbmanager"]
+      database = "master"
+    },
+    {
+      username = "Ataccama - Datalake Admins Dev"
       roles    = ["db_owner"]
       database = "ivaluadev"
     },
