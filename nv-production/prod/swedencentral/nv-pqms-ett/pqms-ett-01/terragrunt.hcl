@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.26"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.53"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
 include {
@@ -32,7 +32,9 @@ inputs = {
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
+  install_winrm                          = true
   managed_disk_size                      = 127
+  localadmin_key_name                    = "nv-pqms-ett-nvadmin"
   storage_image_reference = {
     sku = "2019-Datacenter"
   }
@@ -40,6 +42,9 @@ inputs = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true
     timezone                  = "W. Europe Standard Time"
+  }
+  os_profile = {
+    admin_username = "nv-pqms-ett-nvadmin"
   }
   data_disks = [
     {
