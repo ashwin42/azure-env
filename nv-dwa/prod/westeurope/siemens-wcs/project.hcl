@@ -31,6 +31,7 @@ locals {
     business-unit = "Battery Systems"
     department    = "Factory Engineering"
     cost-center   = "250006020 Factory Development & Material Flow - BS"
-    project       = "NDW-56"
+    jira          = "NDW-56"
+    project       = "Siemens WCS"
   }
 }

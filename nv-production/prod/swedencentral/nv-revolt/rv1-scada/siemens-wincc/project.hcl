@@ -7,7 +7,8 @@ locals {
     business-unit = "119 Revolt - AB"
     department    = "350100 Program Team - RV"
     cost-center   = "350100001 RV Program"
-    project       = "RV1-12"
+    project       = "Revolt SCADA - WinCC"
+    jira          = "RV1-12"
   }
 }
 

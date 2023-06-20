@@ -8,7 +8,8 @@ locals {
     business-unit = "104 R&D AB"
     department    = "104020 R&D Common - AB"
     cost-center   = "104020015 SW & Automation"
-    project       = "RD2-727"
+    jira          = "RD2-727"
+    project       = "Moscura"
   }
 }
 

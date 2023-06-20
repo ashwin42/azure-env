@@ -4,4 +4,8 @@ locals {
   azurerm_features           = {}
   setup_prefix               = "nv-plc-ews"
   resource_group_name        = "nv-plc-ews-rg"
+  tags = {
+    project = "PLC Engineering Workstations"
+    jira    = "TOC-1001"
+  }
 }

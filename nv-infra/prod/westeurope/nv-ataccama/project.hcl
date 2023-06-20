@@ -8,6 +8,8 @@ locals {
     business-unit = "109 Digitalization IT - AB"
     department    = "109034 - Enterprise Architecture"
     cost-center   = "109034056 - Enterprise Architecture"
+    project       = "Ataccama"
+    jira          = "TOC-1677"
   }
 }
 
