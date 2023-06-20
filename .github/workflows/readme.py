@@ -55,7 +55,7 @@ def update_readme(readme_file, project_file, delimiter_start, delimiter_end, new
         with open(readme_file, 'r') as file:
             contents = file.read()
     except FileNotFoundError:
-        return False
+        contents = ""
 
     start_pos = contents.find(delimiter_start)
     end_pos = contents.find(delimiter_end, start_pos + len(delimiter_start))
