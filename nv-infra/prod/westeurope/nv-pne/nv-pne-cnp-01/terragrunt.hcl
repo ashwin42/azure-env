@@ -37,38 +37,38 @@ inputs = {
   ad_join                                = true
   wvd_register                           = true
   ou_path                                = "OU=PNE Cycler VMs,DC=aadds,DC=northvolt,DC=com"
-  
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "win10-22h2-avd-g2",
   }
-  
+
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
-  
+
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
-  
+
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.47"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "${local.name}-nic-ipconfig"
+          private_ip_address            = "10.44.5.47"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic-ipconfig"
         }
       ]
     }
   ]
-  
+
   data_disks = [
     {
       name                 = "${local.name}-datadisk01"
@@ -78,7 +78,7 @@ inputs = {
       caching              = "None"
     }
   ]
-  
+
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"
