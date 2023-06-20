@@ -121,6 +121,12 @@ for project_file in project_files:
     with open("project.json") as f:
         project_json = json.load(f)
 
+    tags = None
+    repo_path = None
+    account = None
+    account_type = None
+    resource_group = None
+
     # get the relevant information from project.json
     tags = project_json["locals"]["config"]["locals"]["tags"]
     repo_path = project_json["locals"]["repo_path"]
