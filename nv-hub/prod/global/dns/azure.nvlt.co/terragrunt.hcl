@@ -12,6 +12,13 @@ inputs = {
     {
       name                = basename(get_terragrunt_dir())
       resource_group_name = "core_network"
+      records = [
+        {
+          name    = "pqms-ett"
+          records = ["10.64.1.149"]
+          ttl     = 300
+        },
+      ]
 
       iam_assignments = {
         "DNS Zone Contributor" = {
