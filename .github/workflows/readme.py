@@ -193,7 +193,7 @@ for project in all_projects:
         markdown_content += "| Detail | Value |\n"
         markdown_content += "| ------ | ----- |\n"
 
-        if project_data["account_type"] == "azure":
+        if project_data["account_type"] == "azure" and project_data["resource_group"] is not None:
             markdown_content += f"| **Azure RG** | {AZURE_PORTAL_URL}/resource/subscriptions/{project_data['account']}/resourceGroups/{project_data['resource_group']} |\n"
         elif project_data["account_type"] == "aws":
             markdown_content += f"| **AWS Account** | {project_data['account']} |\n"
