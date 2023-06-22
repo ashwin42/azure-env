@@ -34,11 +34,12 @@ MANDATORY_TAGS = ["business-unit",
                   "department",
                   "cost-center",
                   "jira",
-                  "system-owner"]
+                  "system-owner",
+                  "global-process-owner",
+                  "recovery-time-objective",
+                  "data-owner"]
 
-OPTIONAL_TAGS = ["global-process-owner",
-                 "data-owner",
-                 "grafana-dashboard",
+OPTIONAL_TAGS = ["grafana-dashboard",
                  "bcp-link"]
 
 
