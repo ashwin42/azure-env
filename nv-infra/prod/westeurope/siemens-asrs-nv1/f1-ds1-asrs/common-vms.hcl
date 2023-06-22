@@ -45,16 +45,10 @@ inputs = {
   data_disks = [
     {
       name                 = "siemens-asrs-${local.vm_name}-data1"
-      size                 = "20"
+      size                 = "50"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
     },
-    {
-      name                 = "siemens-asrs-${local.vm_name}-data2"
-      size                 = "40"
-      lun                  = "6"
-      storage_account_type = "StandardSSD_LRS"
-    }
   ]
   custom_rules = [
     {
