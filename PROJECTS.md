@@ -15,6 +15,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -32,6 +35,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 151057 Production Management - LA |
 | **cost-center** | 151057251 Production Management - LA |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -49,6 +55,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -66,6 +75,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 104020 R&D Common - AB |
 | **cost-center** | 104020015 SW & Automation |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -83,6 +95,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -100,6 +115,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 350100 Program Team - RV |
 | **cost-center** | 350100001 RV Program |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -117,6 +135,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 350100 Program Team - RV |
 | **cost-center** | 350100001 RV Program |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -134,6 +155,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -151,6 +175,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | 206002001 – Environment – ET |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -167,6 +194,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -184,6 +214,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | Factory Engineering |
 | **cost-center** | 250006020 Factory Development & Material Flow - BS |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -201,6 +234,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | Factory Engineering |
 | **cost-center** | 250006020 Factory Development & Material Flow - BS |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -218,6 +254,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -234,6 +273,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 306065 R&D - PL |
 | **cost-center** | 306065083 R&D - PL |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -250,6 +292,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | Department 309067 IT - PL |
 | **cost-center** | CostCenter 309067086 IT - PL |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -266,6 +311,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | Department 309067 IT - PL |
 | **cost-center** | CostCenter 309067086 IT - PL |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -282,6 +330,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -299,6 +350,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -316,6 +370,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -333,6 +390,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -348,6 +408,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -365,6 +428,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -381,6 +447,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -398,6 +467,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -415,6 +487,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 1109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -432,6 +507,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -449,6 +527,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -466,6 +547,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 111044 Blueprint - AB |
 | **cost-center** | 111044080 Blueprint - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -483,6 +567,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -499,6 +586,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109036 Infosec - AB |
 | **cost-center** | 109036064 Infosec - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -515,6 +605,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 113049 P&L Facility - AB |
 | **cost-center** | 113049074 P&L Facility AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -531,6 +624,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -548,6 +644,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -564,6 +663,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -580,6 +682,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 151 Manufacturing Support - LA |
 | **cost-center** | 151058251 Quality Control - LA |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -596,6 +701,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035063 Operations & Infrastructure Common - AB |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -613,6 +721,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -629,6 +740,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
@@ -645,6 +759,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 </details>
 
 ---
