@@ -4,4 +4,8 @@ locals {
   azurerm_features           = {}
   setup_prefix               = "powerbi-client"
   resource_group_name        = "powerbi-client-rg"
+  tags = {
+    project = "PowerBI Client"
+    jira    = "TOC-833"
+  }
 }

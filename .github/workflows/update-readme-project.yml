@@ -1,0 +1,13 @@
+---
+name: Update README.md for projects
+on:
+  pull_request:
+    paths:
+      - "**/project.hcl"
+
+jobs:
+  update-readme:
+    uses: ./.github/workflows/update-readme-project-workflow.yml
+    secrets:
+      actions_gpg_private_key: ${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}
+      actions_gpg_passphrase: ${{ secrets.ACTIONS_GPG_PASSPHRASE }}

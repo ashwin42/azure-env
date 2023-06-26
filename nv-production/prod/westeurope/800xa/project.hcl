@@ -3,4 +3,8 @@ locals {
   azurerm_features         = ""
   delete_files             = ["provider.tf"]
   dns_servers              = []
+  tags = {
+    project = "800xa"
+    jira    = "TOC-233"
+  }
 }
