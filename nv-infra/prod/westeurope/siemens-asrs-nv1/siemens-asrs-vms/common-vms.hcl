@@ -8,11 +8,9 @@ dependency "global" {
   config_path = "../global"
 }
 
-
-
 locals {
   name    = basename(get_original_terragrunt_dir())
-  vm_name = format("f1-ds1-asrs%s", replace(local.name, "bound", ""))
+  vm_name = format("%s", replace(local.name, "", ""))
 }
 
 inputs = {
