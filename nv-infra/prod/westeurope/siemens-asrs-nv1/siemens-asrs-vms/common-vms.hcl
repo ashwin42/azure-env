@@ -10,7 +10,7 @@ dependency "global" {
 
 locals {
   name    = basename(get_original_terragrunt_dir())
-  vm_name = format("%s", replace(local.name, "", ""))
+  vm_name = basename(get_original_terragrunt_dir())
 }
 
 inputs = {
@@ -201,6 +201,17 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
+    {
+      name                   = "Prometheus_Subnet"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefixs = ["10.15.17.192/26","10.15.18.0/25","10.15.19.0/24","10.15.20.0/23"]
+      protocol               = "Tcp"
+      destination_port_range = "9182"
+      access                 = "Allow"
+      description            = "Allow connections from Prometheus subnets"
+    },
+    
   ]
   windows_data_collection_rule_names = ["windows_event_log-dcr"]
 }
