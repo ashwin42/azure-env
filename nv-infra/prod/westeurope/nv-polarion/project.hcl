@@ -1,5 +1,6 @@
 locals {
   tags = {
-    project       = "Polarion"
+    project = "Polarion"
+    jira    = "TOC-0"
   }
 }

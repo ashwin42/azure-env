@@ -1,6 +1,7 @@
 locals {
   tags = {
-    project       = "Gabi LCA"
+    project = "Gabi LCA"
+    jira    = "TOC-0"
   }
 }
 

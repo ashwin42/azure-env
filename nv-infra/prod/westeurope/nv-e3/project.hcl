@@ -1,7 +1,7 @@
 locals {
   tags = {
-    project       = "Zuken E3"
-    jira          = "TOC-140"
+    project = "Zuken E3"
+    jira    = "TOC-140"
   }
 }
 
