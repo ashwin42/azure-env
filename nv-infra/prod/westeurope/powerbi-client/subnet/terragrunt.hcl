@@ -12,8 +12,8 @@ inputs = {
   vnet_resource_group_name = "nv-gen-infra-rg"
   subnets = [
     {
-      name                 = "powerbi-client-subnet-10.46.0.176_28"
-      address_prefixes     = ["10.46.0.176/28"]
+      name             = "powerbi-client-subnet-10.46.0.176_28"
+      address_prefixes = ["10.46.0.176/28"]
     },
   ]
 }

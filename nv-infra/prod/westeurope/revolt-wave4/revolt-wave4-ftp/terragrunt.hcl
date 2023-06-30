@@ -45,7 +45,7 @@ inputs = {
       public_ip = false
     }
   ],
-  dns_servers  = null
+  dns_servers = null
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"

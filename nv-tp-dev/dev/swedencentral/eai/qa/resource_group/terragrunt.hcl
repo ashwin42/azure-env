@@ -9,14 +9,14 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = include.root.inputs.resource_group_name
-  lock_resources = false
+  resource_group_name = include.root.inputs.resource_group_name
+  lock_resources      = false
   iam_assignments = {
-      "Contributor" = {
-          "groups" = [
-              "Integration Enablement Team"
-          ]
-      }
+    "Contributor" = {
+      "groups" = [
+        "Integration Enablement Team"
+      ]
+    }
   }
 }
 

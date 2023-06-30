@@ -12,7 +12,7 @@ dependency "vnet" {
 }
 
 locals {
-  common = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
+  common     = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
   private_ip = "10.46.1.75"
 }
 

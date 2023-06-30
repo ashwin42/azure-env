@@ -45,22 +45,22 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.43"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "nv-pne-tc10b-nic-ipconfig"
+          private_ip_address            = "10.44.5.43"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "nv-pne-tc10b-nic-ipconfig"
         }
       ]
     }
@@ -98,6 +98,6 @@ inputs = {
       source_address_prefix = "10.149.36.0/22"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    },        
+    },
   ]
 }

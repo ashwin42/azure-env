@@ -17,7 +17,7 @@ inputs = {
   log_analytics_workspace_name = "log-analytics-ops-ws"
   windows_event_log = [
     {
-      name = local.name
+      name           = local.name
       x_path_queries = ["System!*[System[Provider[@Name='Service Control Manager']]]"]
     }
   ]

@@ -11,22 +11,22 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "Toolsnet VPN AP"
-      description  = "Members in this group gets access to Toolsnet VPN"
+      display_name     = "Toolsnet VPN AP"
+      description      = "Members in this group gets access to Toolsnet VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
     {
-      display_name = "Toolsnet Admin Access"
-      description  = "Members in this group gets access to Toolsnet VPN"
+      display_name     = "Toolsnet Admin Access"
+      description      = "Members in this group gets access to Toolsnet VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
     {
-      display_name = "Toolsnet User Access"
-      description  = "Members in this group gets access to Toolsnet VPN"
+      display_name     = "Toolsnet User Access"
+      description      = "Members in this group gets access to Toolsnet VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
   ]
 }

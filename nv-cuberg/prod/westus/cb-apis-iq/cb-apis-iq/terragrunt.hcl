@@ -40,20 +40,20 @@ inputs = {
   host_pool_name                         = "westus2-nv-cuberg-apis-iq-hp"
   localadmin_key_name                    = "${local.name}-nvadmin"
   create_localadmin_password             = true
-  
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd-g2",
     version   = "latest"
   }
-  
+
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "Pacific Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "Pacific Standard Time"
   }
-  
+
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = local.name
@@ -62,7 +62,7 @@ inputs = {
   identity = {
     type = "SystemAssigned"
   }
-  
+
   network_interfaces = [
     {
       name = "${local.name}-nic"
@@ -77,7 +77,7 @@ inputs = {
       ]
     },
   ]
-  
+
   custom_rules = [
     {
       name                   = "Labs_MFA_VPN"

@@ -42,9 +42,9 @@ inputs = {
     sku       = "20h1-evd",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -55,8 +55,8 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-      ipaddress = "10.44.5.140"
-      subnet_id    = dependency.global.outputs.subnet["nv-gabi-lca-subnet-10.44.5.136"].id
+          ipaddress                     = "10.44.5.140"
+          subnet_id                     = dependency.global.outputs.subnet["nv-gabi-lca-subnet-10.44.5.136"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-nic-ipconfig"

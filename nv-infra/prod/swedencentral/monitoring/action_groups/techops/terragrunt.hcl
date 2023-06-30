@@ -8,13 +8,13 @@ include {
 }
 
 inputs = {
-  action_group_name             = "techops-ag"
-  action_group_short_name       = "techops"
-  action_group_email_receivers  = [
+  action_group_name       = "techops-ag"
+  action_group_short_name = "techops"
+  action_group_email_receivers = [
     {
-    name = "TechOps Team",
-    email_address = "techops@northvolt.com",
+      name          = "TechOps Team",
+      email_address = "techops@northvolt.com",
     }
-    ]
+  ]
 }
 

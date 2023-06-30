@@ -19,8 +19,8 @@ inputs = {
       enforce                       = true
       parameters                    = file("parameter_cost_center.json")
       identity = {
-          type = "SystemAssigned"
-        }
+        type = "SystemAssigned"
+      }
     },
     {
       name                          = "tag_sub_inheritance_bu"
@@ -32,8 +32,8 @@ inputs = {
       enforce                       = true
       parameters                    = file("parameter_business-unit.json")
       identity = {
-          type = "SystemAssigned"
-        }
+        type = "SystemAssigned"
+      }
     },
     {
       name                          = "tag_sub_inheritance_dep"
@@ -45,8 +45,8 @@ inputs = {
       enforce                       = true
       parameters                    = file("parameter_department.json")
       identity = {
-          type = "SystemAssigned"
-        }
+        type = "SystemAssigned"
+      }
     },
   ]
 }

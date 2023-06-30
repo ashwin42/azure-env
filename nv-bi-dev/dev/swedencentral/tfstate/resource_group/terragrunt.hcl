@@ -9,8 +9,8 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = include.root.inputs.remote_state_azurerm_resource_group_name
-  location             = "swedencentral"
-  lock_resources       = false
+  resource_group_name = include.root.inputs.remote_state_azurerm_resource_group_name
+  location            = "swedencentral"
+  lock_resources      = false
 }
 

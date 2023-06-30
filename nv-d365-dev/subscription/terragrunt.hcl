@@ -10,7 +10,7 @@ include "root" {
 
 inputs = {
   management_group = "Self Managed"
-  name            = "NV-D365-Dev"
+  name             = "NV-D365-Dev"
   iam_assignments = {
     "Reader" = {
       groups = [

@@ -9,8 +9,8 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = "nv-acacia"
-    iam_assignments = {
+  resource_group_name = "nv-acacia"
+  iam_assignments = {
     "Contributor" = {
       users = [
         "amadeusz.ozga@northvolt.pl",

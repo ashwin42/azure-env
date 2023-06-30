@@ -45,22 +45,22 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.44"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "nv-pne-tc11a-nic-ipconfig"
+          private_ip_address            = "10.44.5.44"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "nv-pne-tc11a-nic-ipconfig"
         }
       ]
     }

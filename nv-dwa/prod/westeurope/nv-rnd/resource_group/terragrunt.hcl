@@ -9,6 +9,6 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = "nv-rnd"
+  resource_group_name = "nv-rnd"
 }
 

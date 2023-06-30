@@ -11,22 +11,22 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "CMX VPN Eligible"
-      description  = "Members in this group can request access to CMX Access Package"
+      display_name     = "CMX VPN Eligible"
+      description      = "Members in this group can request access to CMX Access Package"
       security_enabled = true
-      member_users      = ["johan.nyaker@northvolt.com", "bojan.velichkov@northvolt.com"]
+      member_users     = ["johan.nyaker@northvolt.com", "bojan.velichkov@northvolt.com"]
     },
     {
-      display_name = "CMX VPN AP"
-      description  = "Members in this group gets access to CMX cloud setup WVD and VPN"
+      display_name     = "CMX VPN AP"
+      description      = "Members in this group gets access to CMX cloud setup WVD and VPN"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
     {
-      display_name = "CMX virtual desktop user access"
-      description  = "Members in this group gets access to CMX cloud setup WVD"
+      display_name     = "CMX virtual desktop user access"
+      description      = "Members in this group gets access to CMX cloud setup WVD"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
   ]
 }
