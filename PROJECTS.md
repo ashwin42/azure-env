@@ -608,6 +608,25 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Gabi LCA
+---
+- Code: [nv-infra/prod/westeurope/nv-gabi-lca](nv-infra/prod/westeurope/nv-gabi-lca)
+- Jira: [TOC-0](https://northvolt.atlassian.net/browse/TOC-0)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Resources** | northvolt/tf-mod-azure.git//vm?ref=v0.7.5<br>northvolt/tf-mod-azure.git//global?ref=v0.7.5<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.5<br> |
+| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
+| **department** | ❌ **MISSING** (please add to project.hcl) |
+| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+</details>
+
+---
 ### 🛠️ Print Gateway
 ---
 - Code: [nv-infra/prod/westeurope/print-gw](nv-infra/prod/westeurope/print-gw)
@@ -835,6 +854,25 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109036 Infosec - AB |
 | **cost-center** | 109036064 Infosec - AB |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+</details>
+
+---
+### 🛠️ Polarion
+---
+- Code: [nv-infra/prod/westeurope/nv-polarion](nv-infra/prod/westeurope/nv-polarion)
+- Jira: [TOC-0](https://northvolt.atlassian.net/browse/TOC-0)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Resources** |  |
+| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
+| **department** | ❌ **MISSING** (please add to project.hcl) |
+| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
