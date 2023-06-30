@@ -171,9 +171,10 @@ for project_file in project_files:
                                           "resource_group": resource_group})
 
 # Iterate over each project that has the correct tags and create the markdown content
-for project in all_projects:
+for project in sorted(all_projects):
     markdown_content += f"### 🛠️ {project}\n"
     markdown_content += "---\n"
+    sorted_project = sorted(all_projects[project], key=lambda f: f["repo_path"])
     for project_data in all_projects[project]:
         tags = {}
         for tag in MANDATORY_TAGS:
