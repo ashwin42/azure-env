@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = include.root.inputs.remote_state_azurerm_resource_group_name
-  lock_resources = true
+  resource_group_name = include.root.inputs.remote_state_azurerm_resource_group_name
+  lock_resources      = true
 }
 

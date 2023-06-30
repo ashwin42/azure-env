@@ -9,15 +9,15 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = include.root.inputs.resource_group_name
-  lock_resources = false
+  resource_group_name = include.root.inputs.resource_group_name
+  lock_resources      = false
   iam_assignments = {
-      "Contributor" = {
-          "users" = [
-              "andreas.wejde@northvolt.com",
-              "galen.lanphier@northvolt.com"
-          ]
-      }
+    "Contributor" = {
+      "users" = [
+        "andreas.wejde@northvolt.com",
+        "galen.lanphier@northvolt.com"
+      ]
+    }
   }
 }
 

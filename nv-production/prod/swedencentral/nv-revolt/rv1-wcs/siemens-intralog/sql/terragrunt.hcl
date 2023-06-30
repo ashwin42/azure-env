@@ -53,7 +53,7 @@ inputs = {
     },
   ]
 
-  mssql_azuread_users = [ 
+  mssql_azuread_users = [
     {
       username = "VPN Revolt Siemens WCS AP"
       roles    = ["db_owner"]

@@ -22,7 +22,7 @@ inputs = {
     "NV-D365-Dev"                = "bd728441-1b83-4daa-a72f-91d5dc6284f1"
     "NV-Production"              = "0f5f2447-3af3-4bbf-98fb-ac9664f75bdc"
   }
-  application_id                 = dependency.app.outputs.application_id
-  directory_id                   = dependency.app.outputs.tenant_id
-  application_key                = dependency.app.outputs.client_secret
+  application_id  = dependency.app.outputs.application_id
+  directory_id    = dependency.app.outputs.tenant_id
+  application_key = dependency.app.outputs.client_secret
 }

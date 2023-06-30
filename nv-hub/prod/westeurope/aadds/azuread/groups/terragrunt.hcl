@@ -11,10 +11,10 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "AAD DC Administrators"
-      description = "AADDS administrative group. Members of this group are granted administrative permissions on VMs that are domain-joined to the managed domain. On domain-joined VMs, this group is added to the local administrators group. Members of this group can also use Remote Desktop to connect remotely to domain-joined VMs."
+      display_name     = "AAD DC Administrators"
+      description      = "AADDS administrative group. Members of this group are granted administrative permissions on VMs that are domain-joined to the managed domain. On domain-joined VMs, this group is added to the local administrators group. Members of this group can also use Remote Desktop to connect remotely to domain-joined VMs."
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
   ]
 }

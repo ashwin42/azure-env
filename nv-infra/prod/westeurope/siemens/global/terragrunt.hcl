@@ -77,7 +77,7 @@ inputs = {
     "Reader" = {
       users = ["karel.silha@northvolt.com"]
     },
-  },  
+  },
 }
 
 

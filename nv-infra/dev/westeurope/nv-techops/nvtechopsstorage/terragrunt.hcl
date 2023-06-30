@@ -20,16 +20,16 @@ inputs = {
   large_file_share_enabled = true
   skuname                  = "Standard_LRS"
   location                 = "swedencentral"
-  tags                     = {
-      "ms-resource-usage" = "azure-cloud-shell"
-    }
+  tags = {
+    "ms-resource-usage" = "azure-cloud-shell"
+  }
   file_shares = [
-    { 
-      name = "nv-techops-fs", 
-      quota = 6 
+    {
+      name  = "nv-techops-fs",
+      quota = 6
     },
   ]
-  
+
   network_rules = [
     {
       name           = "default_rule"

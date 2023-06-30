@@ -1,5 +1,5 @@
 locals {
-  setup_prefix               = basename(get_terragrunt_dir())
-  resource_group_name        = "EAI-DEV"
+  setup_prefix        = basename(get_terragrunt_dir())
+  resource_group_name = "EAI-DEV"
 }
 

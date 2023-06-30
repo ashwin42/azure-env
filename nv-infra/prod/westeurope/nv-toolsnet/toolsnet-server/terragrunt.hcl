@@ -33,12 +33,12 @@ inputs = {
   ad_join                                = true
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_image_reference = {
-    sku     = "2019-Datacenter-smalldisk",
+    sku = "2019-Datacenter-smalldisk",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "nvadmin"

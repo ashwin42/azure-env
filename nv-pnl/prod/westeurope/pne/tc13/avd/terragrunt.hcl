@@ -57,11 +57,11 @@ inputs = {
       workspace_name               = "pne-tc13-avd-ws"
       friendly_name                = "13.01 - 13.10"
       default_desktop_display_name = "13.01 - 13.10"
-      assign_groups                = [
+      assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
         "NV-PNE-VPN-AP"
-        ]
+      ]
       tags = {
         project = "LHW-19"
       }
@@ -72,11 +72,11 @@ inputs = {
       workspace_name               = "pne-tc13-avd-ws"
       friendly_name                = "13.11 - 13.20"
       default_desktop_display_name = "13.11 - 13.20"
-      assign_groups                = [
+      assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
         "NV-PNE-VPN-AP"
-        ]
+      ]
       tags = {
         project = "LHW-19"
       }
@@ -87,11 +87,11 @@ inputs = {
       workspace_name               = "pne-tc13-avd-ws"
       friendly_name                = "13.21 - 13.25"
       default_desktop_display_name = "13.21 - 13.25"
-      assign_groups                = [
+      assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
         "NV-PNE-VPN-AP"
-        ]
+      ]
       tags = {
         project = "LHW-19"
       }

@@ -27,11 +27,11 @@ inputs = {
 
   application_groups = [
     {
-      name = "pne-tc3-wvd1-ag"
-      friendly_name = "03.01 - 03.10"
+      name                         = "pne-tc3-wvd1-ag"
+      friendly_name                = "03.01 - 03.10"
       default_desktop_display_name = "03.01 - 03.10"
-      host_pool_name = "pne-tc3-wvd1-hp"
-      workspace_name = "pne-tc3-wvd1-ws"
+      host_pool_name               = "pne-tc3-wvd1-hp"
+      workspace_name               = "pne-tc3-wvd1-ws"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
@@ -39,11 +39,11 @@ inputs = {
       ]
     },
     {
-      name = "pne-tc3-wvd2-ag"
-      friendly_name = "03.11 - 03.22"
+      name                         = "pne-tc3-wvd2-ag"
+      friendly_name                = "03.11 - 03.22"
       default_desktop_display_name = "03.11 - 03.22"
-      host_pool_name = "pne-tc3-wvd2-hp"
-      workspace_name = "pne-tc3-wvd1-ws"
+      host_pool_name               = "pne-tc3-wvd2-hp"
+      workspace_name               = "pne-tc3-wvd1-ws"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",

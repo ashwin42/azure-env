@@ -8,6 +8,6 @@ include {
 }
 
 inputs = {
-  resource_group_name  = "monitoring-ops"
+  resource_group_name = "monitoring-ops"
 }
 

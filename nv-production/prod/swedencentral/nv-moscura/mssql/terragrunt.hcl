@@ -32,7 +32,7 @@ inputs = {
   create_administrator_password = true
   allow_azure_ip_access         = false
   public_network_access_enabled = false
-  connection_policy             = "Redirect"  
+  connection_policy             = "Redirect"
   azuread_administrator = {
     group = "NV TechOps Role"
   }

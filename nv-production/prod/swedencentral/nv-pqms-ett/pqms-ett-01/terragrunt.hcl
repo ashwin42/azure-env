@@ -16,7 +16,7 @@ dependency "vnet" {
 }
 
 locals {
-  name   = basename(get_original_terragrunt_dir())
+  name = basename(get_original_terragrunt_dir())
 }
 
 inputs = {
@@ -67,7 +67,7 @@ inputs = {
         },
       ]
     },
-  ]  
+  ]
   custom_rules = [
     {
       name                  = "Labs_MFA_VPN"

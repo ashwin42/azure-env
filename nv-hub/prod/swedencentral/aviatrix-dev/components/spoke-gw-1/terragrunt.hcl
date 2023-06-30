@@ -24,8 +24,8 @@ inputs = {
   transit_gw       = "swedencentral-nv-hub-avx-tgw"
   use_existing_vpc = true
   # network_domain  = "green"
-  vpc_id           = "${dependency.spoke.outputs.virtual_network.name}:${dependency.rg.outputs.resource_group_name}"
-  gw_subnet        = dependency.spoke.outputs.subnet["${include.root.inputs.location}-${include.root.inputs.subscription_name}.avx.dev-subnet-1.pub-a"]["address_prefixes"][0] # subnet-a
-  hagw_subnet      = dependency.spoke.outputs.subnet["${include.root.inputs.location}-${include.root.inputs.subscription_name}.avx.dev-subnet-1.pub-b"]["address_prefixes"][0] # subnet-b
-  resource_group   = dependency.rg.outputs.resource_group_name
+  vpc_id         = "${dependency.spoke.outputs.virtual_network.name}:${dependency.rg.outputs.resource_group_name}"
+  gw_subnet      = dependency.spoke.outputs.subnet["${include.root.inputs.location}-${include.root.inputs.subscription_name}.avx.dev-subnet-1.pub-a"]["address_prefixes"][0] # subnet-a
+  hagw_subnet    = dependency.spoke.outputs.subnet["${include.root.inputs.location}-${include.root.inputs.subscription_name}.avx.dev-subnet-1.pub-b"]["address_prefixes"][0] # subnet-b
+  resource_group = dependency.rg.outputs.resource_group_name
 }

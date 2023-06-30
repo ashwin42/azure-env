@@ -1,3 +1,3 @@
 locals {
-    setup_prefix = ""
+  setup_prefix = ""
 }

@@ -10,7 +10,7 @@ include "root" {
 
 inputs = {
   subscription_name = "NV_Gen_Infra"
-  management_group = "Managed"
+  management_group  = "Managed"
 
   iam_assignments = {
     "Contributor" = {

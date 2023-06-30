@@ -8,14 +8,14 @@ include {
 }
 
 inputs = {
-  storage_account_name      = "nvhubgeneralstorage"
-  resource_group_name       = "nv-hub-general-storage"
-  create_resource_group     = true
-  account_replication_type  = "LRS"
-  account_tier              = "Standard"
-  account_kind              = "Storage"
+  storage_account_name     = "nvhubgeneralstorage"
+  resource_group_name      = "nv-hub-general-storage"
+  create_resource_group    = true
+  account_replication_type = "LRS"
+  account_tier             = "Standard"
+  account_kind             = "Storage"
   #enable_https_traffic_only = false
-  enable_ad_auth            = true
-  tags                      = { "ms-resource-usage" = "azure-cloud-shell" }
+  enable_ad_auth = true
+  tags           = { "ms-resource-usage" = "azure-cloud-shell" }
 }
 

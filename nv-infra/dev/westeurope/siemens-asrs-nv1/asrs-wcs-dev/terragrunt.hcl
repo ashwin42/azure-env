@@ -31,10 +31,10 @@ inputs = {
   }
   network_interfaces = [
     {
-      name      = "asrs-wcs-dev-nic1"
-      ipaddress = "10.44.5.181"
-      subnet    = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
-      public_ip = false
+      name                          = "asrs-wcs-dev-nic1"
+      ipaddress                     = "10.44.5.181"
+      subnet                        = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
+      public_ip                     = false
       private_ip_address_allocation = "Static"
     }
   ]

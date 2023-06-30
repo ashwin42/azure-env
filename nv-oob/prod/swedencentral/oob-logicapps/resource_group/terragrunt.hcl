@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  lock_resources = true
+  lock_resources      = true
   resource_group_name = "oob-logicapps"
   iam_assignments = {
     "Owner" = {

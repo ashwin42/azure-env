@@ -13,7 +13,7 @@ inputs = {
   role_assignements = [
     {
       role_name = "Contributor"
-      users    = [
+      users = [
         "andreas.karlsson@nv-external.com",
         "balen.alyassin@nv-external.com",
         "petar.tomovic@nv-external.com",
@@ -23,7 +23,7 @@ inputs = {
         "mehdi.bel-fdhila@nv-external.com",
         "bahareh.aghajanpour@nv-external.com",
         "chamani.perummuni@nv-external.com",
-        ]
+      ]
     },
   ]
 }

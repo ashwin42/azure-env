@@ -8,6 +8,6 @@ include {
 }
 
 inputs = {
-    recovery_vault_name = "nv-pnl-rv"
+  recovery_vault_name = "nv-pnl-rv"
 }
 

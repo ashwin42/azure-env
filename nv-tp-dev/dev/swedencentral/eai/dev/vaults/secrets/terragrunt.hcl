@@ -15,10 +15,10 @@ inputs = {
   enabled_for_deployment          = true
   enabled_for_template_deployment = true
   iam_assignments = {
-      "Key Vault Administrator" = {
-          "groups" = [
-              "Integration Enablement Team"
-          ]
-      }
+    "Key Vault Administrator" = {
+      "groups" = [
+        "Integration Enablement Team"
+      ]
+    }
   }
 }

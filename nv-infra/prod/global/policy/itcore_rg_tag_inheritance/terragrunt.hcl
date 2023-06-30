@@ -47,7 +47,7 @@ inputs = {
       policy_definition_name = "it-core-rg-tags"
       resource_group_name    = "IT-Core-RG"
       identity = {
-        type                 = "SystemAssigned"
+        type = "SystemAssigned"
       }
     }
   ]

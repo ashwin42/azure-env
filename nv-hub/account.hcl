@@ -17,8 +17,8 @@ locals {
   providers                                 = ["azurerm"]
   additional_providers = [
     {
-      alias    = "ad_join_keyvault"
-      provider = "azurerm"
+      alias           = "ad_join_keyvault"
+      provider        = "azurerm"
       subscription_id = "11dd160f-0e01-4b4d-a7a0-59407e357777"
       blocks = {
         features = {},
@@ -31,6 +31,6 @@ locals {
         features = {},
       },
     },
-  ]        
+  ]
 }
 
