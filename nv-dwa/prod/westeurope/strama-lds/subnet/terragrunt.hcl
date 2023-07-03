@@ -27,7 +27,7 @@ inputs = {
       private_link_service_network_policies_enabled = false
     },
     {
-      name                            = "datasystems-web-app"
+      name                            = "${include.root.locals.all_vars.project}-datasystems-web-app"
       address_prefixes                = ["10.46.97.112/28"]
       route_table_name                = "nv-dwa-we-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
