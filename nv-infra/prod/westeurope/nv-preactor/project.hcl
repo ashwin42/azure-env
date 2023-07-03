@@ -1,6 +1,6 @@
 locals {
   tags = {
-    project       = "Preactor"
-    jira          = "TOC-86"
+    project = "Preactor"
+    jira    = "TOC-86"
   }
 }
