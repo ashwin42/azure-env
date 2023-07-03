@@ -86,5 +86,17 @@ inputs = {
       database      = "Station_DB"
       create_secret = true
     },
+    {
+      username      = "${local.name}-datasystems-reader"
+      roles         = ["db_datareader"]
+      database      = "Results_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-datasystems-reader"
+      roles         = ["db_datareader"]
+      database      = "Station_DB"
+      create_secret = true
+    },
   ]
 }
