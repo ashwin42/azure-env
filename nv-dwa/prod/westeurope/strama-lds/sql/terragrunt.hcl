@@ -99,4 +99,10 @@ inputs = {
       create_secret = true
     },
   ]
+  custom_rules = [
+    {
+      name      = "AllowLocalSubnet"
+      subnet_id = dependency.subnet.outputs.subnets["strama-lds-subnet1"].id
+    }
+  ]
 }
