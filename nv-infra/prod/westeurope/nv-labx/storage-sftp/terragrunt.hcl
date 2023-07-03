@@ -41,10 +41,10 @@ inputs = {
   }
 
   network_rules = {
-    name           = "default_rule"
-    bypass         = ["AzureServices"]
-    default_action = "Deny"
-    virtual_network_subnet_ids     = [dependency.global.outputs.subnet["labx_subnet"].id]
+    name                       = "default_rule"
+    bypass                     = ["AzureServices"]
+    default_action             = "Deny"
+    virtual_network_subnet_ids = [dependency.global.outputs.subnet["labx_subnet"].id]
   }
 }
 

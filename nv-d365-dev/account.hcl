@@ -5,7 +5,7 @@ locals {
   secrets_key_vault_name                    = "nv-d365-dev-we-secrets"
   secrets_key_vault_rg                      = "nv-d365-dev-core"
   encryption_key_vault_name                 = "nv-d365-dev-encryption"
-  encryption_key_vault_rg                   = "nv-d365-dev-core"  
+  encryption_key_vault_rg                   = "nv-d365-dev-core"
   remote_state_azurerm_enabled              = true
   remote_state_azurerm_storage_account_name = "nvd365tfstate"
   remote_state_azurerm_container_name       = "nv-tf-state"
@@ -29,6 +29,6 @@ locals {
         features = {},
       },
     }
-  ]  
+  ]
 }
 

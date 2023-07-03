@@ -21,15 +21,15 @@ inputs = {
     {
       name                                          = "revolt-wcs-subnet-01"
       address_prefixes                              = ["10.64.1.224/28"]
-      route_table_name                = "nv-production-swc-default-rt"
-      route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
+      route_table_name                              = "nv-production-swc-default-rt"
+      route_table_resource_group_name               = dependency.vnet.outputs.virtual_network.resource_group_name
       service_endpoints                             = ["Microsoft.Sql"]
       private_link_service_network_policies_enabled = false
       delegation                                    = []
     },
     {
-      name             = "revolt-wcs-web-app-01"
-      address_prefixes = ["10.64.1.240/28"]
+      name                            = "revolt-wcs-web-app-01"
+      address_prefixes                = ["10.64.1.240/28"]
       route_table_name                = "nv-production-swc-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
       delegation = [

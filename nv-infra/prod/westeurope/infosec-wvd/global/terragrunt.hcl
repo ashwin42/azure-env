@@ -7,14 +7,14 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "infosec-wvd"
-  address_space             = [ "10.44.5.208/29" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  create_recovery_vault     = false
-  subnets                   = [
+  setup_prefix          = "infosec-wvd"
+  address_space         = ["10.44.5.208/29"]
+  dns_servers           = ["10.40.250.5", "10.40.250.4"]
+  create_recovery_vault = false
+  subnets = [
     {
-      name = "infosec-wvd-subnet"
-      address_prefixes = [ "10.44.5.208/29" ]
+      name             = "infosec-wvd-subnet"
+      address_prefixes = ["10.44.5.208/29"]
     },
   ]
   peerings = [

@@ -12,15 +12,15 @@ dependency "vnet" {
 }
 
 locals {
-  common = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
+  common     = read_terragrunt_config(find_in_parent_folders("common-tia.hcl"))
   ip_address = "10.46.1.74"
 }
 
 inputs = merge(
   local.common.inputs,
   {
-    dns_record         = local.ip_address
-    vm_size            = "Standard_B2ms"
+    dns_record = local.ip_address
+    vm_size    = "Standard_B2ms"
     network_interfaces = [
       {
         name = "${local.common.inputs.dns_name}-nic"

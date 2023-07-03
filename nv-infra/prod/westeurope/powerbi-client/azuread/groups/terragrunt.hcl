@@ -11,10 +11,10 @@ include {
 inputs = {
   groups = [
     {
-      display_name = "PowerBI Virtual Desktop Users"
-      description  = "Members in this group gets access to PowerBI Virtual Desktop"
+      display_name     = "PowerBI Virtual Desktop Users"
+      description      = "Members in this group gets access to PowerBI Virtual Desktop"
       security_enabled = true
-      member_users      = []
+      member_users     = []
     },
   ]
 }

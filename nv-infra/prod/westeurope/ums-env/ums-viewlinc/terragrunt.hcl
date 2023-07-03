@@ -46,7 +46,7 @@ inputs = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
     timezone                   = null
-    winrm = null
+    winrm                      = null
     additional_unattend_config = null
   }
   os_profile = {

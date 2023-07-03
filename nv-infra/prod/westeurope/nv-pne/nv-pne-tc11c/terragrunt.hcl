@@ -36,7 +36,7 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
-  boot_diagnostics_enabled               = true  
+  boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
   storage_image_reference = {
@@ -45,22 +45,22 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
     admin_username = "domainjoin"
   }
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.46"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "${local.name}-nic-ipconfig"
+          private_ip_address            = "10.44.5.46"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-nic-ipconfig"
         }
       ]
     }
@@ -98,6 +98,6 @@ inputs = {
       source_address_prefix = "10.149.40.0/22"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    },    
+    },
   ]
 }

@@ -11,7 +11,7 @@ inputs = {
   private_dns_zones = [
     {
       name                = basename(get_terragrunt_dir())
-      resource_group_name = "core_network"     
+      resource_group_name = "core_network"
       virtual_network_links = [
         {
           name    = "core_vnet_vnl",

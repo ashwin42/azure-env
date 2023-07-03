@@ -9,7 +9,7 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = "nv-pnl-tfstate-rg"
-  lock_resources = false
+  resource_group_name = "nv-pnl-tfstate-rg"
+  lock_resources      = false
 }
 

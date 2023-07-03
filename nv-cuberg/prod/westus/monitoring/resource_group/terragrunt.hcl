@@ -8,6 +8,6 @@ include {
 }
 
 inputs = {
-  name  = ""
+  name = ""
 }
 

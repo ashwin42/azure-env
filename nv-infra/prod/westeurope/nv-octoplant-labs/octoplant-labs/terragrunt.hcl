@@ -160,7 +160,7 @@ inputs = {
       destination_port_range = "*"
       access                 = "Allow"
       description            = "Allow ICMP Echo Request"
-    },    
+    },
   ]
 }
 

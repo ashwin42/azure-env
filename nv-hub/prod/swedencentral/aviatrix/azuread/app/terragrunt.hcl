@@ -12,8 +12,8 @@ include "local" {
 }
 
 inputs = {
-  app_name      = "aviatrix_controller_app_prod"
-  owner_names   = ["none@northvolt.com", "hampus.rosvall@northvolt.com"]
+  app_name    = "aviatrix_controller_app_prod"
+  owner_names = ["none@northvolt.com", "hampus.rosvall@northvolt.com"]
   subscriptions = [
     "4312dfc3-8ec3-49c4-b95e-90a248341dd5", # NV-Hub
     "4c463b9b-3bc8-465e-ab88-4a5c54498953", # NV-BI-dev

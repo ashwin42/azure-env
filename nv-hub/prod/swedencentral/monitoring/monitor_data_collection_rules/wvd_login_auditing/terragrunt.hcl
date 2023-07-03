@@ -17,8 +17,8 @@ inputs = {
   log_analytics_workspace_name = "log-analytics-ops-ws"
   windows_event_log = [
     {
-      name = local.name
-      x_path_queries = ["Security!*[System[(band(Keywords,9007199254740992))]]"]      
+      name           = local.name
+      x_path_queries = ["Security!*[System[(band(Keywords,9007199254740992))]]"]
     }
   ]
   log_analytics = [{}]

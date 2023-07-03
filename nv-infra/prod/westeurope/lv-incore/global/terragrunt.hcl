@@ -13,8 +13,8 @@ inputs = {
   vnet_resource_group_name = "nv-gen-infra-rg"
   subnets = [
     {
-      name                 = "lv-incore-subnet-10.46.0.128-28"
-      address_prefixes     = ["10.46.0.128/28"]
+      name             = "lv-incore-subnet-10.46.0.128-28"
+      address_prefixes = ["10.46.0.128/28"]
       #service_endpoints    = ["Microsoft.Sql"]
       #enforce_private_link = true
     },

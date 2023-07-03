@@ -49,8 +49,8 @@ inputs = {
   }
 
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
   }
 
   os_profile = {
@@ -60,13 +60,13 @@ inputs = {
 
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-        private_ip_address            = "10.44.5.37"
-        subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
-        private_ip_address_allocation = "Static"
-        ipconfig_name                 = "nv-pne-oper-0-nic-ipconfig"
+          private_ip_address            = "10.44.5.37"
+          subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "nv-pne-oper-0-nic-ipconfig"
         }
       ]
     }

@@ -20,7 +20,7 @@ inputs = {
       groups = [
         "Azure Subscriptions Reader Access",
       ],
-    },    
+    },
   }
 
   resource_provider_registrations = [

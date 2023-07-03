@@ -51,7 +51,7 @@ inputs = {
       security_enabled = true
       member_groups    = []
       member_users     = ["karel.silha@northvolt.com"]
-    },    
+    },
   ]
 }
 

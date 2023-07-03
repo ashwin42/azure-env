@@ -7,13 +7,13 @@ include {
 }
 
 inputs = {
-  setup_prefix              = "nv-gabi-lca"
-  address_space             = [ "10.44.5.136/29" ]
-  dns_servers               = [ "10.40.250.5", "10.40.250.4" ]
-  subnets                   = [
+  setup_prefix  = "nv-gabi-lca"
+  address_space = ["10.44.5.136/29"]
+  dns_servers   = ["10.40.250.5", "10.40.250.4"]
+  subnets = [
     {
-      name = "nv-gabi-lca-subnet-10.44.5.136"
-      address_prefixes = [ "10.44.5.136/29" ]
+      name             = "nv-gabi-lca-subnet-10.44.5.136"
+      address_prefixes = ["10.44.5.136/29"]
     },
   ]
   peerings = [

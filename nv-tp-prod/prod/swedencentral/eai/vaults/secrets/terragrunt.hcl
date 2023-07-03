@@ -15,12 +15,12 @@ inputs = {
   enabled_for_deployment          = true
   enabled_for_template_deployment = true
   iam_assignments = {
-      "Key Vault Administrator" = {
-          "users" = [
-              "andreas.wejde@northvolt.com",
-              "galen.lanphier@northvolt.com",
-              "hampus.westerman@northvolt.com"
-          ]
-      }
+    "Key Vault Administrator" = {
+      "users" = [
+        "andreas.wejde@northvolt.com",
+        "galen.lanphier@northvolt.com",
+        "hampus.westerman@northvolt.com"
+      ]
+    }
   }
 }
