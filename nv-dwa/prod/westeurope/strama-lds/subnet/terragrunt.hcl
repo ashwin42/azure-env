@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.32"
-  #source = "../../../../../../tf-mod-azure/vnet/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/"
 }
 
 dependency "vnet" {
@@ -25,6 +25,21 @@ inputs = {
       route_table_resource_group_name               = dependency.vnet.outputs.virtual_network.resource_group_name
       service_endpoints                             = ["Microsoft.Sql"]
       private_link_service_network_policies_enabled = false
+    },
+    {
+      name                            = "datasystems-web-app"
+      address_prefixes                = ["10.46.97.112/28"]
+      route_table_name                = "nv-dwa-we-default-rt"
+      route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
+      delegation = [
+        {
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
+        },
+      ]
     },
   ]
 }
