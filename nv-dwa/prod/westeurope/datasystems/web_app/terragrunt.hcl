@@ -17,7 +17,7 @@ dependency "resource_group" {
 }
 
 locals {
-  name         = "dwa-lds-${include.root.locals.all_vars.project}"
+  name = "dwa-lds-${include.root.locals.all_vars.project}"
 }
 
 inputs = {
@@ -35,7 +35,7 @@ inputs = {
       websockets_enabled = true
       ftps_state         = "FtpsOnly"
       application_stack = {
-        python_version = "3.4"
+        python_version = "3.10.11"
       }
     }
   }
