@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
   #source = "${dirname(get_repo_root())}//tf-mod-azure//vm/"
 }
 

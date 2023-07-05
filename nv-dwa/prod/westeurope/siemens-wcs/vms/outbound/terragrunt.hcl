@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.37"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
 }
 
 include {

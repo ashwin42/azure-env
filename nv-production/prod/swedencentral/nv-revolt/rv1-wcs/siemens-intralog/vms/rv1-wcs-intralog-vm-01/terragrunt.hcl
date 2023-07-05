@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.39"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
@@ -74,20 +74,6 @@ inputs = {
 
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
-    },
-    {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
@@ -102,14 +88,6 @@ inputs = {
       protocol               = "Tcp"
       destination_port_range = "4711,5005"
       description            = "Allow connections from local web delegated subnet"
-    },
-    {
-      name                  = "ICMP"
-      priority              = "300"
-      direction             = "Inbound"
-      source_address_prefix = "10.0.0.0/8"
-      protocol              = "Icmp"
-      description           = "Allow ICMP"
     },
   ]
 }
