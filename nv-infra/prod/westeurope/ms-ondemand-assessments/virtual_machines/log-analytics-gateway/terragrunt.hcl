@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.39"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -63,22 +63,8 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/24"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
-    },
-    {
       name                  = "ms-oda-data-collector_8080"
-      priority              = "300"
+      priority              = "400"
       direction             = "Inbound"
       source_address_prefix = "10.46.2.68/32"
       description           = "Allow connections from ms-oda-data-collector on port 8080"

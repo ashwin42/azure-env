@@ -71,20 +71,6 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
@@ -126,14 +112,6 @@ inputs = {
       protocol               = "Tcp"
       description            = "Allow connections from DWA-Core AWS Account"
       destination_port_range = "5000-5010"
-    },
-    {
-      name                  = "ICMP"
-      priority              = "300"
-      direction             = "Inbound"
-      source_address_prefix = "10.0.0.0/8"
-      protocol              = "Icmp"
-      description           = "Allow ICMP"
     },
   ]
 }
