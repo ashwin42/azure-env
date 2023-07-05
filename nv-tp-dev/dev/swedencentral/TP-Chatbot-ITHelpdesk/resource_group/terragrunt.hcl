@@ -21,6 +21,7 @@ inputs = {
     "Contributor" = {
       "groups" = [
         "NV Tools & Products Member",
+        "NV Northie Chatbot"
       ],
     },
   }
