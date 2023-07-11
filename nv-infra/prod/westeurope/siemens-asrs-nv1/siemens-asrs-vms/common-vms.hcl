@@ -50,14 +50,6 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
@@ -152,26 +144,6 @@ inputs = {
       description            = "Allow connections from API Mgmt service"
     },
     {
-      name                   = "ICMP"
-      priority               = "223"
-      direction              = "Inbound"
-      source_address_prefix  = "10.0.0.0/8"
-      protocol               = "Icmp"
-      destination_port_range = "*"
-      access                 = "Allow"
-      description            = "Allow ICMP"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "225"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
       name                   = "AWS_Ett_DS1_Stockholm_Prod"
       priority               = "230"
       direction              = "Inbound"
@@ -201,17 +173,6 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
-    {
-      name                   = "Prometheus_Subnet"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefixs = ["10.15.17.192/26","10.15.18.0/25","10.15.19.0/24","10.15.20.0/23"]
-      protocol               = "Tcp"
-      destination_port_range = "9182"
-      access                 = "Allow"
-      description            = "Allow connections from Prometheus subnets"
-    },
-    
   ]
   windows_data_collection_rule_names = ["windows_event_log-dcr"]
 }
