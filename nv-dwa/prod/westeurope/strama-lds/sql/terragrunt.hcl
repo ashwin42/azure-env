@@ -47,6 +47,12 @@ inputs = {
   azuread_administrator = {
     group = "NV TechOps Role"
   }
+  custom_rules = [
+    {
+      name      = "AllowLocalSubnet"
+      subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-subnet1"].id
+    },
+  ]
   databases = [
     {
       name = "Log_DB"
@@ -96,6 +102,24 @@ inputs = {
       username      = "${local.name}-datasystems-reader"
       roles         = ["db_datareader"]
       database      = "Station_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-reader"
+      roles         = ["db_datareader"]
+      database      = "Results_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-reader"
+      roles         = ["db_datareader"]
+      database      = "Station_DB"
+      create_secret = true
+    },
+    {
+      username      = "${local.name}-reader"
+      roles         = ["db_datareader"]
+      database      = "Log_DB"
       create_secret = true
     },
   ]
