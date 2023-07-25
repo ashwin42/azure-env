@@ -5,6 +5,12 @@ locals {
   account_type         = "customer"
   dns_servers          = ["10.40.250.4", "10.40.250.5"]
 
+  # netbox
+  netbox_server_url         = "https://netbox.it.aws.nvlt.co"
+  update_netbox             = true
+  netbox_provider_version   = "~> 3.4.0"
+  netbox_secret_aws_profile = "nv-it-prod"
+
   vpn_subnet_labs = "10.16.8.0/24"
   vpn_subnet_ett  = "10.240.0.0/21"
   vpn_subnet_dwa  = "10.240.32.0/23"
