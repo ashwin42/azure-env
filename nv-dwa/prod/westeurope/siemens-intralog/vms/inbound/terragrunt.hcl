@@ -1,11 +1,17 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
+  # source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
+
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
 
 locals {
   common = read_terragrunt_config(find_in_parent_folders("common-vms.hcl"))
@@ -14,6 +20,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
+    netbox_create_role = true
     network_interfaces = [
       {
         primary             = true

@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
-  #source = "${dirname(get_repo_root())}//tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}//tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -15,12 +16,19 @@ dependency "rv" {
   config_path = "../recovery_vault"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = "hub-router"
 }
 
 inputs = {
   name                                   = local.name
+  vm_name                                = local.name
+  netbox_create_role                     = true
   resource_group_name                    = dependency.vnet.outputs.resource_group.name
   vm_size                                = "Standard_B2s"
   managed_disk_type                      = "Standard_LRS"
@@ -55,6 +63,7 @@ inputs = {
       name = "${local.name}-public-ip"
     },
   ]
+  data_collection_rule_names = ["linux_syslog-dcr"]
   custom_rules = [
     {
       name                       = "Labs_MFA_VPN"

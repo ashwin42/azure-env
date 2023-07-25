@@ -1,0 +1,59 @@
+variable "mongodbatlas_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "mongodbatlas_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "mongodbatlas_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "mongodbatlas_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "mongodbatlas_public_key" {
+  description = "The public API key for MongoDB Atlas"
+  default     = null
+}
+
+variable "mongodbatlas_private_key" {
+  description = "The private API key for MongoDB Atlas"
+  default     = null
+}
+
+module "mongodbatlas_provider_secret" {
+  for_each = toset(compact([
+    length(compact([var.mongodbatlas_public_key])) > 0 ? "" : "public_key",
+    length(compact([var.mongodbatlas_private_key])) > 0 ? "" : "private_key",
+  ]))
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.mongodbatlas_secret_name, "mongodbatlas")
+  secret_name_key = each.value
+  secret_path     = var.mongodbatlas_secret_path
+  store           = coalesce(var.mongodbatlas_secret_store, "secrets-manager")
+%{if mongodbatlas_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.mongodbatlas_secret
+  }
+%{endif~}
+}
+
+provider "mongodbatlas" {
+  public_key  = coalesce(var.mongodbatlas_public_key, try(module.mongodbatlas_provider_secret["public_key"].secret, null))
+  private_key = coalesce(var.mongodbatlas_private_key, try(module.mongodbatlas_provider_secret["private_key"].secret, null))
+}
+
+%{if mongodbatlas_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${mongodbatlas_secret_aws_region}"
+  profile = "${mongodbatlas_secret_aws_profile}"
+  alias   = "mongodbatlas_secret"
+}
+%{endif~}

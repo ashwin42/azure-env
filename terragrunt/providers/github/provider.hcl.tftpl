@@ -1,0 +1,53 @@
+variable "github_token" {
+  description = "(Optional) A GitHub OAuth / Personal Access Token. When not provided or made available via the GITHUB_TOKEN environment variable, the provider can only access resources available anonymously."
+  type        = string
+  default     = null
+}
+
+variable "github_base_url" {
+  description = "(Optional) This is the target GitHub base API endpoint. Providing a value is a requirement when working with GitHub Enterprise. It is optional to provide this value and it can also be sourced from the GITHUB_BASE_URL environment variable. The value must end with a slash, for example: https://terraformtesting-ghe.westus.cloudapp.azure.com/"
+  type        = string
+  default     = null
+}
+
+variable "github_owner" {
+  description = "(Optional) This is the target GitHub organization or individual user account to manage. For example, torvalds and github are valid owners. It is optional to provide this value and it can also be sourced from the GITHUB_OWNER environment variable. When not provided and a token is available, the individual user account owning the token will be used. When not provided and no token is available, the provider may not function correctly."
+  type        = string
+  default     = null
+}
+
+variable "github_app_auth" {
+  description = "(Optional) Configuration block to use GitHub App installation token. When not provided, the provider can only access resources available anonymously."
+  type        = map(string)
+  default     = {}
+}
+
+variable "github_write_delay_ms" {
+  description = "(Optional) The number of milliseconds to sleep in between write operations in order to satisfy the GitHub API rate limits. Defaults to 1000ms or 1 second if not provided."
+  type        = number
+  default     = null
+}
+
+variable "github_read_delay_ms" {
+  description = "(Optional) The num"
+  type        = number
+  default     = null
+}
+
+provider "github" {
+  token        = var.github_token
+  base_url     = var.github_base_url
+  owner        = var.github_owner
+
+  dynamic "app_auth" {
+    for_each = length(var.github_app_auth) > 0 ? [var.github_app_auth] : []
+    content {
+      id              = try(app_auth.value.id, null)
+      installation_id = try(app_auth.value.installation_id, null)
+      pem_file        = try(app_auth.value.pem_file, null)
+    }
+  }
+
+  write_delay_ms = var.github_write_delay_ms
+  read_delay_ms  = var.github_read_delay_ms
+}

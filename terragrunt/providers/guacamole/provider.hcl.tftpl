@@ -1,0 +1,76 @@
+variable "guacamole_url" {
+  type = string
+}
+
+variable "guacamole_username" {
+  type = string
+}
+
+variable "guacamole_password" {
+  type    = string
+  default = null
+}
+
+variable "guacamole_disable_tls_verification" {
+  type    = bool
+  default = false
+}
+
+variable "guacamole_disable_cookies" {
+  type    = bool
+  default = false
+}
+
+variable "guacamole_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "guacamole_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "guacamole_secret_store" {
+  type    = string
+  default = "secrets-manager"
+}
+
+variable "guacamole_secret_path" {
+  type    = string
+  default = null
+}
+
+locals {
+  guacamole_hostname = replace(var.guacamole_url, "/(https?://)|(/)/", "")
+}
+
+module "guacamole_provider_secret" {
+  count           = length(compact([var.guacamole_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.guacamole_secret_name), local.guacamole_hostname)
+  secret_name_key = try(coalesce(var.guacamole_secret_name_key), var.guacamole_username)
+  secret_path     = var.guacamole_secret_path
+  store           = var.guacamole_secret_store
+%{if guacamole_secret_aws_profile != "" ~}
+  providers = {
+    aws = aws.guacamole_secret
+  }
+%{endif~}
+}
+
+provider "guacamole" {
+  url                      = var.guacamole_url
+  username                 = var.guacamole_username
+  password                 = try(coalesce(var.guacamole_password), module.guacamole_provider_secret[0].secret)
+  disable_tls_verification = var.guacamole_disable_tls_verification
+  disable_cookies          = var.guacamole_disable_cookies
+}
+
+%{if guacamole_secret_aws_profile != "" ~}
+provider "aws" {
+  region  = "${guacamole_secret_aws_region}"
+  profile = "${guacamole_secret_aws_profile}"
+  alias   = "guacamole_secret"
+}
+%{endif~}

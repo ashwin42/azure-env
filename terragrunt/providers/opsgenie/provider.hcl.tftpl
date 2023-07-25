@@ -1,0 +1,59 @@
+variable "opsgenie_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "opsgenie_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "opsgenie_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "opsgenie_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "opsgenie_api_key" {
+  description = "(Required) The API Key for the Opsgenie Integration. If omitted, the OPSGENIE_API_KEY environment variable is used."
+  default     = null
+}
+
+variable "opsgenie_api_url" {
+  description = "(Optional) The API url for the Opsgenie."
+  default     = null
+}
+
+module "opsgenie_provider_secret" {
+  for_each = toset(compact([
+    length(compact([var.opsgenie_api_key])) > 0 ? "" : "api_key",
+    length(compact([var.opsgenie_api_url])) > 0 ? "" : "api_url",
+  ]))
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.opsgenie_secret_name), "opsgenie")
+  secret_name_key = each.value
+  secret_path     = try(coalesce(var.opsgenie_secret_path), null)
+  store           = try(coalesce(var.opsgenie_secret_store), "secrets-manager")
+%{if opsgenie_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.opsgenie_secret
+  }
+%{endif~}
+}
+
+provider "opsgenie" {
+  api_key = length(compact([var.opsgenie_api_key])) > 0 ? var.opsgenie_api_key : module.opsgenie_provider_secret["api_key"].secret
+  api_url = length(compact([var.opsgenie_api_url])) > 0 ? var.opsgenie_api_url : module.opsgenie_provider_secret["api_url"].secret
+}
+
+%{if opsgenie_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${opsgenie_secret_aws_region}"
+  profile = "${opsgenie_secret_aws_profile}"
+  alias   = "opsgenie_secret"
+}
+%{endif~}

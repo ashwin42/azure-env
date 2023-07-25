@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
 }
 
 include {
@@ -13,7 +13,8 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    install_winrm = true
+    netbox_create_role = true
+    install_winrm      = true
     network_interfaces = [
       {
         name    = "dwa-wcs-nic1"

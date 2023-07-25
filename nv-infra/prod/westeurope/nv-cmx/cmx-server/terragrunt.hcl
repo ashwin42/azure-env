@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -15,11 +16,18 @@ dependency "wvd" {
   config_path = "../wvd"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = "cmx-server"
 }
 
 inputs = {
+  netbox_role                            = "cmx"
+  netbox_create_role                     = true
   setup_prefix                           = dependency.global.outputs.setup_prefix
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name
@@ -60,7 +68,7 @@ inputs = {
       security_group_name = "cmx-server-nsg"
       ip_configuration = [
         {
-          ipaddress                     = "10.46.0.69"
+          private_ip_address            = "10.46.0.69"
           subnet_id                     = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"

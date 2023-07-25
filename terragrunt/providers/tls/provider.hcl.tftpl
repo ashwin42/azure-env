@@ -1,0 +1,21 @@
+variable "tls_proxy" {
+  type    = object({
+    from_env = optional(bool, false)
+    password = optional(string)
+    url      = optional(string)
+    username = optional(string)
+  })
+  default = null
+}
+
+provider "tls" {
+  dynamic "proxy" {
+    for_each = var.tls_proxy != null ? [var.tls_proxy] : []
+    content {
+      from_env = tls.value.from_env
+      password = tls.value.password
+      url      = tls.value.url
+      username = tls.value.username
+    }
+  }
+}

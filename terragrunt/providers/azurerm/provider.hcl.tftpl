@@ -1,0 +1,138 @@
+variable "azurerm_features" {
+  type    = map(string)
+  default = {}
+}
+
+variable "azurerm_client_id" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_environment" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_subscription_id" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_tenant_id" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_auxiliary_tenant_ids" {
+  type    = list(string)
+  default = null
+}
+
+variable "azurerm_client_certificate_password" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_client_certificate_path" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_client_secret" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_oidc_request_token" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_oidc_request_url" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_use_oidc" {
+  type    = bool
+  default = null
+}
+
+variable "azurerm_msi_endpoint" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_use_msi" {
+  type    = bool
+  default = null
+}
+
+variable "azurerm_disable_terraform_partner_id" {
+  type    = bool
+  default = null
+}
+
+variable "azurerm_metadata_host" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_partner_id" {
+  type    = string
+  default = null
+}
+
+variable "azurerm_skip_provider_registration" {
+  type    = bool
+  default = null
+}
+
+variable "azurerm_storage_use_azuread" {
+  type    = bool
+  default = null
+}
+
+provider "azurerm" {
+  subscription_id              = var.azurerm_subscription_id
+  client_id                    = var.azurerm_client_id
+  environment                  = var.azurerm_environment
+  tenant_id                    = var.azurerm_tenant_id
+  client_certificate_password  = var.azurerm_client_certificate_password
+  client_certificate_path      = var.azurerm_client_certificate_path
+  client_secret                = var.azurerm_client_secret
+  msi_endpoint                 = var.azurerm_msi_endpoint
+  use_msi                      = var.azurerm_use_msi
+  partner_id                   = var.azurerm_partner_id
+  auxiliary_tenant_ids         = var.azurerm_auxiliary_tenant_ids
+  skip_provider_registration   = var.azurerm_skip_provider_registration
+%{~if try(coalesce(azurerm_features), null) != null}
+  features {
+%{~for key, value in azurerm_features}
+    ${key} {
+%{~for k, v in value}
+      ${k} = ${v~}
+%{endfor}
+    }
+%{endfor~}
+  }
+%{endif}
+%{~if try(coalesce(azurerm_disable_terraform_partner_id), null) != null}
+  disable_terraform_partner_id = var.azurerm_disable_terraform_partner_id
+%{endif}
+%{~if try(coalesce(azurerm_oidc_request_token), null) != null}
+  oidc_request_token           = var.azurerm_oidc_request_token
+%{endif}
+%{~if try(coalesce(azurerm_oidc_request_url), null) != null}
+  oidc_request_url             = var.azurerm_oidc_request_url
+%{endif}
+%{~if try(coalesce(azurerm_use_oidc), null) != null}
+  use_oidc                     = var.azurerm_use_oidc
+%{endif}
+%{~if try(coalesce(azurerm_metadata_host), null) != null}
+  metadata_host                = var.azurerm_metadata_host
+%{endif}
+%{~if try(coalesce(azurerm_storage_use_azuread), null) != null}
+  storage_use_azuread          = var.azurerm_storage_use_azuread
+%{endif}
+}

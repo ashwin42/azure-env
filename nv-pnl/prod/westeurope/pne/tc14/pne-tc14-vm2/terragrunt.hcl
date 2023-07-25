@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
 }
 
 include {
@@ -22,7 +22,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
-    token          = dependency.avd.outputs.tokens["pne-tc14-vm2-hp"]
+    token          = dependency.avd.outputs.tokens
     host_pool_name = "pne-tc14-vm2-hp"
     network_interfaces = [
       {

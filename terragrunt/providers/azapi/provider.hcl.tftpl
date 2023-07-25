@@ -1,0 +1,128 @@
+variable "azapi_client_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_environment" {
+  type    = string
+  default = null
+}
+
+variable "azapi_subscription_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_tenant_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_tags" {
+  type    = map(string)
+  default = {}
+}
+
+variable "azapi_default_location" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_name" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_naming_prefix" {
+  type    = string
+  default = null
+}
+
+variable "azapi_default_naming_suffix" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_certificate_password" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_certificate_path" {
+  type    = string
+  default = null
+}
+
+variable "azapi_client_secret" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_request_token" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_request_url" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_token" {
+  type    = string
+  default = null
+}
+
+variable "azapi_oidc_token_file_path" {
+  type    = string
+  default = null
+}
+
+variable "azapi_use_oidc" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_disable_correlation_request_id" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_disable_terraform_partner_id" {
+  type    = bool
+  default = null
+}
+
+variable "azapi_partner_id" {
+  type    = string
+  default = null
+}
+
+variable "azapi_skip_provider_registration" {
+  type    = bool
+  default = null
+}
+
+provider "azapi" {
+  client_id                      = var.azapi_client_id
+  environment                    = var.azapi_environment
+  subscription_id                = var.azapi_subscription_id
+  tenant_id                      = var.azapi_tenant_id
+  default_tags                   = var.azapi_default_tags
+  default_location               = var.azapi_default_location
+  default_name                   = var.azapi_default_name
+  default_naming_prefix          = var.azapi_default_naming_prefix
+  default_naming_suffix          = var.azapi_default_naming_suffix
+  client_certificate_password    = var.azapi_client_certificate_password
+  client_certificate_path        = var.azapi_client_certificate_path
+  client_secret                  = var.azapi_client_secret
+  oidc_request_token             = var.azapi_oidc_request_token
+  oidc_request_url               = var.azapi_oidc_request_url
+  oidc_token                     = var.azapi_oidc_token
+  oidc_token_file_path           = var.azapi_oidc_token_file_path
+  use_oidc                       = var.azapi_use_oidc
+  disable_correlation_request_id = var.azapi_disable_correlation_request_id
+  disable_terraform_partner_id   = var.azapi_disable_terraform_partner_id
+  partner_id                     = var.azapi_partner_id
+  skip_provider_registration     = var.azapi_skip_provider_registration
+}

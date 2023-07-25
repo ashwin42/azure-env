@@ -1,4 +1,5 @@
 locals {
+  subscription_name                         = "NV_Gen_Infra"
   subscription_id                           = "11dd160f-0e01-4b4d-a7a0-59407e357777"
   azurerm_subscription_id                   = "11dd160f-0e01-4b4d-a7a0-59407e357777"
   azurerm_features                          = {}

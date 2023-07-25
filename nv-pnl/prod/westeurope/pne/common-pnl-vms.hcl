@@ -13,6 +13,7 @@ locals {
 }
 
 inputs = {
+  netbox_role                            = "pne-tc"
   name                                   = local.name
   vm_name                                = local.name
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
