@@ -1,0 +1,88 @@
+variable "azuread_client_id" {
+  type    = string
+  default = null
+}
+variable "azuread_environment" {
+  type    = string
+  default = null
+}
+variable "azuread_tenant_id" {
+  type    = string
+  default = null
+}
+variable "azuread_client_certificate" {
+  type    = string
+  default = null
+}
+variable "azuread_client_certificate_password" {
+  type    = string
+  default = null
+}
+variable "azuread_client_certificate_path" {
+  type    = string
+  default = null
+}
+variable "azuread_client_secret" {
+  type    = string
+  default = null
+}
+variable "azuread_oidc_request_token" {
+  type    = string
+  default = null
+}
+variable "azuread_oidc_request_url" {
+  type    = string
+  default = null
+}
+variable "azuread_use_oidc" {
+  type    = string
+  default = null
+}
+variable "azuread_msi_endpoint" {
+  type    = string
+  default = null
+}
+variable "azuread_use_msi" {
+  type    = string
+  default = null
+}
+variable "azuread_use_cli" {
+  type    = string
+  default = null
+}
+variable "azuread_disable_terraform_partner_id" {
+  type    = string
+  default = null
+}
+variable "azuread_partner_id" {
+  type    = string
+  default = null
+}
+
+provider "azuread" {
+  client_id                    = var.azuread_client_id
+  environment                  = var.azuread_environment
+  tenant_id                    = var.azuread_tenant_id
+  client_certificate_password  = var.azuread_client_certificate_password
+  client_certificate_path      = var.azuread_client_certificate_path
+  client_secret                = var.azuread_client_secret
+  msi_endpoint                 = var.azuread_msi_endpoint
+  use_msi                      = var.azuread_use_msi
+  disable_terraform_partner_id = var.azuread_disable_terraform_partner_id
+  partner_id                   = var.azuread_partner_id
+%{~if try(coalesce(azuread_client_certificate), null) != null}
+  client_certificate           = var.azuread_client_certificate
+%{endif}
+%{~if try(coalesce(azuread_oidc_request_token), null) != null}
+  oidc_request_token           = var.azuread_oidc_request_token
+%{endif}
+%{~if try(coalesce(azuread_oidc_request_url), null) != null}
+  oidc_request_url             = var.azuread_oidc_request_url
+%{endif}
+%{~if try(coalesce(azuread_use_oidc), null) != null}
+  use_oidc                     = var.azuread_use_oidc
+%{endif}
+%{~if try(coalesce(azuread_use_cli), null) != null}
+  use_cli                      = var.azuread_use_cli
+%{endif}
+}

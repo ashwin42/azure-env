@@ -1,0 +1,136 @@
+locals {
+  proxmox_hostname = replace(var.pm_api_url, "/(https?://)|(/)|(:.*)/", "")
+}
+
+variable "pm_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "pm_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "pm_secret_store" {
+  type    = string
+  default = "secrets-manager"
+}
+
+variable "pm_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "pm_api_url" {
+  type    = string
+}
+
+variable "pm_user" {
+  type    = string
+  default = null
+}
+
+variable "pm_password" {
+  type    = string
+  default = null
+}
+
+variable "pm_api_token_id" {
+  type    = string
+  default = null
+}
+
+variable "pm_api_token_secret" {
+  type    = string
+  default = null
+}
+
+variable "pm_otp" {
+  type    = string
+  default = null
+}
+
+variable "pm_tls_insecure" {
+  type    = bool
+  default = true
+}
+
+variable "pm_parallel" {
+  type    = number
+  default = 4
+}
+
+variable "pm_log_enable" {
+  type    = bool
+  default = false
+}
+
+variable "pm_log_levels" {
+  type = map(string)
+  default = {}
+}
+
+variable "pm_log_file" {
+  type    = string
+  default = null
+}
+
+variable "pm_timeout" {
+  type    = number
+  default = 30
+}
+
+variable "pm_debug" {
+  type    = bool
+  default = false
+}
+
+variable "pm_proxy_server" {
+  type    = string
+  default = null
+}
+
+module "proxmox_provider_secret" {
+  for_each = toset(compact([
+    length(compact([var.pm_user])) > 0 ? "" : "pm_user",
+    length(compact([var.pm_password])) > 0 ? "" : "pm_password",
+    length(compact([var.pm_api_token_id])) > 0 ? "" : "pm_api_token_id",
+    length(compact([var.pm_api_token_secret])) > 0 ? "" : "pm_api_token_secret"
+  ]))
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.pm_secret_name, local.proxmox_hostname)
+  secret_name_key = coalesce(var.pm_secret_name_key, each.value)
+  secret_path     = var.pm_secret_path
+  store           = var.pm_secret_store
+%{if proxmox_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.pm_secret
+  }
+%{endif~}
+}
+
+provider "proxmox" {
+  pm_api_url          = var.pm_api_url
+  pm_user             = length(compact([var.pm_user])) > 0 ? var.pm_user : module.proxmox_provider_secret["pm_user"].secret
+  pm_password         = length(compact([var.pm_password])) > 0 ? var.pm_password : module.proxmox_provider_secret["pm_password"].secret
+  pm_api_token_id     = length(compact([var.pm_api_token_id])) > 0 ? var.pm_api_token_id : module.proxmox_provider_secret["pm_api_token_id"].secret
+  pm_api_token_secret = length(compact([var.pm_api_token_secret])) > 0 ? var.pm_api_token_secret : module.proxmox_provider_secret["pm_api_token_secret"].secret
+  pm_otp              = var.pm_otp
+  pm_tls_insecure     = var.pm_tls_insecure
+  pm_parallel         = var.pm_parallel
+  pm_log_enable       = var.pm_log_enable
+  pm_log_levels       = var.pm_log_levels
+  pm_log_file         = var.pm_log_file
+  pm_timeout          = var.pm_timeout
+  pm_debug            = var.pm_debug
+  pm_proxy_server     = var.pm_proxy_server
+
+%{if proxmox_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${proxmox_secret_aws_region}"
+  profile = "${proxmox_secret_aws_profile}"
+  alias   = "pm_secret"
+}
+%{endif~}
+}

@@ -1,0 +1,104 @@
+variable "mysql_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "mysql_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "mysql_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "mysql_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "mysql_master_username" {
+  type    = string
+  default = null
+}
+
+variable "mysql_master_password" {
+  type    = string
+  default = null
+}
+
+variable "mysql_endpoint" {
+  type    = string
+  default = null
+}
+
+variable "mysql_proxy" {
+  type    = string
+  default = null
+}
+
+variable "mysql_tls" {
+  type    = bool
+  default = false
+}
+
+variable "mysql_max_conn_lifetime_sec" {
+  type    = number
+  default = null
+}
+
+variable "mysql_max_open_conns" {
+  type    = number
+  default = null
+}
+
+variable "mysql_conn_params" {
+  type    = string
+  default = null
+}
+
+variable "mysql_authentication_plugin" {
+  type    = string
+  default = null
+}
+
+variable "mysql_connect_retry_timeout_sec" {
+  type    = number
+  default = 30
+}
+
+module "mysql_provider_secret" {
+  count           = length(compact([var.mysql_master_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.mysql_secret_name), var.mysql_endpoint)
+  secret_name_key = try(coalesce(var.mysql_secret_name_key), var.mysql_master_username)
+  secret_path     = try(coalesce(var.mysql_secret_path), null)
+  store           = try(coalesce(var.mysql_secret_store), "secrets-manager")
+%{if mysql_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.mysql_secret
+  }
+%{endif~}
+}
+
+provider "mysql" {
+  endpoint                  = var.mysql_endpoint
+  username                  = var.mysql_master_username
+  password                  = try(coalesce(var.mysql_master_password), module.mysql_provider_secret[0].secret)
+  proxy                     = try(coalesce(var.mysql_proxy), null)
+  tls                       = try(coalesce(var.mysql_tls), null)
+  max_conn_lifetime_sec     = try(coalesce(var.mysql_max_conn_lifetime_sec), null)
+  max_open_conns            = try(coalesce(var.mysql_max_open_conns), null)
+  conn_params               = try(coalesce(var.mysql_conn_params), null)
+  authentication_plugin     = try(coalesce(var.mysql_authentication_plugin), null)
+  connect_retry_timeout_sec = try(coalesce(var.mysql_connect_retry_timeout_sec), null)
+}
+
+%{if mysql_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${mysql_secret_aws_region}"
+  profile = "${mysql_secret_aws_profile}"
+  alias   = "mysql_secret"
+}
+%{endif~}

@@ -1,0 +1,41 @@
+locals {
+  helm_eks_aws_region  = "${try(coalesce(helm_eks_aws_region, kubernetes_eks_aws_region), aws_region)}"
+  helm_eks_aws_profile = "${try(coalesce(helm_eks_aws_profile, kubernetes_eks_aws_profile, aws_profile), "")}"
+}
+
+%{if length(compact([try(coalesce(helm_eks_aws_profile, kubernetes_eks_aws_profile), "")])) > 0~}
+provider "aws" {
+  region  = local.helm_eks_aws_region
+  profile = local.helm_eks_aws_profile
+  alias   = "helm"
+}
+%{endif~}
+
+variable "helm_eks_kubernetes_cluster_name" {
+  type    = string
+  default = null
+}
+
+data "aws_eks_cluster" "helm_eks" {
+  name     = var.helm_eks_kubernetes_cluster_name
+%{if length(compact([try(coalesce(helm_eks_aws_profile, kubernetes_eks_aws_profile), "")])) > 0~}
+  provider = aws.helm
+%{endif~}
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.aws_eks_cluster.helm_eks.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.helm_eks.certificate_authority.0.data)
+
+    exec {
+      api_version = "${helm_eks_kubernetes_api_version}"
+      command     = "aws"
+%{if length(compact([try(coalesce(helm_eks_aws_profile), aws_profile)])) > 0~}
+      args        = ["eks", "get-token", "--region", local.helm_eks_aws_region, "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", local.helm_eks_aws_profile]
+%{else~}
+      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt"]
+%{endif}
+    }
+  }
+}

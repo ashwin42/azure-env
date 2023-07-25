@@ -1,0 +1,41 @@
+variable "allowed_account_ids" {
+  type    = list(string)
+  default = []
+}
+
+variable "aws_profile" {
+  type    = string
+  default = null
+}
+
+variable "aws_role_arn" {
+  type    = string
+  default = null
+}
+
+locals {
+  allowed_account_ids = distinct(concat(var.allowed_account_ids, ["${account_id}"]))
+}
+
+provider "aws" {
+  region              = "${aws_region}"
+  allowed_account_ids = local.allowed_account_ids
+%{if length(compact([aws_profile])) > 0~}
+  profile             = "${aws_profile}"
+%{endif~}
+%{if length(compact([aws_assume_role_arn])) > 0~}
+  assume_role {
+    role_arn = "${aws_assume_role_arn}"
+  }
+%{endif~}
+  default_tags {
+    tags = {
+%{for key, value in default_tags}
+%{~if length(compact([value])) > 0~}
+      ${key} = "${value}"
+%{endif~}
+%{endfor~}
+    }
+  }
+}
+
