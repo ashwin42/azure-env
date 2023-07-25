@@ -1,6 +1,6 @@
 resource "azurerm_virtual_machine_extension" "enable-routes" {
   name                 = "enable-iptables-routes"
-  virtual_machine_id   = azurerm_virtual_machine.main.id
+  virtual_machine_id   = module.vm_netbox.virtual_machine.id
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.0"

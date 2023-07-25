@@ -19,12 +19,18 @@ dependency "subnet" {
   config_path = "../../siemens-wcs/subnet"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name    = basename(get_original_terragrunt_dir())
   vm_name = format("intralog-%s", replace(local.name, "bound", ""))
 }
 
 inputs = {
+  netbox_role                            = "intralog"
   vm_name                                = local.vm_name
   setup_prefix                           = include.root.locals.all_vars.project
   resource_group_name                    = include.root.locals.all_vars.resource_group_name

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
@@ -15,6 +15,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
+    netbox_create_role = true
     network_interfaces = [
       {
         primary             = true

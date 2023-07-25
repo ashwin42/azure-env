@@ -24,6 +24,7 @@ locals {
 }
 
 inputs = {
+  netbox_role                            = "wcs"
   vm_name                                = local.vm_name
   setup_prefix                           = include.root.locals.all_vars.project
   resource_group_name                    = include.root.locals.all_vars.resource_group_name

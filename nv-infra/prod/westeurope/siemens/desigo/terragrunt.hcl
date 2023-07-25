@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.28"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  #source = "../../../../../../tf-mod-azure//vm/netbox"
 }
 
 include {

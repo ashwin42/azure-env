@@ -1,25 +1,33 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "../../../../../../tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
-  config_path = "../../core-network"
+  config_path = "../../aadds/subnet"
 }
 
 dependency "rv" {
   config_path = "../recovery_vault"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = basename(get_terragrunt_dir())
 }
 
 inputs = {
+  netbox_create_role                     = true
+  netbox_role                            = "rds-lic"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -32,6 +40,7 @@ inputs = {
   create_localadmin_password             = true
   storage_account_name                   = "nvhubgeneralstorage"
   ad_join                                = true
+  localadmin_key_name                    = "nv-rds-lic-nvadmin"
   storage_image_reference = {
     sku = "2019-Datacenter",
   }
@@ -50,7 +59,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.40.250.6"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-domain-services"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-domain-services"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-nic-ipconfig"
