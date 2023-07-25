@@ -19,11 +19,6 @@ dependency "subnet" {
   config_path = "../../siemens-wcs/subnet"
 }
 
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
-
 locals {
   name    = basename(get_original_terragrunt_dir())
   vm_name = format("intralog-%s", replace(local.name, "bound", ""))
