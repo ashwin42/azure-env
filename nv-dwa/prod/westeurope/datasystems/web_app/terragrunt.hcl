@@ -34,10 +34,11 @@ inputs = {
       use_32_bit_worker  = true
       websockets_enabled = true
       ftps_state         = "FtpsOnly"
-      application_stack = {
-        python_version = "3.10.11"
-      }
     }
+  }
+
+  app_settings = {
+    SCM_DO_BUILD_DURING_DEPLOYMENT = "true"
   }
 
   web_app_vnet_integration_enabled   = true
@@ -61,8 +62,8 @@ inputs = {
 
   iam_assignments = {
     Contributor = {
-      users = [
-        "guillaume.bugnon@northvolt.com",
+      groups = [
+        "VPN Dwa DataSystems Python VM AP",
       ],
     }
   }
