@@ -62,12 +62,12 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Allow-Strama-Ports"
-      priority               = "400"
-      direction              = "Inbound"
-      source_address_prefix  = "10.106.0.0/20"
-      destination_port_range = "5000,8000,12000,12001,60008"
-      description            = "Allow Strama ports"
+      name                    = "Allow-Strama-Ports"
+      priority                = "400"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.106.0.0/20", "10.106.33.0/24"]
+      destination_port_range  = "5000,8000,12000,12001,60008"
+      description             = "Allow Strama ports"
     },
   ]
 }
