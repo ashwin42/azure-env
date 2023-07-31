@@ -24,20 +24,17 @@ inputs = {
   sku_name   = "P1v2"
   https_only = true
 
-  settings = {
-    site_config = {
-      always_on          = true
-      use_32_bit_worker  = true
-      websockets_enabled = true
-      ftps_state         = "FtpsOnly"
-      application_stack = {
-        dotnet_version = "v6.0"
-      }
+  site_config = {
+    always_on          = true
+    use_32_bit_worker  = true
+    websockets_enabled = true
+    ftps_state         = "FtpsOnly"
+    application_stack = {
+      dotnet_version = "v6.0"
     }
   }
 
-  web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-web-app-${local.name}"].id
+  virtual_network_subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-web-app-${local.name}"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location

@@ -1,6 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.55"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/web_app/"
+  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.62"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/web_app/"
 }
 
 include "root" {
@@ -24,16 +24,17 @@ inputs = {
   setup_prefix        = local.name
   resource_group_name = dependency.resource_group.outputs.resource_group_name
 
-  os_type    = "Windows"
+  os_type    = "Linux"
   sku_name   = "P1v2"
   https_only = true
 
-  settings = {
-    site_config = {
-      always_on          = true
-      use_32_bit_worker  = true
-      websockets_enabled = true
-      ftps_state         = "FtpsOnly"
+  site_config = {
+    always_on          = true
+    use_32_bit_worker  = true
+    websockets_enabled = true
+    ftps_state         = "FtpsOnly"
+    application_stack = {
+      python_version = "3.11"
     }
   }
 
@@ -41,8 +42,7 @@ inputs = {
     SCM_DO_BUILD_DURING_DEPLOYMENT = "true"
   }
 
-  web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.subnet.outputs.subnets["strama-lds-${include.root.locals.all_vars.project}-web-app"].id
+  virtual_network_subnet_id = dependency.subnet.outputs.subnets["strama-lds-${include.root.locals.all_vars.project}-web-app"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location
