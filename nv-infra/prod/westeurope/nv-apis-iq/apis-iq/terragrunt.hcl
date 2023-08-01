@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.61"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -45,11 +45,9 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -57,11 +55,12 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "apis-iq-nsg"
       ip_configuration = [
         {
           ipaddress                     = "10.46.0.52"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-apis-iq-subnet-10.46.1.48_28"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-apis-iq-subnet-10.46.1.48_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
           ipconfig_name                 = "ipconfig"
