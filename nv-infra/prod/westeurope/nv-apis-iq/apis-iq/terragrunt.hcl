@@ -37,7 +37,6 @@ inputs = {
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
-  ama                                    = true
   wvd_register                           = true
   localadmin_key_name                    = "domainjoin"
   storage_image_reference = {
@@ -46,9 +45,9 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent        = true
-    enable_automatic_upgrades = true
-    #timezone                   = "UTC"
+    provision_vm_agent         = true
+    enable_automatic_upgrades  = true
+  
   }
   os_profile = {
     admin_username = "domainjoin"
@@ -56,7 +55,7 @@ inputs = {
   }
   network_interfaces = [
     {
-      name                = "${local.name}-nic"
+      name = "${local.name}-nic"
       security_group_name = "apis-iq-nsg"
       ip_configuration = [
         {
