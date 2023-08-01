@@ -1,0 +1,93 @@
+variable "aviatrix_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_controller_ip" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_username" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_password" {
+  type    = string
+  default = null
+}
+
+variable "aviatrix_skip_version_validation" {
+  description = "(Optional) Valid values: true, false. Default: false. If set to true, it skips checking whether current Terraform provider supports current Controller version."
+  type = bool
+  default = null
+}
+
+variable "aviatrix_verify_ssl_certificate" {
+  description = "(Optional) Valid values: true, false. Default: false. If set to true, the SSL certificate of the controller will be verified."
+  type = bool
+  default = null
+}
+
+variable "aviatrix_path_to_ca_certificate" {
+  description = "(Optional) Specify the path to the root CA certificate. Valid only when verify_ssl_certificate is true. The CA certificate is required when the controller is using a self-signed certificate."
+  type = string
+  default = null
+}
+
+module "aviatrix_provider_secret" {
+  count           = length(compact([var.aviatrix_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.aviatrix_secret_name), "aviatrix/controller")
+  secret_name_key = try(coalesce(var.aviatrix_secret_name_key), "password")
+  secret_path     = try(coalesce(var.aviatrix_secret_path), "/aviatrix")
+  store           = try(coalesce(var.aviatrix_secret_store), "parameter-store")
+%{if aviatrix_secret_aws_profile != "" || aviatrix_assume_role_arn != ""~}
+  providers = {
+    aws = aws.aviatrix_secret
+  }
+%{endif~}
+}
+
+provider "aviatrix" {
+  controller_ip           = var.aviatrix_controller_ip
+  username                = var.aviatrix_username
+  password                = try(coalesce(var.aviatrix_password), module.aviatrix_provider_secret[0].secret)
+  skip_version_validation = var.aviatrix_skip_version_validation
+  verify_ssl_certificate  = var.aviatrix_verify_ssl_certificate
+  path_to_ca_certificate  = var.aviatrix_path_to_ca_certificate
+}
+
+%{if aviatrix_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${aviatrix_secret_aws_region}"
+  profile = "${aviatrix_secret_aws_profile}"
+  alias   = "aviatrix_secret"
+}
+%{endif~}
+
+%{if aviatrix_assume_role_arn != ""~}
+provider "aws" {
+  region  = "${aviatrix_secret_aws_region}"
+  assume_role {
+      role_arn = "${aviatrix_assume_role_arn}"
+  }
+  alias   = "aviatrix_secret"
+}
+%{endif~}

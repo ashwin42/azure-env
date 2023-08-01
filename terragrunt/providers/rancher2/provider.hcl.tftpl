@@ -1,0 +1,22 @@
+
+%{if rancher2_cluster_manager != ""~}
+locals {
+  rancher2_hostname = format("https://%s", local.rancher_hostname)
+}
+provider "rancher2" {
+  alias     = "bootstrap"
+  api_url   = local.rancher2_hostname
+  bootstrap = true
+}
+# Provider config for admin
+provider "rancher2" {
+  alias     = "admin"
+  api_url   = rancher2_bootstrap.admin.url
+  token_key = rancher2_bootstrap.admin.token
+}
+%{else~}
+provider "rancher2" {
+  api_url   = try(coalesce(var.rancher_endpoint), "https://foobar:8080")
+  token_key = try(coalesce(var.rancher_token), "foobar")
+}
+%{endif~}

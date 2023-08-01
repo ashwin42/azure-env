@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.53"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "rv" {
@@ -15,11 +16,17 @@ dependency "vnet" {
   config_path = "../subnet"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = basename(get_original_terragrunt_dir())
 }
 
 inputs = {
+  netbox_role                            = "pqms"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -70,22 +77,8 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/24"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
-    },
-    {
       name                  = "Ett_FF_UDP_Telemetry"
-      priority              = "300"
+      priority              = "400"
       direction             = "Inbound"
       protocol              = "Udp"
       source_address_prefix = "10.194.12.0/22"

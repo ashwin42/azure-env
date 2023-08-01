@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.44"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -15,11 +16,18 @@ dependency "wvd" {
   config_path = "../wvd"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = basename(get_terragrunt_dir())
 }
 
 inputs = {
+  netbox_role                            = "e3"
+  netbox_create_role                     = true
   setup_prefix                           = dependency.global.outputs.setup_prefix
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name

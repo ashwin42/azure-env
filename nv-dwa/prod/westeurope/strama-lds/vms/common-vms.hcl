@@ -62,27 +62,12 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      description           = "Allow connections from Labs MFA VPN clients"
+      name                    = "Allow-Strama-Ports"
+      priority                = "400"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.106.0.0/20", "10.106.33.0/24"]
+      destination_port_range  = "5000,8000,12000,12001,60008"
+      description             = "Allow Strama ports"
     },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Allow_ICMP"
-      priority              = "300"
-      direction             = "Inbound"
-      source_address_prefix = "10.0.0.0/8"
-      port                  = "*"
-      protocol              = "Icmp"
-      description           = "Allow ICMP from all"
-    }
   ]
 }

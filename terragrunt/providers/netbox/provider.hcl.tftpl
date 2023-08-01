@@ -1,0 +1,98 @@
+variable "netbox_fetch_secret" {
+  description = "Take the secret for the provider in AWS (secrets manager or parameter store)"
+  type        = bool
+  default     = true
+}
+
+variable "netbox_secret_name" {
+  type    = string
+  default = "api_key"
+}
+
+variable "netbox_secret_name_key" {
+  type    = string
+  default = "api_key"
+}
+
+variable "netbox_secret_store" {
+  type    = string
+  default = "parameter-store"
+}
+
+variable "netbox_secret_path" {
+  type    = string
+  default = "/tf-netbox"
+}
+
+variable "netbox_server_url" {
+  type        = string
+  description = "The URL of the Netbox server"
+}
+
+variable "netbox_api_token" {
+  type        = string
+  description = "The API token for the Netbox server"
+  default     = ""
+}
+
+variable "netbox_allow_insecure_https" {
+  type        = bool
+  description = "Allow insecure HTTPS connections to the Netbox server"
+  default     = false
+}
+
+variable "netbox_headers" {
+  type        = map(string)
+  description = "Headers to send with the Netbox API requests"
+  default     = {}
+}
+
+variable "netbox_request_timeout" {
+  type        = number
+  description = "Timeout for the Netbox API requests"
+  default     = 30
+}
+
+variable "netbox_skip_version_check" {
+  type        = bool
+  description = "Skip the Netbox API version check"
+  default     = false
+}
+
+variable "netbox_strip_trailing_slashes_from_url" {
+  type        = bool
+  description = "Strip trailing slashes from the Netbox server URL"
+  default     = true
+}
+
+module "netbox_provider_secret" {
+  count           = var.netbox_fetch_secret ? 1 : 0
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = var.netbox_secret_name
+  secret_name_key = var.netbox_secret_name_key
+  secret_path     = var.netbox_secret_path
+  store           = var.netbox_secret_store
+%{if netbox_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.netbox_secret
+  }
+%{endif~}
+}
+
+provider "netbox" {
+  server_url                      = var.netbox_server_url
+  api_token                       = var.netbox_api_token != "" ? var.netbox_api_token : module.netbox_provider_secret[0].secret
+  allow_insecure_https            = var.netbox_allow_insecure_https
+  headers                         = var.netbox_headers
+  request_timeout                 = var.netbox_request_timeout
+  skip_version_check              = var.netbox_skip_version_check
+  strip_trailing_slashes_from_url = var.netbox_strip_trailing_slashes_from_url
+}
+
+%{if netbox_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${netbox_secret_aws_region}"
+  profile = "${netbox_secret_aws_profile}"
+  alias   = "netbox_secret"
+}
+%{endif~}

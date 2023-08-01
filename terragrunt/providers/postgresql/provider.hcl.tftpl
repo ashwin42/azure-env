@@ -1,0 +1,134 @@
+variable "postgresql_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_scheme" {
+  type    = string
+  default = "awspostgres"
+}
+
+variable "postgresql_host" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_port" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_database" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_username" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_password" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_database_username" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_superuser" {
+  type    = bool
+  default = false
+}
+
+variable "postgresql_sslmode" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_clientcert" {
+  type    = map(string)
+  default = {}
+}
+
+variable "postgresql_sslrootcert" {
+  type    = string
+  default = null
+}
+
+variable "postgresql_connect_timeout" {
+  type    = number
+  default = null
+}
+
+variable "postgresql_max_connections" {
+  type    = number
+  default = null
+}
+
+variable "postgresql_expected_version" {
+  type    = string
+  default = null
+}
+
+module "postgresql_provider_secret" {
+  count           = length(compact([var.postgresql_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.postgresql_secret_name), var.postgresql_host)
+  secret_name_key = try(coalesce(var.postgresql_secret_name_key), var.postgresql_username)
+  secret_path     = try(coalesce(var.postgresql_secret_path), null)
+  store           = try(coalesce(var.postgresql_secret_store), "secrets-manager")
+%{if postgresql_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.postgresql_secret
+  }
+%{endif~}
+}
+
+provider "postgresql" {
+  scheme            = try(coalesce(var.postgresql_scheme), null)
+  host              = try(coalesce(var.postgresql_host), null)
+  port              = try(coalesce(var.postgresql_port), null)
+  database          = try(coalesce(var.postgresql_database), null)
+  username          = try(coalesce(var.postgresql_username), null)
+  password          = try(coalesce(var.postgresql_password), module.postgresql_provider_secret[0].secret)
+  database_username = try(coalesce(var.postgresql_database_username), null)
+  superuser         = try(coalesce(var.postgresql_superuser), null)
+  sslmode           = try(coalesce(var.postgresql_sslmode), null)
+  dynamic "clientcert" {
+    for_each = length(var.postgresql_clientcert) > 0 ? [var.postgresql_clientcert] : []
+    content {
+      cert = try(coalesce(clientcert.cert), null) != null
+      key  = try(coalesce(clientcert.key), null) != null
+    }
+  }
+  sslrootcert      = try(coalesce(var.postgresql_sslrootcert), null)
+  connect_timeout  = try(coalesce(var.postgresql_connect_timeout), null)
+  max_connections  = try(coalesce(var.postgresql_max_connections), null)
+  expected_version = try(coalesce(var.postgresql_expected_version), null)
+}
+
+%{if postgresql_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${postgresql_secret_aws_region}"
+  profile = "${postgresql_secret_aws_profile}"
+  alias   = "postgresql_secret"
+}
+%{endif~}

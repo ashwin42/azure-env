@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.7.13"
-  #source = "../../../../../tf-mod-azure/vpns2s"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.7.58"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
 include {

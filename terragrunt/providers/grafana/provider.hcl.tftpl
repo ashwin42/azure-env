@@ -1,0 +1,157 @@
+variable "grafana_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "grafana_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "grafana_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "grafana_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "grafana_auth" {
+  description = "(String, Sensitive) API token or basic auth username:password. May alternatively be set via the GRAFANA_AUTH environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_ca_cert" {
+  description = "(String) Certificate CA bundle to use to verify the Grafana server's certificate. May alternatively be set via the GRAFANA_CA_CERT environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_cloud_api_key" {
+  description = "(String, Sensitive) API key for Grafana Cloud. May alternatively be set via the GRAFANA_CLOUD_API_KEY environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_cloud_api_url" {
+  description = "(String) Grafana Cloud's API URL. May alternatively be set via the GRAFANA_CLOUD_API_URL environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_http_headers" {
+  description = "(Map of String, Sensitive) Optional. HTTP headers mapping keys to values used for accessing the Grafana API. May alternatively be set via the GRAFANA_HTTP_HEADERS environment variable in JSON format."
+  type        = map(string)
+  default     = null
+}
+
+variable "grafana_insecure_skip_verify" {
+  description = "(Boolean) Skip TLS certificate verification. May alternatively be set via the GRAFANA_INSECURE_SKIP_VERIFY environment variable."
+  type        = bool
+  default     = null
+}
+
+variable "grafana_oncall_access_token" {
+  description = "(String, Sensitive) A Grafana OnCall access token. May alternatively be set via the GRAFANA_ONCALL_ACCESS_TOKEN environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_oncall_url" {
+  description = "(String) An Grafana OnCall backend address. May alternatively be set via the GRAFANA_ONCALL_URL environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_org_id" {
+  description = "(Number) The organization id to operate on within grafana. May alternatively be set via the GRAFANA_ORG_ID environment variable."
+  type        = number
+  default     = null
+}
+
+variable "grafana_retries" {
+  description = "(Number) The amount of retries to use for Grafana API calls. May alternatively be set via the GRAFANA_RETRIES environment variable."
+  type        = number
+  default     = null
+}
+
+variable "grafana_sm_access_token" {
+  description = "(String, Sensitive) A Synthetic Monitoring access token. May alternatively be set via the GRAFANA_SM_ACCESS_TOKEN environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_sm_url" {
+  description = "(String) Synthetic monitoring backend address. May alternatively be set via the GRAFANA_SM_URL environment variable. The correct value for each service region is cited in the Synthetic Monitoring documentation. Note the sm_url value is optional, but it must correspond with the value specified as the region_slug in the grafana_cloud_stack resource. Also note that when a Terraform configuration contains multiple provider instances managing SM resources associated with the same Grafana stack"
+  type        = string
+  default     = null
+}
+
+variable "grafana_store_dashboard_sha256" {
+  description = "(Boolean) Set to true if you want to save only the sha256sum instead of complete dashboard model JSON in the tfstate."
+  type        = bool
+  default     = null
+}
+
+variable "grafana_tls_cert" {
+  description = "(String) Client TLS certificate file to use to authenticate to the Grafana server. May alternatively be set via the GRAFANA_TLS_CERT environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_tls_key" {
+  description = "(String) Client TLS key file to use to authenticate to the Grafana server. May alternatively be set via the GRAFANA_TLS_KEY environment variable."
+  type        = string
+  default     = null
+}
+
+variable "grafana_url" {
+  description = "(String) The root URL of a Grafana server. May alternatively be set via the GRAFANA_URL environment variable."
+  type        = string
+  default     = null
+}
+
+module "grafana_provider_secret" {
+  count           = length(compact([var.grafana_auth])) == 0 ? 1 : 0
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.grafana_secret_name), "api_key")
+  secret_name_key = try(coalesce(var.grafana_secret_name_key), "api_key")
+  secret_path     = try(coalesce(var.grafana_secret_path), "/grafana")
+  store           = try(coalesce(var.grafana_secret_store), "parameter-store")
+%{if grafana_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.grafana_secret
+  }
+%{endif~}
+}
+
+provider "grafana" {
+  auth                   = try(coalesce(var.grafana_auth), module.grafana_provider_secret[0].secret)
+  ca_cert                = var.grafana_ca_cert
+  cloud_api_key          = var.grafana_cloud_api_key
+  cloud_api_url          = var.grafana_cloud_api_url
+  http_headers           = var.grafana_http_headers
+  insecure_skip_verify   = var.grafana_insecure_skip_verify
+  oncall_access_token    = var.grafana_oncall_access_token
+  oncall_url             = var.grafana_oncall_url
+  org_id                 = var.grafana_org_id
+  retries                = var.grafana_retries
+  sm_access_token        = var.grafana_sm_access_token
+  sm_url                 = var.grafana_sm_url
+  store_dashboard_sha256 = var.grafana_store_dashboard_sha256
+  tls_cert               = var.grafana_tls_cert
+  tls_key                = var.grafana_tls_key
+  url                    = var.grafana_url
+}
+
+%{if grafana_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${grafana_secret_aws_region}"
+  profile = "${grafana_secret_aws_profile}"
+  alias   = "grafana_secret"
+}
+%{endif~}
+

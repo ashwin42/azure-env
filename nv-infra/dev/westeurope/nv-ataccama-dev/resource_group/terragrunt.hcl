@@ -9,16 +9,11 @@ include {
 
 inputs = {
   iam_assignments = {
-    "Reader" = {
-      groups = [
-        "Ataccama - Datalake Admins Dev",
-      ],
-    },
     "Contributor" = {
       groups = [
         "NV TechOps Consultants Member",
+        "Ataccama - Datalake Admins Dev"
       ],
     },
   }
 }
-

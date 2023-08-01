@@ -1,0 +1,116 @@
+variable "vsphere_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_secret_store" {
+  type    = string
+  default = "secrets-manager"
+}
+
+variable "vsphere_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_server" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_user" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_password" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_allow_unverified_ssl" {
+  type    = bool
+  default = null
+}
+
+variable "vsphere_vim_keep_alive" {
+  type    = number
+  default = null
+}
+
+variable "vsphere_api_timeout" {
+  type    = number
+  default = null
+}
+
+variable "vsphere_persist_session" {
+  type    = bool
+  default = null
+}
+
+variable "vsphere_vim_session_path" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_rest_session_path" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_client_debug" {
+  type    = bool
+  default = null
+}
+
+variable "vsphere_client_debug_path" {
+  type    = string
+  default = null
+}
+
+variable "vsphere_client_debug_path_run" {
+  type    = string
+  default = null
+}
+
+module "vsphere_provider_secret" {
+  count           = length(compact([var.vsphere_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.vsphere_secret_name, var.vsphere_server)
+  secret_name_key = coalesce(var.vsphere_secret_name_key, var.vsphere_user)
+  secret_path     = var.vsphere_secret_path
+  store           = var.vsphere_secret_store
+%{if vsphere_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.vsphere_secret
+  }
+%{endif~}
+}
+
+provider "vsphere" {
+  user                  = var.vsphere_user
+  password              = try(coalesce(var.vsphere_password), module.vsphere_provider_secret[0].secret)
+  vsphere_server        = var.vsphere_server
+  allow_unverified_ssl  = var.vsphere_allow_unverified_ssl
+  vim_keep_alive        = var.vsphere_vim_keep_alive
+  api_timeout           = var.vsphere_api_timeout
+  persist_session       = var.vsphere_persist_session
+  vim_session_path      = var.vsphere_vim_session_path
+  rest_session_path     = var.vsphere_rest_session_path
+  client_debug          = var.vsphere_client_debug
+  client_debug_path     = var.vsphere_client_debug_path
+  client_debug_path_run = var.vsphere_client_debug_path_run
+}
+
+%{if vsphere_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${vsphere_secret_aws_region}"
+  profile = "${vsphere_secret_aws_profile}"
+  alias   = "vsphere_secret"
+}
+%{endif~}

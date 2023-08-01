@@ -25,6 +25,7 @@ locals {
 }
 
 inputs = {
+  netbox_role                            = "intralog"
   vm_name                                = local.vm_name
   setup_prefix                           = include.root.locals.all_vars.project
   resource_group_name                    = include.root.locals.all_vars.resource_group_name
@@ -65,31 +66,6 @@ inputs = {
       size                 = "40"
       lun                  = "6"
       storage_account_type = "StandardSSD_LRS"
-    }
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Allow_ICMP"
-      priority              = "300"
-      direction             = "Inbound"
-      source_address_prefix = "10.0.0.0/8"
-      port                  = "*"
-      protocol              = "Icmp"
-      description           = "Allow ICMP from all"
     }
   ]
 }

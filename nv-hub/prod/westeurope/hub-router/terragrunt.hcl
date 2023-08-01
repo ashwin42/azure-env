@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
-  #source = "${dirname(get_repo_root())}///tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}///tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -15,13 +16,19 @@ dependency "rv" {
   config_path = "../recovery_vault"
 }
 
+generate = merge(
+  include.root.locals.generate_providers.netbox,
+  include.root.locals.generate_providers_version_override.netbox
+)
+
 locals {
   name = "hub-router"
 }
 
 inputs = {
   name                                   = local.name
-  resource_group_name                    = dependency.vnet.outputs.resource_group.name
+  vm_name                                = local.name
+  resource_group_name                    = dependency.vnet.outputs.virtual_network.resource_group_name
   vm_size                                = "Standard_B2s"
   managed_disk_type                      = "Standard_LRS"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
@@ -43,7 +50,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.40.253.5"
-          subnet_id                     = dependency.vnet.outputs.subnet.hub-dmz.id
+          subnet_id                     = dependency.vnet.outputs.subnets.hub-dmz.id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
           #public_ip_address_name        = "${local.name}-public-ip"
@@ -51,11 +58,7 @@ inputs = {
       ]
     },
   ],
-  #  public_ips = [
-  #    {
-  #      name = "${local.name}-public-ip"
-  #    },
-  #  ]
+  data_collection_rule_names = ["linux_syslog-dcr"]
   custom_rules = [
     {
       name                       = "Labs_MFA_VPN"

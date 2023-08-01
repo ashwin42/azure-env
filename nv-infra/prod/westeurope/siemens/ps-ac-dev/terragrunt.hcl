@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.6.8"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "../../../../../../tf-mod-azure//vm/netbox"
 }
 
 include {
@@ -17,6 +17,7 @@ locals {
 }
 
 inputs = {
+  netbox_role                            = "desigo"
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id

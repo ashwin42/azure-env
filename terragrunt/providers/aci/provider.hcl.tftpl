@@ -1,0 +1,96 @@
+variable "aci_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "aci_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "aci_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "aci_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "aci_username" {
+  type    = string
+  default = null
+}
+
+variable "aci_password" {
+  type    = string
+  default = null
+}
+
+variable "aci_private_key" {
+  type    = string
+  default = null
+}
+
+variable "aci_url" {
+  type    = string
+  default = null
+}
+
+variable "aci_insecure" {
+  type    = bool
+  default = null
+}
+
+variable "aci_validate_relation_dn" {
+  type    = bool
+  default = null
+}
+
+variable "aci_cert_name" {
+  type    = string
+  default = null
+}
+
+variable "aci_proxy_url" {
+  type    = string
+  default = null
+}
+
+variable "aci_proxy_creds" {
+  type    = string
+  default = null
+}
+
+variable "aci_retries" {
+  type    = number
+  default = null
+}
+
+
+locals {
+  aci_hostname = replace(var.aci_url, "/(https?://)|(/)|(:.*)/", "")
+}
+
+provider "aci" {
+  username             = try(coalesce(var.aci_username), null)
+  password             = try(coalesce(var.aci_password), module.aci_provider_secret[0].secret)
+  private_key          = try(coalesce(var.aci_private_key), null)
+  url                  = try(coalesce(var.aci_url), null)
+  insecure             = try(coalesce(var.aci_insecure), null)
+  validate_relation_dn = try(coalesce(var.aci_validate_relation_dn), null)
+  cert_name            = try(coalesce(var.aci_cert_name), null)
+  proxy_url            = try(coalesce(var.aci_proxy_url), null)
+  proxy_creds          = try(coalesce(var.aci_proxy_creds), null)
+  retries              = try(coalesce(var.aci_retries), null)
+}
+
+%{if aci_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${aci_secret_aws_region}"
+  profile = "${aci_secret_aws_profile}"
+  alias   = "aci_secret"
+}
+%{endif~}
+

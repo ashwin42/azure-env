@@ -1,0 +1,138 @@
+variable "panos_secret_name" {
+  type    = string
+  default = null
+}
+
+variable "panos_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "panos_secret_store" {
+  type    = string
+  default = null
+}
+
+variable "panos_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "panos_hostname" {
+  description = "(env:'PANOS_HOSTNAME') The hostname / IP address of PAN-OS."
+  type        = string
+  default     = null
+}
+
+variable "panos_username" {
+  description = "(env:'PANOS_USERNAME') The PAN-OS username.  This is ignored"
+  type        = string
+  default     = null
+}
+
+variable "panos_password" {
+  description = "(env:'PANOS_PASSWORD') The PAN-OS password.  This is ignored"
+  type        = string
+  default     = null
+}
+
+variable "panos_api_key" {
+  description = "(env:'PANOS_API_KEY') The API key for the firewall."
+  type        = string
+  default     = null
+}
+
+variable "panos_protocol" {
+  description = "(env:'PANOS_PROTOCOL') The communication protocol.  Valid"
+  type        = string
+  default     = "https"
+}
+
+variable "panos_port" {
+  description = "(int, env:'PANOS_PORT') If the port number is non-standard for"
+  type        = number
+  default     = null
+}
+
+variable "panos_timeout" {
+  description = "(int, env:'PANOS_TIMEOUT') The timeout for all communications"
+  type        = number
+  default     = 10
+}
+
+variable "panos_target" {
+  description = "(env:'PANOS_TARGET') The firewall serial number to target"
+  type        = string
+  default     = null
+}
+
+variable "panos_additional_headers" {
+  description = "(env:'PANOS_HEADERS', added in v1.9.0) Mapping of"
+  type        = map(string)
+  default     = null
+}
+
+variable "panos_logging" {
+  description = "(Optional, env:'PANOS_LOGGING') List of logging options for the"
+  type        = list(string)
+  default     = ["action", "uid"]
+}
+
+variable "panos_verify_certificate" {
+  description = "(Optional, bool, env:'PANOS_VERIFY_CERTIFICATE') For HTTPS"
+  type        = bool
+  default     = null
+}
+
+variable "panos_json_config_file" {
+  description = "(Optional) The path to a JSON configuration file that"
+  type        = string
+  default     = null
+}
+
+module "panos_provider_secret" {
+  for_each = !(
+    length(compact([var.panos_username])) > 0 &&
+    length(compact([var.panos_password])) > 0
+  ) && !(
+    length(compact([var.panos_username])) > 0 &&
+    length(compact([var.panos_api_key])) > 0
+  ) ? toset(compact([
+    length(compact([var.panos_username])) > 0 ? "" : "username",
+    length(compact([var.panos_password])) > 0 ? "" : "password",
+    length(compact([var.panos_api_key])) > 0 ? "" : "api_key",
+  ])) : []
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.2.7"
+  secret_name     = coalesce(var.panos_secret_name, "panos")
+  secret_name_key = each.value
+  secret_path     = var.panos_secret_path
+  store           = coalesce(var.panos_secret_store, "secrets-manager")
+%{if panos_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.panos_secret
+  }
+%{endif~}
+}
+
+provider "panos" {
+  hostname           = var.panos_hostname
+  username           = try(coalesce(var.panos_username), module.panos_provider_secret["username"].secret, null)
+  password           = try(coalesce(var.panos_api_key), module.panos_provider_secret["api_key"].secret, null) == null ? try(coalesce(var.panos_password), module.panos_provider_secret["password"].secret, null) : null
+  api_key            = try(coalesce(var.panos_api_key), module.panos_provider_secret["api_key"].secret, null)
+  protocol           = var.panos_protocol
+  port               = var.panos_port
+  timeout            = var.panos_timeout
+  target             = var.panos_target
+  additional_headers = var.panos_additional_headers
+  logging            = var.panos_logging
+  verify_certificate = var.panos_verify_certificate
+  json_config_file   = var.panos_json_config_file
+}
+
+%{if panos_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${panos_secret_aws_region}"
+  profile = "${panos_secret_aws_profile}"
+  alias   = "panos_secret"
+}
+%{endif~}

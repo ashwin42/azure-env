@@ -1,0 +1,12 @@
+variable "elasticsearch_url" {
+  type    = string
+  default = null
+}
+
+provider "elasticsearch" {
+  aws_region = "${aws_region}"
+  url        = var.elasticsearch_url
+%{if length(compact([aws_profile])) > 0~}
+  aws_profile    = "${aws_profile}"
+%{endif~}
+}
