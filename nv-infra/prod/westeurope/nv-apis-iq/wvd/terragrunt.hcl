@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.3.0"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.61"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//deprecated/wvd/"
 }
 
 include {
@@ -8,6 +8,9 @@ include {
 }
 
 inputs = {
+  wvd_hp_name                = "apis-iq-wvd-hp"
+  wvd_ws_name                = "apis-iq-wvd-ws"
+  wvd_ag_name                = "apis-iq-wvd-ag"
   wvd_ws_friendly_name         = "APIS IQ Virtual Desktop"
   default_desktop_display_name = "APIS IQ"
   wvd_location                 = "westeurope"
