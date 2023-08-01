@@ -1,5 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.39"
+  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.62"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/web_app/"
 }
 
 include "root" {
@@ -29,18 +30,15 @@ inputs = {
   sku_name   = "P1v2"
   https_only = true
 
-  settings = {
-    site_config = {
-      always_on         = true
-      use_32_bit_worker = true
-      application_stack = {
-        dotnet_version = "v4.0"
-      }
+  site_config = {
+    always_on         = true
+    use_32_bit_worker = true
+    application_stack = {
+      dotnet_version = "v4.0"
     }
   }
 
-  web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.subnet.outputs.subnets["${local.subnet}"].id
+  virtual_network_subnet_id = dependency.subnet.outputs.subnets["${local.subnet}"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location

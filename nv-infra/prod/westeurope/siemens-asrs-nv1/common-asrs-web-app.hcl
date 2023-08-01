@@ -19,18 +19,15 @@ inputs = {
   sku_name   = "P1v2"
   https_only = true
 
-  settings = {
-    site_config = {
-      always_on         = true
-      use_32_bit_worker = true
-      application_stack = {
-        dotnet_version = "v4.0"
-      }
-    }
+  site_config = {
+    ftps_state         = "AllAllowed"
+    websockets_enabled = true
+    always_on          = true
+    use_32_bit_worker  = true
   }
+  client_certificate_mode = "Optional"
 
-  web_app_vnet_integration_enabled   = true
-  web_app_vnet_integration_subnet_id = dependency.global.outputs.subnet["${local.name}-web-app-subnet"].id
+  virtual_network_subnet_id = dependency.global.outputs.subnet["${local.name}-web-app-subnet"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location
@@ -51,7 +48,7 @@ inputs = {
   iam_assignments = {
     Contributor = {
       groups = [
-        "AAD-Siemens-ASRS-VPN-AP",
+        "VPN Siemens ASRS AP",
       ],
     }
   }
