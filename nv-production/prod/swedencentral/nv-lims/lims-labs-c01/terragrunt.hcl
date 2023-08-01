@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.12"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -25,7 +25,7 @@ locals {
 }
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens.nv-lims-03-hp
+  token                                  = dependency.wvd.outputs.tokens
   host_pool_name                         = "nv-lims-03-hp"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
