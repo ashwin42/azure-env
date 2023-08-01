@@ -9,5 +9,12 @@ include "root" {
 }
 
 inputs = {
+  iam_assignments = {
+    "Contributor" = {
+      service_principals = [
+        "DWA - Datasystems CI/CD",
+      ],
+    },
+  }
 }
 
