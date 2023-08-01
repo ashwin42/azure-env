@@ -46,8 +46,8 @@ inputs = {
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
     #timezone                   = "UTC"
   }
   os_profile = {
@@ -56,7 +56,7 @@ inputs = {
   }
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
       security_group_name = "apis-iq-nsg"
       ip_configuration = [
         {
