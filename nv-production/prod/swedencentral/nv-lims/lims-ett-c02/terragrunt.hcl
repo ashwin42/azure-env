@@ -43,6 +43,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  managed_disk_size                      = "256"
   storage_image_reference = {
     id        = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-lims-rg/providers/Microsoft.Compute/images/lims-labs-c1-image-20221116205549-swedencentral"
     publisher = ""
