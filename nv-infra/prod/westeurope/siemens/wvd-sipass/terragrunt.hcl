@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.59"
   #source = "../../../../../../tf-mod-azure/wvd/"
 }
 
@@ -17,10 +17,8 @@ inputs = {
 
   assign_groups = [
     "NV TechOps Role",
-    #"NV TechOps Lead Role",
     "Physical Security Administrators",
     "Physical Security Server Administrators",
-    "TechOps",
   ]
 
   additional_applications = [
