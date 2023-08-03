@@ -1,21 +1,17 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//availability_set?ref=v0.2.28"
-  #source = "../../../../../../tf-mod-azure/availability_set/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//availability_set?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//availability_set"
 }
 
-dependency "global" {
-  config_path = "../global"
-}
-
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {
   availability_sets = [
     {
-      name                = "${dependency.global.outputs.resource_group.name}_avs"
-      resource_group_name = dependency.global.outputs.resource_group.name
+      name = "${include.root.inputs.resource_group_name}_avs"
     },
   ]
 }
