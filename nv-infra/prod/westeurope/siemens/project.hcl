@@ -1,8 +1,5 @@
 locals {
-  azurerm_provider_version   = "~> 2.99.0"
-  terraform_required_version = ">=1.1.5"
-  azurerm_features           = {}
-
+  resource_group_name = "nv_siemens"
   tags = {
     business-unit = "109 Digitalization IT - AB"
     department    = "109035 Operations & Infrastructure - AB"
