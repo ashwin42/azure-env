@@ -1,8 +1,8 @@
 terraform {
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../vnet"
 }
 
 include {
@@ -10,8 +10,7 @@ include {
 }
 
 inputs = {
-  setup_prefix        = "${dependency.global.outputs.setup_prefix}-anode"
-  resource_group_name = dependency.global.outputs.resource_group.name
-  subnet_id           = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
-  subnet_id2          = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.48-28"].id
+  setup_prefix = "asrs-nv1-prod-anode"
+  subnet_id    = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].id
+  subnet_id2   = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.48-28"].id
 }
