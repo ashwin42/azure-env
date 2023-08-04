@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.7.12"
-  #source = "../../../../../../tf-mod-azure/global/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vnet"
 }
 
 include "root" {
@@ -9,105 +9,104 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix             = "asrs-nv1-prod"
+  #setup_prefix             = "asrs-nv1-prod"
   vnet_name                = "nv-gen-infra-vnet"
   vnet_resource_group_name = "nv-gen-infra-rg"
   subnets = [
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.0-27"
-      address_prefixes     = ["10.46.0.0/27"]
-      service_endpoints    = ["Microsoft.Sql"]
-      enforce_private_link = true
-      delegation           = []
+      name                                      = "asrs-nv1-prod-subnet-10.46.0.0-27"
+      address_prefixes                          = ["10.46.0.0/27"]
+      service_endpoints                         = ["Microsoft.Sql"]
+      private_endpoint_network_policies_enabled = false
     },
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.32-28"
-      address_prefixes     = ["10.46.0.32/28"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "asrs-nv1-prod-subnet-10.46.0.32-28"
+      address_prefixes = ["10.46.0.32/28"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.48-28"
-      address_prefixes     = ["10.46.0.48/28"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "asrs-nv1-prod-subnet-10.46.0.48-28"
+      address_prefixes = ["10.46.0.48/28"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.80-28"
-      address_prefixes     = ["10.46.0.80/28"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "asrs-nv1-prod-subnet-10.46.0.80-28"
+      address_prefixes = ["10.46.0.80/28"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.96-28"
-      address_prefixes     = ["10.46.0.96/28"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "asrs-nv1-prod-subnet-10.46.0.96-28"
+      address_prefixes = ["10.46.0.96/28"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "asrs-nv1-prod-subnet-10.46.0.112-28"
-      address_prefixes     = ["10.46.0.112/28"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "asrs-nv1-prod-subnet-10.46.0.112-28"
+      address_prefixes = ["10.46.0.112/28"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "cathode2-web-app-subnet"
-      address_prefixes     = ["10.46.2.0/29"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "cathode2-web-app-subnet"
+      address_prefixes = ["10.46.2.0/29"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
     {
-      name                 = "anode2-web-app-subnet"
-      address_prefixes     = ["10.46.2.8/29"]
-      service_endpoints    = []
-      enforce_private_link = false
+      name             = "anode2-web-app-subnet"
+      address_prefixes = ["10.46.2.8/29"]
       delegation = [
         {
-          name                       = "Microsoft.Web.serverFarms",
-          service_delegation_name    = "Microsoft.Web/serverFarms",
-          service_delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          name = "Microsoft.Web.serverFarms",
+          service_delegation = {
+            name    = "Microsoft.Web/serverFarms",
+            actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+          }
         },
       ]
     },
