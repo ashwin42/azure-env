@@ -9,9 +9,9 @@ include {
 
 inputs = {
   iam_assignments = {
-    "Contributor" = {
+    "Owner" = {
       groups = [
-        "NV IT Core Role",
+        "NV TechOps Role",
       ],
     },
   }
