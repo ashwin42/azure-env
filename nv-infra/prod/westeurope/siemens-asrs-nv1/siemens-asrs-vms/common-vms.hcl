@@ -4,8 +4,12 @@ include "root" {
 }
 
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../vnet"
+}
+
+dependency "rv" {
+  config_path = "../recovery_vault"
 }
 
 locals {
@@ -16,10 +20,8 @@ locals {
 inputs = {
   vm_name                                = local.vm_name
   setup_prefix                           = local.vm_name
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = dependency.global.outputs.resource_group.name
+  recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_size                                = "Standard_D2as_v4"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
@@ -53,7 +55,7 @@ inputs = {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].address_prefixes[0]
+      source_address_prefix = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].address_prefixes[0]
       access                = "Allow"
       description           = "Allow connections from local subnet"
     },
@@ -61,7 +63,7 @@ inputs = {
       name                   = "LocalSubnetWebCathode"
       priority               = "210"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.32-28"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.32-28"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5005"
       access                 = "Allow"
@@ -71,7 +73,7 @@ inputs = {
       name                   = "LocalSubnetWebAnode"
       priority               = "211"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.48-28"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.48-28"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5006"
       access                 = "Allow"
@@ -81,7 +83,7 @@ inputs = {
       name                   = "LocalSubnetWebcw1"
       priority               = "212"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.80-28"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.80-28"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5007"
       access                 = "Allow"
@@ -91,7 +93,7 @@ inputs = {
       name                   = "LocalSubnetWebfa1"
       priority               = "213"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.96-28"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.96-28"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5008"
       access                 = "Allow"
@@ -101,7 +103,7 @@ inputs = {
       name                   = "LocalSubnetWebspw"
       priority               = "214"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.112-28"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.112-28"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5009"
       access                 = "Allow"
@@ -157,7 +159,7 @@ inputs = {
       name                   = "LocalSubnetWebCathode2"
       priority               = "240"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["cathode2-web-app-subnet"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["cathode2-web-app-subnet"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5005,5011"
       access                 = "Allow"
@@ -167,7 +169,7 @@ inputs = {
       name                   = "LocalSubnetWebAnode2"
       priority               = "241"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet["anode2-web-app-subnet"].address_prefixes[0]
+      source_address_prefix  = dependency.vnet.outputs.subnets["anode2-web-app-subnet"].address_prefixes[0]
       protocol               = "Tcp"
       destination_port_range = "4711,5006,5010"
       access                 = "Allow"
