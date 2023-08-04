@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.12"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -25,7 +25,7 @@ locals {
 }
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens.nv-lims-02-hp
+  token                                  = dependency.wvd.outputs.tokens
   host_pool_name                         = "nv-lims-02-hp"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
@@ -43,6 +43,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  managed_disk_size                      = "256"
   storage_image_reference = {
     id        = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-lims-rg/providers/Microsoft.Compute/images/lims-labs-c1-image-20221116205549-swedencentral"
     publisher = ""

@@ -1,26 +1,30 @@
+terraform {
+  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.62"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/web_app/"
+}
+
 include "root" {
   path   = find_in_parent_folders()
   expose = true
 }
 
 dependency "subnet" {
-  config_path = "./subnet"
+  config_path = "../../strama-lds/subnet/"
 }
 
 dependency "resource_group" {
-  config_path = "./resource_group"
+  config_path = "../resource_group"
 }
 
 locals {
-  name         = replace(basename(get_original_terragrunt_dir()), "web_app-", "")
-  setup_prefix = "dwa-wcs-${local.name}"
+  name = "dwa-lds-${include.root.locals.all_vars.project}"
 }
 
 inputs = {
-  setup_prefix        = local.setup_prefix
+  setup_prefix        = local.name
   resource_group_name = dependency.resource_group.outputs.resource_group_name
 
-  os_type    = "Windows"
+  os_type    = "Linux"
   sku_name   = "P1v2"
   https_only = true
 
@@ -30,15 +34,19 @@ inputs = {
     websockets_enabled = true
     ftps_state         = "FtpsOnly"
     application_stack = {
-      dotnet_version = "v6.0"
+      python_version = "3.11"
     }
   }
 
-  virtual_network_subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-web-app-${local.name}"].id
+  app_settings = {
+    SCM_DO_BUILD_DURING_DEPLOYMENT = "true"
+  }
+
+  virtual_network_subnet_id = dependency.subnet.outputs.subnets["strama-lds-${include.root.locals.all_vars.project}-web-app"].id
 
   private_endpoint = {
     location            = include.root.locals.all_vars.location
-    subnet_id           = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-subnet1"].id
+    subnet_id           = dependency.subnet.outputs.subnets["strama-lds-subnet1"].id
     resource_group_name = dependency.resource_group.outputs.resource_group_name
     private_dns_zone_group = {
       dns_zone_resource_group_name = "core_network"
@@ -55,7 +63,7 @@ inputs = {
   iam_assignments = {
     Contributor = {
       groups = [
-        "VPN Siemens ASRS AP",
+        "VPN Dwa DataSystems Python VM AP",
       ],
     }
   }
