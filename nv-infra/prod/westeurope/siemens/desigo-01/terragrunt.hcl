@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include {
@@ -31,23 +31,45 @@ inputs = {
   create_localadmin_password             = true
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "StandardSSD_LRS"
+
   storage_image_reference = {
     offer     = "WindowsServer",
     publisher = "MicrosoftWindowsServer",
     sku       = "2022-Datacenter",
   }
+
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = false
     timezone                  = "W. Europe Standard Time"
   }
+
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
+
+  network_security_groups = [
+    {
+      name               = "${local.name}-nic-nsg"
+      move_default_rules = true
+      rules = [
+        {
+          name                  = "LocalVnet"
+          priority              = "205"
+          direction             = "Inbound"
+          source_address_prefix = dependency.global.outputs.virtual_network.address_space[0]
+          access                = "Allow"
+          description           = "Allow connections from local VNet"
+        },
+      ]
+    },
+  ]
+
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "${local.name}-nic-nsg"
       ip_configuration = [
         {
           private_ip_address            = "10.44.1.144"
@@ -58,6 +80,7 @@ inputs = {
       ]
     },
   ]
+
   data_disks = [
     {
       name                 = "${local.name}-data1"
@@ -65,35 +88,6 @@ inputs = {
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
     }
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      protocol              = "Tcp"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "210"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "Tcp"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                  = "LocalVnet"
-      priority              = "205"
-      direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.virtual_network.address_space[0]
-      access                = "Allow"
-      description           = "Allow connections from local VNet"
-    },
   ]
 }
 

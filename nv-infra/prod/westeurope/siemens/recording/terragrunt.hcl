@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.28"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -36,26 +36,65 @@ inputs = {
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "Premium_LRS"
   availability_set_id                    = dependency.as.outputs.availability_sets.nv_siemens_avs
+
   storage_image_reference = {
     offer     = "WindowsServer",
     publisher = "MicrosoftWindowsServer",
     sku       = "2016-Datacenter",
   }
+
   os_profile_windows_config = {
     enable_automatic_upgrades = false
+    provision_vm_agent        = true
     timezone                  = "W. Europe Standard Time"
   }
+
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
+
+  network_security_groups = [
+    {
+      name               = "recordingserver-nsg"
+      move_default_rules = true
+      rules = [
+        {
+          name                  = "LocalVnet"
+          priority              = "205"
+          direction             = "Inbound"
+          source_address_prefix = dependency.global.outputs.virtual_network.address_space[0]
+          access                = "Allow"
+          description           = "Allow connections from local VNet"
+        },
+        {
+          name                  = "Temp_A_subnet"
+          priority              = "206"
+          direction             = "Inbound"
+          source_address_prefix = "10.0.0.0/8"
+          access                = "Allow"
+          description           = "Allow connections from on-prem"
+        },
+        {
+          name                  = "Cellhouse"
+          priority              = "207"
+          direction             = "Inbound"
+          source_address_prefix = "10.193.8.0/24"
+          access                = "Allow"
+          description           = "Allow connections from Cellhouse"
+        },
+      ]
+    },
+  ]
+
   network_interfaces = [
     {
-      name    = "${local.name}-nic"
-      primary = true
+      name                = "${local.name}-nic"
+      primary             = true
+      security_group_name = "recordingserver-nsg"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.1.139"
+          private_ip_address            = "10.44.1.139"
           subnet_id                     = dependency.global.outputs.subnet.siemens_system_subnet.id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
@@ -63,11 +102,12 @@ inputs = {
       ]
     },
     {
-      name    = "recording-second-nic"
-      primary = false
+      name                = "recording-second-nic"
+      primary             = false
+      security_group_name = "recordingserver-nsg"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.1.44"
+          private_ip_address            = "10.44.1.44"
           subnet_id                     = dependency.global.outputs.subnet.siemens_cameras.id
           ipconfig_name                 = "recording-second-nic_config"
           private_ip_address_allocation = "Static"
@@ -75,6 +115,7 @@ inputs = {
       ]
     },
   ]
+
   data_disks = [
     {
       name                 = "${local.name}-data1"
@@ -82,40 +123,6 @@ inputs = {
       lun                  = "5"
       storage_account_type = "Premium_LRS"
     }
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "LocalVnet"
-      priority              = "205"
-      direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.virtual_network.address_space[0]
-      access                = "Allow"
-      description           = "Allow connections from local VNet"
-    },
-    {
-      name                  = "Temp_A_subnet"
-      priority              = "206"
-      direction             = "Inbound"
-      source_address_prefix = "10.0.0.0/8"
-      access                = "Allow"
-      description           = "Allow connections from on-prem"
-    },
-    {
-      name                  = "Cellhouse"
-      priority              = "207"
-      direction             = "Inbound"
-      source_address_prefix = "10.193.8.0/24"
-      access                = "Allow"
-      description           = "Allow connections from Cellhouse"
-    },
   ]
 }
 

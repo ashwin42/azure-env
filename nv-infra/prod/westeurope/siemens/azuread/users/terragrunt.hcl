@@ -1,5 +1,6 @@
 terraform {
-  source = "../../../../../../../tf-mod-azuread/users/"
+  source = "git@github.com:northvolt/tf-mod-azuread.git//users?ref=v1.3.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azuread//users"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -26,7 +27,6 @@ inputs = {
       password              = "NorthVolt123!"
       force_password_change = true
       preferred_language    = "en-US"
-      #groups                = []
     },
   ]
 }
