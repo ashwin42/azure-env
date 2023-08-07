@@ -1,6 +1,6 @@
 terraform {
   source = "git@github.com:northvolt/tf-mod-azuread.git//groups?ref=v1.3.4"
-  #source = "../../../../../../../tf-mod-azuread/groups/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azuread//groups"
 }
 
 # Include all settings from the root terragrunt.hcl file

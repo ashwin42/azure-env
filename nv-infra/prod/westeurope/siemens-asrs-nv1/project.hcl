@@ -1,12 +1,13 @@
 locals {
-  azurerm_provider_version   = ">= 2.99"
-  terraform_required_version = ">= 1.0"
-  subscription_id            = "11dd160f-0e01-4b4d-a7a0-59407e357777"
-  azurerm_features           = {}
+  resource_group_name = "asrs-nv1-prod-rg"
+  recovery_vault_name = "asrs-nv1-prod-rv"
+  subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+
   tags = {
     project = "Siemens ASRS"
     jira    = "TOC-1208"
   }
+
   additional_providers = [
     {
       alias           = "that"

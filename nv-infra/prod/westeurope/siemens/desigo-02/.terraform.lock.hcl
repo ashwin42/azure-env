@@ -5,7 +5,9 @@ provider "registry.terraform.io/e-breuninger/netbox" {
   version     = "3.4.1"
   constraints = ">= 3.3.3, ~> 3.4.0"
   hashes = [
+    "h1:9ciREC5FAUT50uMWb2MVNRJZElFRnmmosA1P9buNmFk=",
     "h1:ewQgCHY0haXivzkBGopqwbE0+r3WNr0H0BH33QfNKYI=",
+    "h1:oiojak67oTwDOGsiKGGZucCjaMhc8wX2PUhq6LcaALs=",
     "zh:2a5db1132cac3a9ff12f072742f28ecd4b03b536db9cccb23e2d77ad957b5dbb",
     "zh:3a7651321bea887db121dfb613214ea34aa18667e63109ca8e07eaca23b106cc",
     "zh:67b5675124aa00c9629674bd05a2ef495e073b979cec5fd6e0b200b63fa74fd5",
@@ -21,6 +23,8 @@ provider "registry.terraform.io/hashicorp/aws" {
   version     = "5.9.0"
   constraints = ">= 3.38.0"
   hashes = [
+    "h1:TjctPnxYpg1RZaU1dGW8BSvdmf0t0jsNGU1rEmNIXns=",
+    "h1:f3SxpLlSueYKYXz5zpzP90MUN3cJ+omnTHXV9vUtOvM=",
     "h1:mvg6WWqqUvgUq6wYCWg/zqpND/5yIz3plIL1IOR50Rs=",
     "zh:032424d4686ce2ff7c5a4a738491635616afbf6e06b3e7e6a754baa031d1265d",
     "zh:1e530b4020544ec94e1fe7b1e4296640eb12cf1bf4f79cd6429ff2c4e6fffaf3",
@@ -64,7 +68,7 @@ provider "registry.terraform.io/hashicorp/azuread" {
 
 provider "registry.terraform.io/hashicorp/azurerm" {
   version     = "3.58.0"
-  constraints = ">= 2.99.0, >= 3.0.0"
+  constraints = ">= 3.0.0, ~> 3.0"
   hashes = [
     "h1:Hvlt3hgTiip6xMeq8/EDGqF8NoVuZjYdTZdO79YNXsw=",
     "h1:Oqgk6bCP5p2rEwPxQXSDCuhRaCxX+xKMS9tjXLzEJhk=",

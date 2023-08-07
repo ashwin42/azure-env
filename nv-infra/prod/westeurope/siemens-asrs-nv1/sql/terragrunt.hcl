@@ -1,10 +1,10 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.18"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.8.0"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../vnet"
 }
 
 dependency "sql_app" {
@@ -19,13 +19,15 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name = dependency.global.outputs.resource_group.name
-  setup_prefix        = dependency.global.outputs.setup_prefix
-  key_vault_name      = "nv-infra-core"
-  key_vault_rg        = "nv-infra-core"
+  name                  = "asrs-nv1-prod-sql"
+  secret_name           = "asrs-nv1-prod-sqladmin"
+  mssql_app_login       = true
+  mssql_federated_login = false
+  key_vault_name        = "nv-infra-core"
+  key_vault_rg          = "nv-infra-core"
   private_endpoints = {
     "asrs-nv1-prod-pe" = {
-      subnet_id = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
+      subnet_id = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].id
       private_service_connection = {
         name              = "asrs-nv1-prod-pec"
         subresource_names = ["sqlServer"]
@@ -70,7 +72,7 @@ inputs = {
   mssql_user_client_secret = dependency.sql_app.outputs.service_principal_password
   mssql_azuread_users = [
     {
-      username = "AAD-Siemens-ASRS-VPN-AP"
+      username = "VPN Siemens ASRS AP"
       roles    = ["db_owner"]
       database = "siemens-wcs-cathode2"
     },
@@ -80,7 +82,7 @@ inputs = {
       database = "siemens-wcs-cathode2"
     },
     {
-      username = "AAD-Siemens-ASRS-VPN-AP"
+      username = "VPN Siemens ASRS AP"
       roles    = ["db_owner"]
       database = "siemens-wcs-anode2"
     },
@@ -120,7 +122,7 @@ inputs = {
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
-      subnet_id = dependency.global.outputs.subnet["asrs-nv1-prod-subnet-10.46.0.0-27"].id
+      subnet_id = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].id
     }
   ]
 }

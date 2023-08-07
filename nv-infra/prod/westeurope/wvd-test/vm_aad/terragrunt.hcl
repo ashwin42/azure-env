@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.56"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -49,26 +49,23 @@ inputs = {
     type = "SystemAssigned"
   }
 
+  network_security_groups = [
+    {
+      name               = "wvd-test-aad-nic-nsg"
+      move_default_rules = true
+      rules              = []
+    },
+  ]
+
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "wvd-test-aad-nic-nsg"
       ip_configuration = [
         {
           subnet_id = dependency.vnet.outputs.subnets[include.root.inputs.project_name].id
         },
       ]
-    },
-  ]
-  custom_rules = [
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
     },
   ]
 
