@@ -8,12 +8,7 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
-}
-
 inputs = {
-  resource_group_name   = dependency.global.outputs.resource_group.name
   setup_prefix          = "LIMS-Training-"
   wvd_ws_friendly_name  = "LIMS Training Workspace"
   wvd_location          = "westeurope"
