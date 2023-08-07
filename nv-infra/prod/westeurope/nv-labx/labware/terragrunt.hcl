@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.63"
 }
 
 include {
@@ -31,6 +31,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
   ad_join                                = "true"
+  managed_disk_name                      = "nv-labware-vm-osdisk"
   managed_disk_size                      = "64"
   storage_image_reference = {
     sku = "2019-Datacenter-smalldisk",
