@@ -6,8 +6,12 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
+}
+
+dependency "rv" {
+  config_path = "../../recovery_vault"
 }
 
 dependency "wvd-ett" {
@@ -22,11 +26,8 @@ inputs = {
   setup_prefix                           = "labx-ett-wvd"
   token                                  = dependency.wvd-ett.outputs.token
   host_pool_name                         = dependency.wvd-ett.outputs.host_pool.name
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = dependency.global.outputs.resource_group.name
-  subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
+  subnet_id                              = dependency.vnet.outputs.subnets.labx_subnet.id
   vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_DS4_v2"
@@ -67,7 +68,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.44.2.21"
-          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-nic-ipconfig"
