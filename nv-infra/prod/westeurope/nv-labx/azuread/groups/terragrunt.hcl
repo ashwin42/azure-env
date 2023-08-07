@@ -22,6 +22,12 @@ inputs = {
       security_enabled = true
       member_users     = []
     },
+    {
+      display_name     = "Labx Ett Approvers"
+      description      = "Used in access package, do not modify. Members in this group will approve requests for LabX Ett WVD"
+      security_enabled = true
+      member_users     = ["mark.bahar@northvolt.com"]
+    },
   ]
 }
 
