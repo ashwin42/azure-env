@@ -7,8 +7,12 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../vnet"
+}
+
+dependency "rv" {
+  config_path = "../recovery_vault"
 }
 
 dependency "wvd" {
@@ -22,10 +26,8 @@ locals {
 inputs = {
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = dependency.global.outputs.resource_group.name
+  recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_B8ms"
@@ -66,7 +68,7 @@ inputs = {
           name                   = "LocalVnet"
           priority               = "205"
           direction              = "Inbound"
-          source_address_prefix  = dependency.global.outputs.virtual_network.address_space[0]
+          source_address_prefix  = dependency.vnet.outputs.virtual_network.address_space[0]
           protocol               = "Tcp"
           destination_port_range = 8742
           access                 = "Allow"
@@ -93,7 +95,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.44.1.101"
-          subnet_id                     = dependency.global.outputs.subnet.siemens_sipass_controllers.id
+          subnet_id                     = dependency.vnet.outputs.subnets.siemens_sipass_controllers.id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "ipconfig"
