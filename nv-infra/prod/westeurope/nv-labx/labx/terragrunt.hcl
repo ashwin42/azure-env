@@ -45,6 +45,11 @@ inputs = {
     winrm                      = null
     additional_unattend_config = null
   }
+
+  #  identity = {
+  #    type         = "SystemAssigned"
+  #  }
+
   network_interfaces = [
     {
       name = "${local.name}-nic"
