@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 locals {
@@ -19,7 +20,6 @@ dependency "rv" {
 }
 
 inputs = {
-  #setup_prefix                           = dependency.vnet.outputs.setup_prefix
   name                                   = local.name
   vm_name                                = local.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -33,14 +33,34 @@ inputs = {
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
+
   storage_image_reference = {
     offer     = "0001-com-ubuntu-minimal-focal-daily",
     publisher = "Canonical",
     sku       = "minimal-20_04-daily-lts",
   }
+
+  network_security_groups = [
+    {
+      name               = "qc-ftp-server-nsg"
+      move_default_rules = true
+      rules = [
+        {
+          name                  = "Labs_QC_Lab"
+          priority              = "210"
+          direction             = "Inbound"
+          source_address_prefix = "10.192.1.0/24"
+          access                = "Allow"
+          description           = "Allow connections from Labs QC Lab clients"
+        },
+      ]
+    },
+  ]
+
   network_interfaces = [
     {
-      name = "${local.name}-nic1"
+      name                = "${local.name}-nic1"
+      security_group_name = "qc-ftp-server-nsg"
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.12"
@@ -50,24 +70,6 @@ inputs = {
           ipconfig_name                 = "${local.name}-nic1-ipconfig"
         },
       ]
-    },
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Labs_QC_Lab"
-      priority              = "210"
-      direction             = "Inbound"
-      source_address_prefix = "10.192.1.0/24"
-      access                = "Allow"
-      description           = "Allow connections from Labs QC Lab clients"
     },
   ]
 }
