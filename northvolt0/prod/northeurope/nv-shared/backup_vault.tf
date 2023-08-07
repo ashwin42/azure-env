@@ -3,6 +3,7 @@ resource "azurerm_recovery_services_vault" "nv-shared" {
   location            = var.location
   resource_group_name = var.resource_group_name
   sku                 = "Standard"
+  soft_delete_enabled = false
 }
 
 resource "azurerm_recovery_services_protection_policy_vm" "daily" {
