@@ -23,7 +23,7 @@ inputs = {
     {
       name             = "asrs-nv1-prod-subnet-10.46.0.32-28"
       address_prefixes = ["10.46.0.32/28"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -37,7 +37,7 @@ inputs = {
     {
       name             = "asrs-nv1-prod-subnet-10.46.0.48-28"
       address_prefixes = ["10.46.0.48/28"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -51,7 +51,7 @@ inputs = {
     {
       name             = "asrs-nv1-prod-subnet-10.46.0.80-28"
       address_prefixes = ["10.46.0.80/28"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -65,7 +65,7 @@ inputs = {
     {
       name             = "asrs-nv1-prod-subnet-10.46.0.96-28"
       address_prefixes = ["10.46.0.96/28"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -79,7 +79,7 @@ inputs = {
     {
       name             = "asrs-nv1-prod-subnet-10.46.0.112-28"
       address_prefixes = ["10.46.0.112/28"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -93,7 +93,7 @@ inputs = {
     {
       name             = "cathode2-web-app-subnet"
       address_prefixes = ["10.46.2.0/29"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
@@ -107,7 +107,7 @@ inputs = {
     {
       name             = "anode2-web-app-subnet"
       address_prefixes = ["10.46.2.8/29"]
-      route_table_name                          = "nv-gen-infra-vnet-default-rt"
+      route_table_name = "nv-gen-infra-vnet-default-rt"
       delegation = [
         {
           name = "Microsoft.Web.serverFarms",
