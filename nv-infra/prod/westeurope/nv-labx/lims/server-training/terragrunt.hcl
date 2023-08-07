@@ -6,8 +6,12 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
+}
+
+dependency "rv" {
+  config_path = "../../recovery_vault"
 }
 
 dependency "wvd" {
@@ -22,11 +26,8 @@ inputs = {
   setup_prefix                           = local.name
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = dependency.global.outputs.resource_group.name
-  subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
+  subnet_id                              = dependency.vnet.outputs.subnets.labx_subnet.id
   vm_name                                = local.name
   vm_size                                = "Standard_DS4_v2"
   backup_vm                              = true
@@ -56,7 +57,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.44.2.13"
-          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-0-nic-ipconfig"
@@ -79,7 +80,7 @@ inputs = {
       name                   = "Local_VNET_SQL"
       priority               = "230"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
+      source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
       protocol               = "Tcp"
       destination_port_range = "1433"
       access                 = "Allow"
@@ -89,7 +90,7 @@ inputs = {
       name                   = "Local_VNET_SQL_Browser"
       priority               = "235"
       direction              = "Inbound"
-      source_address_prefix  = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
+      source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
       protocol               = "Udp"
       destination_port_range = "1434"
       access                 = "Allow"
