@@ -6,8 +6,12 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
+}
+
+dependency "rv" {
+  config_path = "../../recovery_vault"
 }
 
 locals {
@@ -15,12 +19,8 @@ locals {
 }
 
 inputs = {
-  setup_prefix                           = dependency.global.outputs.setup_prefix
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = "nv_labx"
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = "nv_labx"
-  subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
+  subnet_id                              = dependency.vnet.outputs.subnets.labx_subnet.id
   vm_name                                = local.name
   managed_disk_type                      = "StandardSSD_LRS"
   managed_disk_name                      = "${local.name}-os"
@@ -56,7 +56,7 @@ inputs = {
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.8"
-          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-nic_config"
@@ -85,7 +85,7 @@ inputs = {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet.labx_subnet.address_prefixes.0
+      source_address_prefix = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
       access                = "Allow"
       description           = "Allow connections from local subnet"
     },
