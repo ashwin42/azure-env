@@ -8,18 +8,17 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
 }
 
 inputs = {
-  resource_group_name = dependency.global.outputs.resource_group.name
-  setup_prefix        = dependency.global.outputs.setup_prefix
-  key_vault_name      = "nv-infra-core"
-  key_vault_rg        = "nv-infra-core"
+  setup_prefix   = "nv-labx"
+  key_vault_name = "nv-infra-core"
+  key_vault_rg   = "nv-infra-core"
   private_endpoints = {
     "nv-labx-pe" = {
-      subnet_id = dependency.global.outputs.subnet.labx_subnet.id
+      subnet_id = dependency.vnet.outputs.subnets.labx_subnet.id
       private_service_connection = {
         name              = "nv-labx-pec"
         subresource_names = ["sqlServer"]
@@ -50,7 +49,7 @@ inputs = {
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
-      subnet_id = dependency.global.outputs.subnet.labx_subnet.id
+      subnet_id = dependency.vnet.outputs.subnets.labx_subnet.id
     }
   ]
 }
