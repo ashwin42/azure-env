@@ -46,6 +46,10 @@ inputs = {
     bypass                     = ["AzureServices"]
     default_action             = "Deny"
     virtual_network_subnet_ids = [dependency.global.outputs.subnet["labx_subnet"].id]
+    ip_rules = [
+      "213.50.54.196",
+      "81.233.195.87",
+    ]
   }
 }
 
