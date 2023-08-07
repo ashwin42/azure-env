@@ -3,8 +3,8 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
 }
 
 include {
@@ -12,8 +12,7 @@ include {
 }
 
 inputs = {
-  setup_prefix                    = dependency.global.outputs.setup_prefix
-  resource_group_name             = dependency.global.outputs.resource_group.name
+  setup_prefix                    = "nv-labx"
   storage_account_name            = "qcsftpstorage2"
   account_replication_type        = "LRS"
   allow_nested_items_to_be_public = false
@@ -33,7 +32,7 @@ inputs = {
 
   private_endpoints = {
     qcsftpstorage2-pe-file = {
-      subnet_id = dependency.global.outputs.subnet["labx_subnet"].id
+      subnet_id = dependency.vnet.outputs.subnets["labx_subnet"].id
       private_service_connection = {
         name              = "qcsftpstorage2-pe-file"
         subresource_names = ["file"]
@@ -45,7 +44,7 @@ inputs = {
     name                       = "default_rule"
     bypass                     = ["AzureServices"]
     default_action             = "Deny"
-    virtual_network_subnet_ids = [dependency.global.outputs.subnet["labx_subnet"].id]
+    virtual_network_subnet_ids = [dependency.vnet.outputs.subnets["labx_subnet"].id]
     ip_rules = [
       "213.50.54.196",
       "81.233.195.87",
