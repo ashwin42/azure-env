@@ -20,10 +20,31 @@ inputs = {
       name = "nv-gen-infra-vnet-default-rt"
       routes = [
         {
-          address_prefix         = "10.15.16.0/21" #AWS it-prod vpc
+          address_prefix         = "10.12.0.0/14" #AWS it-prod vpc
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.18.0.0/15" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.20.0.0/14" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.24.0.0/13" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.32.0.0/13" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+
       ]
     }
   ]
