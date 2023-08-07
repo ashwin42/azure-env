@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -39,62 +40,61 @@ inputs = {
   ad_join                                = true
   wvd_register                           = true
   boot_diagnostics_enabled               = true
+  managed_disk_name                      = "lims-training-vm-osdisk"
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd",
   }
+
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
-  network_interfaces = [
+
+  network_security_groups = [
     {
-      name = "${local.name}-0-nic"
-      ip_configuration = [
+      name               = "lims-training-vm-nsg"
+      move_default_rules = true
+      rules = [
         {
-          private_ip_address            = "10.44.2.13"
-          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
-          public_ip                     = false
-          private_ip_address_allocation = "Static"
-          ipconfig_name                 = "${local.name}-0-nic-ipconfig"
+          name                   = "Local_VNET_SQL"
+          priority               = "230"
+          direction              = "Inbound"
+          source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
+          protocol               = "Tcp"
+          destination_port_range = "1433"
+          access                 = "Allow"
+          description            = "Allow connections from local VNET"
+        },
+        {
+          name                   = "Local_VNET_SQL_Browser"
+          priority               = "235"
+          direction              = "Inbound"
+          source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
+          protocol               = "Udp"
+          destination_port_range = "1434"
+          access                 = "Allow"
+          description            = "Allow connections from local VNET"
         },
       ]
     },
   ]
-  custom_rules = [
+
+  network_interfaces = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Local_VNET_SQL"
-      priority               = "230"
-      direction              = "Inbound"
-      source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
-      protocol               = "Tcp"
-      destination_port_range = "1433"
-      access                 = "Allow"
-      description            = "Allow connections from local VNET"
-    },
-    {
-      name                   = "Local_VNET_SQL_Browser"
-      priority               = "235"
-      direction              = "Inbound"
-      source_address_prefix  = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
-      protocol               = "Udp"
-      destination_port_range = "1434"
-      access                 = "Allow"
-      description            = "Allow connections from local VNET"
+      name                = "${local.name}-0-nic"
+      security_group_name = "lims-training-vm-nsg"
+      ip_configuration = [
+        {
+          private_ip_address            = "10.44.2.13"
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
+          private_ip_address_allocation = "Static"
+          ipconfig_name                 = "${local.name}-0-nic-ipconfig"
+        },
+      ]
     },
   ]
 }
