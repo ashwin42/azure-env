@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -28,9 +29,12 @@ inputs = {
   localadmin_key_name                    = "nv-labx-nvadmin-ett"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = "true"
+  managed_disk_name                      = "labx-ett-vm-osdisk"
+
   storage_image_reference = {
     sku = "2019-Datacenter",
   }
+
   os_profile_windows_config = {
     provision_vm_agent         = true
     enable_automatic_upgrades  = true
@@ -38,13 +42,45 @@ inputs = {
     winrm                      = null
     additional_unattend_config = null
   }
+
   os_profile = {
     admin_username = "nvadmin"
     computer_name  = basename(get_terragrunt_dir())
   }
+
+  network_security_groups = [
+    {
+      name               = "labx-ett-vm-nsg"
+      move_default_rules = true
+      rules = [
+        {
+          name                   = "LocalSubnet"
+          priority               = "205"
+          direction              = "Inbound"
+          source_address_prefix  = "10.44.2.0/26"
+          protocol               = "Tcp"
+          destination_port_range = "0-65535"
+          access                 = "Allow"
+          description            = "Allow connections from local subnet"
+        },
+        {
+          name                   = "QC_Network_Ett"
+          priority               = "210"
+          direction              = "Inbound"
+          source_address_prefix  = "10.192.16.0/23"
+          protocol               = "*"
+          destination_port_range = "0-65535"
+          access                 = "Allow"
+          description            = "Allow connections from Ett Quality Control Network"
+        },
+      ]
+    },
+  ]
+
   network_interfaces = [
     {
-      name = "${basename(get_terragrunt_dir())}-nic"
+      name                = "${basename(get_terragrunt_dir())}-nic"
+      security_group_name = "labx-ett-vm-nsg"
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.17"
@@ -56,6 +92,7 @@ inputs = {
       ]
     }
   ]
+
   data_disks = [
     {
       name                 = "${basename(get_terragrunt_dir())}-data1"
@@ -63,48 +100,6 @@ inputs = {
       lun                  = "5"
       storage_account_type = "Premium_LRS"
     }
-  ]
-  custom_rules = [
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "Tcp"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                   = "LocalSubnet"
-      priority               = "205"
-      direction              = "Inbound"
-      source_address_prefix  = "10.44.2.0/26"
-      protocol               = "Tcp"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from local subnet"
-    },
-    {
-      name                   = "QC_Network_Ett"
-      priority               = "210"
-      direction              = "Inbound"
-      source_address_prefix  = "10.192.16.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett Quality Control Network"
-    },
   ]
 }
 
