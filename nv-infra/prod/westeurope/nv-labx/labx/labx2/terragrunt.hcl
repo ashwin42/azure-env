@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.5.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
 include {
@@ -50,9 +51,35 @@ inputs = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
+
+  network_security_groups = [
+    {
+      name               = "nv_labx2_nsg"
+      move_default_rules = true
+      rules = [
+        {
+          name                  = "LocalSubnet"
+          priority              = "205"
+          direction             = "Inbound"
+          source_address_prefix = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
+          access                = "Allow"
+          description           = "Allow connections from local subnet"
+        },
+        {
+          name                  = "NV-VH_VPN"
+          priority              = "210"
+          direction             = "Inbound"
+          source_address_prefix = "10.10.0.0/21"
+          access                = "Allow"
+          description           = "Allow connections from NV-VH"
+        }
+      ]
+    },
+  ]
   network_interfaces = [
     {
-      name = "${local.name}-nic"
+      name                = "${local.name}-nic"
+      security_group_name = "nv_labx2_nsg"
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.8"
@@ -70,32 +97,6 @@ inputs = {
       size                 = "25"
       lun                  = "5"
       storage_account_type = "Premium_LRS"
-    }
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "LocalSubnet"
-      priority              = "205"
-      direction             = "Inbound"
-      source_address_prefix = dependency.vnet.outputs.subnets.labx_subnet.address_prefixes.0
-      access                = "Allow"
-      description           = "Allow connections from local subnet"
-    },
-    {
-      name                  = "NV-VH_VPN"
-      priority              = "210"
-      direction             = "Inbound"
-      source_address_prefix = "10.10.0.0/21"
-      access                = "Allow"
-      description           = "Allow connections from NV-VH"
     }
   ]
 }
