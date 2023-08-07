@@ -10,18 +10,19 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
+}
+
+dependency "rv" {
+  config_path = "../../recovery_vault"
 }
 
 inputs = {
-  setup_prefix                           = dependency.global.outputs.setup_prefix
+  #setup_prefix                           = dependency.vnet.outputs.setup_prefix
   name                                   = local.name
   vm_name                                = local.name
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = dependency.global.outputs.resource_group.name
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_size                                = "Standard_B2s"
   managed_disk_name                      = "${local.name}-osdisk"
   managed_disk_type                      = "StandardSSD_LRS"
@@ -43,7 +44,7 @@ inputs = {
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.12"
-          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "${local.name}-nic1-ipconfig"
