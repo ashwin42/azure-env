@@ -1,8 +1,0 @@
-az ad sp create-for-rbac --name https://nv_infra_packer --role="Contributor" --scopes="/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777"
-
-contributor for subscription
- "appId": "c3579b4c-db39-4cff-b84d-7a029ec249fd",
-  "displayName": "nv_infra_packer",
-  "name": "https://nv_infra_packer",
-  "password": "Keyvault",
-  "tenant": "706c5db9-5278-483b-b622-70084f823a12"
