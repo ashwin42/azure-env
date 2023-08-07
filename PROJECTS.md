@@ -45,7 +45,7 @@ This is a list of projects in the repository based on project.hcl files.
 - Code: [nv-infra/prod/westeurope/nv-arx](nv-infra/prod/westeurope/nv-arx)
 - Jira: [TOC-1208](https://northvolt.atlassian.net/browse/TOC-1208)
 <details><summary>Details (click to expand):</summary>
-ssssssssssssssssssssssssssssssssssss
+
 | Detail | Value |
 | ------ | ----- |
 | **Resources** | northvolt/tf-mod-azure.git//global?ref=v0.2.12<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.2.12<br> |
