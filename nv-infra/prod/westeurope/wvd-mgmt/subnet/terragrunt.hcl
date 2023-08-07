@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.34"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.63"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/"
 }
 
@@ -14,7 +14,7 @@ inputs = {
   subnets = [
     {
       name             = include.root.inputs.project_name
-      address_prefixes = ["10.46.1.80/28"]
+      address_prefixes = ["10.46.2.80/28"]
     },
   ]
 }
