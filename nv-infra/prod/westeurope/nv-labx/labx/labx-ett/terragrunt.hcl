@@ -6,17 +6,18 @@ include {
   path = find_in_parent_folders()
 }
 
-dependency "global" {
-  config_path = "../global"
+dependency "vnet" {
+  config_path = "../../vnet"
+}
+
+dependency "rv" {
+  config_path = "../../recovery_vault"
 }
 
 inputs = {
   setup_prefix                           = "labx-ett"
-  recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = "nv_labx"
-  recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
-  resource_group_name                    = "nv_labx"
-  subnet_id                              = dependency.global.outputs.subnet.labx_subnet.id
+  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
+  subnet_id                              = dependency.vnet.outputs.subnets.labx_subnet.id
   vm_name                                = basename(get_terragrunt_dir())
   managed_disk_type                      = "StandardSSD_LRS"
   vm_size                                = "Standard_B2ms"
@@ -47,7 +48,7 @@ inputs = {
       ip_configuration = [
         {
           ipaddress                     = "10.44.2.17"
-          subnet_id                     = dependency.global.outputs.subnet.labx_subnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.labx_subnet.id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
           ipconfig_name                 = "ipconfig"
