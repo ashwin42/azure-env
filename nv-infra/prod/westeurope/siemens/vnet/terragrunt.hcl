@@ -38,7 +38,7 @@ inputs = {
       address_prefixes                          = ["10.44.1.128/26"]
       service_endpoints                         = ["Microsoft.Sql"]
       private_endpoint_network_policies_enabled = false
-      route_table_name = "nv_siemens_vnet_default_rt"
+      route_table_name                          = "nv_siemens_vnet_default_rt"
     },
     {
       name             = "AzureBastionSubnet"
