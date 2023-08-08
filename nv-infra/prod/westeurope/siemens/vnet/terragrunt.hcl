@@ -16,30 +16,69 @@ inputs = {
     {
       name             = "siemens_fs20_fire"
       address_prefixes = ["10.44.1.0/27"]
+      route_table_name = "nv_siemens_vnet_default_rt"
     },
     {
       name             = "siemens_cameras"
       address_prefixes = ["10.44.1.32/27"]
+      route_table_name = "nv_siemens_vnet_default_rt"
     },
     {
       name             = "siemens_spc_controllers"
       address_prefixes = ["10.44.1.64/27"]
+      route_table_name = "nv_siemens_vnet_default_rt"
     },
     {
       name             = "siemens_sipass_controllers"
       address_prefixes = ["10.44.1.96/27"]
+      route_table_name = "nv_siemens_vnet_default_rt"
     },
     {
       name                                      = "siemens_system_subnet"
       address_prefixes                          = ["10.44.1.128/26"]
       service_endpoints                         = ["Microsoft.Sql"]
       private_endpoint_network_policies_enabled = false
+      route_table_name                          = "nv_siemens_vnet_default_rt"
     },
     {
       name             = "AzureBastionSubnet"
       address_prefixes = ["10.44.1.192/27"]
     },
   ]
+
+  route_tables = [
+    {
+      name = "nv_siemens_vnet_default_rt"
+      routes = [
+        {
+          address_prefix         = "10.12.0.0/14" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.18.0.0/15" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.20.0.0/14" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.24.0.0/13" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.32.0.0/13" #AWS it-prod vpc
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
+  ]
+
 
   peerings = [
     {

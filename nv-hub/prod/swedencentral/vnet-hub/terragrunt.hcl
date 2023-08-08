@@ -39,6 +39,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.44.1.0/24" #Azure WestEurope - Siemens Physical Security
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
       ]
     },
     {
@@ -61,6 +66,11 @@ inputs = {
         },
         {
           address_prefix         = "10.46.0.0/19" #Azure WestEurope nv-gen-infra-vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.44.1.0/24" #Azure WestEurope - Siemens Physical Security
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
