@@ -60,6 +60,7 @@ inputs = {
     Contributor = {
       groups = [
         "VPN Revolt Siemens WCS AP",
+        "VPN Siemens ASRS AP"
       ],
     }
   }
