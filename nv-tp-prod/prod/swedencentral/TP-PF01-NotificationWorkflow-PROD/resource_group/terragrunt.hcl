@@ -14,6 +14,7 @@ inputs = {
       ],
       users = [
         "jannik.hachmann@northvolt.com",
+        "vanesa.urceira-vigo@northvolt.com"
       ],
     },
   }
