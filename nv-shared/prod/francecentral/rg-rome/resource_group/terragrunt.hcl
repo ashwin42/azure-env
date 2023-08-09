@@ -11,6 +11,7 @@ inputs = {
     "Contributor" = {
       users = [
         "jay.solomon@northvolt.com",
+        "martin.hwasser@northvolt.com"
       ],
     },
   },
