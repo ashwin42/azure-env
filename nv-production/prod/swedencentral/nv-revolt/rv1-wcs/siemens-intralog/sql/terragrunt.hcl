@@ -26,6 +26,7 @@ inputs = {
   create_administrator_password = true
   key_vault_name                = "nv-production-core"
   key_vault_rg                  = "nv-production-core"
+  minimum_tls_version           = "1.2"
   private_endpoints = {
     "${local.name}-sql-pe" = {
       name      = "${local.name}-sql-pe"
@@ -55,7 +56,7 @@ inputs = {
 
   mssql_azuread_users = [
     {
-      username = "VPN Revolt Siemens WCS AP"
+      username = "VPN Siemens ASRS AP"
       roles    = ["db_owner"]
       database = "${local.name}"
     },

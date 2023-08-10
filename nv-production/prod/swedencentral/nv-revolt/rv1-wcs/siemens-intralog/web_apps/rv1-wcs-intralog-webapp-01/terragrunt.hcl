@@ -31,12 +31,16 @@ inputs = {
   https_only = true
 
   site_config = {
-    always_on         = true
-    use_32_bit_worker = true
+    always_on          = true
+    use_32_bit_worker  = true
+    ftps_state         = "AllAllowed"
+    websockets_enabled = true
     application_stack = {
-      dotnet_version = "v4.0"
+      dotnet_version = "v6.0"
     }
   }
+
+  client_certificate_mode = "Optional"
 
   virtual_network_subnet_id = dependency.subnet.outputs.subnets["${local.subnet}"].id
 
