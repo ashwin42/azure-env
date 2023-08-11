@@ -20,7 +20,8 @@ dependency "as" {
 }
 
 locals {
-  name = "recordingserver"
+  name        = "recordingserver"
+  netbox_role = "Server: Camera recording"
 }
 
 inputs = {
