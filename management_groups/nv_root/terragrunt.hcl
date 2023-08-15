@@ -79,6 +79,9 @@ inputs = {
       groups = [
         "NV Aviatrix Admin",
       ],
+      service_principals = [
+        "patching_assessments",
+      ]
     },
     "Terraform Resource Groups Contributor" = {
       service_principals = [
