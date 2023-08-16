@@ -16,7 +16,7 @@ inputs = {
   in_guest_user_patch_mode = "User"
 
   install_patches = {
-    reboot = "Never"
+    reboot = "IfRequired"
     windows = {
       classifications_to_include = ["Critical", "Security"]
     }
@@ -26,8 +26,8 @@ inputs = {
   }
 
   window = {
-    start_date_time = "2023-08-23 09:00"
-    recur_every     = "1Week Wednesday"
+    start_date_time = "2023-08-19 22:00"
+    recur_every     = "1Week Saturday"
     duration        = "02:00"
   }
 }
