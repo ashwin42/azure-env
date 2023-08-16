@@ -1,0 +1,23 @@
+{
+    "maintenanceConfigurationResourceId": {
+       "value": "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourcegroups/patch_management/providers/microsoft.maintenance/maintenanceconfigurations/every_monday_2200"
+    },
+    "resourceGroups": {
+        "value": []
+     },
+     "operatingSystemTypes": {
+        "value": ["Windows", "Linux"]
+     },
+     "locations": {
+        "value": []
+     },
+     "tagValues": {
+        "value": [
+         {"key": "maintenance", "value": "sunday"}]
+     },
+     "tagOperator": {
+      "value": "Any"
+     }
+}
+
+ 
