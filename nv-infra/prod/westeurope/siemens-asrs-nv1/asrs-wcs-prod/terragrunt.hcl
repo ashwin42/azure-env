@@ -219,32 +219,42 @@ inputs = {
       description            = "Allow connections from local web delegated subnet"
     },
     {
-      name                   = "AWS_Ett_DS1_Subnet1"
-      priority               = "242"
+      name                   = "AWS_Ett_ASRS_Automation_CIDR1"
+      priority               = "250"
       direction              = "Inbound"
       source_address_prefix  = "10.21.13.0/24"
       protocol               = "Tcp"
-      destination_port_range = "5005-5020"
+      destination_port_range = "5000-5020"
+      access                 = "Allow"
+      description            = "Allow connections from ASRS service at AWS Ett"
+    },
+    {
+      name                   = "AWS_Ett_ASRS_Automation_CIDR2"
+      priority               = "251"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.14.0/23"
+      protocol               = "Tcp"
+      destination_port_range = "5000-5020"
+      access                 = "Allow"
+      description            = "Allow connections from ASRS service at AWS Ett"
+    },
+    {
+      name                   = "AWS_Ett_DS1_CIDR1"
+      priority               = "252"
+      direction              = "Inbound"
+      source_address_prefix  = "10.22.76.0/23"
+      protocol               = "Tcp"
+      destination_port_range = "5000-5020"
       access                 = "Allow"
       description            = "Allow connections from ASRS service at AWS Ett DS1"
     },
     {
-      name                   = "AWS_Ett_DS1_Subnet2"
-      priority               = "243"
+      name                   = "AWS_Ett_DS1_CIDR2"
+      priority               = "253"
       direction              = "Inbound"
-      source_address_prefix  = "10.21.14.0/24"
+      source_address_prefix  = "10.22.78.0/24"
       protocol               = "Tcp"
-      destination_port_range = "5005-5020"
-      access                 = "Allow"
-      description            = "Allow connections from ASRS service at AWS Ett DS1"
-    },
-    {
-      name                   = "AWS_Ett_DS1_Subnet3"
-      priority               = "244"
-      direction              = "Inbound"
-      source_address_prefix  = "10.21.15.0/24"
-      protocol               = "Tcp"
-      destination_port_range = "5005-5020"
+      destination_port_range = "5000-5020"
       access                 = "Allow"
       description            = "Allow connections from ASRS service at AWS Ett DS1"
     },
