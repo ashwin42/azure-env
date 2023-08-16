@@ -22,6 +22,7 @@ inputs = {
     "Contributor" = {
       service_principals = [
         "DefenderOnboarding",
+        "maintenance_windows_tags",
       ],
       groups = [
         "Azure Tenant Contributor Access",
