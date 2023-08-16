@@ -218,6 +218,36 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from local web delegated subnet"
     },
+    {
+      name                   = "AWS_Ett_DS1_Subnet1"
+      priority               = "242"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.13.0/24"
+      protocol               = "Tcp"
+      destination_port_range = "5005-5020"
+      access                 = "Allow"
+      description            = "Allow connections from ASRS service at AWS Ett DS1"
+    },
+    {
+      name                   = "AWS_Ett_DS1_Subnet2"
+      priority               = "243"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.14.0/24"
+      protocol               = "Tcp"
+      destination_port_range = "5005-5020"
+      access                 = "Allow"
+      description            = "Allow connections from ASRS service at AWS Ett DS1"
+    },
+    {
+      name                   = "AWS_Ett_DS1_Subnet3"
+      priority               = "244"
+      direction              = "Inbound"
+      source_address_prefix  = "10.21.15.0/24"
+      protocol               = "Tcp"
+      destination_port_range = "5005-5020"
+      access                 = "Allow"
+      description            = "Allow connections from ASRS service at AWS Ett DS1"
+    },
   ]
   windows_data_collection_rule_names = ["windows_event_log-dcr"]
 }
