@@ -285,10 +285,10 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-honey-ett-ds2-rg |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.50<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vnet?ref=v0.7.8<br> |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.50<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vnet?ref=v0.7.8<br> |
+| **business-unit** | 232 - Downstream 2 - ET |
+| **department** | 232002 - DS2 Wet Electrode - ET |
+| **cost-center** | 232002001 DS2 Wet Electrode General - ET |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
@@ -852,7 +852,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/tia-mu-rg |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.26<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4<br>northvolt/tf-mod-azure.git//vnet?ref=v0.7.26<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br> |
+| **Resources** | northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vnet?ref=v0.8.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//availability_set?ref=v0.7.59<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4<br>northvolt/tf-mod-azuread.git//users?ref=v1.3.4<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br> |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
