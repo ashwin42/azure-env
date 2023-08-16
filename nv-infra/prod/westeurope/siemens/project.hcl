@@ -1,6 +1,9 @@
 locals {
   resource_group_name = "nv_siemens"
   recovery_vault_name = "nv-siemens-recovery-vault"
+  providers           = ["azurerm", "netbox"]
+  netbox_role         = "physicalsecurity"
+  install_winrm       = true
 
   tags = {
     business-unit = "109 Digitalization IT - AB"

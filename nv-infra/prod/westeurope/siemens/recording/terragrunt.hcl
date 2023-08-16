@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include {
@@ -20,7 +20,8 @@ dependency "as" {
 }
 
 locals {
-  name = "recordingserver"
+  name        = "recordingserver"
+  netbox_role = "Server: Camera recording"
 }
 
 inputs = {
@@ -121,7 +122,7 @@ inputs = {
   data_disks = [
     {
       name                 = "${local.name}-data1"
-      size                 = "500"
+      size                 = "1024"
       lun                  = "5"
       storage_account_type = "Premium_LRS"
     }
