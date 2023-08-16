@@ -38,6 +38,12 @@ inputs = {
         "nv-ataccama-synapse-ws-dev",
         "synwbiprod"
       ]
+      windows_function_apps = [
+        {
+          name                = "CDMFunctionN",
+          resource_group_name = "nv-ataccama-dev-rg"
+        }
+      ]
     },
   }
 
