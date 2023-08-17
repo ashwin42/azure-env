@@ -41,7 +41,7 @@ inputs = {
   localadmin_key_name                    = "domainjoin"
   netbox_create_role                     = true
   netbox_role                            = "apisiq"
-  
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
