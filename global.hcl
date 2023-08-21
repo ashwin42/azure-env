@@ -27,6 +27,11 @@ locals {
     "10.15.20.0/23"
   ]
 
+  bastion_cidr_blocks = [
+    "10.48.0.128/26",
+    "10.40.251.0/26"
+  ]
+
   rule_icmp = [
     {
       name                       = "Allow_ICMP"
@@ -60,11 +65,24 @@ locals {
       description                = "Allow access from Prometheus"
     }
   ]
+  rule_rdp_bastion = [
+    {
+      name                       = "Allow_RDP_Bastion"
+      priority                   = "303"
+      direction                  = "Inbound"
+      source_address_prefixes    = local.bastion_cidr_blocks
+      protocol                   = "Tcp"
+      destination_port_range     = "3389"
+      destination_address_prefix = "*"
+      description                = "Allow access from Bastion"
+    }
+  ]
 
   # default SG rules for all VMs
   default_rules = concat(
     local.rule_icmp,
     local.rule_vpn_access,
-    local.rule_windows_node_exporter
+    local.rule_windows_node_exporter,
+    local.rule_rdp_bastion,
   )
 }

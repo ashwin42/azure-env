@@ -158,6 +158,44 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Bastion
+---
+- Code: [nv-hub/prod/swedencentral/bastion](nv-hub/prod/swedencentral/bastion)
+- Jira: [TOC-2404](https://northvolt.atlassian.net/browse/TOC-2404)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/bastion-rg |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//bastion?ref=v0.8.1<br> |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035060 TechOps |
+| **system-owner** | techops@nortvolt.com |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+</details>
+
+---
+- Code: [nv-hub/prod/westeurope/bastion](nv-hub/prod/westeurope/bastion)
+- Jira: [TOC-2404](https://northvolt.atlassian.net/browse/TOC-2404)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/bastion-rg |
+| **Resources** | northvolt/tf-mod-azure.git//bastion?ref=v0.8.1<br> |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035060 TechOps |
+| **system-owner** | techops@nortvolt.com |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+</details>
+
+---
 ### 🛠️ CMX
 ---
 - Code: [nv-infra/prod/westeurope/nv-cmx](nv-infra/prod/westeurope/nv-cmx)
@@ -935,7 +973,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | karl.ziethen@northvolt.com, sudhir.u@northvolt.com, sajin.chadayan@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |

@@ -96,6 +96,10 @@ inputs = {
       service_endpoints = []
       route_table_name  = "nv-hub-swc-default-rt"
     },
+    {
+      name             = "AzureBastionSubnet"
+      address_prefixes = ["10.48.0.128/26"]
+    }
   ]
   peerings = [
     {
