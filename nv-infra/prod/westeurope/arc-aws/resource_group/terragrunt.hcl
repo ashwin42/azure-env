@@ -8,5 +8,12 @@ include {
 }
 
 inputs = {
+  iam_assignments = {
+    "Azure Connected Machine Onboarding" = {
+      service_principals = [
+        "Azure Arc Onboarding",
+      ],
+    },
+  }
 }
 
