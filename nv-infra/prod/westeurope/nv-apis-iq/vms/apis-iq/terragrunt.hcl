@@ -78,7 +78,7 @@ inputs = {
     {
       name               = "apis-iq-nsg"
       move_default_rules = true
-      rules = []
+      rules              = []
     }
   ]
 }
