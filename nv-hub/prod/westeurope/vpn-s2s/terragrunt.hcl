@@ -281,6 +281,15 @@ inputs = {
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
     },
+    {
+      name                       = "rv1-temp-siemens"
+      local_network_gateway_name = "rv1-temp-siemens"
+      secret_name                = "rv1-temp-siemens-psk"
+      gateway_address            = "31.208.251.162"
+      address_space              = "10.108.160.0/28,10.208.64.0/25"
+      address_prefix             = "10.108.160.0/28,10.208.64.0/25"
+      enable_bgp                 = "false"
+    },
   ]
 }
 
