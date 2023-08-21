@@ -78,18 +78,7 @@ inputs = {
     {
       name               = "apis-iq-nsg"
       move_default_rules = true
-      rules = [
-        {
-          name                    = "Labs_MFA_VPN"
-          priority                = "200"
-          direction               = "Inbound"
-          source_address_prefix   = "10.16.8.0/23"
-          protocol                = "*"
-          destination_port_ranges = ["0-65535"]
-          access                  = "Allow"
-          description             = "Allow connections from Labs MFA VPN clients"
-        },
-      ]
+      rules = []
     }
   ]
 }
