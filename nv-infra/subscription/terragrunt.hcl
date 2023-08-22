@@ -17,7 +17,6 @@ inputs = {
       service_principals = [
         "aviatrix_controller_app_prod",
         "MoveCollection-ne-we-ne",
-        "nv_infra_packer",
       ],
     },
     "Reader" = {
@@ -36,6 +35,15 @@ inputs = {
   resource_provider_registrations = [
     {
       name = "Microsoft.Synapse"
+    },
+    {
+      name = "Microsoft.HybridCompute"
+    },
+    {
+      name = "Microsoft.HybridConnectivity"
+    },
+    {
+      name = "Microsoft.AzureArcData"
     },
   ]
 }
