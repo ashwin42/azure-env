@@ -8,7 +8,7 @@ include {
 }
 
 inputs = {
-    resource_group_name = "nv-labs-qc"
+  resource_group_name = "nv-labs-qc"
 }
 
 
