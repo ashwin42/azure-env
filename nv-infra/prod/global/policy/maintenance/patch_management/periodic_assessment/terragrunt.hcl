@@ -31,13 +31,13 @@ inputs = {
         },
         {
           fetch_policy_definition_id     = true
-          policy_definition_display_name = "[Preview]: Configure periodic checking for missing system updates on azure virtual machines"
+          policy_definition_display_name = "[Preview]: Configure periodic checking for missing system updates on azure Arc-enabled servers"
           parameter_values               = file("parameters_win.json")
           reference_id                   = "ospatching_arc_win"
         },
         {
           fetch_policy_definition_id     = true
-          policy_definition_display_name = "[Preview]: Configure periodic checking for missing system updates on azure virtual machines"
+          policy_definition_display_name = "[Preview]: Configure periodic checking for missing system updates on azure Arc-enabled servers"
           parameter_values               = file("parameters_linux.json")
           reference_id                   = "ospatching_arc_linux"
         },
