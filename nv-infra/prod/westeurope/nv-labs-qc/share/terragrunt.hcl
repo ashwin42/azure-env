@@ -11,12 +11,9 @@ dependency "rg" {
   config_path = "../resource_group"
 }
 
-dependency "rv" {
-  config_path = "../../recovery_vault"
-}
-
 inputs = {
   name                         = "rndqcstorage"
+  recovery_vault_name          = "nv-labs-qc-rv"
   resource_group_name          = dependency.rg.outputs.resource_group_name
   register_with_recovery_vault = true
   azure_files_authentication = {
@@ -33,7 +30,7 @@ inputs = {
         {
           name = "chemical-backup-policy"
           backup = {
-            frequency = "Weekly"
+            frequency = "Daily"
             time      = "23:00"
           }
 
@@ -59,7 +56,7 @@ inputs = {
         {
           name = "mechanical-backup-policy"
           backup = {
-            frequency = "Weekly"
+            frequency = "Daily"
             time      = "23:00"
           }
 
