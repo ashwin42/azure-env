@@ -1,5 +1,5 @@
 ---
-name: Generate terraform docs
+name: Terragrunt hclfmt
 on:
   - pull_request
 
