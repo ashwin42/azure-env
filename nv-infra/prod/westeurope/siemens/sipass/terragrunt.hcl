@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
@@ -38,6 +38,7 @@ inputs = {
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "Premium_LRS"
   availability_set_id                    = dependency.as.outputs.availability_sets.nv_siemens_avs
+  netbox_status                          = "offline"
 
   storage_image_reference = {
     offer     = "SQL2016SP1-WS2016",
