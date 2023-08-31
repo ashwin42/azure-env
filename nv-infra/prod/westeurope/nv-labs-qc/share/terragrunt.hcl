@@ -7,19 +7,8 @@ include {
   path = find_in_parent_folders()
 }
 
-<<<<<<< HEAD
 inputs = {
   name                         = "rndqcstorage"
-=======
-dependency "rg" {
-  config_path = "../resource_group"
-}
-
-inputs = {
-  name                         = "rndqcstorage"
-  recovery_vault_name          = "nv-labs-qc-rv"
-  resource_group_name          = dependency.rg.outputs.resource_group_name
->>>>>>> f313e22ddc5e99e43d43ef1c74f304268a77c3f2
   register_with_recovery_vault = true
   azure_files_authentication = {
     directory_type = "AADDS"

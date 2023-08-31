@@ -8,10 +8,5 @@ include {
 }
 
 inputs = {
-<<<<<<< HEAD
-=======
-  resource_group_name = "nv-labs-qc"
->>>>>>> f313e22ddc5e99e43d43ef1c74f304268a77c3f2
 }
-
 
