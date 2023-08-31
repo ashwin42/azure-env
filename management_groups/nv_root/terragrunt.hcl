@@ -22,6 +22,7 @@ inputs = {
     "Contributor" = {
       service_principals = [
         "DefenderOnboarding",
+        "maintenance_windows_tags",
       ],
       groups = [
         "Azure Tenant Contributor Access",
@@ -79,6 +80,9 @@ inputs = {
       groups = [
         "NV Aviatrix Admin",
       ],
+      service_principals = [
+        "patching_assessments",
+      ]
     },
     "Terraform Resource Groups Contributor" = {
       service_principals = [

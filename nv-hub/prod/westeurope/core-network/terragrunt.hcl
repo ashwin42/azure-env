@@ -117,6 +117,14 @@ inputs = {
       name             = "GatewaySubnet"
       address_prefixes = ["10.40.254.0/24"]
     },
+    {
+      name             = "AzureBastionSubnet"
+      address_prefixes = ["10.40.251.0/26"]
+    },
+    {
+      name             = "RouteServerSubnet"
+      address_prefixes = ["10.40.100.0/27"]
+    }
   ]
 
   peerings = [
@@ -236,5 +244,9 @@ inputs = {
       vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-rg/providers/Microsoft.Network/virtualNetworks/nv-aviatrix-migration-vnet"
       allow_forwarded_traffic = true
     },
+    {
+      name    = "nv-hub_to_westeurope-nv-hub-avx-tvpc",
+      vnet_id = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/avx-prod-sc-rg/providers/Microsoft.Network/virtualNetworks/westeurope-nv-hub-avx-tvpc"
+    }
   ]
 }

@@ -12,6 +12,9 @@ inputs = {
       "groups" = [
         "NV Tools & Products Member",
       ],
+      users = [
+        "akshay.kumar@northvolt.com",
+      ],
     },
   }
 }
