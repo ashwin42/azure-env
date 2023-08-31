@@ -400,7 +400,8 @@ This is a list of projects in the repository based on project.hcl files.
 
 | Detail | Value |
 | ------ | ----- |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.32<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.42<br>northvolt/tf-mod-azure.git//vnet?ref=v0.7.26<br> |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-labs-qc |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.32<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.2<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.42<br>northvolt/tf-mod-azure.git//storage?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vnet?ref=v0.7.26<br> |
 | **business-unit** | 151058 Quality Control - LA |
 | **department** | 151 Manufacturing Support - LA |
 | **cost-center** | 151058251 Quality Control - LA |

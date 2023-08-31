@@ -9,6 +9,5 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name = "nv-labs-qc"
 }
 
