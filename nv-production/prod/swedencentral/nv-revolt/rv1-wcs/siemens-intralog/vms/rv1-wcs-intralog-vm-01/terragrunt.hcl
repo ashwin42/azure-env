@@ -81,6 +81,16 @@ inputs = {
       description           = "Allow connections from local subnet"
     },
     {
+      name                   = "Siemens_mgmt_wvd"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = "10.46.2.96/29"
+      protocol               = "Tcp"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow connections from Siemens Mgmt subnet"
+    },
+    {
       name                   = "LocalSubnetInboundWebApp"
       priority               = "210"
       direction              = "Inbound"
@@ -89,6 +99,19 @@ inputs = {
       destination_port_range = "4711,5005"
       description            = "Allow connections from local web delegated subnet"
     },
+    {
+      name      = "AutomationAccountAWS-DigiTrafficControl"
+      priority  = "220"
+      direction = "Inbound"
+      source_address_prefixes = [
+        "10.21.13.0/24",
+        "10.21.14.0/24",
+        "10.21.15.0/24",
+      ]
+      destination_port_range = "5000-5020"
+      protocol               = "Tcp"
+      description            = "Allow connections from Digitalization Traffic Control Team, AWS Automation Account"
+    }
   ]
 }
 
