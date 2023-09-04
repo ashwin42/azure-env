@@ -21,31 +21,6 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
-        {
-          address_prefix         = "10.12.0.0/14" #AWS
-          next_hop_type          = "VirtualAppliance"
-          next_hop_in_ip_address = "10.48.0.70"
-        },
-        {
-          address_prefix         = "10.18.0.0/15" #AWS
-          next_hop_type          = "VirtualAppliance"
-          next_hop_in_ip_address = "10.48.0.70"
-        },
-        {
-          address_prefix         = "10.20.0.0/14" #AWS
-          next_hop_type          = "VirtualAppliance"
-          next_hop_in_ip_address = "10.48.0.70"
-        },
-        {
-          address_prefix         = "10.24.0.0/15" #AWS
-          next_hop_type          = "VirtualAppliance"
-          next_hop_in_ip_address = "10.48.0.70"
-        },
-        {
-          address_prefix         = "10.32.0.0/13" #AWS
-          next_hop_type          = "VirtualAppliance"
-          next_hop_in_ip_address = "10.48.0.70"
-        },
       ]
     }
   ]
