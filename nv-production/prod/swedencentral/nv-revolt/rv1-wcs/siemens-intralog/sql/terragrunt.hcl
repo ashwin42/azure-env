@@ -70,7 +70,7 @@ inputs = {
   mssql_local_users = [
     {
       username      = "${local.name}-rw"
-      roles         = ["db_datawriter"]
+      roles         = ["db_owner"]
       database      = "${local.name}"
       create_secret = true
     },
