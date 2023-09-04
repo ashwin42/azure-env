@@ -51,6 +51,9 @@ inputs = {
     {
       name = "Microsoft.ResourceConnector"
     },
+    {
+      name = "Microsoft.ConnectedVMwarevSphere"
+    },
   ]
 }
 
