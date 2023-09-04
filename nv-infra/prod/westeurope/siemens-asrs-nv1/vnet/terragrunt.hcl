@@ -118,6 +118,11 @@ inputs = {
         },
       ]
     },
+    {
+      name             = "siemens-mgmt-subnet"
+      address_prefixes = ["10.46.2.96/29"]
+      route_table_name = "nv-gen-infra-vnet-default-rt"
+    }
   ]
 }
 
