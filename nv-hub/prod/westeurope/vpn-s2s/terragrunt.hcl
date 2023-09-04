@@ -286,7 +286,7 @@ inputs = {
       local_network_gateway_name = "rv1-temp-siemens"
       secret_name                = "rv1-temp-siemens-psk"
       gateway_address            = "31.208.251.162"
-      address_space              = "10.108.160.0/28,10.208.64.0/25"
+      address_space              = "192.168.100.0/24"
       address_prefix             = "10.108.160.0/28,10.208.64.0/25"
       enable_bgp                 = "false"
     },
