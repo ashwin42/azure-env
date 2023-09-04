@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.61"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -8,15 +8,15 @@ include {
 }
 
 dependency "vnet" {
-  config_path = "../subnet"
+  config_path = "../../subnet"
 }
 
 dependency "wvd" {
-  config_path = "../wvd"
+  config_path = "../../wvd"
 }
 
 dependency "rv" {
-  config_path = "../recovery_vault"
+  config_path = "../../recovery_vault"
 }
 
 locals {
@@ -39,11 +39,15 @@ inputs = {
   ad_join                                = true
   wvd_register                           = true
   localadmin_key_name                    = "domainjoin"
+  netbox_create_role                     = true
+  netbox_role                            = "apisiq"
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd-g2",
   }
+
   os_profile_windows_config = {
     provision_vm_agent        = true
     enable_automatic_upgrades = true
@@ -53,13 +57,14 @@ inputs = {
     admin_username = "domainjoin"
     computer_name  = local.name
   }
+
   network_interfaces = [
     {
       name                = "${local.name}-nic"
       security_group_name = "apis-iq-nsg"
       ip_configuration = [
         {
-          ipaddress                     = "10.46.0.52"
+          private_ip_address            = "10.46.1.52"
           subnet_id                     = dependency.vnet.outputs.subnets["nv-apis-iq-subnet-10.46.1.48_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
@@ -68,17 +73,13 @@ inputs = {
       ]
     },
   ]
-  custom_rules = [
+
+  network_security_groups = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
+      name               = "apis-iq-nsg"
+      move_default_rules = true
+      rules              = []
+    }
   ]
 }
 
