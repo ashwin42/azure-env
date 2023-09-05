@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.7.58"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.8.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -280,15 +280,6 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-    },
-    {
-      name                       = "rv1-temp-siemens"
-      local_network_gateway_name = "rv1-temp-siemens"
-      secret_name                = "rv1-temp-siemens-psk"
-      gateway_address            = "31.208.251.162"
-      address_space              = "192.168.100.0/24"
-      address_prefix             = "10.108.160.0/28,10.208.64.0/25"
-      enable_bgp                 = "false"
     },
   ]
 }
