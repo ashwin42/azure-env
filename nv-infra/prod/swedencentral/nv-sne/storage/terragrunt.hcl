@@ -15,7 +15,7 @@ inputs = {
   azure_files_authentication = {
     directory_type = "AADDS"
   }
-  
+
   file_shares = [
     {
       name  = "data",
