@@ -14,6 +14,11 @@ inputs = {
         "Azure Arc Onboarding",
       ],
     },
+    "Azure Arc VMware Private Clouds Onboarding" = {
+      service_principals = [
+        "Azure Arc Onboarding",
+      ],
+    },
     "Azure Connected Machine Resource Administrator" = {
       service_principals = [
         "patching_assessments",
