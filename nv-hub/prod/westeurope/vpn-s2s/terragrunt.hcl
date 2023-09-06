@@ -86,22 +86,6 @@ inputs = {
       sa_lifetime         = "27000"
     },
     {
-      name                = "azure-to-lilje-office-s2s"
-      secret_name         = "azure-to-lilje-office-s2s-psk"
-      gateway_address     = "98.128.134.222"
-      address_space       = "10.245.255.0/30"
-      enable_bgp          = "true"
-      bgp_asn             = "65407"
-      bgp_peering_address = "10.245.255.2"
-      dh_group            = "DHGroup14"
-      ike_encryption      = "AES256"
-      ike_integrity       = "SHA256"
-      ipsec_encryption    = "AES256"
-      ipsec_integrity     = "SHA256"
-      pfs_group           = "PFS24"
-      sa_lifetime         = "27000"
-    },
-    {
       name                = "ett-cloudvpn-01-internet"
       secret_name         = "ett-cloudvpn-01-internet-psk"
       gateway_address     = "194.17.162.199"
