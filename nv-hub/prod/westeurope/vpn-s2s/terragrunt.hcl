@@ -210,15 +210,6 @@ inputs = {
       dpd_timeout_seconds = "45"
     },
     {
-      name                       = "cellhouse"
-      local_network_gateway_name = "cellhouse"
-      secret_name                = "vpn-cellhouse-psk"
-      gateway_address            = "92.43.32.105"
-      address_space              = "10.193.8.0/24"
-      address_prefix             = "10.193.8.0/24"
-      enable_bgp                 = "false"
-    },
-    {
       name                       = "rnd-temp-office"
       local_network_gateway_name = "rnd-temp-office"
       secret_name                = "vpn-rnd-temp-office-psk"
