@@ -228,15 +228,6 @@ inputs = {
       enable_bgp                 = "false"
     },
     {
-      name                       = "qc-labs-2"
-      local_network_gateway_name = "qc-labs-2"
-      secret_name                = "vpn-qc-labs-2-psk"
-      gateway_address            = "92.43.36.196"
-      address_space              = "10.16.36.0/23"
-      address_prefix             = "10.16.36.0/23"
-      enable_bgp                 = "false"
-    },
-    {
       name                       = "drei-office"
       local_network_gateway_name = "drei-office"
       secret_name                = "vpn-drei-office-psk"
