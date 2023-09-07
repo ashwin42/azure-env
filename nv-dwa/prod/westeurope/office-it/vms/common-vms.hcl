@@ -20,7 +20,7 @@ dependency "subnet" {
 
 locals {
   name    = basename(get_original_terragrunt_dir())
-  vm_name = "office-it-${local.name}"
+  vm_name = "officeit${local.name}"
 }
 
 inputs = {
@@ -42,12 +42,15 @@ inputs = {
   storage_account_name                   = dependency.storage.outputs.storage_account_name
   ad_join                                = "true"
   storage_image_reference = {
-    sku = "win11-22h2-pro",
+    sku       = "win11-22h2-pro"
+    publisher = "MicrosoftWindowsDesktop"
+    offer     = "Windows-11"
+    version   = "latest",
   }
   storage_os_disk = {
     create_option = "FromImage"
     caching       = "ReadWrite"
-    disk_size_gb  = "64"
+    disk_size_gb  = "150"
   }
   os_profile_windows_config = {
     enable_automatic_upgrades = true
