@@ -37,6 +37,13 @@ inputs = {
           ]
         }
       ]
+      iam_assignments = {
+        "Storage File Data SMB Share Contributor" = {
+          groups = [
+            "TestDataNorthvolt Storage Access",
+          ],
+        },
+      }
     }
   ]
 
