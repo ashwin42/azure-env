@@ -4,6 +4,9 @@ locals {
   azurerm_features           = {}
   setup_prefix               = "autodesk-vault"
   resource_group_name        = "autodesk-vault-rg"
+  install_winrm              = true
+  netbox_role                = "autodeskvault"
+  providers                  = ["azurerm", "netbox"]
   tags = {
     business-unit = "111 COO - Adv Tech - Raw Mat & Energy - AB"
     department    = "111044 Blueprint - AB"
