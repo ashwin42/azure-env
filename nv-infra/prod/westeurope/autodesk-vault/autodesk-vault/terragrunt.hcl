@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include {
@@ -33,6 +33,8 @@ inputs = {
   ad_join                                = true
   localadmin_key_name                    = "${local.name}-nvadmin"
   managed_disk_type                      = "Premium_LRS"
+  move_default_rules                     = true
+  boot_diagnostics_enabled               = true
   storage_image_reference = {
     offer     = "sql2019-ws2022",
     publisher = "MicrosoftSQLServer",
@@ -62,36 +64,13 @@ inputs = {
       ]
     },
   ]
-  custom_rules = [
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "205"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-  ]
 
   data_disks = [
     {
       name                 = "${local.name}-data1"
-      size                 = "500"
+      size                 = "1024"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
     },
   ]
 }
-
