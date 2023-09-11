@@ -48,7 +48,7 @@ inputs = {
       description                  = "Management VM for Siemens"
       assign_groups = [
         "NV TechOps Role",
-        "NV IT Core Role",
+        "VPN Siemens ASRS AP",
       ]
     }
   ]

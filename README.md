@@ -971,7 +971,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/ums-env-rg |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.3.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet?ref=v0.3.0<br> |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.8.6<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.5<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.4<br>northvolt/tf-mod-azure.git//vnet?ref=v0.8.4<br> |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
