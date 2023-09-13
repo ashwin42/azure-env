@@ -96,5 +96,13 @@ inputs = {
       description           = "Allow connections from local subnet"
     }
   ]
+
+  iam_assignments = {
+    "Desktop Virtualization Power On Off Contributor" = {
+      groups = [
+        "Labware LIMS Developers",
+      ],
+    },
+  }
 }
 
