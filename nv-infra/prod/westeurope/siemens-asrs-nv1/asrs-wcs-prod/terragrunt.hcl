@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.26"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
 }
 
 include {
@@ -15,6 +15,7 @@ dependency "rv" {
 }
 
 inputs = {
+  netbox_role                            = "asrs"
   setup_prefix                           = "asrs-wcs-prod"
   vm_name                                = "asrs-wcs-prod"
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
@@ -27,6 +28,7 @@ inputs = {
   localadmin_key_name                    = "asrs-wcs-prod-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = "true"
+  install_winrm                          = true
   storage_image_reference = {
     sku = "2016-Datacenter-smalldisk",
   }
@@ -41,16 +43,17 @@ inputs = {
       primary             = true
       security_group_name = "asrs-wcs-prod-vm-nsg"
       name                = "asrs-wcs-prod-nic1"
-      ipaddress           = "10.46.0.6"
       public_ip           = false
       ip_configuration = [{
         subnet_id                     = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].id
         private_ip_address_allocation = "Static"
+        private_ip_address            = "10.46.0.6"
       }]
     }
   ]
   boot_diagnostics_enabled = true
   dns_servers              = null
+  managed_disk_name        = "asrs-wcs-prod-vm-osdisk"
   data_disks = [
     {
       name                 = "asrs-wcs-prod-data1"
@@ -73,6 +76,16 @@ inputs = {
       source_address_prefix = "10.16.8.0/23"
       access                = "Allow"
       description           = "Allow connections from Labs MFA VPN clients"
+    },
+    {
+      name                   = "Siemens_mgmt_wvd"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.vnet.outputs.subnets["siemens-mgmt-subnet"].address_prefixes[0]
+      protocol               = "Tcp"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow connections from Siemens Mgmt subnet"
     },
     {
       name                  = "LocalSubnet"

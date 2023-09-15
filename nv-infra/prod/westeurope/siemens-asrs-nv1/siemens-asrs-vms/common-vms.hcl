@@ -60,6 +60,16 @@ inputs = {
       description           = "Allow connections from local subnet"
     },
     {
+      name                   = "Siemens_mgmt_wvd"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = dependency.vnet.outputs.subnets["siemens-mgmt-subnet"].address_prefixes[0]
+      protocol               = "Tcp"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow connections from Siemens Mgmt subnet"
+    },
+    {
       name                   = "LocalSubnetWebCathode"
       priority               = "210"
       direction              = "Inbound"

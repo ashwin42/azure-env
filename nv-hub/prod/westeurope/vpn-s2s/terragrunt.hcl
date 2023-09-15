@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.7.58"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.8.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -77,22 +77,6 @@ inputs = {
       enable_bgp          = "true"
       bgp_asn             = "65307"
       bgp_peering_address = "10.244.255.2"
-      dh_group            = "DHGroup14"
-      ike_encryption      = "AES256"
-      ike_integrity       = "SHA256"
-      ipsec_encryption    = "AES256"
-      ipsec_integrity     = "SHA256"
-      pfs_group           = "PFS24"
-      sa_lifetime         = "27000"
-    },
-    {
-      name                = "azure-to-lilje-office-s2s"
-      secret_name         = "azure-to-lilje-office-s2s-psk"
-      gateway_address     = "98.128.134.222"
-      address_space       = "10.245.255.0/30"
-      enable_bgp          = "true"
-      bgp_asn             = "65407"
-      bgp_peering_address = "10.245.255.2"
       dh_group            = "DHGroup14"
       ike_encryption      = "AES256"
       ike_integrity       = "SHA256"
@@ -210,30 +194,12 @@ inputs = {
       dpd_timeout_seconds = "45"
     },
     {
-      name                       = "cellhouse"
-      local_network_gateway_name = "cellhouse"
-      secret_name                = "vpn-cellhouse-psk"
-      gateway_address            = "92.43.32.105"
-      address_space              = "10.193.8.0/24"
-      address_prefix             = "10.193.8.0/24"
-      enable_bgp                 = "false"
-    },
-    {
       name                       = "rnd-temp-office"
       local_network_gateway_name = "rnd-temp-office"
       secret_name                = "vpn-rnd-temp-office-psk"
       gateway_address            = "92.43.35.134"
       address_space              = "10.16.32.0/23"
       address_prefix             = "10.16.32.0/23"
-      enable_bgp                 = "false"
-    },
-    {
-      name                       = "qc-labs-2"
-      local_network_gateway_name = "qc-labs-2"
-      secret_name                = "vpn-qc-labs-2-psk"
-      gateway_address            = "92.43.36.196"
-      address_space              = "10.16.36.0/23"
-      address_prefix             = "10.16.36.0/23"
       enable_bgp                 = "false"
     },
     {

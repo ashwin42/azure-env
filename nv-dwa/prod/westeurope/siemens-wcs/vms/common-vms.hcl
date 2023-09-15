@@ -79,6 +79,16 @@ inputs = {
       description           = "Allow connections from local subnet"
     },
     {
+      name                   = "Siemens_mgmt_wvd"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = "10.46.2.96/29"
+      protocol               = "Tcp"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow connections from Siemens Mgmt subnet"
+    },
+    {
       name                   = "LocalSubnetInboundWebApp"
       priority               = "210"
       direction              = "Inbound"
