@@ -58,12 +58,7 @@ inputs = {
       ]
     },
   ],
-  public_ips = [
-    {
-      name = "${local.name}-public-ip"
-    },
-  ]
-  data_collection_rule_names = ["linux_syslog-dcr"]
+  
   custom_rules = [
     {
       name                       = "Labs_MFA_VPN"
