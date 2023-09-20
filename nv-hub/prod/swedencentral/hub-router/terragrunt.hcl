@@ -58,7 +58,7 @@ inputs = {
       ]
     },
   ],
-  
+
   custom_rules = [
     {
       name                       = "Labs_MFA_VPN"
