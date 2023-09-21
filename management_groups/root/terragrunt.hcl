@@ -12,11 +12,6 @@ inputs = {
   name         = "706c5db9-5278-483b-b622-70084f823a12"
   display_name = "Tenant Root Group"
   iam_assignments = {
-    "Owner" = {
-      groups = [
-        "Azure Tenant Owner Access",
-      ]
-    }
     "Lucidscale import" = {
       service_principals = [
         "LucidChart Cloud Insights Access",
