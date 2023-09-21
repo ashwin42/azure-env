@@ -13,8 +13,8 @@ inputs = {
   vnet_resource_group_name = "erp_prod"
   subnets = [
     {
-      name             = "nv-lasernet-subnet-10.46.32.0_28"
-      address_prefixes = ["10.46.32.0/28"]
+      name             = "nv-lasernet-subnet-10.46.32.32_28"
+      address_prefixes = ["10.46.32.32/28"]
     },
   ]
 }
