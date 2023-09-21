@@ -1,6 +1,5 @@
 locals {
   project_name        = basename(get_terragrunt_dir())
-  providers           = ["azurerm", "netbox"]
   resource_group_name = local.project_name
   recovery_vault_name = "nv-lasernet-rv"
   tags = {
