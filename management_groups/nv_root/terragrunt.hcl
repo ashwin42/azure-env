@@ -24,9 +24,6 @@ inputs = {
         "DefenderOnboarding",
         "maintenance_windows_tags",
       ],
-      groups = [
-        "Azure Tenant Contributor Access",
-      ],
     },
     "Owner" = {
       groups = [
@@ -58,12 +55,12 @@ inputs = {
     },
     "Log Analytics Reader" = {
       service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
+        "Grafana - Azure Monitor Datasource",
       ],
     },
     "Monitoring Reader" = {
       service_principals = [
-        "Grafana Dev - Azure Monitor Datasource",
+        "Grafana - Azure Monitor Datasource",
       ],
     },
     "Network Reader" = {

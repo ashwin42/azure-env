@@ -991,7 +991,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-wwt-ett-us1-rg |
-| **Resources** | northvolt/tf-mod-azure.git//vnet?ref=v0.7.12<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.22<br> |
+| **Resources** | northvolt/tf-mod-azure.git//vnet?ref=v0.7.12<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.3<br> |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
