@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git/vm//netbox?ref=v0.8.6"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "github.com/northvolt/tf-mod-azure/vm//netbox?ref=v0.8.6"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
 }
 
 include "root" {
