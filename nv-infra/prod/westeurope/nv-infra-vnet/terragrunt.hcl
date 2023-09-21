@@ -44,7 +44,16 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
-
+        {
+          address_prefix         = "10.46.96.0/19" #Azure West Europe DWA
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.64.0.0/19" #Azure Sweden Central Prod General Vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        }
       ]
     }
   ]

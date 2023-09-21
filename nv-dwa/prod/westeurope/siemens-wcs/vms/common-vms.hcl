@@ -79,6 +79,16 @@ inputs = {
       description           = "Allow connections from local subnet"
     },
     {
+      name                   = "Siemens_mgmt_wvd"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = "10.46.2.96/29"
+      protocol               = "Tcp"
+      destination_port_range = "3389"
+      access                 = "Allow"
+      description            = "Allow connections from Siemens Mgmt subnet"
+    },
+    {
       name                   = "LocalSubnetInboundWebApp"
       priority               = "210"
       direction              = "Inbound"
@@ -103,7 +113,7 @@ inputs = {
       source_address_prefix  = "10.18.67.0/24"
       protocol               = "Tcp"
       description            = "Allow connections from DWA-Core AWS Account"
-      destination_port_range = "5000-5010"
+      destination_port_range = "5000-5020"
     },
     {
       name                   = "DWACoreAWSAccountCIDR2"
@@ -112,7 +122,7 @@ inputs = {
       source_address_prefix  = "10.18.68.0/23"
       protocol               = "Tcp"
       description            = "Allow connections from DWA-Core AWS Account"
-      destination_port_range = "5000-5010"
+      destination_port_range = "5000-5020"
     },
   ]
 }

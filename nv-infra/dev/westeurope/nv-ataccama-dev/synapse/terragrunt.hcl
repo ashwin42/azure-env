@@ -86,6 +86,10 @@ JSON
       group     = "NV TechOps Role"
     },
     {
+      role_name = "Synapse Administrator"
+      group     = "Ataccama - Datalake Admins Dev"
+    },
+    {
       role_name = "Synapse Contributor"
       group     = "Ataccama - Datalake Admins Dev"
     },

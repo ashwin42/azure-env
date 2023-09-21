@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.8"
-  #source = "../../../../../tf-mod-azure/vnet"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet"
 }
 
 include "root" {
@@ -21,6 +21,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.46.0.0/16" #Azure WestEurope General Vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        }
       ]
     }
   ]

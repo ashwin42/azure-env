@@ -1,0 +1,19 @@
+{
+    "assessmentMode": {
+       "value": "AutomaticByPlatform"
+    },
+    "locations": {
+        "value": []
+     },
+     "osType": {
+        "value": "Linux"
+     },
+     "tagOperator": {
+        "value": "Any"
+     },
+     "tagValues": {
+        "value": {}
+     }
+}
+
+ 

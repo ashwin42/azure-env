@@ -36,34 +36,48 @@ jobs:
   update_readme:
     runs-on: ubuntu-22.04
     steps:
+      - name: Check project.hcl changed
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            project:
+              - "**/project.hcl"
+
       - name: Checkout code
+        if: steps.changes.outputs.project == 'true'
         uses: actions/checkout@v3.5.2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Terragrunt
+        if: steps.changes.outputs.project == 'true'
         uses: autero1/action-terragrunt@v1.3.0
         with:
           terragrunt_version: ${{ inputs.terragrunt_version }}
 
       - name: Setup Terraform
+        if: steps.changes.outputs.project == 'true'
         uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: ${{ inputs.terraform_version }}
           terraform_wrapper: false
 
       - name: Setup python
+        if: steps.changes.outputs.project == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: ${{ inputs.python_version }}
           cache: 'pip'
 
       - name: Install dependencies
+        if: steps.changes.outputs.project == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
 
       - name: Execute README.md update script
+        if: steps.changes.outputs.project == 'true'
         run: python .github/workflows/readme.py
         env:
           ROOT_DIR: ${{ github.workspace }}
@@ -71,6 +85,7 @@ jobs:
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
 
       - name: Import bot's GPG key for signing commits
+        if: steps.changes.outputs.project == 'true'
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@6f6401f19d4d5866d07e9026b6468c69596e9470
         with:
@@ -81,6 +96,7 @@ jobs:
           git_commit_gpgsign: true
 
       - name: Add and commit fmt changes
+        if: steps.changes.outputs.project == 'true'
         uses: EndBug/add-and-commit@fc734f817560acc116627c6133815f6289cd96ce
         with:
           add: README.md PROJECTS.md

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.3.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.8.4"
   #source = "../../../../../../tf-mod-azure/vnet/"
 }
 
