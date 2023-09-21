@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.22"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.3"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -99,32 +99,32 @@ inputs = {
       description            = "Allow connections from Ett MFA VPN clients"
     },
     {
-      name                   = "WWT_WS_102"
+      name                   = "WWT_WS_8910"
       priority               = "202"
       direction              = "Inbound"
       source_address_prefix  = "10.14.16.96/32"
-      protocol               = "Tcp"
-      destination_port_range = "102"
+      protocol               = "Udp"
+      destination_port_range = "8910"
       access                 = "Allow"
       description            = "Allow connections from wwt-workstation"
     },
     {
-      name                   = "WWT_S1_102"
+      name                   = "WWT_S1_8910"
       priority               = "203"
       direction              = "Inbound"
       source_address_prefix  = "10.14.16.145/32"
-      protocol               = "Tcp"
-      destination_port_range = "102"
+      protocol               = "Udp"
+      destination_port_range = "8910"
       access                 = "Allow"
       description            = "Allow connections from wwt-server01"
     },
     {
-      name                   = "WWT_S2_102"
+      name                   = "WWT_S2_8910"
       priority               = "204"
       direction              = "Inbound"
       source_address_prefix  = "10.14.16.6/32"
-      protocol               = "Tcp"
-      destination_port_range = "102"
+      protocol               = "Udp"
+      destination_port_range = "8910"
       access                 = "Allow"
       description            = "Allow connections from wwt-server02"
     },
