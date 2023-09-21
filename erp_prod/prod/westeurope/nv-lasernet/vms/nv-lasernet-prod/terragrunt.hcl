@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git/vm/netbox?ref=v0.8.6"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.6"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -9,11 +9,11 @@ include "root" {
 }
 
 dependency "vnet" {
-  config_path = "../subnet"
+  config_path = "../../subnet"
 }
 
 dependency "wvd" {
-  config_path = "../wvd"
+  config_path = "../../wvd"
 }
 
 dependency "rv" {
@@ -26,8 +26,7 @@ locals {
 
 
 inputs = {
-  token                                  = dependency.wvd.outputs.token
-  host_pool_name                         = dependency.wvd.outputs.host_pool.name
+  token                                  = dependency.wvd.outputs.tokens.nv-lasernet-hp
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -36,6 +35,7 @@ inputs = {
   key_vault_rg                           = "erp-prod-rg"
   localadmin_key_name                    = "localadmin"
   netbox_role                            = "lasernet-vms"
+  vm_name                                = local.name
   name                                   = local.name
   netbox_create_role                     = true
   delete_os_disk_on_termination          = true
@@ -58,24 +58,16 @@ inputs = {
 
   os_profile = {
     admin_username = "domainjoin"
-    computer_name  = local.name
+    computer_name  = "lasernet001"
   }
-
-  network_security_groups = [
-    {
-      name               = "${local.name}-nsg"
-      move_default_rules = true
-    }
-  ]
 
   network_interfaces = [
     {
-      name                = "${local.name}-nic"
-      security_group_name = "${local.name}-nsg"
+      name = "${local.name}-nic"
       ip_configuration = [
         {
-          private_ip_address            = "10.46.32.3/28"
-          subnet_id                     = dependency.vnet.outputs.subnets["nv-lasernet-subnet-10.46.32.0_28"].id
+          private_ip_address            = "10.46.32.34"
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-lasernet-subnet-10.46.32.32_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
           ipconfig_name                 = "${local.name}-ipconfig"
