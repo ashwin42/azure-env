@@ -3,6 +3,10 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
+dependency "subnet" {
+  config_path = "../subnet"
+}
+
 include {
   path = find_in_parent_folders()
 }
@@ -68,6 +72,23 @@ inputs = {
       }
     }
   ]
+
+  private_endpoints = {
+    nv-labs-rndqcstorage-file-pe = {
+      subnet_id = dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id
+      private_service_connection = {
+        name              = "nv-labs-rndqcstorage-file-pec"
+        subresource_names = ["file"]
+      }
+      private_dns_zone_group = {
+        name                         = "nv-labs-rndqcstorage-file-pec"
+        dns_zone_resource_group_name = "nv_infra"
+        dns_zone_name                = "privatelink.file.core.windows.net"
+        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+
+      }
+    }
+  }
 
   iam_assignments = {
     "Storage Account Contributor" = {
