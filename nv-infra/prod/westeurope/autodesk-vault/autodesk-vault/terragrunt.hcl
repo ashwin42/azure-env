@@ -73,4 +73,10 @@ inputs = {
       storage_account_type = "StandardSSD_LRS"
     },
   ]
+
+  storage_os_disk = {
+    name              = "autodesk-vault-osdisk",
+    disk_size_gb      = "256",
+    managed_disk_type = "Premium_LRS",
+  }
 }
