@@ -108,6 +108,16 @@ inputs = {
       destination_port_range  = "5000-5020"
       description             = "Allow connections from Digitalization Traffic Control Team, AWS Automation Account"
     },
+    {
+      name                    = "AWS_Ett_core"
+      priority                = "254"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.14.3.0/24", "10.14.4.0/23"]
+      protocol                = "Tcp"
+      destination_port_range  = "5005-5020"
+      access                  = "Allow"
+      description             = "Allow connections from Digitalization Traffic Control Team, AWS Ett Core Account"
+    },
   ]
 }
 
