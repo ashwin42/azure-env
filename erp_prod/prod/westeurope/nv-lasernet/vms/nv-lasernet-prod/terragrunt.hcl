@@ -66,7 +66,7 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          private_ip_address            = "10.46.32.34"
+          private_ip_address            = "10.46.32.36"
           subnet_id                     = dependency.vnet.outputs.subnets["nv-lasernet-subnet-10.46.32.32_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Dynamic"
