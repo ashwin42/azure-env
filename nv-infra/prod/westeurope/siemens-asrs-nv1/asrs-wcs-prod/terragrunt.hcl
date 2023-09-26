@@ -271,6 +271,16 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from ASRS service at AWS Ett DS1"
     },
+    {
+      name                    = "AWS_Ett_core"
+      priority                = "254"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.14.3.0/24", "10.14.4.0/23"]
+      protocol                = "Tcp"
+      destination_port_range  = "5005-5020"
+      access                  = "Allow"
+      description             = "Allow connections from API Mgmt service"
+    },
   ]
   windows_data_collection_rule_names = ["windows_event_log-dcr"]
 }
