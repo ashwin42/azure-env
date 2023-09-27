@@ -28,7 +28,6 @@ inputs = {
     "Owner" = {
       groups = [
         "NV TechOps Lead Role",
-        "Azure Tenant Owner Access",
       ],
     },
     "Reader" = {
