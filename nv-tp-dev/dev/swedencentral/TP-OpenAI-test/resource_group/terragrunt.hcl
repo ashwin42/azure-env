@@ -13,5 +13,10 @@ inputs = {
         "NV Tools & Products Member",
       ],
     },
+    "Owner" = {
+      "groups" = [
+        "NV Tools & Products Leads",
+      ],
+    },
   }
 }
