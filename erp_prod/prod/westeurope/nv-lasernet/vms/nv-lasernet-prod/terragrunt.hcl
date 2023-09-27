@@ -60,7 +60,7 @@ inputs = {
     computer_name  = "lasernet001"
   }
 
-   identity = {
+  identity = {
     type = "SystemAssigned"
   }
 
