@@ -16,7 +16,7 @@ inputs = {
         "aviatrix_controller_app_prod",
       ],
     },
-    
+
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
