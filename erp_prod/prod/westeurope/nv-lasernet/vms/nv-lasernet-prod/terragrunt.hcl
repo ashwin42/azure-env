@@ -60,6 +60,10 @@ inputs = {
     computer_name  = "lasernet001"
   }
 
+   identity = {
+    type = "SystemAssigned"
+  }
+
   network_interfaces = [
     {
       name = "${local.name}-nic"
