@@ -33,9 +33,10 @@ inputs = {
     },
     "Reader" = {
       groups = [
+        "Azure Subscriptions Reader Access",
         "NV TechOps Read Member",
         "NV Aviatrix Admin",
-        "NV Cyber Defence Member"
+        "NV Cyber Defence Member",
       ],
     },
     "Resource Policy Contributor" = {

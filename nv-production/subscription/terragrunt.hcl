@@ -17,11 +17,6 @@ inputs = {
         "aviatrix_controller_app_prod",
       ],
     },
-    "Reader" = {
-      groups = [
-        "Azure Subscriptions Reader Access",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
