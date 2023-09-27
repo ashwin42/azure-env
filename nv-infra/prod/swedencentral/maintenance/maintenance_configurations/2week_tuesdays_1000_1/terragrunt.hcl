@@ -16,7 +16,7 @@ inputs = {
   in_guest_user_patch_mode = "User"
 
   install_patches = {
-    reboot = "IfRequired"
+    reboot = "Never"
     windows = {
       classifications_to_include = ["Critical", "Security"]
     }
