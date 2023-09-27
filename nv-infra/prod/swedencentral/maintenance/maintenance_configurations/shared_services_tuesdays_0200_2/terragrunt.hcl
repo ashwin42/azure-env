@@ -16,7 +16,7 @@ inputs = {
   in_guest_user_patch_mode = "User"
 
   install_patches = {
-    reboot = "Never"
+    reboot = "IfRequired"
     windows = {
       classifications_to_include = ["Critical", "Security"]
     }
@@ -26,7 +26,7 @@ inputs = {
   }
 
   window = {
-    start_date_time = "2023-10-10 10:00"
+    start_date_time = "2023-10-10 02:00"
     recur_every     = "2Week Tuesday"
     duration        = "02:00"
   }
