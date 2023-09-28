@@ -16,32 +16,25 @@ dependency "wvd" {
   config_path = "../../wvd"
 }
 
-dependency "rv" {
-  config_path = "../../recovery_vault"
-}
-
 locals {
   name = basename(get_terragrunt_dir())
 }
 
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens.nv-lasernet-hp
-  recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
-  recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
-  recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
-  vm_size                                = "Standard_B4ms"
-  key_vault_name                         = "erp-prod-rg"
-  key_vault_rg                           = "erp-prod-rg"
-  localadmin_key_name                    = "localadmin"
-  vm_name                                = local.name
-  name                                   = local.name
-  delete_os_disk_on_termination          = true
-  aad_join                               = true
-  mdm_register                           = true
-  wvd_register                           = true
-  create_localadmin_password             = true
-  install_winrm                          = true
+  token                         = dependency.wvd.outputs.tokens.nv-lasernet-hp
+  vm_size                       = "Standard_B4ms"
+  key_vault_name                = "erp-prod-rg"
+  key_vault_rg                  = "erp-prod-rg"
+  localadmin_key_name           = "localadmin"
+  vm_name                       = local.name
+  name                          = local.name
+  delete_os_disk_on_termination = true
+  aad_join                      = true
+  mdm_register                  = true
+  wvd_register                  = true
+  create_localadmin_password    = true
+  install_winrm                 = true
 
   storage_image_reference = {
     offer     = "Windows-10",
