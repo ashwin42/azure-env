@@ -45,6 +45,15 @@ inputs = {
     {
       name = "Microsoft.AzureArcData"
     },
+    {
+      name = "Microsoft.ExtendedLocation"
+    },
+    {
+      name = "Microsoft.ResourceConnector"
+    },
+    {
+      name = "Microsoft.ConnectedVMwarevSphere"
+    },
   ]
 }
 
