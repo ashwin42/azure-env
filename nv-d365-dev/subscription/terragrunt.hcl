@@ -11,13 +11,6 @@ include "root" {
 inputs = {
   management_group = "Self Managed"
   name             = "NV-D365-Dev"
-  iam_assignments = {
-    "Reader" = {
-      groups = [
-        "Azure Subscriptions Reader Access",
-      ],
-    },
-  }
 
   resource_provider_registrations = [
     {

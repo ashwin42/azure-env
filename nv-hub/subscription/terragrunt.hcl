@@ -20,7 +20,6 @@ inputs = {
     },
     "Reader" = {
       groups = [
-        "Azure Subscriptions Reader Access",
         "AWS Admins",
       ],
       users = [

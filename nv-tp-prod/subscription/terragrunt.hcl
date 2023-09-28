@@ -19,7 +19,6 @@ inputs = {
     },
     "Reader" = {
       groups = [
-        "Azure Subscriptions Reader Access",
         "NV Tools & Products Member",
       ],
     },

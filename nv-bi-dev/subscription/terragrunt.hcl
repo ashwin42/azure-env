@@ -29,11 +29,6 @@ inputs = {
         "NV BI Subscription Contributor",
       ],
     },
-    "Reader" = {
-      groups = [
-        "Azure Subscriptions Reader Access",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",

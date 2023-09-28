@@ -16,11 +16,6 @@ inputs = {
         "aviatrix_controller_app_prod",
       ],
     },
-    "Reader" = {
-      groups = [
-        "Azure Subscriptions Reader Access",
-      ],
-    },
   }
 
   tags = {

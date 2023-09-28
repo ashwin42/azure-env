@@ -19,11 +19,6 @@ inputs = {
         "MoveCollection-ne-we-ne",
       ],
     },
-    "Reader" = {
-      groups = [
-        "Azure Subscriptions Reader Access",
-      ],
-    },
     "User Access Administrator" = {
       service_principals = [
         "MS-PIM",
