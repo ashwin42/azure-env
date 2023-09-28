@@ -22,19 +22,19 @@ locals {
 
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens.nv-lasernet-test-hp
-  vm_size                                = "Standard_B4ms"
-  key_vault_name                         = "erp-prod-rg"
-  key_vault_rg                           = "erp-prod-rg"
-  localadmin_key_name                    = "localadmin"
-  vm_name                                = local.name
-  name                                   = local.name
-  delete_os_disk_on_termination          = true
-  aad_join                               = true
-  mdm_register                           = true
-  wvd_register                           = true
-  create_localadmin_password             = true
-  install_winrm                          = true
+  token                         = dependency.wvd.outputs.tokens.nv-lasernet-test-hp
+  vm_size                       = "Standard_B4ms"
+  key_vault_name                = "erp-prod-rg"
+  key_vault_rg                  = "erp-prod-rg"
+  localadmin_key_name           = "localadmin"
+  vm_name                       = local.name
+  name                          = local.name
+  delete_os_disk_on_termination = true
+  aad_join                      = true
+  mdm_register                  = true
+  wvd_register                  = true
+  create_localadmin_password    = true
+  install_winrm                 = true
 
   storage_image_reference = {
     offer     = "Windows-10",
