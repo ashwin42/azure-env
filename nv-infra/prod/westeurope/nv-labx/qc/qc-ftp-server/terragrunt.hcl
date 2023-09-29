@@ -36,9 +36,9 @@ inputs = {
   boot_diagnostics_enabled               = true
 
   storage_image_reference = {
-    offer     = include.root.locals.all_vars.ubuntu_offer,
+    offer     = include.root.locals.all_vars.ubuntu_offer_minimal_20,
     publisher = include.root.locals.all_vars.ubuntu_publisher,
-    sku       = include.root.locals.all_vars.ubuntu_sku,
+    sku       = include.root.locals.all_vars.local.ubuntu_sku_minimal_20,
   }
 
   network_security_groups = [

@@ -35,7 +35,7 @@ inputs = {
   ad_join                                = true
   managed_disk_size                      = 127
   storage_image_reference = {
-    sku = include.root.locals.all_vars.windows_server_sku
+    sku = include.root.locals.all_vars.windows_server_sku_2019
   }
 
   os_profile_windows_config = {

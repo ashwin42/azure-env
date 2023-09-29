@@ -33,7 +33,7 @@ inputs = {
   managed_disk_name                      = "labx-ett-vm-osdisk"
 
   storage_image_reference = {
-    sku = include.root.locals.all_vars.windows_server_sku,
+    sku = include.root.locals.all_vars.windows_server_sku_2019,
   }
 
   os_profile_windows_config = {
