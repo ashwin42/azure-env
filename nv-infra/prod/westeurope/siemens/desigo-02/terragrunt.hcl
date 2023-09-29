@@ -38,7 +38,7 @@ inputs = {
   storage_image_reference = {
     offer     = include.root.locals.all_vars.windows_server_offer,
     publisher = include.root.locals.all_vars.windows_server_publisher,
-    sku       = all_vars.windows_server_sku_2022,
+    sku       = include.root.locals.all_vars.windows_server_sku_2022,
   }
 
   os_profile_windows_config = {
