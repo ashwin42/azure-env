@@ -43,7 +43,7 @@ inputs = {
   managed_disk_size                      = 127
   localadmin_key_name                    = "nv-pqms-ett-nvadmin"
   storage_image_reference = {
-    sku = "2019-Datacenter"
+    sku = local.windows_server_sku
   }
   os_profile_windows_config = {
     provision_vm_agent        = true

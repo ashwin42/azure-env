@@ -34,7 +34,7 @@ inputs = {
   localadmin_key_name        = "${local.name}-vm-localadmin"
   create_localadmin_password = true
   storage_image_reference = {
-    sku = "2019-Datacenter",
+    sku = local.windows_server_sku,
   }
 
   os_profile = {

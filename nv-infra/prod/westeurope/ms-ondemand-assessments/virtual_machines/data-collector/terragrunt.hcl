@@ -36,7 +36,7 @@ inputs = {
   ad_join                                = true
   managed_disk_size                      = 127
   storage_image_reference = {
-    sku = "2019-Datacenter"
+    sku = local.windows_server_sku
   }
 
   os_profile_windows_config = {

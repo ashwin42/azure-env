@@ -40,8 +40,8 @@ inputs = {
   availability_set_id                    = dependency.as.outputs.availability_sets.nv_siemens_avs
 
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
+    offer     = local.windows_server_offer,
+    publisher = local.windows_server_publisher,
     sku       = "2016-Datacenter",
   }
 

@@ -39,8 +39,8 @@ inputs = {
     identity_ids = null
   }
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
+    offer     = local.windows_server_offer,
+    publisher = local.windows_server_publisher,
     sku       = "2022-datacenter-g2",
   }
   os_profile_windows_config = {

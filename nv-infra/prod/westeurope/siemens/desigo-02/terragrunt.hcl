@@ -35,8 +35,8 @@ inputs = {
   managed_disk_type                      = "StandardSSD_LRS"
 
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
+    offer     = local.windows_server_offer,
+    publisher = local.windows_server_publisher,
     sku       = "2022-Datacenter",
   }
 

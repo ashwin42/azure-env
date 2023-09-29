@@ -35,9 +35,9 @@ inputs = {
   boot_diagnostics_enabled               = true
 
   storage_image_reference = {
-    offer     = "0001-com-ubuntu-minimal-focal-daily",
-    publisher = "Canonical",
-    sku       = "minimal-20_04-daily-lts",
+    offer     = local.ubuntu_offer,
+    publisher = local.ubuntu_publisher,
+    sku       = local.ubuntu_sku,
   }
 
   network_security_groups = [

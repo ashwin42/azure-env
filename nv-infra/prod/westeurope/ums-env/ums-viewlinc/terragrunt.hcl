@@ -43,7 +43,7 @@ inputs = {
   install_winrm                          = true
   localadmin_key_name                    = "domainjoin"
   storage_image_reference = {
-    sku = "2019-Datacenter",
+    sku = local.windows_server_sku,
   }
   os_profile_windows_config = {
     provision_vm_agent        = true

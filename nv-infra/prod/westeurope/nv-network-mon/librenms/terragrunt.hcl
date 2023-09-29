@@ -42,7 +42,7 @@ inputs = {
   ]
   storage_image_reference = {
     offer     = "UbuntuServer",
-    publisher = "Canonical",
+    publisher = local.ubuntu_publisher,
     sku       = "18.04-LTS",
   }
   network_interfaces = [

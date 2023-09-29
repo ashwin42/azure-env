@@ -34,9 +34,9 @@ inputs = {
   managed_disk_type                      = "Premium_LRS"
 
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
-    sku       = "2019-Datacenter"
+    offer     = local.windows_server_offer,
+    publisher = local.windows_server_publisher,
+    sku       = local.windows_server_sku
   }
 
   os_profile_windows_config = {
