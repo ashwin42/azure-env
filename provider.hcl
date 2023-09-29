@@ -12,11 +12,11 @@ locals {
   ad_join_keyvault_subscription_id              = "11dd160f-0e01-4b4d-a7a0-59407e357777"
 
   # Standard images for VMs
-  ubuntu_publisher                              = "Canonical"
-  ubuntu_offer                                  = "0001-com-ubuntu-minimal-focal-daily"
-  ubuntu_sku                                    = "minimal-20_04-daily-lts"
-  windows_server_offer                          = "WindowsServer"
-  windows_server_publisher                      = "MicrosoftWindowsServer"
-  windows_server_sku                            = "2019-Datacenter"
+  ubuntu_publisher         = "Canonical"
+  ubuntu_offer             = "0001-com-ubuntu-minimal-focal-daily"
+  ubuntu_sku               = "minimal-20_04-daily-lts"
+  windows_server_offer     = "WindowsServer"
+  windows_server_publisher = "MicrosoftWindowsServer"
+  windows_server_sku       = "2019-Datacenter"
 }
 
