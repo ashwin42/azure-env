@@ -33,7 +33,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   storage_image_reference = {
     offer     = "UbuntuServer",
-    publisher = local.ubuntu_publisher,
+    publisher = include.root.locals.all_vars.ubuntu_publisher,
     sku       = "18.04-LTS",
   }
   network_interfaces = [

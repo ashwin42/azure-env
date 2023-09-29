@@ -38,9 +38,9 @@ inputs = {
     }
   ]
   storage_image_reference = {
-    offer     = local.ubuntu_offer,
-    publisher = local.ubuntu_publisher,
-    sku       = local.ubuntu_sku,
+    offer     = include.root.locals.all_vars.ubuntu_offer,
+    publisher = include.root.locals.all_vars.ubuntu_publisher,
+    sku       = include.root.locals.all_vars.ubuntu_sku,
   }
   network_interfaces = [
     {

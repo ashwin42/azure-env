@@ -38,9 +38,9 @@ inputs = {
   ad_join                                = true
 
   storage_image_reference = {
-    offer     = local.windows_server_offer,
-    publisher = local.windows_server_publisher,
-    sku       = local.windows_server_sku,
+    offer     = include.root.locals.all_vars.windows_server_offer,
+    publisher = include.root.locals.all_vars.local.windows_server_publisher,
+    sku       = include.root.locals.all_vars.local.windows_server_sku,
   }
 
   os_profile_windows_config = {
