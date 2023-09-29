@@ -34,7 +34,7 @@ inputs = {
   localadmin_key_name        = "${local.name}-vm-localadmin"
   create_localadmin_password = true
   storage_image_reference = {
-    sku = include.root.locals.all_vars.local.windows_server_sku,
+    sku = include.root.locals.all_vars.windows_server_sku,
   }
 
   os_profile = {

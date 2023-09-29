@@ -36,7 +36,7 @@ inputs = {
 
   storage_image_reference = {
     offer     = include.root.locals.all_vars.windows_server_offer,
-    publisher = include.root.locals.all_vars.local.windows_server_publisher,
+    publisher = include.root.locals.all_vars.windows_server_publisher,
     sku       = "2022-Datacenter",
   }
 

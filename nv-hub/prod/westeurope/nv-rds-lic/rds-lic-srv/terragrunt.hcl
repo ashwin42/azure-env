@@ -42,7 +42,7 @@ inputs = {
   ad_join                                = true
   localadmin_key_name                    = "nv-rds-lic-nvadmin"
   storage_image_reference = {
-    sku = include.root.locals.all_vars.local.windows_server_sku,
+    sku = include.root.locals.all_vars.windows_server_sku,
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
