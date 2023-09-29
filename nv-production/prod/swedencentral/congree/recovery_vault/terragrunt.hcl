@@ -3,7 +3,8 @@ terraform {
   #source = "../../../../../../tf-mod-azure/recovery_vault/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 

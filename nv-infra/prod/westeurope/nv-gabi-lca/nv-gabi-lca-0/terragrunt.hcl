@@ -2,8 +2,9 @@ terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.5"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {

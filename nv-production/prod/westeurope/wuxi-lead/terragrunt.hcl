@@ -1,6 +1,7 @@
 # Include all settings from the root terragrunt.hcl file
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 ## Generate an Azure provider block

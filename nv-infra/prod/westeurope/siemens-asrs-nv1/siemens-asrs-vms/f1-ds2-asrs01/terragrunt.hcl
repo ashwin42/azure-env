@@ -6,8 +6,9 @@ dependency "vnet" {
   config_path = "../../vnet"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 locals {
