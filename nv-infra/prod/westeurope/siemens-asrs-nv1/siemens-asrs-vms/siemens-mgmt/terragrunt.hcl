@@ -81,7 +81,8 @@ inputs = {
   }
 
   automation_updates = {
-    wvd_drain = true
+    wvd_drain                 = true
+    wvd_drain_role_assignment = true
     schedule = {
       frequency          = "Week"
       advanced_week_days = ["Monday"]
