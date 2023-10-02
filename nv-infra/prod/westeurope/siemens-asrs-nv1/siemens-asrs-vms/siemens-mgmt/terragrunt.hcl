@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
 }
 
 include "root" {
@@ -78,5 +78,14 @@ inputs = {
         "VPN Siemens ASRS AP",
       ],
     },
+  }
+
+  automation_updates = {
+    wvd_drain = true
+    schedule = {
+      frequency          = "Week"
+      advanced_week_days = ["Monday"]
+      start_time         = "2023-10-02T23:00:00Z"
+    }
   }
 }
