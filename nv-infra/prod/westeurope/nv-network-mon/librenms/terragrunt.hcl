@@ -2,8 +2,9 @@ terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -42,7 +43,7 @@ inputs = {
   ]
   storage_image_reference = {
     offer     = "UbuntuServer",
-    publisher = "Canonical",
+    publisher = include.root.locals.all_vars.ubuntu_publisher,
     sku       = "18.04-LTS",
   }
   network_interfaces = [

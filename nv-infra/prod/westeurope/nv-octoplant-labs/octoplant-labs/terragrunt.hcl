@@ -3,8 +3,9 @@ terraform {
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -33,7 +34,7 @@ inputs = {
   ad_join                                = true
   managed_disk_size                      = 256
   storage_image_reference = {
-    sku = "2019-Datacenter",
+    sku = include.root.locals.all_vars.windows_server_sku_2019,
   }
   os_profile_windows_config = {
     provision_vm_agent         = true

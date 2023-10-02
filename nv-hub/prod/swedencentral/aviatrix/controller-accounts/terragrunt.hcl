@@ -3,8 +3,9 @@ terraform {
   # source = "../../../../../../tf-mod-aviatrix/azuread-controller-account"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "app" {

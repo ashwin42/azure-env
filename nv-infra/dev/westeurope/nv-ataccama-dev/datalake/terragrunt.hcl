@@ -7,8 +7,9 @@ dependency "subnet" {
   config_path = "../../../../prod/westeurope/nv-ataccama/subnet"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {

@@ -3,8 +3,9 @@ terraform {
   #source = "../../../../../../tf-mod-azure/monitor_activity_alert/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {
