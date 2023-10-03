@@ -28,6 +28,6 @@ inputs = {
   window = {
     start_date_time = "2023-10-10 02:00"
     recur_every     = "2Week Tuesday"
-    duration        = "02:00"
+    duration        = "04:00"
   }
 }
