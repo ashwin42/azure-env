@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
 }
 
 include {
@@ -97,7 +97,7 @@ inputs = {
     schedule = {
       frequency          = "Week"
       advanced_week_days = ["Wednesday"]
-      start_time         = "2023-10-03T03:00:00Z"
+      start_time         = "2023-10-04T01:00:00Z"
     }
   }
 

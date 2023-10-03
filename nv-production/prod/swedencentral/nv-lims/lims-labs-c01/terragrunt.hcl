@@ -98,7 +98,7 @@ inputs = {
     schedule = {
       frequency          = "Week"
       advanced_week_days = ["Tuesday"]
-      start_time         = "2023-10-03T03:00:00Z"
+      start_time         = "2023-10-10T01:00:00Z"
     }
   }
 }
