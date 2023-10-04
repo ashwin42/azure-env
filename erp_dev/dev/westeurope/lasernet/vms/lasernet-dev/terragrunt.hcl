@@ -24,10 +24,6 @@ locals {
 inputs = {
   token   = dependency.wvd.outputs.tokens.lasernet-dev-hp
   vm_size = "Standard_B4ms"
-  #key_vault_name                = "erp-prod-rg"
-  #key_vault_rg                  = "erp-prod-rg"
-  #secrets_key_vault_name        = "nv-erp-dev-we-secrets"
-  #secrets_key_vault_rg          = "global-rg"
   key_vault_rg                  = "global-rg"
   secrets_key_vault_rg          = "global-rg"
   key_vault_name                = "nv-erp-dev-we-secrets"
