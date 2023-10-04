@@ -17,4 +17,8 @@ inputs = {
       ],
     },
   }
+
+  tags = {
+    owner = "alexander.lehto@northvolt.com"
+  }
 }

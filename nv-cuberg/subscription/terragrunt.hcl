@@ -10,4 +10,7 @@ include "root" {
 
 inputs = {
   management_group = "Managed"
+  tags = {
+    owner = "techops@northvolt.com"
+  }
 }
