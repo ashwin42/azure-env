@@ -33,16 +33,14 @@ on:
         required: true
 
 jobs:
-  update_readme:
+  update_subscriptions_readme:
     runs-on: ubuntu-22.04
     steps:
-      - name: Check project.hcl changed
+      - name: Check subscription/terragrunt.hcl changed
         uses: dorny/paths-filter@v2
         id: changes
         with:
           filters: |
-            project:
-              - "**/project.hcl"
             subscription:
               - "**/subscription/terragrunt.hcl"
 
@@ -80,7 +78,7 @@ jobs:
 
       - name: Execute README.md update script
         if: steps.changes.outputs.subscription == 'true'
-        run: python .github/workflows/readme_projects.py
+        run: python .github/workflows/readme_subscriptions.py
         env:
           ROOT_DIR: ${{ github.workspace }}
           JIRA_URL: ${{ inputs.jira_url }}
@@ -101,8 +99,8 @@ jobs:
         if: steps.changes.outputs.subscription == 'true'
         uses: EndBug/add-and-commit@fc734f817560acc116627c6133815f6289cd96ce
         with:
-          add: README.md PROJECTS.md
-          message: 'Update README.md and PROJECTS.md file with new projects'
+          add: README.md SUBSCRIPTIONS.md
+          message: 'Update README.md and SUBSCRIPTIONS.md file with new subscriptions'
           author_name: ${{ steps.import-gpg.outputs.name }}
           author_email: ${{ steps.import-gpg.outputs.email }}
           push: true
