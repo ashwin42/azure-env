@@ -72,8 +72,9 @@ inputs = {
   }
 
   automation_updates = {
-    reboot    = "Always"
-    wvd_drain = true
+    reboot                    = "Always"
+    wvd_drain                 = true
+    wvd_drain_role_assignment = true
     schedule = {
       frequency          = "Week"
       advanced_week_days = ["Monday"]
