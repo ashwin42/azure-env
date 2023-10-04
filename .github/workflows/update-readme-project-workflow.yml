@@ -33,7 +33,7 @@ on:
         required: true
 
 jobs:
-  update_readme:
+  update_projects_readme:
     runs-on: ubuntu-22.04
     steps:
       - name: Check project.hcl changed
@@ -45,13 +45,13 @@ jobs:
               - "**/project.hcl"
 
       - name: Checkout code
-        if: steps.changes.outputs.any_changes == 'true'
+        if: steps.changes.outputs.project == 'true'
         uses: actions/checkout@v3.5.2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup Terragrunt
-        if: steps.changes.outputs.any_changes == 'true'
+        if: steps.changes.outputs.project == 'true'
         uses: autero1/action-terragrunt@v1.3.0
         with:
           terragrunt_version: ${{ inputs.terragrunt_version }}
