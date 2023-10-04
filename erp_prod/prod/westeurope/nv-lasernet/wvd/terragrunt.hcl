@@ -38,6 +38,7 @@ inputs = {
       friendly_name = "Lasernet Virtual Desktop"
     },
   ]
+
   host_pools = [
     merge(local.host_pools[0],
       {
@@ -48,6 +49,7 @@ inputs = {
       }
     ),
   ]
+
   application_groups = [
     merge(local.application_groups[0],
       {
@@ -55,7 +57,7 @@ inputs = {
         host_pool_name               = "${local.name}-hp"
         friendly_name                = "Lasernet Application Group"
         default_desktop_display_name = "Lasernet Virtual Desktop"
-        description                  = "Lasernet Virtual Desktop"
+        description                  = "Application group for Lasernet Prod Virtual Desktop"
         assign_groups = [
           "NV TechOps Role",
           "NV Business Systems Common Member"
