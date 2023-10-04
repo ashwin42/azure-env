@@ -25,7 +25,7 @@ inputs = {
   },
 
   tags = {
-    owner         = "katarina.enskar@northvolt.com"  
+    owner         = "katarina.enskar@northvolt.com"
     business-unit = "109 Digitalization IT - AB"
     department    = "109033 Business Systems"
     cost-center   = "109033054 ERP & Microsoft"
