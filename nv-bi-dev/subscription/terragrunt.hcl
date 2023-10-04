@@ -62,6 +62,7 @@ inputs = {
   }
 
   tags = {
+    owner         = "lisa.andersson@northvolt.com"
     business-unit = "109 Digitalization IT - AB"
     department    = "109033 Business Systems"
     cost-center   = "109033057 Business Intelligence"

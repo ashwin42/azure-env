@@ -50,5 +50,9 @@ inputs = {
       name = "Microsoft.ConnectedVMwarevSphere"
     },
   ]
+
+  tags = {
+    owner = "techops@northvolt.com"
+  }
 }
 
