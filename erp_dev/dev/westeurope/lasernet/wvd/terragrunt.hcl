@@ -15,7 +15,7 @@ locals {
 inputs = {
   workspaces = [
     {
-      name         = "${local.name}-ws" 
+      name          = "${local.name}-ws"
       friendly_name = "Lasernet Dev Virtual Desktop"
     },
   ]
