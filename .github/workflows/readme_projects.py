@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
-This script generates a markdown file with a list of projects in the repository
-based on project.hcl files.
-
+This script generates a markdown file with a list of projects in the repository based on project.hcl files.
 It expects a project.hcl file in each project directory with tags defined, such as:
 locals {
   tags = {
@@ -27,10 +25,11 @@ ROOT_DIR = os.environ["ROOT_DIR"]
 JIRA_URL = os.environ["JIRA_URL"]
 AZURE_PORTAL_URL = os.environ["AZURE_PORTAL_URL"]
 
-DELIMITER_START = "<!-- START_PROJECT -->"
-DELIMITER_END = "<!-- END_PROJECT -->"
 README_FILE = "README.md"
-MANDATORY_TAGS = ["business-unit",
+
+PROJECT_DELIMITER_START = "<!-- START_PROJECT -->"
+PROJECT_DELIMITER_END = "<!-- END_PROJECT -->"
+PROJECT_MANDATORY_TAGS = ["business-unit",
                   "department",
                   "cost-center",
                   "jira",
@@ -39,18 +38,23 @@ MANDATORY_TAGS = ["business-unit",
                   "recovery-time-objective",
                   "data-owner"]
 
-OPTIONAL_TAGS = ["grafana-dashboard",
+PROJECT_OPTIONAL_TAGS = ["grafana-dashboard",
                  "bcp-link"]
 
-
-def update_readme(readme_file, project_file, delimiter_start, delimiter_end, new_content):
+def update_readme_projects(
+        readme_file,
+        project_file,
+        project_delimiter_start,
+        project_delimiter_end,
+        project_new_content,
+        ):
     """
     Update the README.md file with the new content
     :param readme_file: The README.md file
     :param project_file: The project.md file
-    :param delimiter_start: The start delimiter
-    :param delimiter_end: The end delimiter
-    :param new_content: The new content to be added
+    :param project_delimiter_start: The start delimiter
+    :param project_delimiter_end: The end delimiter
+    :param project_new_content: The new project content to be added
     """
     try:
         with open(readme_file, 'r') as file:
@@ -58,28 +62,30 @@ def update_readme(readme_file, project_file, delimiter_start, delimiter_end, new
     except FileNotFoundError:
         contents = ""
 
-    start_pos = contents.find(delimiter_start)
-    end_pos = contents.find(delimiter_end, start_pos + len(delimiter_start))
+    # Update the project information
+    project_start_pos = contents.find(project_delimiter_start)
+    project_end_pos = contents.find(project_delimiter_end, project_start_pos + len(project_delimiter_start))
 
-    if start_pos != -1 and end_pos != -1:
-        updated_contents = contents[:start_pos] + delimiter_start + new_content + delimiter_end + contents[end_pos + len(delimiter_end):]
+    if project_start_pos != -1 and project_end_pos != -1:
+        updated_contents = contents[:project_start_pos] + project_delimiter_start + project_new_content + project_delimiter_end + contents[project_end_pos + len(project_delimiter_end):]
     else:
-        updated_contents = contents + delimiter_start + new_content + delimiter_end
+        updated_contents = contents + project_delimiter_start + project_new_content + project_delimiter_end
 
+    # Write the updated contents back to README.md
     with open(readme_file, 'w') as file:
         file.write(updated_contents)
 
+     # Write project information to project.md
     with open(project_file, 'w') as file:
-        file.write(new_content)
+        file.write(project_new_content)
 
     return True
-
 
 # List all project.hcl files recursively
 project_files = glob.glob(os.path.join(ROOT_DIR, "**/project.hcl"), recursive=True)
 all_projects = {}
 
-# Markdown content
+# Project markdown content
 markdown_content = "\n## Projects\n"
 markdown_content += "This is a list of projects in the repository based on project.hcl files.\n"
 
@@ -99,7 +105,7 @@ for project_file in project_files:
             print(f"Skipping on {project_directory} as cannot parse project.hcl: {e}")
             continue
 
-    # check if  project, name or project_name is in
+    # check if project, name or project_name is in
     if "tags" not in hcl_file or "project" not in hcl_file["tags"] or "jira" not in hcl_file["tags"]:
         print(f"Skipping on {project_directory} as no project tag or jira tag in project.hcl")
         continue
@@ -177,13 +183,13 @@ for project in sorted(all_projects):
     sorted_project = sorted(all_projects[project], key=lambda f: f["repo_path"])
     for project_data in all_projects[project]:
         tags = {}
-        for tag in MANDATORY_TAGS:
+        for tag in PROJECT_MANDATORY_TAGS:
             if tag not in project_data["tags"]:
                 tags[tag] = "❌ **MISSING** (please add to project.hcl)"
             else:
                 tags[tag] = project_data["tags"][tag]
 
-        for tag in OPTIONAL_TAGS:
+        for tag in PROJECT_OPTIONAL_TAGS:
             if tag in project_data["tags"]:
                 tags[tag] = project_data["tags"][tag]
 
@@ -210,9 +216,9 @@ for project in sorted(all_projects):
         markdown_content += "---\n"
 
 
-# Save the markdown content to README.md
+# Save the project markdown content to README.md
 os.chdir(ROOT_DIR)
-if update_readme('README.md', "PROJECTS.md", DELIMITER_START, DELIMITER_END, markdown_content):
+if update_readme_projects('README.md', "PROJECTS.md", PROJECT_DELIMITER_START, PROJECT_DELIMITER_END, markdown_content):
     print(f"{README_FILE} updated")
 else:
     print(f"{README_FILE} not updated")
