@@ -9,19 +9,13 @@ include "root" {
 }
 
 inputs = {
-  management_group = "Managed"
-  iam_assignments = {
-    "Contributor" = {
-      service_principals = [
-        "aviatrix_controller_app_prod",
-      ],
-    },
-  }
+  subscription_name = "NV-Sentinel-Log_Analytics"
+  management_group  = "Self Managed"
 
   tags = {
-    owner         = "katarina.enskar@northvolt.com"
+    owner         = "mikael.lindstrom@northvolt.com"
     business-unit = "109 Digitalization IT - AB"
-    department    = "109033 Business Systems"
-    cost-center   = "109033054 ERP & Microsoft"
+    department    = "109036 Security - AB"
+    cost-center   = "109036064 Security - AB"
   }
 }
