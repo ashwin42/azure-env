@@ -1,7 +1,8 @@
 locals {
   tags = {
-    project = "CMX"
-    jira    = "TOC-325"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "CMX"
+    jira                 = "TOC-325"
   }
 }
 

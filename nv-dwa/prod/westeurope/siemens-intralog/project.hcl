@@ -28,10 +28,11 @@ locals {
     },
   ]
   tags = {
-    business-unit = "Battery Systems"
-    department    = "Factory Engineering"
-    cost-center   = "250006020 Factory Development & Material Flow - BS"
-    project       = "Siemens Intralog"
-    jira          = "NDW-353"
+    infrastructure-owner = "techops@northvolt.com"
+    business-unit        = "Battery Systems"
+    department           = "Factory Engineering"
+    cost-center          = "250006020 Factory Development & Material Flow - BS"
+    project              = "Siemens Intralog"
+    jira                 = "NDW-353"
   }
 }

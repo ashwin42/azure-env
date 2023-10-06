@@ -8,8 +8,9 @@ locals {
   netbox_role                = "lims"
   install_winrm              = true
   tags = {
-    project = "Lims"
-    jira    = "TOC-1210"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "Lims"
+    jira                 = "TOC-1210"
   }
 }
 

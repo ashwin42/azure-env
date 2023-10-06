@@ -28,7 +28,8 @@ locals {
     },
   ]
   tags = {
-    jira    = "NDW-666"
-    project = "Dwa Office IT"
+    jira                 = "NDW-666"
+    project              = "Dwa Office IT"
+    infrastructure-owner = "techops@northvolt.com"
   }
 }
