@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox"
 }
 
 include "root" {
@@ -23,11 +23,12 @@ dependency "rv" {
 locals {
   name            = basename(get_terragrunt_dir())
   localadmin_name = "nvadmin"
+  host_pool_name  = "nv-lims-02-hp"
 }
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens
-  host_pool_name                         = "nv-lims-02-hp"
+  token                                  = dependency.wvd.outputs.tokens[local.host_pool_name]
+  host_pool_name                         = local.host_pool_name
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -83,26 +84,6 @@ inputs = {
       access                 = "Allow"
       description            = "Allow connections from Lims clients"
     },
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
   ]
   iam_assignments = {
     "Desktop Virtualization Power On Off Contributor" = {
@@ -111,5 +92,17 @@ inputs = {
       ],
     },
   }
+  automation_updates = {
+    wvd_drain          = true
+    wvd_drain_reminder = true
+    reboot             = "Always"
+    schedule = {
+      frequency                       = "Week"
+      advanced_week_days              = ["Tuesday"]
+      start_time                      = "2023-10-10T05:00:00Z"
+      drain_schedule_reminder_message = "This VM will be patched and restarted in 5 minutes. Please save your work and log off."
+    }
+  }
+
 }
 

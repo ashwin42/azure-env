@@ -15,10 +15,10 @@ Param(
     [string]$resourceGroupName,
 
     [Parameter(Mandatory=$false)]
-    [string]$message = "This session host is being drained and will be restarted shortly for patching. Please save your work and log off.",
+    [string]$message = "This machine will be patched in 30 minutes. Please save your work and log off. You can log back in straight away!",
 
     [Parameter(Mandatory=$false)]
-    [string]$messageTitle = "Session Host Patching",
+    [string]$messageTitle = "Planned maintenance",
 
     # bool doesn't work in azurerm_automation_software_update_configuration so we use a string
     [Parameter(Mandatory=$false)]
