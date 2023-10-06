@@ -6,7 +6,7 @@ locals {
   resource_group_name        = "nv-toolsnet-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "Toolsnet"
-    jira    = "TOC-1023"
+    project              = "Toolsnet"
+    jira                 = "TOC-1023"
   }
 }

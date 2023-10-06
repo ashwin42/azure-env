@@ -4,7 +4,7 @@ locals {
   recovery_vault_resource_group = "nv_labx"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "LabX"
-    jira    = "TOC-1208"
+    project              = "LabX"
+    jira                 = "TOC-1208"
   }
 }

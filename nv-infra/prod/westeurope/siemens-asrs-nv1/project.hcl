@@ -5,8 +5,8 @@ locals {
 
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "Siemens ASRS"
-    jira    = "TOC-1208"
+    project              = "Siemens ASRS"
+    jira                 = "TOC-1208"
   }
 
   additional_providers = [

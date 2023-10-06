@@ -5,7 +5,7 @@ locals {
   dns_servers              = []
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "800xa"
-    jira    = "TOC-233"
+    project              = "800xa"
+    jira                 = "TOC-233"
   }
 }

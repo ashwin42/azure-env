@@ -6,7 +6,7 @@ locals {
   resource_group_name        = "nv-plc-ews-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "PLC Engineering Workstations"
-    jira    = "TOC-1001"
+    project              = "PLC Engineering Workstations"
+    jira                 = "TOC-1001"
   }
 }

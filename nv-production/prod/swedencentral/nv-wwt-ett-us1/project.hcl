@@ -7,8 +7,8 @@ locals {
   resource_group_name        = "${local.setup_prefix}-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "Waste Water Treatment"
-    jira    = "TOC-858"
+    project              = "Waste Water Treatment"
+    jira                 = "TOC-858"
   }
 }
 

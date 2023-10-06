@@ -5,7 +5,7 @@ locals {
   resource_group_name        = "ums-env-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "UMS"
-    jira    = "TOC-787"
+    project              = "UMS"
+    jira                 = "TOC-787"
   }
 }

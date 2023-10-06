@@ -4,7 +4,7 @@ locals {
   azurerm_features           = {}
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "ARX"
-    jira    = "TOC-1208"
+    project              = "ARX"
+    jira                 = "TOC-1208"
   }
 }

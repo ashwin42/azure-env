@@ -6,7 +6,7 @@ locals {
   resource_group_name        = "powerbi-client-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "PowerBI Client"
-    jira    = "TOC-833"
+    project              = "PowerBI Client"
+    jira                 = "TOC-833"
   }
 }

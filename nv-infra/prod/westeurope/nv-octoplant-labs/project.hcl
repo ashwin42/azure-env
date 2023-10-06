@@ -6,7 +6,7 @@ locals {
   resource_group_name        = "nv-octoplant-labs-rg"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
-    project = "Octoplant"
-    jira    = "TOC-1094"
+    project              = "Octoplant"
+    jira                 = "TOC-1094"
   }
 }
