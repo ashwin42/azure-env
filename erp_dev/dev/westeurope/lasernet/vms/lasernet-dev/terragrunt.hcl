@@ -37,11 +37,7 @@ inputs = {
   create_localadmin_password    = true
   install_winrm                 = true
 
-  storage_image_reference = {
-    offer     = "Windows-10",
-    publisher = "MicrosoftWindowsDesktop",
-    sku       = "21h1-evd-g2",
-  }
+  storage_image_reference = include.root.inputs.windows_10_ltsc_image
 
   os_profile_windows_config = {
     provision_vm_agent        = true
