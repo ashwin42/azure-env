@@ -4,7 +4,7 @@ This is a list of Azure subscriptions in the repository.
 ### 🔑 Microsoft Azure (northvolt0): #1000880
 ---
 - ID: f23047bd-1342-4fdf-a81c-00c91500455f
-- owner: mikael.lindstrom@northvolt.com
+- owner: techops@northvolt.com
 ---
 ### 🔑 NV-BI-Dev
 ---

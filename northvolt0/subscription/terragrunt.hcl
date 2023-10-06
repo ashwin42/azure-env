@@ -21,7 +21,7 @@ inputs = {
   management_group  = "Self Managed"
 
   tags = {
-    owner         = "mikael.lindstrom@northvolt.com"
+    owner         = "techops@northvolt.com"
     business-unit = "109 Digitalization IT - AB"
     department    = "109036 Security - AB"
     cost-center   = "109036064 Security - AB"
