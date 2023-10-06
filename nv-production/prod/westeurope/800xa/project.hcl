@@ -4,7 +4,8 @@ locals {
   delete_files             = ["provider.tf"]
   dns_servers              = []
   tags = {
-    project = "800xa"
-    jira    = "TOC-233"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "800xa"
+    jira                 = "TOC-233"
   }
 }

@@ -24,6 +24,10 @@ on:
         required: false
         default: "https://portal.azure.com/#@northvolt.com"
         type: string
+      default_branch:
+        required: false
+        default: "master"
+        type: string
     secrets:
       actions_gpg_private_key:
         description: 'GPG key to sign commits'
@@ -75,6 +79,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
+
+      - name: Checkout README.md and PROJECTS.md from main branch
+        if: steps.changes.outputs.project == 'true'
+        run: |
+          git fetch origin ${{ inputs.default_branch }}
+          git restore -s origin/${{ inputs.default_branch }} README.md
+          git restore -s origin/${{ inputs.default_branch }} PROJECTS.md
 
       - name: Execute README.md update script
         if: steps.changes.outputs.project == 'true'

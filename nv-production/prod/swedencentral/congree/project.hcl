@@ -4,10 +4,11 @@ locals {
   key_vault_name      = "nv-production-core"
   key_vault_rg        = "nv-production-core"
   tags = {
-    business-unit = "151 Manufacturing Support - LA"
-    department    = "151057 Production Management - LA"
-    cost-center   = "151057251 Production Management - LA"
-    project       = "Congree"
-    jira          = "TOC-1716"
+    infrastructure-owner = "techops@northvolt.com"
+    business-unit        = "151 Manufacturing Support - LA"
+    department           = "151057 Production Management - LA"
+    cost-center          = "151057251 Production Management - LA"
+    project              = "Congree"
+    jira                 = "TOC-1716"
   }
 }

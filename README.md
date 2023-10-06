@@ -106,6 +106,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -126,6 +127,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -145,6 +147,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -164,6 +167,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -184,6 +188,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -204,6 +209,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -224,6 +230,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -244,6 +251,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -264,6 +272,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -282,6 +291,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -301,6 +311,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -321,6 +332,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -341,6 +353,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -361,6 +374,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -381,6 +395,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -401,6 +416,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -421,6 +437,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -440,6 +457,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -460,6 +478,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -479,6 +498,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -498,6 +518,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -518,6 +539,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -538,6 +560,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -550,7 +573,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-lims-rg |
-| **Resources** | northvolt/tf-mod-azure.git//vnet?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.6<br>northvolt/tf-mod-azure.git//mssql?ref=v0.7.19<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.13<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.13<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.13<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br> |
+| **Resources** | northvolt/tf-mod-azure.git//vnet?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.6<br>northvolt/tf-mod-azure.git//mssql?ref=v0.7.19<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.13<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.13<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.13<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br> |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -558,6 +581,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -578,6 +602,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -598,6 +623,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -616,6 +642,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -635,6 +662,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -655,6 +683,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -674,6 +703,28 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+</details>
+
+---
+### 🛠️ PNE Cycler VMs
+---
+- Code: [nv-pnl/prod/westeurope/pne](nv-pnl/prod/westeurope/pne)
+- Jira: [❌ **MISSING** (please add to project.hcl)](https://northvolt.atlassian.net/browse/❌ **MISSING** (please add to project.hcl))
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/30b428fc-5b94-408c-8c86-73cf2e46200c/resourceGroups/nv-pnl-vms-rg |
+| **Resources** | northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.6.10<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.34<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.34<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br> |
+| **business-unit** | 104 R&D AB |
+| **department** | 113049 P&L Facility - AB |
+| **cost-center** | 113049074 P&L Facility AB |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -694,6 +745,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -713,6 +765,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -733,6 +786,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -752,6 +806,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -771,6 +826,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -791,6 +847,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@nortvolt.com |
 </details>
 
 ---
@@ -810,6 +867,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -830,6 +888,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -850,6 +909,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -869,6 +929,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -909,6 +970,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -929,6 +991,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -948,6 +1011,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -968,6 +1032,28 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+</details>
+
+---
+### 🛠️ Siemens Physical Security Systems
+---
+- Code: [nv-infra/prod/westeurope/siemens](nv-infra/prod/westeurope/siemens)
+- Jira: [TOC-727](https://northvolt.atlassian.net/browse/TOC-727)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_siemens |
+| **Resources** | northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vnet?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azuread.git//users?ref=v1.3.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4<br>northvolt/tf-mod-azure.git//availability_set?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0<br> |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035063 Operations & Infrastructure Common - AB |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -988,6 +1074,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1008,6 +1095,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1028,6 +1116,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1048,6 +1137,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1068,6 +1158,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1088,6 +1179,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1107,6 +1199,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---
@@ -1127,6 +1220,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
 </details>
 
 ---

@@ -4,12 +4,13 @@ This script generates a markdown file with a list of projects in the repository 
 It expects a project.hcl file in each project directory with tags defined, such as:
 locals {
   tags = {
-    project       = "Moscura"
-    jira          = "RD2-727"
-    business-unit = "104 R&D AB"
-    department    = "104020 R&D Common - AB"
-    cost-center   = "104020015 SW & Automation"
-    system-owner  = "someone@northvolt.com
+    project              = "Moscura"
+    jira                 = "RD2-727"
+    business-unit        = "104 R&D AB"
+    department           = "104020 R&D Common - AB"
+    cost-center          = "104020015 SW & Automation"
+    system-owner         = "someone@northvolt.com
+    infrastructure-owner = "techops@northvolt.com"
   }
 }
 """
@@ -36,7 +37,8 @@ PROJECT_MANDATORY_TAGS = ["business-unit",
                   "system-owner",
                   "global-process-owner",
                   "recovery-time-objective",
-                  "data-owner"]
+                  "data-owner",
+                  "infrastructure-owner"]
 
 PROJECT_OPTIONAL_TAGS = ["grafana-dashboard",
                  "bcp-link"]
@@ -106,8 +108,8 @@ for project_file in project_files:
             continue
 
     # check if project, name or project_name is in
-    if "tags" not in hcl_file or "project" not in hcl_file["tags"] or "jira" not in hcl_file["tags"]:
-        print(f"Skipping on {project_directory} as no project tag or jira tag in project.hcl")
+    if "tags" not in hcl_file or "project" not in hcl_file["tags"] or "infrastructure-owner" not in hcl_file["tags"]:
+        print(f"Skipping on {project_directory} as no project & infrastructure-owner tags in project.hcl")
         continue
 
     # add terragrunt.hcl and run terragrunt to load project.hcl

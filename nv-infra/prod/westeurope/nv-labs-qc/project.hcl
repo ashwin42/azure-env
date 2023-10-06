@@ -6,11 +6,12 @@ locals {
   azurerm_features           = {}
   setup_prefix               = basename(get_terragrunt_dir())
   tags = {
-    business-unit = "151058 Quality Control - LA"
-    department    = "151 Manufacturing Support - LA"
-    cost-center   = "151058251 Quality Control - LA"
-    project       = "Labs QC"
-    jira          = "TOC-1969"
+    infrastructure-owner = "techops@northvolt.com"
+    business-unit        = "151058 Quality Control - LA"
+    department           = "151 Manufacturing Support - LA"
+    cost-center          = "151058251 Quality Control - LA"
+    project              = "Labs QC"
+    jira                 = "TOC-1969"
   }
 }
 
