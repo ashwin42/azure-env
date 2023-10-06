@@ -108,8 +108,8 @@ for project_file in project_files:
             continue
 
     # check if project, name or project_name is in
-    if "infrastructure-owner" not in hcl_file["tags"]:
-        print(f"Skipping on {project_directory} as no infrastructure-owner tag in project.hcl")
+    if "infrastructure-owner" not in hcl_file["tags"] or "project" not in hcl_file["tags"]:
+        print(f"Skipping on {project_directory} as no project & infrastructure-owner tags in project.hcl")
         continue
 
     # add terragrunt.hcl and run terragrunt to load project.hcl

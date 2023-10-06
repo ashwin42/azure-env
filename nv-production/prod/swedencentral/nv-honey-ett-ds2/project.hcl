@@ -5,6 +5,7 @@ locals {
   setup_prefix               = basename(get_terragrunt_dir())
   resource_group_name        = "${local.setup_prefix}-rg"
   tags = {
+    infrastructure-owner = "techops@northvolt.com"
     project       = "Honeywell"
     jira          = "TOC-1367"
     business-unit = "232 - Downstream 2 - ET"

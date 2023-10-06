@@ -5,6 +5,7 @@ locals {
   key_vault_rg        = "nv-production-core"
 
   tags = {
+    infrastructure-owner = "techops@northvolt.com"
     business-unit = "Business Unit 106 Sustainability - AB"
     cost-center   = "206002001 – Environment – ET"
     project       = "PQMS"

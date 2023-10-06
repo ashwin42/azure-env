@@ -4,6 +4,7 @@ locals {
   subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
 
   tags = {
+    infrastructure-owner = "techops@northvolt.com"
     project = "Siemens ASRS"
     jira    = "TOC-1208"
   }

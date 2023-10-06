@@ -12,6 +12,8 @@ locals {
   ]
 
   tags = {
+    infrastructure-owner = "techops@northvolt.com"
+    project = "PNE Cycler VMs"
     business-unit = "104 R&D AB"
     department    = "113049 P&L Facility - AB"
     cost-center   = "113049074 P&L Facility AB"

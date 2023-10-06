@@ -3,7 +3,8 @@ locals {
   azurerm_provider_version   = "~> 2.99"
   azurerm_features           = {}
   tags = {
-    project = "Siemens ASRS Dev"
-    jira    = "TOC-1208"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "Siemens ASRS Dev"
+    jira                 = "TOC-1208"
   }
 }

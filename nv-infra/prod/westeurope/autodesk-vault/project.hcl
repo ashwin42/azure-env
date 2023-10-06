@@ -8,11 +8,12 @@ locals {
   netbox_role                = "autodeskvault"
   providers                  = ["azurerm", "netbox"]
   tags = {
-    business-unit = "111 COO - Adv Tech - Raw Mat & Energy - AB"
-    department    = "111044 Blueprint - AB"
-    cost-center   = "111044080 Blueprint - AB"
-    project       = "Autodesk Vault"
-    jira          = "TOC-917"
+    infrastructure-owner = "techops@northvolt.com"
+    business-unit        = "111 COO - Adv Tech - Raw Mat & Energy - AB"
+    department           = "111044 Blueprint - AB"
+    cost-center          = "111044080 Blueprint - AB"
+    project              = "Autodesk Vault"
+    jira                 = "TOC-917"
   }
 }
 

@@ -5,6 +5,7 @@ locals {
   key_vault_rg        = "nv-production-core"
 
   tags = {
+    infrastructure-owner = "techops@northvolt.com"
     business-unit = "104 R&D AB"
     department    = "104020 R&D Common - AB"
     cost-center   = "104020015 SW & Automation"
