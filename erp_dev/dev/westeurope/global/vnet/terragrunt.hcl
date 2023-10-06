@@ -12,6 +12,7 @@ inputs = {
   vnet_resource_group_name = include.root.locals.all_vars.resource_group_name
   vnet_name                = include.root.locals.all_vars.setup_prefix
   address_space            = ["10.46.44.0/22"]
+  dns_servers              = []
   subnets = [
     {
       name             = "general_subnet1"

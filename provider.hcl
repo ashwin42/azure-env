@@ -21,5 +21,10 @@ locals {
   windows_server_publisher = "MicrosoftWindowsServer"
   windows_server_sku_2019  = "2019-Datacenter"
   windows_server_sku_2022  = "2022-Datacenter"
+  windows_10_ltsc_image = {
+    offer     = "Windows-10",
+    publisher = "MicrosoftWindowsDesktop",
+    sku       = "win10-21h2-ent-ltsc-g2",
+  }
 }
 

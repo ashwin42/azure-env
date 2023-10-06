@@ -1,8 +1,8 @@
 locals {
   project_name        = basename(get_terragrunt_dir())
   resource_group_name = local.project_name
-  recovery_vault_name = "nv-lasernet-rv"
-  host_pool_name      = "nv-lasernet-hp"
+  recovery_vault_name = "lasernet-rv"
+  host_pool_name      = "lasernet-dev-hp"
   tags = {
     infrastructure-owner = "katarina.enskar@northvolt.com"
     project              = "Lasernet"
