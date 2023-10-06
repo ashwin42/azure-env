@@ -475,6 +475,27 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Lasernet
+---
+- Code: [erp_prod/prod/westeurope/nv-lasernet](erp_prod/prod/westeurope/nv-lasernet)
+- Jira: [HELP-119177](https://northvolt.atlassian.net/browse/HELP-119177)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/810a32ab-57c8-430a-a3ba-83c5ad49e012/resourceGroups/nv-lasernet |
+| **Resources** | northvolt/tf-mod-azure.git//vnet?ref=v0.8.6<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.6<br>northvolt/tf-mod-azure.git//wvd?ref=v0.8.6<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.6<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.6<br> |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109033 Business Systems |
+| **cost-center** | 109033054 ERP & Microsoft |
+| **system-owner** | Dardan Imeri |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | katarina.enskar@northvolt.com |
+</details>
+
+---
 ### 🛠️ Lims
 ---
 - Code: [nv-production/prod/swedencentral/nv-lims](nv-production/prod/swedencentral/nv-lims)
