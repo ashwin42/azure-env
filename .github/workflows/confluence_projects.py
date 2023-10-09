@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-This script edits a Confluence åage with a list of projects in the repository based on project.hcl files.
+This script edits a Confluence page with a list of projects in the repository based on project.hcl files.
 It expects a project.hcl file in each project directory with tags defined, such as:
 locals {
   tags = {
@@ -239,7 +239,7 @@ for project in sorted(all_projects):
             expand_content += f"""
     <tr>
         <td>Azure RG</td>
-        <td>{AZURE_PORTAL_URL}/resource/subscriptions/{project_data['account']}/resourceGroups/{project_data['resource_group']}</td>
+        <td><a href='{AZURE_PORTAL_URL}/resource/subscriptions/{project_data['account']}/resourceGroups/{project_data['resource_group']}'>{project_data['resource_group']}</a></td>
     </tr>
 """
         elif project_data["account_type"] == 'aws':
