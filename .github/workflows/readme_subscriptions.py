@@ -126,7 +126,6 @@ for subscription_file in subscription_files:
 # Iterate over each subscription that has the correct tags and create the markdown content
 for subscription in sorted(all_subscriptions):
     markdown_content += f"### 🔑 {subscription}\n"
-    markdown_content += "---\n"
     sorted_subscription = sorted(all_subscriptions[subscription], key=lambda f: f["subscription_name"])
     for subscription_data in all_subscriptions[subscription]:
         tags = {}
