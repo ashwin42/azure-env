@@ -98,7 +98,7 @@ jobs:
           JIRA_URL: ${{ inputs.jira_url }}
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
 
-      - name: Execute Confluence update script
+      - name: Execute Confluence projects update script
         if: steps.changes.outputs.project == 'true'
         run: python .github/workflows/confluence_projects.py
         env:

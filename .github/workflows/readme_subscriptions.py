@@ -13,7 +13,6 @@ import os
 import glob
 import json
 import hcl2
-import subprocess
 
 
 ROOT_DIR = os.environ["ROOT_DIR"]

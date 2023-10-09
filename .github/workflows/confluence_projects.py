@@ -1,4 +1,20 @@
 #!/usr/bin/env python3
+"""
+This script edits a Confluence åage with a list of projects in the repository based on project.hcl files.
+It expects a project.hcl file in each project directory with tags defined, such as:
+locals {
+  tags = {
+    project              = "Moscura"
+    jira                 = "RD2-727"
+    business-unit        = "104 R&D AB"
+    department           = "104020 R&D Common - AB"
+    cost-center          = "104020015 SW & Automation"
+    system-owner         = "someone@northvolt.com
+    infrastructure-owner = "techops@northvolt.com"
+  }
+}
+"""
+
 import os
 import glob
 import json
