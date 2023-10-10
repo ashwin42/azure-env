@@ -31,6 +31,9 @@ on:
       actions_gpg_passphrase:
         description: 'Passphrase for the GPG key'
         required: true
+      actions_confluence_api_token:
+        description: 'API token for Confluence'
+        required: true
 
 jobs:
   update_subscriptions_readme:
@@ -83,6 +86,15 @@ jobs:
           ROOT_DIR: ${{ github.workspace }}
           JIRA_URL: ${{ inputs.jira_url }}
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+
+      - name: Execute Confluence subscriptions update script
+        if: steps.changes.outputs.project == 'true'
+        run: python .github/workflows/confluence_subscriptions.py
+        env:
+          ROOT_DIR: ${{ github.workspace }}
+          JIRA_URL: ${{ inputs.jira_url }}
+          AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.actions_confluence_api_token }}
 
       - name: Import bot's GPG key for signing commits
         if: steps.changes.outputs.subscription == 'true'

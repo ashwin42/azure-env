@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-This script generates a markdown file with a list of projects in the repository based on project.hcl files.
+This script edits a Confluence page with a list of projects in the repository based on project.hcl files.
 It expects a project.hcl file in each project directory with tags defined, such as:
 locals {
   tags = {
-    project              = "A project name"
+    project              = "Project Name"
     jira                 = "RD2-123"
     business-unit        = "104 R&D AB"
     department           = "104020 R&D Common - AB"
@@ -21,15 +21,24 @@ import json
 import hcl2
 import subprocess
 
+from atlassian import Confluence
+from bs4 import BeautifulSoup
 
 ROOT_DIR = os.environ["ROOT_DIR"]
 JIRA_URL = os.environ["JIRA_URL"]
 AZURE_PORTAL_URL = os.environ["AZURE_PORTAL_URL"]
 
-README_FILE = "README.md"
+CONFLUENCE_API = Confluence(
+    url='https://northvolt.atlassian.net',
+    username="api-readwrite-techops-confluence@nv-external.com",
+    password=os.environ["CONFLUENCE_API_TOKEN"],
+    cloud=True)
 
-PROJECT_DELIMITER_START = "<!-- START_PROJECT -->"
-PROJECT_DELIMITER_END = "<!-- END_PROJECT -->"
+CONFLUENCE_SPACE = "TO"
+CONFLUENCE_PAGE_TITLE = "Inventory of System Deployments"
+CONFLUENCE_HEADER_DELIMITER_START = "Azure"
+CONFLUENCE_HEADER_DELIMITER_END = "AWS"
+
 PROJECT_MANDATORY_TAGS = ["business-unit",
                   "department",
                   "cost-center",
@@ -80,53 +89,75 @@ def virtual_machines(project_directory):
                     continue
     return vm_maintenance_configurations
 
-def update_readme_projects(
-        readme_file,
-        project_file,
-        project_delimiter_start,
-        project_delimiter_end,
-        project_new_content,
+def update_confluence_projects(
+        confluence_api,
+        confluence_space,
+        confluence_page_title,
+        confluence_delimiter_start,
+        confluence_delimiter_end,
+        confluence_new_content,
         ):
     """
-    Update the README.md file with the new content
-    :param readme_file: The README.md file
-    :param project_file: The project.md file
-    :param project_delimiter_start: The start delimiter
-    :param project_delimiter_end: The end delimiter
-    :param project_new_content: The new project content to be added
+    Update Confluence page with the new content
+    :param confluence_api: Confluence api endpoint & authentication information
+    :param confluence_space: Confluence space in which the page exists
+    :param confluence_page: The Confluence page title
+    :param confluence_delimiter_start: The start delimiter
+    :param confluence_delimiter_end: The end delimiter
+    :param confluence_new_content: The new project content to be added
     """
+
+    # Get the Confluence page content
     try:
-        with open(readme_file, 'r') as file:
-            contents = file.read()
-    except FileNotFoundError:
-        contents = ""
+        page_data = confluence_api.get_page_by_title(confluence_space, confluence_page_title, expand='body.storage')
+    except Exception as e:
+        print("Confluence content could not be retrieved:", e)
+        return
+    
+    # Extract only the body of the Confluence page content
+    content = page_data['body']['storage']['value']
 
-    # Update the project information
-    project_start_pos = contents.find(project_delimiter_start)
-    project_end_pos = contents.find(project_delimiter_end, project_start_pos + len(project_delimiter_start))
+    # Parse the Confluence page HTML content
+    soup = BeautifulSoup(content, 'html.parser')
 
-    if project_start_pos != -1 and project_end_pos != -1:
-        updated_contents = contents[:project_start_pos] + project_delimiter_start + project_new_content + project_delimiter_end + contents[project_end_pos + len(project_delimiter_end):]
-    else:
-        updated_contents = contents + project_delimiter_start + project_new_content + project_delimiter_end
+    # Find the header that contains the start delimiter
+    start_header = soup.find('h1', string=confluence_delimiter_start)
 
-    # Write the updated contents back to README.md
-    with open(readme_file, 'w') as file:
-        file.write(updated_contents)
+    if start_header:
+        # Find the next header that contains the end delimiter after the start header
+        next_header = start_header.find_next('h1', string=confluence_delimiter_end)
 
-     # Write project information to project.md
-    with open(project_file, 'w') as file:
-        file.write(project_new_content)
+        if next_header:
+            # Remove the content between start_header and next_header
+            while start_header.nextSibling != next_header:
+                start_header.nextSibling.extract()
 
-    return True
+            # Create a BeautifulSoup object for your xhtml_content
+            xhtml_soup = BeautifulSoup(confluence_new_content, 'html.parser')
+
+            # Insert the xhtml_content right after the start header
+            start_header.insert_after(xhtml_soup)
+
+            # Update the page content with the modified HTML
+            updated_content = str(soup)
+            confluence_api.update_page(
+                page_id=page_data['id'],
+                title=confluence_page_title,
+                body=updated_content,
+            )
+
+            return True
+
+    print(f"Could not find the following headers: '{confluence_delimiter_start}' and '{confluence_delimiter_end}'")
+    return False
+
 
 # List all project.hcl files recursively
 project_files = glob.glob(os.path.join(ROOT_DIR, "**/project.hcl"), recursive=True)
 all_projects = {}
 
-# Project markdown content
-markdown_content = "\n## Projects\n"
-markdown_content += "This is a list of projects in the repository based on project.hcl files.\n"
+# Project XHTML content
+xhtml_content = ""
 
 # Iterate over each project file
 for project_file in project_files:
@@ -156,7 +187,7 @@ for project_file in project_files:
     with open("terragrunt.hcl", "w") as f:
         f.write("locals { \n")
         f.write("config = read_terragrunt_config(\"project.hcl\")\n")
-        f.write("account = try(read_terragrunt_config(find_in_parent_folders(\"account.hcl\")), \nread_terragrunt_config(\"${get_terragrunt_dir()/account.hcl}\")), {})\n")
+        f.write("account = read_terragrunt_config(find_in_parent_folders(\"account.hcl\"))\n")
         f.write("repo_path   = get_path_from_repo_root()\n")
         f.write("maintenance_configurations = [\n")
         f.write("   {\n")
@@ -180,7 +211,6 @@ for project_file in project_files:
     account = None
     account_type = None
     resource_group = None
-    maintenance_configurations = None
 
     # get the relevant information from project.json
     tags = project_json["locals"]["config"]["locals"]["tags"]
@@ -205,7 +235,7 @@ for project_file in project_files:
     except Exception as e:
         print(f"Skipping resources as grep failed: {e}")
         resources = "No resources found"
-    
+
     if "maintenance_configurations" in project_json["locals"]:
          maintenance_configurations = project_json["locals"]["maintenance_configurations"]
 
@@ -228,15 +258,15 @@ for project_file in project_files:
                                           "resource_group": resource_group,
                                           "maintenance_configurations": maintenance_configurations})
 
-# Iterate over each project that has the correct tags and create the markdown content
+# Iterate over each project that has the correct tags and create the XHTML content
 for project in sorted(all_projects):
-    markdown_content += f"### 🛠️ {project}\n"
+    xhtml_content += f"<h2>🛠️ {project}</h2>"
     sorted_project = sorted(all_projects[project], key=lambda f: f["repo_path"])
     for project_data in all_projects[project]:
         tags = {}
         for tag in PROJECT_MANDATORY_TAGS:
             if tag not in project_data["tags"]:
-                tags[tag] = "❌ **MISSING** (please add to project.hcl)"
+                tags[tag] = "❌ <strong>MISSING</strong>"
             else:
                 tags[tag] = project_data["tags"][tag]
 
@@ -244,37 +274,66 @@ for project in sorted(all_projects):
             if tag in project_data["tags"]:
                 tags[tag] = project_data["tags"][tag]
 
-        # Add the project information to the markdown content
-        markdown_content += f"- Code: [{project_data['repo_path']}]({project_data['repo_path']})\n"
-        markdown_content += f"- Jira: [{tags['jira']}]({JIRA_URL}/{tags['jira']})\n"
-        markdown_content += "<details><summary>Details (click to expand):</summary>\n"
-        markdown_content += "\n"
-        markdown_content += "| Detail | Value |\n"
-        markdown_content += "| ------ | ----- |\n"
-
-        if project_data["account_type"] == "azure" and project_data["resource_group"] is not None:
-            markdown_content += f"| **Azure RG** | {AZURE_PORTAL_URL}/resource/subscriptions/{project_data['account']}/resourceGroups/{project_data['resource_group']} |\n"
-        elif project_data["account_type"] == "aws":
-            markdown_content += f"| **AWS Account** | {project_data['account']} |\n"
-
-        markdown_content += f"| **Resources** | {project_data['resources']} |\n"
+        # Add the project information to the XHTML content
+        xhtml_content += f"Code: <a href='https://github.com/northvolt/azure-env/tree/master/{project_data['repo_path']}'>{project_data['repo_path']}</a><br />"
+        xhtml_content += f"Jira: <a href='{JIRA_URL}/{tags['jira']}'>{tags['jira']}</a>"
+        expand_content = f"""
+<table>
+    <tr>
+        <th><strong>Detail</strong></th>
+        <th><strong>Value</strong></th>
+    </tr>
+"""
+        if project_data["account_type"] == 'azure' and project_data["resource_group"] is not None:
+            expand_content += f"""
+    <tr>
+        <td>Azure RG</td>
+        <td><a href='{AZURE_PORTAL_URL}/resource/subscriptions/{project_data['account']}/resourceGroups/{project_data['resource_group']}'>{project_data['resource_group']}</a></td>
+    </tr>
+"""
+        elif project_data["account_type"] == 'aws':
+            expand_content += f"""
+    <tr>
+        <td>AWS Account</td>
+        <td>{project_data['account']}</td>
+    </tr>
+"""
         for key, value in tags.items():
-            if key == "project" or key == "jira":
+            if key == 'project' or key == 'jira':
                 continue
-            markdown_content += f"| **{key}** | {value} |\n"
-        
-        markdown_content += "| **Patch Orchestration:** | "
-        if project_data['maintenance_configurations'] == [{}]:
-            markdown_content += "❌ |\n"
+            expand_content += f"""
+    <tr>
+        <td>{key}</td>
+        <td>{value}</td>
+    </tr>
+"""
+        expand_content += f"""
+    <tr>
+        <td>patch orchestration:</td>
+        <td>"""
+        if project_data["maintenance_configurations"] == [{}]:
+            expand_content += "❌</td>"
         else:
             for config in project_data['maintenance_configurations']:
-                for key, value in config.items():
-                    markdown_content += f"[{key}]({project_data['repo_path']}): [{value}]({AZURE_PORTAL_URL}/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/{value}/overview) |\n"
-        markdown_content += "</details>\n\n---\n"
+                for key, value in config.items(): 
+                    expand_content +=f"<a href='https://github.com/northvolt/azure-env/tree/master/{project_data['repo_path']}'>{key}</a>: <a href='{AZURE_PORTAL_URL}/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/{value}/overview'>{value}</a></td>"
+        expand_content += f"""
+    </tr>
+</table>
+"""
+        xhtml_content += f"""
+<ac:structured-macro ac:name="expand">
+    <ac:parameter ac:name="title">Details (click to expand)</ac:parameter>
+    <ac:rich-text-body>
+        <p>{expand_content}</p>
+    </ac:rich-text-body>
+</ac:structured-macro>
+<hr />
+"""
 
-# Save the project markdown content to README.md
+# Save the project XHTML content to Confluence page
 os.chdir(ROOT_DIR)
-if update_readme_projects('README.md', "PROJECTS.md", PROJECT_DELIMITER_START, PROJECT_DELIMITER_END, markdown_content):
-    print(f"{README_FILE} updated")
+if update_confluence_projects(CONFLUENCE_API, CONFLUENCE_SPACE, CONFLUENCE_PAGE_TITLE, CONFLUENCE_HEADER_DELIMITER_START, CONFLUENCE_HEADER_DELIMITER_END, xhtml_content):
+    print("Confluence page updated")
 else:
-    print(f"{README_FILE} not updated")
+    print("Confluence page not updated")
