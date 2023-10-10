@@ -4,8 +4,8 @@ This script edits a Confluence page with a list of projects in the repository ba
 It expects a project.hcl file in each project directory with tags defined, such as:
 locals {
   tags = {
-    project              = "Moscura"
-    jira                 = "RD2-727"
+    project              = "Project Name"
+    jira                 = "RD2-123"
     business-unit        = "104 R&D AB"
     department           = "104020 R&D Common - AB"
     cost-center          = "104020015 SW & Automation"
