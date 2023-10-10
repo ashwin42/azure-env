@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -12,17 +13,18 @@ dependency "global" {
 }
 
 dependency "wvd" {
-  config_path = "../wvd-tc10a"
+  config_path = "../avd-tc10"
 }
 
 locals {
   name = basename(get_terragrunt_dir())
+  host_pool_name = "nv-pne-hp-tc10a"
 }
 
 inputs = {
   setup_prefix                           = dependency.global.outputs.setup_prefix
-  token                                  = dependency.wvd.outputs.token
-  host_pool_name                         = dependency.wvd.outputs.host_pool.name
+  token                                  = dependency.wvd.outputs.tokens[local.host_pool_name]
+  host_pool_name                         = dependency.wvd.outputs.host_pools[local.host_pool_name].name
   recovery_vault_name                    = dependency.global.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.global.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.global.outputs.recovery_services.protection_policy_daily_id
@@ -36,6 +38,7 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "nv-pne-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
   ad_join                                = true
@@ -76,14 +79,6 @@ inputs = {
     }
   ]
   custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
     {
       name                  = "NV-Cyclers"
       priority              = "220"

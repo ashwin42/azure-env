@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.34"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.8.9"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//wvd/"
 }
 
 include "root" {
