@@ -52,6 +52,43 @@ PROJECT_MANDATORY_TAGS = ["business-unit",
 PROJECT_OPTIONAL_TAGS = ["grafana-dashboard",
                  "bcp-link"]
 
+def virtual_machines(project_directory):
+    """
+    Parse terragrunt.hcl files for maintenance configurations
+    :param project_directory: The project directory
+    """
+    vm_maintenance_configurations = []
+
+    # List all terragrunt.hcl files recursively
+    hcl_files = glob.glob(os.path.join(project_directory, "**/terragrunt.hcl"), recursive=True)
+
+    # Iterate over each terragrunt.hcl file
+    for hcl_file in hcl_files:
+
+        # Get the virtual machine name
+        vm_name = os.path.basename(os.path.dirname(hcl_file))
+
+        # Load the terragrunt.hcl file
+        with open(hcl_file) as f:
+            vm_hcl = None
+
+            # Search for the maintenance_configurations block in inputs or locals
+            # Add vm_name and maintenance_configuration name to list
+            try:
+                vm_hcl = hcl2.load(f)["inputs"]["maintenance_configurations"][0]
+                for key, value in vm_hcl.items():
+                    vm_maintenance_configurations.append((vm_name, value))
+                print(f"Maintenance configurations found in {hcl_file}")
+            except Exception as e:
+                try:
+                    vm_hcl = hcl2.load(f)["locals"]["maintenance_configurations"][0]
+                    for key, value in vm_hcl.items():
+                        vm_maintenance_configurations.append((vm_name, value))
+                    print(f"Maintenance configuration found in {hcl_file}")
+                except Exception as e:
+                    continue
+    return vm_maintenance_configurations
+
 def update_confluence_projects(
         confluence_api,
         confluence_space,
@@ -130,6 +167,9 @@ for project_file in project_files:
     project_directory = os.path.dirname(project_file)
     os.chdir(project_directory)
 
+    # Get the virtual machine maintenance configurations
+    vm_maintenance_configurations = virtual_machines(project_directory)
+
     # Load the project.hcl file
     with open("project.hcl") as f:
         try:
@@ -149,6 +189,11 @@ for project_file in project_files:
         f.write("config = read_terragrunt_config(\"project.hcl\")\n")
         f.write("account = read_terragrunt_config(find_in_parent_folders(\"account.hcl\"))\n")
         f.write("repo_path   = get_path_from_repo_root()\n")
+        f.write("maintenance_configurations = [\n")
+        f.write("   {\n")
+        for key, value in vm_maintenance_configurations:
+            f.write(f"      {key} = \"{value}\"\n")
+        f.write("   }\n]\n")
         f.write("}\n")
 
     try:
@@ -191,6 +236,9 @@ for project_file in project_files:
         print(f"Skipping resources as grep failed: {e}")
         resources = "No resources found"
 
+    if "maintenance_configurations" in project_json["locals"]:
+         maintenance_configurations = project_json["locals"]["maintenance_configurations"]
+
     # cleanup terragrunt.hcl and project.json
     os.remove("terragrunt.hcl")
     os.remove("project.json")
@@ -207,7 +255,8 @@ for project_file in project_files:
                                           "account": account,
                                           "account_type": account_type,
                                           "resources": resources,
-                                          "resource_group": resource_group})
+                                          "resource_group": resource_group,
+                                          "maintenance_configurations": maintenance_configurations})
 
 # Iterate over each project that has the correct tags and create the XHTML content
 for project in sorted(all_projects):
@@ -258,8 +307,18 @@ for project in sorted(all_projects):
         <td>{value}</td>
     </tr>
 """
-
         expand_content += f"""
+    <tr>
+        <td>patch orchestration:</td>
+        <td>"""
+        if project_data["maintenance_configurations"] == [{}]:
+            expand_content += "❌</td>"
+        else:
+            for config in project_data['maintenance_configurations']:
+                for key, value in config.items(): 
+                    expand_content +=f"<a href='https://github.com/northvolt/azure-env/tree/master/{project_data['repo_path']}'>{key}</a>: <a href='{AZURE_PORTAL_URL}/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/{value}/overview'>{value}</a></td>"
+        expand_content += f"""
+    </tr>
 </table>
 """
         xhtml_content += f"""

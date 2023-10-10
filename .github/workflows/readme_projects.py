@@ -269,7 +269,7 @@ for project in sorted(all_projects):
         else:
             for config in project_data['maintenance_configurations']:
                 for key, value in config.items():
-                    markdown_content += f"{key}: [{value}]({AZURE_PORTAL_URL}/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/{value}/overview) |\n"
+                    markdown_content += f"[{key}]({project_data['repo_path']}): [{value}]({AZURE_PORTAL_URL}/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/{value}/overview) |\n"
         markdown_content += "</details>\n\n---\n"
 
 # Save the project markdown content to README.md
