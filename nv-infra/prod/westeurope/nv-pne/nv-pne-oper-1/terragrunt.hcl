@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -36,6 +37,7 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "nv-pne-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
   boot_diagnostics_enabled               = true
   ad_join                                = true
@@ -76,14 +78,6 @@ inputs = {
     }
   ]
   custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
     {
       name                  = "NV-Cyclers"
       priority              = "220"
