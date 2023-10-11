@@ -12,7 +12,7 @@ dependency "e3-global" {
 }
 
 dependency "labx-global" {
-  config_path = "../nv-labx/global/"
+  config_path = "../nv-labx/vnet/"
 }
 
 include "root" {
@@ -27,6 +27,16 @@ inputs = {
   enable_advanced_threat_protection = false
   min_tls_version                   = "TLS1_0"
   allow_nested_items_to_be_public   = false
+  blob_properties                   = {
+    versioning_enabled                = true
+    delete_retention_policy = {
+       days = 30
+    }
+    container_delete_retention_policy = {
+       days = 30
+    }
+  }
+
 
   azure_files_authentication = {
     directory_type = "AADDS"
@@ -47,7 +57,7 @@ inputs = {
     bypass         = ["AzureServices"]
     virtual_network_subnet_ids = [
       dependency.e3-global.outputs.subnet["nv-e3-subnet-10.44.5.128"].id,
-      dependency.labx-global.outputs.subnet.labx_subnet.id
+      dependency.labx-global.outputs.subnets.labx_subnet.id
     ]
   }
 
