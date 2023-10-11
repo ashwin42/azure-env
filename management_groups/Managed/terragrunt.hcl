@@ -12,5 +12,10 @@ inputs = {
   name                    = "nv_managed"
   display_name            = "Managed"
   parent_management_group = "Northvolt AB"
+  iam_assignments = {
+    "Reader" = {
+      service_principals = ["Promitor Azure Monitor Scraper"]
+    },
+  }
 }
 
