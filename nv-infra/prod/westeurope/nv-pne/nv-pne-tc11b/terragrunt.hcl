@@ -17,7 +17,7 @@ dependency "wvd" {
 }
 
 locals {
-  name = basename(get_terragrunt_dir())
+  name           = basename(get_terragrunt_dir())
   host_pool_name = "nv-pne-hp-tc11b"
 }
 
