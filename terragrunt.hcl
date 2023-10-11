@@ -12,42 +12,36 @@ locals {
   # Add providers to the list to generate proper provider blocks
   all_available_providers = [for f in fileset("./terragrunt/providers/", "*/provider.hcl.tftpl") : dirname(f)]
 
-  # load all hcl files
-  default_vars      = read_terragrunt_config("${get_repo_root()}/terragrunt/vars/default_vars.hcl", { locals = {}, generate = {} })
-  global_vars       = read_terragrunt_config(find_in_parent_folders("global.hcl", "global.hcl"), { locals = {}, generate = {} })
-  provider_vars     = read_terragrunt_config(find_in_parent_folders("provider.hcl", "provider.hcl"), { locals = {}, generate = {} })
-  tenant_vars       = read_terragrunt_config(find_in_parent_folders("tenant.hcl", "tenant.hcl"), { locals = {}, generate = {} })
-  enterprise_vars   = read_terragrunt_config(find_in_parent_folders("enterprise.hcl", "enterprise.hcl"), { locals = {}, generate = {} })
-  organization_vars = read_terragrunt_config(find_in_parent_folders("organization.hcl", "organization.hcl"), { locals = {}, generate = {} })
-  site_vars         = read_terragrunt_config(find_in_parent_folders("site.hcl", "site.hcl"), { locals = {}, generate = {} })
-  account_vars      = read_terragrunt_config(find_in_parent_folders("account.hcl", "account.hcl"), { locals = {}, generate = {} })
-  environment_vars  = read_terragrunt_config(find_in_parent_folders("environment.hcl", "environment.hcl"), { locals = {}, generate = {} })
-  region_vars       = read_terragrunt_config(find_in_parent_folders("region.hcl", "region.hcl"), { locals = {}, generate = {} })
-  cluster_vars      = read_terragrunt_config(find_in_parent_folders("cluster.hcl", "cluster.hcl"), { locals = {}, generate = {} })
-  server_vars       = read_terragrunt_config(find_in_parent_folders("server.hcl", "server.hcl"), { locals = {}, generate = {} })
-  project_vars      = read_terragrunt_config(find_in_parent_folders("project.hcl", "project.hcl"), { locals = {}, generate = {} })
-  general_vars      = read_terragrunt_config(find_in_parent_folders("general.hcl", "general.hcl"), { locals = {}, generate = {} })
-  common_vars       = read_terragrunt_config(find_in_parent_folders("common.hcl", "common.hcl"), { locals = {}, generate = {} })
-  local_vars        = read_terragrunt_config("local.hcl", { locals = {}, generate = {} })
+  # define all hcl config files, ordered by priority
+  all_files = tolist([
+    "global",
+    "provider",
+    "tenant",
+    "enterprise",
+    "organization",
+    "site",
+    "account",
+    "environment",
+    "region",
+    "cluster",
+    "server",
+    "project",
+    "general",
+    "common",
+    "local",
+  ])
 
-  # merge all variables from loaded hcl files in specific order
+  vars = { for i in local.all_files : "${i}_vars" => try(
+    read_terragrunt_config("${i}.hcl"),
+    read_terragrunt_config(find_in_parent_folders("${i}.hcl")),
+    {})
+  }
+
+  default_vars = read_terragrunt_config("${get_repo_root()}/terragrunt/vars/default_vars.hcl", { locals = {}, generate = {} })
+
   all_vars = merge(
     local.default_vars.locals,
-    local.global_vars.locals,
-    local.provider_vars.locals,
-    local.tenant_vars.locals,
-    local.enterprise_vars.locals,
-    local.organization_vars.locals,
-    local.site_vars.locals,
-    local.account_vars.locals,
-    local.environment_vars.locals,
-    local.region_vars.locals,
-    local.cluster_vars.locals,
-    local.server_vars.locals,
-    local.project_vars.locals,
-    local.general_vars.locals,
-    local.common_vars.locals,
-    local.local_vars.locals
+    merge([for i in local.all_files : { for k, v in try(local.vars["${i}_vars"].locals, {}) : k => v }]...)
   )
 
   # general
@@ -57,26 +51,12 @@ locals {
   account_id   = try(coalesce(local.all_vars.aws_account_id), local.all_vars.account_id)
   aws_account  = local.account_id
   aws_region   = try(coalesce(local.all_vars.aws_region, local.all_vars.region), "")
-  aws_profile  = try(coalesce(local.all_vars.aws_profile, length(compact([local.all_vars.account_name])) > 0 ? "nv-${local.account_name}" : ""), null)
+  aws_profile  = try(coalesce(local.all_vars.aws_profile, local.all_vars.account_name != "default" ? "nv-${local.account_name}" : ""), null)
 
   # merge all tags
   all_tags = merge(
-    try(lookup(local.default_vars, "tags", {}), {}),
-    try(lookup(local.global_vars.locals, "tags", {}), {}),
-    try(lookup(local.provider_vars.locals, "tags", {}), {}),
-    try(lookup(local.tenant_vars.locals, "tags", {}), {}),
-    try(lookup(local.enterprise_vars.locals, "tags", {}), {}),
-    try(lookup(local.organization_vars.locals, "tags", {}), {}),
-    try(lookup(local.site_vars.locals, "tags", {}), {}),
-    try(lookup(local.account_vars.locals, "tags", {}), {}),
-    try(lookup(local.environment_vars.locals, "tags", {}), {}),
-    try(lookup(local.region_vars.locals, "tags", {}), {}),
-    try(lookup(local.cluster_vars.locals, "tags", {}), {}),
-    try(lookup(local.server_vars.locals, "tags", {}), {}),
-    try(lookup(local.project_vars.locals, "tags", {}), {}),
-    try(lookup(local.general_vars.locals, "tags", {}), {}),
-    try(lookup(local.common_vars.locals, "tags", {}), {}),
-    try(lookup(local.local_vars.locals, "tags", {}), {})
+    local.default_vars.locals.tags,
+    merge([for i in local.all_files : { for k, v in try(local.vars["${i}_vars"].locals.tags, {}) : k => v }]...)
   )
 
   # define default tags for aws provider
@@ -97,7 +77,7 @@ locals {
   # default settings for s3 backend
   remote_state_s3_enabled                = try(coalesce(local.all_vars.remote_state_s3_enabled), false)
   remote_state_s3_encrypt                = try(coalesce(local.all_vars.remote_state_s3_encrypt), true)
-  remote_state_s3_bucket                 = try(coalesce(local.all_vars.remote_state_s3_bucket), format("%s-%s", "nv-tf-state", "${length(compact([local.account_name])) > 0 ? local.account_name : "undefined"}"))
+  remote_state_s3_bucket                 = try(coalesce(local.all_vars.remote_state_s3_bucket), format("%s-%s", "nv-tf-state", "${local.account_name != "default" ? local.account_name : "undefined"}"))
   remote_state_s3_key_prefix             = try(coalesce(local.all_vars.remote_state_s3_key_prefix), "infra")
   remote_state_s3_path                   = try(coalesce(local.all_vars.remote_state_s3_path), "${path_relative_to_include()}")
   remote_state_s3_region                 = try(coalesce(local.all_vars.remote_state_s3_region), "eu-north-1")
@@ -196,7 +176,7 @@ EOF
           {
             # Add special variables not in all_vars
             for k, v in {
-              "aws_profile"  = local.aws_profile,
+              "aws_profile"  = local.aws_profile != null ? local.aws_profile : "",
               "aws_region"   = local.aws_region,
               "account_id"   = local.account_id,
               "default_tags" = local.default_tags
@@ -225,44 +205,16 @@ EOF
   }
 
   all_providers = local.all_vars.providers_override != null ? local.all_vars.providers_override : distinct(concat(
-    try(local.default_vars.providers, []),
-    try(local.global_vars.locals.providers, []),
-    try(local.provider_vars.locals.providers, []),
-    try(local.tenant_vars.locals.providers, []),
-    try(local.enterprise_vars.locals.providers, []),
-    try(local.organization_vars.locals.providers, []),
-    try(local.site_vars.locals.providers, []),
-    try(local.account_vars.locals.providers, []),
-    try(local.environment_vars.locals.providers, []),
-    try(local.region_vars.locals.providers, []),
-    try(local.cluster_vars.locals.providers, []),
-    try(local.server_vars.locals.providers, []),
-    try(local.project_vars.locals.providers, []),
-    try(local.general_vars.locals.providers, []),
-    try(local.common_vars.locals.providers, []),
-    try(local.local_vars.locals.providers, []),
-  ))
+    local.default_vars.locals.providers,
+    flatten([for i in local.all_files : try(local.vars["${i}_vars"].locals.providers, [])])
+    )
+  )
 
-  all_additional_providers = try(local.all_vars.additional_providers_override != null ? local.all_vars.additional_providers_override : tomap(false), [
-    for i in merge(
-      { for i in try(local.default_vars.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.global_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.provider_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.tenant_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.enterprise_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.organization_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.site_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.account_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.environment_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.region_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.cluster_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.server_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.project_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.general_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.common_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i },
-      { for i in try(local.local_vars.locals.additional_providers, []) : "${i.provider}_${i.alias}" => i }
-    ) : i
-  ])
+  all_additional_providers = try(local.all_vars.additional_providers_override != null ? local.all_vars.additional_providers_override : tomap(false), merge(
+    try(local.default_vars.additional_providers, {}),
+    merge([for i in local.all_files : { for k, v in try(local.vars["${i}_vars"].locals.additional_providers, {}) : k => v }]...)
+    )
+  )
 
   generate_additional_providers = {
     for provider in local.all_additional_providers :
@@ -296,23 +248,10 @@ EOF
   }
 
   all_delete_files = local.all_vars.delete_files_override != null ? local.all_vars.delete_files_override : distinct(concat(
-    try(local.default_vars.delete_files, []),
-    try(local.global_vars.locals.delete_files, []),
-    try(local.provider_vars.locals.delete_files, []),
-    try(local.tenant_vars.locals.delete_files, []),
-    try(local.enterprise_vars.locals.delete_files, []),
-    try(local.organization_vars.locals.delete_files, []),
-    try(local.site_vars.locals.delete_files, []),
-    try(local.account_vars.locals.delete_files, []),
-    try(local.environment_vars.locals.delete_files, []),
-    try(local.region_vars.locals.delete_files, []),
-    try(local.cluster_vars.locals.delete_files, []),
-    try(local.server_vars.locals.delete_files, []),
-    try(local.project_vars.locals.delete_files, []),
-    try(local.general_vars.locals.delete_files, []),
-    try(local.common_vars.locals.delete_files, []),
-    try(local.local_vars.locals.delete_files, []),
-  ))
+    local.default_vars.locals.delete_files,
+    flatten([for i in local.all_files : try(local.vars["${i}_vars"].locals.delete_files, [])])
+    )
+  )
 
   # generate delete files
   generate_delete_files = { for file in toset(local.all_delete_files) :
@@ -342,21 +281,7 @@ EOF
     local.merge_generate_providers_version_override,
     try(length(compact([local.all_vars.terraform_required_version])) > 0 ? local.generate_versions : tomap(false), {}),
     try(length(local.generate_additional_providers) > 0 ? local.generate_additional_providers : tomap(false), {}),
-    local.global_vars.generate,
-    local.provider_vars.generate,
-    local.tenant_vars.generate,
-    local.enterprise_vars.generate,
-    local.organization_vars.generate,
-    local.site_vars.generate,
-    local.account_vars.generate,
-    local.environment_vars.generate,
-    local.region_vars.generate,
-    local.cluster_vars.generate,
-    local.server_vars.generate,
-    local.project_vars.generate,
-    local.general_vars.generate,
-    local.common_vars.generate,
-    local.local_vars.generate,
+    merge([for i in local.all_files : try(local.vars["${i}_vars"].generate, {})]...),
     {},
   )
 }
