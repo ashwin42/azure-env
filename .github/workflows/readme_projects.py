@@ -156,7 +156,7 @@ for project_file in project_files:
     with open("terragrunt.hcl", "w") as f:
         f.write("locals { \n")
         f.write("config = read_terragrunt_config(\"project.hcl\")\n")
-        f.write("account = try(read_terragrunt_config(find_in_parent_folders(\"account.hcl\")), \nread_terragrunt_config(\"${get_terragrunt_dir()/account.hcl}\")), {})\n")
+        f.write("account = try(read_terragrunt_config(find_in_parent_folders(\"account.hcl\")), \nread_terragrunt_config(\"${get_terragrunt_dir()/account.hcl}\"), {})\n")
         f.write("repo_path   = get_path_from_repo_root()\n")
         f.write("maintenance_configurations = [\n")
         f.write("   {\n")
