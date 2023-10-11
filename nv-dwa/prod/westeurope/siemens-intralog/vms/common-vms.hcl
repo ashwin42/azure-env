@@ -54,6 +54,7 @@ inputs = {
   }
   boot_diagnostics_enabled = true
   managed_disk_name        = "${local.vm_name}-osdisk"
+  managed_disk_size        = "64"
   data_disks = [
     {
       name                 = "${include.root.locals.all_vars.project}-${local.name}-data1"
