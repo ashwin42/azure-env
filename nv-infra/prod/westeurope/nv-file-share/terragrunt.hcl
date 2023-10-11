@@ -27,13 +27,13 @@ inputs = {
   enable_advanced_threat_protection = false
   min_tls_version                   = "TLS1_0"
   allow_nested_items_to_be_public   = false
-  blob_properties                   = {
-    versioning_enabled                = true
+  blob_properties = {
+    versioning_enabled = true
     delete_retention_policy = {
-       days = 30
+      days = 30
     }
     container_delete_retention_policy = {
-       days = 30
+      days = 30
     }
   }
 
