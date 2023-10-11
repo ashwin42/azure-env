@@ -79,4 +79,39 @@ inputs = {
       caching              = "None"
     }
   ]
+
+  custom_rules = [
+    {
+      name                  = "FR.T2.OC.CPM01.IT"
+      priority              = "220"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.32/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.OC.CPM01.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM01.IT"
+      priority              = "221"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.48/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM01.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM02.IT"
+      priority              = "222"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.64/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM02.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM03.IT"
+      priority              = "223"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.80/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM03.IT"
+    },
+  ]
 }
