@@ -8,7 +8,7 @@ locals {
   # netbox
   netbox_server_url         = "https://netbox.it.aws.nvlt.co"
   update_netbox             = true
-  netbox_provider_version   = "~> 3.4.0"
+  netbox_provider_version   = "~> 3.7.0"
   netbox_secret_aws_profile = "nv-it-prod"
 
   vpn_subnet_labs = "10.16.8.0/24"
