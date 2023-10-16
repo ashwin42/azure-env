@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.8.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.0"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -22,25 +22,24 @@ inputs = {
       name                       = "aws_ireland_dev_tgw"
       local_network_gateway_name = "aws-ireland-dev-tgw"
       routing_table_name         = "aws_ireland_dev_tgw_routingtable"
-      secret_name                = "vpn-aws-ireland-dev-tgw-psk"
       gateway_address            = "52.18.92.185"
       address_space              = "10.11.0.0/16"
       address_prefix             = "10.11.0.0/16"
       enable_bgp                 = "false"
+      generate_psk               = false
     },
     {
       name                       = "aws_stockholm_prod_tgw"
       local_network_gateway_name = "aws-stockholm-prod-tgw"
       routing_table_name         = "aws_stockholm_prod_tgw_routingtable"
-      secret_name                = "vpn-aws-stockholm-prod-tgw-psk"
       gateway_address            = "13.48.37.70"
       address_space              = "10.13.0.0/16,10.23.0.0/16,10.33.0.0/16,10.104.0.0/16,10.22.0.0/25"
       address_prefix             = "10.13.0.0/16,10.23.0.0/16,10.33.0.0/16,10.104.0.0/16"
       enable_bgp                 = "false"
+      generate_psk               = false
     },
     {
       name                = "aws-network-prod-eu-west-1-tgw-01-a"
-      secret_name         = "aws-network-prod-eu-west-1-tgw-01-a-psk"
       gateway_address     = "34.253.167.76"
       address_space       = "10.21.0.0/16"
       enable_bgp          = false
@@ -53,10 +52,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "aws-network-prod-eu-west-1-tgw-01-b"
-      secret_name         = "aws-network-prod-eu-west-1-tgw-01-b-psk"
       gateway_address     = "52.212.88.129"
       address_space       = "10.21.0.0/16"
       enable_bgp          = false
@@ -69,10 +68,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "azure-to-labs-s2s"
-      secret_name         = "azure-to-labs-s2s"
       gateway_address     = "213.50.54.194"
       address_space       = "10.244.255.0/30"
       enable_bgp          = "true"
@@ -85,10 +84,10 @@ inputs = {
       ipsec_integrity     = "SHA256"
       pfs_group           = "PFS24"
       sa_lifetime         = "27000"
+      generate_psk        = false
     },
     {
       name                = "revolt-ett-temp-cloudvpn-01-internet"
-      secret_name         = "revolt-ett-temp-cloudvpn-01-internet-psk"
       gateway_address     = "194.17.162.251"
       address_space       = ""
       enable_bgp          = "true"
@@ -103,10 +102,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "revolt-ett-temp-cloudvpn-02-internet"
-      secret_name         = "revolt-ett-temp-cloudvpn-02-internet-psk"
       gateway_address     = "194.17.162.252"
       address_space       = ""
       enable_bgp          = "true"
@@ -121,10 +120,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "ett-cloudvpn-01-internet"
-      secret_name         = "ett-cloudvpn-01-internet-psk"
       gateway_address     = "194.17.162.199"
       address_space       = ""
       enable_bgp          = "true"
@@ -139,10 +138,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "ett-cloudvpn-02-internet"
-      secret_name         = "ett-cloudvpn-02-internet-psk"
       gateway_address     = "194.17.162.200"
       address_space       = ""
       enable_bgp          = "true"
@@ -157,10 +156,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "ett-cloudvpn-03-internet"
-      secret_name         = "ett-cloudvpn-03-internet-psk"
       gateway_address     = "195.198.29.231"
       address_space       = ""
       enable_bgp          = "true"
@@ -175,10 +174,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "ett-cloudvpn-04-internet"
-      secret_name         = "ett-cloudvpn-04-internet-psk"
       gateway_address     = "195.198.29.232"
       address_space       = ""
       enable_bgp          = "true"
@@ -193,10 +192,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "labs-cloudvpn-01-internet"
-      secret_name         = "labs-cloudvpn-01-internet-psk"
       gateway_address     = "213.50.54.200"
       address_space       = ""
       enable_bgp          = "true"
@@ -211,10 +210,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "labs-cloudvpn-02-internet"
-      secret_name         = "labs-cloudvpn-02-internet-psk"
       gateway_address     = "213.50.54.201"
       address_space       = ""
       enable_bgp          = "true"
@@ -229,28 +228,28 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                       = "rnd-temp-office"
       local_network_gateway_name = "rnd-temp-office"
-      secret_name                = "vpn-rnd-temp-office-psk"
       gateway_address            = "92.43.35.134"
       address_space              = "10.16.32.0/23"
       address_prefix             = "10.16.32.0/23"
       enable_bgp                 = "false"
+      generate_psk               = false
     },
     {
       name                       = "drei-office"
       local_network_gateway_name = "drei-office"
-      secret_name                = "vpn-drei-office-psk"
       gateway_fqdn               = "drei-fw01-crvrkkmdmk.dynamic-m.com"
       address_space              = "10.17.0.0/22,10.193.9.0/24"
       address_prefix             = "10.17.0.0/22,10.193.9.0/24"
       enable_bgp                 = "false"
+      generate_psk               = false
     },
     {
       name                = "dwa-01-internet"
-      secret_name         = "dwa-01-internet-psk"
       gateway_address     = "37.128.85.102"
       address_space       = ""
       enable_bgp          = "true"
@@ -265,10 +264,10 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
     },
     {
       name                = "dwa-02-internet"
-      secret_name         = "dwa-02-internet-psk"
       gateway_address     = "37.128.85.103"
       address_space       = ""
       enable_bgp          = "true"
@@ -283,7 +282,41 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = false
+    },
+    {
+      name                = "labs-edge-cldro001-internet-we"
+      gateway_address     = "212.247.38.100"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65308"
+      bgp_peering_address = "169.254.0.11"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+    },
+    {
+      name                = "labs-edge-cldro002-internet-we"
+      gateway_address     = "212.247.38.101"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65308"
+      bgp_peering_address = "169.254.0.12"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
     },
   ]
 }
-
