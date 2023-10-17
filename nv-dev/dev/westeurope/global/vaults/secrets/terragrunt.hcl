@@ -9,7 +9,7 @@ include "root" {
 }
 
 locals {
-  name = include.root.inputs.secrets_key_vault_name
+  name                = include.root.inputs.secrets_key_vault_name
   resource_group_name = include.root.inputs.default_rg
 }
 

@@ -9,6 +9,6 @@ include "root" {
 }
 
 inputs = {
-  resource_group_name  = include.root.inputs.default_rg
-  lock_resources = false
+  resource_group_name = include.root.inputs.default_rg
+  lock_resources      = false
 }
