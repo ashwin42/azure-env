@@ -2,8 +2,9 @@ terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -38,9 +39,9 @@ inputs = {
     }
   ]
   storage_image_reference = {
-    offer     = "0001-com-ubuntu-minimal-focal-daily",
-    publisher = "Canonical",
-    sku       = "minimal-20_04-daily-lts",
+    offer     = include.root.locals.all_vars.ubuntu_offer_minimal_20,
+    publisher = include.root.locals.all_vars.ubuntu_publisher,
+    sku       = include.root.locals.all_vars.local.ubuntu_sku_minimal_20,
   }
   network_interfaces = [
     {

@@ -3,8 +3,9 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"  
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {

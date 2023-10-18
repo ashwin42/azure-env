@@ -6,8 +6,9 @@ locals {
   name = "print-gw-server"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -33,7 +34,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   storage_image_reference = {
     offer     = "UbuntuServer",
-    publisher = "Canonical",
+    publisher = include.root.locals.all_vars.ubuntu_publisher,
     sku       = "18.04-LTS",
   }
   network_interfaces = [

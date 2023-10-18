@@ -5,7 +5,8 @@ locals {
   setup_prefix               = "tia-mu"
   resource_group_name        = "tia-mu-rg"
   tags = {
-    project = "TIA MU"
-    jira    = "TOC-345"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "TIA MU"
+    jira                 = "TOC-345"
   }
 }

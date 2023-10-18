@@ -3,8 +3,9 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -35,9 +36,9 @@ inputs = {
   managed_disk_type                      = "StandardSSD_LRS"
 
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
-    sku       = "2022-Datacenter",
+    offer     = include.root.locals.all_vars.windows_server_offer,
+    publisher = include.root.locals.all_vars.windows_server_publisher,
+    sku       = include.root.locals.all_vars.windows_server_sku_2022,
   }
 
   os_profile_windows_config = {

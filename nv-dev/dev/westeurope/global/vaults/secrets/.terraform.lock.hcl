@@ -24,23 +24,23 @@ provider "registry.terraform.io/hashicorp/azuread" {
 }
 
 provider "registry.terraform.io/hashicorp/azurerm" {
-  version     = "3.48.0"
-  constraints = ">= 3.0.0"
+  version     = "3.34.0"
+  constraints = ">= 2.56.0, >= 3.0.0, ~> 3.34.0"
   hashes = [
-    "h1:5sGcXKelc4o4MnPZfKKs9pd8w969TtlCV+0IZvW58Cs=",
-    "h1:MrojhMxADZXFiCAd4dtSfvC4/n0xiQGN95/XpUBaBsI=",
-    "h1:RSUCtxgd6hD9J11YZGOA4yffeu5P8YmQnP5SRNl6+d8=",
-    "zh:01bd328009f2803ebc18ac27535e7d1548c735bb5bd02460e471acc835e5dd19",
-    "zh:070b0bdd5ff27232eec7ef9128fc9bd17e6bdae503ddcc450c944449f3a8d216",
-    "zh:0a0a0e81f7ab8757aa83876fffbc57328843664900923d8b3c577e7596884726",
-    "zh:30994e6988c92d90a71b88bff0bbc4fa8f3b48034d18eb068bd5281888304579",
-    "zh:54dfdbae2bf79f8104ae73e5c6cd94a69d1e6de4345322f6c8eb6affb04a66c5",
-    "zh:55ba99b32346237435d7212b3f2521952ee67934dd5ee942a51642357b0ad4fc",
-    "zh:881bc29857511f7eedc3d359a0f2dcca6b526a48f6d54887cafdb25647abd1fd",
-    "zh:892bfa34b95b6b4b2ced24dc2989edf512b193bd9e5cf121ae47bb9d9e6d0b94",
-    "zh:c7d2c778b0f251990874ee859b9093fbb4beb9b3968858137da6c5167c797ea9",
-    "zh:db558aa70b163af44a73fcb1306d0e4dcafcafe585bedb90ef69f063fa9766a3",
-    "zh:e0ae252b7bea560e05fde09fe632f012430fb91ff9063fce560d997ecdb1cf75",
+    "h1:7W2o3Hr5R6ZfD7J2ECOW4KHuIAY++GBg6aCKEtVSlo0=",
+    "h1:pCUVVzQpBNUoPMyy0vwBeHwTL8GawDRfjSpZWVjX7WA=",
+    "h1:tYHnH0a3l3/IEqlYRjhx9NCPBMIZnFzDzVFLlMZw/FE=",
+    "zh:04a3860959a9626469714a9986561ff04697fb6fe268cac6481ee570c3c20519",
+    "zh:3191647b011cd094c7db1f5709f46e0df7190ab8dad1896e15e763384273931c",
+    "zh:4428e5503fa614dec1ca3ea33d9479835a1c048a03cdec364ad8ad3340a3e137",
+    "zh:576df51dfba37c40983552f98077125c2eb12eb4e105bb805e935c75c73a7181",
+    "zh:5c1f4939a1e9ae96a977058c5056018f6b37220f1d0408531c89ea3295735f81",
+    "zh:644ebea720c22b3f665f9e087ad57122ce5727631b3d437a425fb97a44515a01",
+    "zh:87250563eed16db793ae9c309200f074f3b42acb4a44fdef4b26b9f7e988931e",
+    "zh:b8fff7fb51234eb13a8f3a0107ef6fc8033e28c3b4a1087fc837dfc7706d3274",
+    "zh:e21ecae5989348e9cbf07295f355a05dcae4758019d81c517f55b45e83a3e0e7",
+    "zh:ece35f508eda2edf5d4867a6e5ad2e24904278813cfce70e19063d310e66d790",
+    "zh:f421c6068713237fffce12f504fd5888b668352a22cb1075845fd612954ac3ec",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
   ]
 }

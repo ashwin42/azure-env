@@ -23,4 +23,8 @@ inputs = {
       name = "Microsoft.PowerPlatform"
     },
   ]
+
+  tags = {
+    owner = "techops@northvolt.com"
+  }
 }

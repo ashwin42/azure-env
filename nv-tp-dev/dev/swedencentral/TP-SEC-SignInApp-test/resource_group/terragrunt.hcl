@@ -2,8 +2,9 @@ terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.24"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {
@@ -11,6 +12,11 @@ inputs = {
     "Contributor" = {
       groups = [
         "NV Tools & Products Member",
+      ],
+    },
+    "Owner" = {
+      groups = [
+        "NV Tools & Products Leads",
       ],
     },
   }

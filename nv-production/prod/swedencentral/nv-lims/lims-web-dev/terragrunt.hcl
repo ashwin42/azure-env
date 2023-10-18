@@ -3,8 +3,9 @@ terraform {
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -41,8 +42,8 @@ inputs = {
     identity_ids = null
   }
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
+    offer     = include.root.locals.all_vars.windows_server_offer,
+    publisher = include.root.locals.all_vars.windows_server_publisher,
     sku       = "2019-Datacenter-smalldisk",
   }
   os_profile_windows_config = {

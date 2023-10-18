@@ -42,5 +42,9 @@ inputs = {
       ]
     },
   }
+
+  tags = {
+    owner = "techops@northvolt.com"
+  }
 }
 

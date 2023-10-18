@@ -28,10 +28,11 @@ locals {
     },
   ]
   tags = {
-    business-unit = "Battery Systems"
-    department    = "Factory Engineering"
-    cost-center   = "250006020 Factory Development & Material Flow - BS"
-    jira          = "NDW-56"
-    project       = "Siemens WCS"
+    infrastructure-owner = "techops@northvolt.com"
+    business-unit        = "Battery Systems"
+    department           = "Factory Engineering"
+    cost-center          = "250006020 Factory Development & Material Flow - BS"
+    jira                 = "NDW-56"
+    project              = "Siemens WCS"
   }
 }

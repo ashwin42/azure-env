@@ -1,0 +1,17 @@
+variable "helm_k3s_cluster_endpoint" {
+  type    = string
+  default = null
+}
+
+variable "helm_k3s_cluster_token" {
+  type    = string
+  default = null
+}
+
+provider "helm" {
+  alias = "k3s"
+  kubernetes {
+    host  = try(coalesce(var.helm_k3s_cluster_endpoint, var.cluster_endpoint), "")
+    token = try(coalesce(var.helm_k3s_cluster_token, var.rancher_token), "")
+  }
+}

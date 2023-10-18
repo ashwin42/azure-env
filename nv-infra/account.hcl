@@ -1,6 +1,9 @@
 locals {
   subscription_name                         = "NV_Gen_Infra"
   subscription_id                           = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+  automation_account_name                   = "nv-infra-automation"
+  automation_account_rg                     = local.automation_account_name
+  automation_account_workspace              = local.automation_account_name
   azurerm_subscription_id                   = "11dd160f-0e01-4b4d-a7a0-59407e357777"
   azurerm_features                          = {}
   remote_state_azurerm_storage_account_name = "nvinfratfstate"

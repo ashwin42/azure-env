@@ -18,7 +18,7 @@ locals {
 }
 
 provider "aws" {
-  region              = "${aws_region}"
+  region              = %{if aws_region == "global"}"eu-north-1"%{else}"${aws_region}"%{endif}
   allowed_account_ids = local.allowed_account_ids
 %{if length(compact([aws_profile])) > 0~}
   profile             = "${aws_profile}"

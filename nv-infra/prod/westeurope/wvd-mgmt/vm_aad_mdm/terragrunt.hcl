@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.62"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.8.7"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
 include "root" {
@@ -70,5 +70,15 @@ inputs = {
       ],
     },
   }
-}
 
+  automation_updates = {
+    reboot                    = "Always"
+    wvd_drain                 = true
+    wvd_drain_role_assignment = true
+    schedule = {
+      frequency          = "Week"
+      advanced_week_days = ["Monday"]
+      start_time         = "2023-10-02T23:00:00Z"
+    }
+  }
+}

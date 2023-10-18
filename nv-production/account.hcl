@@ -9,6 +9,9 @@ locals {
   remote_state_azurerm_storage_account_name = "nvproductiontfstate"
   remote_state_azurerm_container_name       = "nv-tf-state"
   remote_state_azurerm_resource_group_name  = "nv-production-core"
+  automation_account_name                   = "nv-production-automation"
+  automation_account_rg                     = "nv-production-core"
+  automation_account_workspace              = local.automation_account_name
   additional_providers = [
     {
       alias           = "ad_join_keyvault"

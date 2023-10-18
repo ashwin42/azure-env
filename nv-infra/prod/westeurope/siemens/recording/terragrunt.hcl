@@ -3,8 +3,9 @@ terraform {
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "vnet" {
@@ -41,8 +42,8 @@ inputs = {
   availability_set_id                    = dependency.as.outputs.availability_sets.nv_siemens_avs
 
   storage_image_reference = {
-    offer     = "WindowsServer",
-    publisher = "MicrosoftWindowsServer",
+    offer     = include.root.locals.all_vars.windows_server_offer,
+    publisher = include.root.locals.all_vars.windows_server_publisher,
     sku       = "2016-Datacenter",
   }
 

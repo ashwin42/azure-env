@@ -5,7 +5,8 @@ locals {
   setup_prefix               = "nv-toolsnet"
   resource_group_name        = "nv-toolsnet-rg"
   tags = {
-    project = "Toolsnet"
-    jira    = "TOC-1023"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "Toolsnet"
+    jira                 = "TOC-1023"
   }
 }

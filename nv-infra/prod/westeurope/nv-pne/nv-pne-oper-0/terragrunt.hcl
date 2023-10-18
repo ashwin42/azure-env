@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.7"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -20,6 +21,7 @@ locals {
 }
 
 inputs = {
+  netbox_role                            = "pne-oper"
   setup_prefix                           = dependency.global.outputs.setup_prefix
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name
@@ -36,6 +38,7 @@ inputs = {
   managed_disk_name                      = "nv-pne-oper-0_OsDisk_1_5e3cecb836374e779f44e77c610cd138"
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "nv-pne-nvadmin"
   boot_diagnostics_enabled               = true
   storage_account_name                   = "nvinfrabootdiag"
   ipconfig_name                          = "ipconfig"
@@ -66,7 +69,7 @@ inputs = {
           private_ip_address            = "10.44.5.37"
           subnet_id                     = dependency.global.outputs.subnet["nv-pne-subnet-10.44.5.32"].id
           private_ip_address_allocation = "Static"
-          ipconfig_name                 = "nv-pne-oper-0-nic-ipconfig"
+          ipconfig_name                 = "ipconfig"
         }
       ]
     }
@@ -84,20 +87,21 @@ inputs = {
 
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
       name                  = "NV-Cyclers"
       priority              = "220"
       direction             = "Inbound"
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
+    {
+      name                  = "NV_Cyclers"
+      priority              = "221"
+      direction             = "Inbound"
+      source_address_prefix = "10.149.0.0/18"
+      access                = "Allow"
+      description           = "Allow connections from NV-Cyclers"
+    },
+
   ]
 }

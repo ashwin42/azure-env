@@ -3,7 +3,8 @@ locals {
   resource_group_name = local.project
   providers           = ["azurerm", "netbox"]
   tags = {
-    project = "Strama LDS"
-    jira    = "NDW-334"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "Strama LDS"
+    jira                 = "NDW-334"
   }
 }

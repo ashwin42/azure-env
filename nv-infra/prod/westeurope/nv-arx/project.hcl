@@ -3,7 +3,8 @@ locals {
   terraform_required_version = ">= 1.0"
   azurerm_features           = {}
   tags = {
-    project = "ARX"
-    jira    = "TOC-1208"
+    infrastructure-owner = "techops@northvolt.com"
+    project              = "ARX"
+    jira                 = "TOC-1208"
   }
 }

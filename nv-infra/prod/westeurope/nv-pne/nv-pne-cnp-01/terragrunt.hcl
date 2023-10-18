@@ -1,10 +1,11 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.51"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -81,12 +82,36 @@ inputs = {
 
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
+      name                  = "FR.T2.OC.CPM01.IT"
+      priority              = "220"
       direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
+      source_address_prefix = "10.101.232.32/28"
       access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
+      description           = "Allow connections from cyclers on FR.T2.OC.CPM01.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM01.IT"
+      priority              = "221"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.48/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM01.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM02.IT"
+      priority              = "222"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.64/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM02.IT"
+    },
+    {
+      name                  = "FR.T2.IC.CPM03.IT"
+      priority              = "223"
+      direction             = "Inbound"
+      source_address_prefix = "10.101.232.80/28"
+      access                = "Allow"
+      description           = "Allow connections from cyclers on FR.T2.IC.CPM03.IT"
     },
   ]
 }

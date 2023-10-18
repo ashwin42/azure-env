@@ -1,0 +1,68 @@
+variable "awx_secret_name" {
+  type    = string
+  default = "awx"
+}
+
+variable "awx_secret_name_key" {
+  type    = string
+  default = null
+}
+
+variable "awx_secret_store" {
+  type    = string
+  default = "parameter-store"
+}
+
+variable "awx_secret_path" {
+  type    = string
+  default = null
+}
+
+variable "awx_hostname" {
+  description = "The AWX Host that we connect to. (defaults to TOWER_HOST env variable if set)"
+  default     = null
+}
+
+variable "awx_insecure_skip_verify" {
+  description = "Are we using a self signed certificate? [false] (defaults to a negation of TOWER_VERIFY_SSL env variable if set)"
+  default     = null
+}
+
+variable "awx_password" {
+  description = "The password to connect to the AWX host. (defaults to TOWER_PASSWORD env variable if set)"
+  default     = null
+}
+
+variable "awx_username" {
+  description = "The username to connect to the AWX host. (defaults to TOWER_USERNAME env variable if set)"
+  default     = null
+}
+
+module "awx_provider_secret" {
+  count           = var.awx_password == null ? 1 : 0
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.5.1"
+  secret_name     = var.awx_secret_name
+  secret_name_key = var.awx_secret_name_key
+  secret_path     = var.awx_secret_path
+  store           = var.awx_secret_store
+ %{if awx_secret_aws_profile != ""~}
+   providers = {
+     aws = aws.awx_secret
+   }
+ %{endif~}
+}
+
+provider "awx" {
+  hostname             = var.awx_hostname
+  insecure_skip_verify = var.awx_insecure_skip_verify
+  username             = var.awx_username
+  password             = var.awx_password == null ? module.awx_provider_secret[0].secret : var.awx_password
+}
+
+%{if awx_secret_aws_profile != ""~}
+provider "aws" {
+  region  = "${awx_secret_aws_region}"
+  profile = "${awx_secret_aws_profile}"
+  alias   = "awx_secret"
+}
+%{endif~}

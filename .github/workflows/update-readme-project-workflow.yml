@@ -1,5 +1,5 @@
 ---
-name: Update README.md
+name: Update README.md for project changes
 
 on:
   workflow_call:
@@ -24,6 +24,10 @@ on:
         required: false
         default: "https://portal.azure.com/#@northvolt.com"
         type: string
+      default_branch:
+        required: false
+        default: "master"
+        type: string
     secrets:
       actions_gpg_private_key:
         description: 'GPG key to sign commits'
@@ -31,9 +35,12 @@ on:
       actions_gpg_passphrase:
         description: 'Passphrase for the GPG key'
         required: true
+      actions_confluence_api_token:
+        description: 'API token for Confluence'
+        required: true
 
 jobs:
-  update_readme:
+  update_projects_readme:
     runs-on: ubuntu-22.04
     steps:
       - name: Check project.hcl changed
@@ -76,13 +83,29 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
 
+      - name: Checkout README.md and PROJECTS.md from main branch
+        if: steps.changes.outputs.project == 'true'
+        run: |
+          git fetch origin ${{ inputs.default_branch }}
+          git restore -s origin/${{ inputs.default_branch }} README.md
+          git restore -s origin/${{ inputs.default_branch }} PROJECTS.md
+
       - name: Execute README.md update script
         if: steps.changes.outputs.project == 'true'
-        run: python .github/workflows/readme.py
+        run: python .github/workflows/readme_projects.py
         env:
           ROOT_DIR: ${{ github.workspace }}
           JIRA_URL: ${{ inputs.jira_url }}
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+
+      - name: Execute Confluence projects update script
+        if: steps.changes.outputs.project == 'true'
+        run: python .github/workflows/confluence_projects.py
+        env:
+          ROOT_DIR: ${{ github.workspace }}
+          JIRA_URL: ${{ inputs.jira_url }}
+          AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.actions_confluence_api_token }}
 
       - name: Import bot's GPG key for signing commits
         if: steps.changes.outputs.project == 'true'

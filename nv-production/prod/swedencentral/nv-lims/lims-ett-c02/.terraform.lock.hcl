@@ -23,6 +23,7 @@ provider "registry.terraform.io/hashicorp/aws" {
   version     = "5.21.0"
   constraints = ">= 3.38.0"
   hashes = [
+<<<<<<< HEAD
     "h1:IL8+8FpwcAy46iniOrxI9zHF3s/4bGhfZR+9eyW1M9k=",
     "h1:ImMwRL69SVDMlN9+cIkvR5SQr/TW0/unveRZ6/5xeEI=",
     "h1:N8sP6VZjHbtgmaCU6BKPox51UIypWXQRal7JMecEXQw=",
@@ -33,7 +34,6 @@ provider "registry.terraform.io/hashicorp/aws" {
     "zh:47b64b453d2c373062e47a54f3df33335dc29bce6ddbbf2da9e7be768c560abe",
     "zh:5cdf57ffd465288d9732d14ba13b377a8d389e0ba0ce3ac4773fd6fdfc09d6a1",
     "zh:81ec4c662581a2446c78da7b27d7e0d5c2e4d50925294789ec13661817f4b5a4",
-    "zh:9b12af85486a96aedd8d7984b0ff811a4b42e3d88dad1a3fb4c0b580d04fa425",
     "zh:ac248464fd4ce1f020c05f27e3182532a7d1af4b8185a4b4be8b906b30b0ca5a",
     "zh:bbbedc6b6eaffcce0b31b397d607464f0c21c1b9406182163d504d3f392cc68d",
     "zh:c2afc111f9503829ed055e2ae91d873670c57bd16acc1a3246ac3957f6998d4e",
@@ -48,6 +48,7 @@ provider "registry.terraform.io/hashicorp/azuread" {
   version     = "2.43.0"
   constraints = ">= 2.0.0"
   hashes = [
+<<<<<<< HEAD
     "h1:bp9HeofaEJDiWtyLMwIEYVgxP5yoMs/dQhjCYsbXU34=",
     "h1:jmvCGhwc+jUip0Hy4PI1ZiO/11vdQ3TTp3YaBTKFGiQ=",
     "h1:tU/kGFohqNia+uVFT1ujYKZRH2lvEP73LUhQDJtO1w4=",

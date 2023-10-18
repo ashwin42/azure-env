@@ -1,6 +1,6 @@
 terraform {
-  # source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.9"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -23,9 +23,8 @@ inputs = merge(
     netbox_create_role = true
     network_interfaces = [
       {
-        primary             = true
-        name                = "${local.common.locals.vm_name}-nic1"
-        security_group_name = "${local.common.locals.vm_name}-nsg"
+        primary = true
+        name    = "${local.common.locals.vm_name}-nic1"
         ip_configuration = [{
           subnet_id                     = local.common.dependency.subnet.outputs.subnets["siemens-wcs-subnet1"].id
           private_ip_address_allocation = "Static"

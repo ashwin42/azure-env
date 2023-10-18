@@ -3,8 +3,9 @@ terraform {
   #source = "../../../../../../../tf-mod-azure//vm/"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 dependency "global" {
@@ -34,7 +35,7 @@ inputs = {
   localadmin_key_name        = "${local.name}-vm-localadmin"
   create_localadmin_password = true
   storage_image_reference = {
-    sku = "2019-Datacenter",
+    sku = include.root.locals.all_vars.windows_server_sku_2019,
   }
 
   os_profile = {

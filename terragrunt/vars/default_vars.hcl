@@ -11,7 +11,7 @@ locals {
   additional_providers_override = null
   # local backend
   local_state_enabled = null
-  local_state_path    = "${get_terragrunt_dir()}/terraform.tfstate"
+  local_state_path    = "${get_original_terragrunt_dir()}/terraform.tfstate"
   # s3 backend
   remote_state_s3_enabled                = null
   remote_state_s3_key_prefix             = null
@@ -85,6 +85,12 @@ locals {
   kubernetes_eks_aws_profile           = null
   kubernetes_eks_aws_region            = local.aws_region
   kubernetes_eks_greenfield_deployment = false
+  # kubernetes_k3s
+  kubernetes_k3s_provider_source  = "hashicorp/kubernetes"
+  kubernetes_k3s_provider_version = null
+  # helm_k3s
+  helm_k3s_provider_source  = "hashicorp/helm"
+  helm_k3s_provider_version = null
   # rancher2
   rancher2_provider_source  = "rancher/rancher2"
   rancher2_provider_version = null
@@ -166,4 +172,9 @@ locals {
   netbox_provider_version   = null
   netbox_secret_aws_profile = null
   netbox_secret_aws_region  = local.aws_region
+  # awx
+  awx_provider_source    = "ilijamt/awx"
+  awx_provider_version   = null
+  awx_secret_aws_profile = null
+  awx_secret_aws_region  = local.aws_region
 }
