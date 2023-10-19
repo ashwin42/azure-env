@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
   #source = "../../../../../../tf-mod-azure//vm/"
 }
 
@@ -98,7 +98,7 @@ inputs = {
     schedule = {
       frequency                       = "Week"
       advanced_week_days              = ["Thursday"]
-      start_time                      = "2023-10-19T05:00:00Z"
+      start_time                      = "2023-10-26T05:00:00Z"
       drain_schedule_reminder_message = "This VM will be patched and restarted in 5 minutes. Please save your work and log off."
     }
   }
