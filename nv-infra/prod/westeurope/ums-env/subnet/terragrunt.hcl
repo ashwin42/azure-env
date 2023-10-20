@@ -14,9 +14,9 @@ inputs = {
   resource_group_name      = "ums-env-rg"
   subnets = [
     {
-      name             = "ums-env-subnet-10.46.0.144_28"
+      name               = "ums-env-subnet-10.46.0.144_28"
       netbox_subnet_name = "ums-env-subnet"
-      address_prefixes = ["10.46.0.144/28"]
+      address_prefixes   = ["10.46.0.144/28"]
     },
   ]
 }

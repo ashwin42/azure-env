@@ -10,8 +10,8 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix                = "nv-gen-infra-vnet"
-  vnet_resource_group_name    = "nv-gen-infra-rg"
+  setup_prefix             = "nv-gen-infra-vnet"
+  vnet_resource_group_name = "nv-gen-infra-rg"
   subnets = [
     {
       name             = include.root.inputs.project_name
