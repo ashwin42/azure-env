@@ -32,7 +32,7 @@ inputs = {
   host_pools = [
     {
       name                  = "${local.name}-vm1-hp"
-      friendly_name         = "08.03 - 08.05, 08.07"
+      friendly_name         = "08.03-08.05, 08.07"
       custom_rdp_properties = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"
       tags = {
         project = "P480-5"
@@ -44,8 +44,8 @@ inputs = {
       name                         = "${local.name}-vm1-ag"
       host_pool_name               = "${local.name}-vm1-hp"
       workspace_name               = "${local.name}-avd-ws"
-      friendly_name                = "08.03 - 08.05, 08.07"
-      default_desktop_display_name = "08.03 - 08.05, 08.07"
+      friendly_name                = "08.03-08.05, 08.07"
+      default_desktop_display_name = "08.03-08.05, 08.07"
       assign_groups = [
         "NV TechOps Role",
         "P&L Validation Labs PNE Virtual Desktop users",
