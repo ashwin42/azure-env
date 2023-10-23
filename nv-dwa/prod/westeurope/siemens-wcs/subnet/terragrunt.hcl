@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.32"
-  #source = "../../../../../../tf-mod-azure/vnet/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "{dirname(get_repo_root())}/tf-mod-azure//vnet/netbox"
 }
 
 dependency "vnet" {
@@ -20,6 +20,7 @@ inputs = {
   subnets = [
     {
       name                                          = "${include.root.locals.all_vars.project}-subnet1"
+      netbox_subnet_name                            = "DWA - Siemens WCS - Servers/databases"
       address_prefixes                              = ["10.46.97.32/27"]
       route_table_name                              = "nv-dwa-we-default-rt"
       route_table_resource_group_name               = dependency.vnet.outputs.virtual_network.resource_group_name
@@ -29,6 +30,7 @@ inputs = {
     },
     {
       name                            = "${include.root.locals.all_vars.project}-web-app-inbound"
+      netbox_subnet_name              = "DWA - Siemens WCS - web-app Inbound"
       address_prefixes                = ["10.46.97.64/28"]
       route_table_name                = "nv-dwa-we-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
@@ -44,6 +46,7 @@ inputs = {
     },
     {
       name                            = "${include.root.locals.all_vars.project}-web-app-outbound"
+      netbox_subnet_name              = "DWA - Siemens WCS - web-app outbound"
       address_prefixes                = ["10.46.97.80/28"]
       route_table_name                = "nv-dwa-we-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name

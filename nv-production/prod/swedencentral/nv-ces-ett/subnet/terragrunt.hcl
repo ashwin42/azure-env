@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.20"
-  #source = "../../../../../../tf-mod-azure/vnet/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 dependency "vnet" {
@@ -13,11 +13,13 @@ include "root" {
 }
 
 inputs = {
+  setup_prefix             = ""
   vnet_name                = dependency.vnet.outputs.virtual_network.name
   vnet_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
   subnets = [
     {
       name                            = "nv-ces-ett-subnet-10.64.1.192_28"
+      netbox_subnet_name              = "nv-ces-ett subnet"
       address_prefixes                = ["10.64.1.192/28"]
       route_table_name                = "nv-production-swc-default-rt"
       service_endpoints               = ["Microsoft.Sql", "Microsoft.Storage"]
