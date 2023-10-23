@@ -30,7 +30,7 @@ inputs = {
     },
     {
       name                            = "${include.root.locals.all_vars.project}-web-app-inbound"
-      netbox_subnet_name              = "	DWA - Siemens WCS - web-app Inbound"
+      netbox_subnet_name              = "DWA - Siemens WCS - web-app Inbound"
       address_prefixes                = ["10.46.97.64/28"]
       route_table_name                = "nv-dwa-we-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name

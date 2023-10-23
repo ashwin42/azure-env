@@ -13,7 +13,8 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix             = "nv-gen-infra-vnet"
+  setup_prefix             = ""
+  vnet_name                = "nv-gen-infra-vnet"
   vnet_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
   resource_group_name      = "nv-labs-qc"
 
