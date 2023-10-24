@@ -23,7 +23,7 @@ inputs = {
     {
       name                = "${local.name}-avd-ws"
       resource_group_name = "nv-pnl-vms-rg"
-      friendly_name       = "PNE TC8"
+      friendly_name       = "PNE - TC8"
       tags = {
         project = "P480-5"
       }
