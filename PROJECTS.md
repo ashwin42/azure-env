@@ -1117,6 +1117,27 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Veeam
+- Code: [nv-infra/prod/westeurope/veeam](nv-infra/prod/westeurope/veeam)
+- Jira: [TOC-2434](https://northvolt.atlassian.net/browse/TOC-2434)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/veeam |
+| **Resources** | northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.2<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br> |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035060 TechOps |
+| **system-owner** | techops@northvolt.com |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
 ### 🛠️ Waste Water Treatment
 - Code: [nv-production/prod/swedencentral/nv-wwt-ett-us1](nv-production/prod/swedencentral/nv-wwt-ett-us1)
 - Jira: [TOC-858](https://northvolt.atlassian.net/browse/TOC-858)
