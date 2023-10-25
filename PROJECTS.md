@@ -1119,7 +1119,7 @@ This is a list of projects in the repository based on project.hcl files.
 ---
 ### 🛠️ Veeam
 - Code: [nv-infra/prod/westeurope/veeam](nv-infra/prod/westeurope/veeam)
-- Jira: [❌ **MISSING** (please add to project.hcl)](https://northvolt.atlassian.net/browse/❌ **MISSING** (please add to project.hcl))
+- Jira: [TOC-2434](https://northvolt.atlassian.net/browse/TOC-2434)
 <details><summary>Details (click to expand):</summary>
 
 | Detail | Value |
