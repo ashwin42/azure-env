@@ -38,6 +38,12 @@ inputs = {
       roles         = ["db_owner"]
       database      = "masterdatatransfdev"
       create_secret = true
+    },
+    {
+      username      = "BI_user"
+      roles         = ["db_datawriter"]
+      database      = "masterdatatransfdev"
+      create_secret = true
     }
   ]
 
