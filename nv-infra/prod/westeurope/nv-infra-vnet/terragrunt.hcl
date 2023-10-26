@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.46"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vnet"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 include "root" {
@@ -60,8 +60,9 @@ inputs = {
 
   subnets = [
     {
-      name             = "nv-gen-infra-vm-subnet"
-      address_prefixes = ["10.46.1.128/25"]
+      name               = "nv-gen-infra-vm-subnet"
+      netbox_subnet_name = "nv-gen-infra general vm subnet"
+      address_prefixes   = ["10.46.1.128/25"]
     },
   ]
 

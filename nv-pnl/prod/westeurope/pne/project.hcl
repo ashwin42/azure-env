@@ -1,7 +1,6 @@
 locals {
   azurerm_provider_version         = ">=3.23.0"
   terraform_required_version       = ">= 1.2.6"
-  providers                        = ["azurerm", "netbox"]
   azurerm_features                 = {}
   setup_prefix                     = "nv-pnl"
   resource_group_name              = "nv-pnl-vms-rg"

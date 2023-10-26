@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.8"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 include "root" {
@@ -31,9 +31,11 @@ inputs = {
   ]
   peerings = [
     {
-      name                  = "nv-prod-swe_to_nv-hub"
-      vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/hub_rg/providers/Microsoft.Network/virtualNetworks/hub_vnet"
-      allow_gateway_transit = false
+      name                    = "nv-prod-swe_to_nv-hub"
+      vnet_id                 = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/hub_rg/providers/Microsoft.Network/virtualNetworks/hub_vnet"
+      allow_gateway_transit   = false
+      allow_forwarded_traffic = true
+      use_remote_gateways     = true
     },
   ]
 }

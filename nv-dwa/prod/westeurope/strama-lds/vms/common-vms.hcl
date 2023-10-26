@@ -42,6 +42,7 @@ inputs = {
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = dependency.storage.outputs.storage_account_name
   ad_join                                = "true"
+  managed_disk_size                      = "64"
   storage_image_reference = {
     sku = "2022-Datacenter-smalldisk",
   }

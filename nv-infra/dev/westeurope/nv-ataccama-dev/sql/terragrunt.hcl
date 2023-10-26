@@ -44,7 +44,12 @@ inputs = {
       roles         = ["db_datawriter"]
       database      = "masterdatatransfdev"
       create_secret = true
-    }
+    },
+      username      = "ataccama"
+      roles         = ["db_owner"]
+      database      = "masterdatatransfdev"
+      create_secret = true
+    },
   ]
 
   mssql_azuread_users = [

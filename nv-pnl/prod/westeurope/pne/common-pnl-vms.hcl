@@ -28,6 +28,7 @@ inputs = {
   ad_join                                = true
   wvd_register                           = true
   localadmin_key_name                    = "${local.name}-vm-localadmin"
+  ou_path                                = "OU=PNE Cycler VMs,DC=aadds,DC=northvolt,DC=com"
   create_localadmin_password             = true
   boot_diagnostics_enabled               = true
   install_winrm                          = true

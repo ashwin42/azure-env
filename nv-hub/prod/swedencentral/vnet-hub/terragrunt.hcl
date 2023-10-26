@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.6.12"
-  #source = "../../../../../tf-mod-azure/vnet"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 include "root" {
@@ -10,8 +10,8 @@ include "root" {
 
 inputs = {
   vnet_resource_group_name = "hub_rg"
-  setup_prefix             = "hub"
   vnet_name                = "hub_vnet"
+  netbox_vnet_name         = "Public Clouds -- Azure - swedencentral HUB VNET"
   address_space            = ["10.48.0.0/23"]
   create_resource_group    = true
   dns_servers              = []
@@ -103,14 +103,18 @@ inputs = {
   ]
   peerings = [
     {
-      name                = "hub-swc2hub-we",
-      vnet_id             = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
-      use_remote_gateways = false
+      name                    = "hub-swc2hub-we",
+      vnet_id                 = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
     },
     {
-      name                = "hub-swc-to-nv-prod-swe",
-      vnet_id             = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-prod-swe-vnet-rg/providers/Microsoft.Network/virtualNetworks/nv-prod-swe-vnet"
-      use_remote_gateways = false
+      name                    = "hub-swc-to-nv-prod-swe",
+      vnet_id                 = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-prod-swe-vnet-rg/providers/Microsoft.Network/virtualNetworks/nv-prod-swe-vnet"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
     },
   ]
 }
