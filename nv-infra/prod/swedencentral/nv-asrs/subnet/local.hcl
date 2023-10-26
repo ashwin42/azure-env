@@ -1,3 +1,0 @@
-locals {
-  providers = ["azurerm", "netbox"]
-}
