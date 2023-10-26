@@ -48,7 +48,7 @@ inputs = {
 
   os_profile = {
     admin_username = "domainjoin"
-    computer_name  = "asrs01"
+    computer_name  = "asrs-te-mon"
   }
 
   identity = {
