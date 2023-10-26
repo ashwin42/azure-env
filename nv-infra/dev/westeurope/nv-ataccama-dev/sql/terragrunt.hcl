@@ -45,6 +45,7 @@ inputs = {
       database      = "masterdatatransfdev"
       create_secret = true
     },
+    {
       username      = "ataccama"
       roles         = ["db_owner"]
       database      = "masterdatatransfdev"
