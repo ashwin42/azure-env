@@ -91,7 +91,7 @@ inputs = {
 
   private_endpoints = {
     nv-ataccama-dev-sql-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
       private_service_connection = {
         name              = "nv-ataccama-dev-sql-pec"
         subresource_names = ["sqlServer"]
@@ -108,7 +108,7 @@ inputs = {
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
-      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
     }
   ]
 }
