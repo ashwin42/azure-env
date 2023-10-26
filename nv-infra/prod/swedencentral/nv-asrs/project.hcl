@@ -10,6 +10,10 @@ locals {
     infrastructure-owner = "techops@northvolt.com"
     project              = "ASRS Thousand Eyes"
     jira                 = "HELP-125020"
+    business-unit        = "109 Digitalization IT - AB"
+    department           = "109035 Operations & Infrastructure - AB"
+    cost-center          = "109035060 TechOps"
+    system-owner         = "techops@northvolt.com"
   }
 
   additional_providers = [
