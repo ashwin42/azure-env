@@ -13,14 +13,14 @@ inputs = {
   create_resource_group = true
   name                  = "nv-gen-infra-swc-vnet"
   netbox_description    = "nv-gen-infra-swc vnet"
-  address_space         = ["10.67.0.0/19"]
+  address_space         = ["10.64.32.0/19"]
 
-  subnets = [
-    {
-      name               = "nv-gen-infra-swc-subnet"
-      netbox_subnet_name = "nv-gen-infra-swc general subnet"
-      address_prefixes   = ["10.67.0.0/25"]
-    },
-  ]
+   subnets = [
+     {
+       name               = "nv-gen-infra-swc-subnet"
+       netbox_subnet_name = "nv-gen-infra-swc general subnet"
+       address_prefixes   = ["10.64.32.0/25"]
+     },
+   ]
 }
 
