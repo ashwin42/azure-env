@@ -1172,7 +1172,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-thousandeyes |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br> |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br> |
 | **business-unit** | Business Unit 109 Digitalization IT - AB |
 | **department** | Department 109035 Operations & Infrastructure - AB |
 | **cost-center** | CostCenter 109035062 Network - AB |
