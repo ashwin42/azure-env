@@ -24,9 +24,6 @@ inputs = {
           content = "Please use region Sweden Central",
         },
       ]
-      #   identity = {
-      #     type = "SystemAssigned"
-      #   }
     }
   ]
 }
