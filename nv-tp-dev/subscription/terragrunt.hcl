@@ -17,9 +17,17 @@ inputs = {
         "NV Tools & Products Leads",
       ],
     },
+    "Logic App Contributor" = {
+      service_principals = [
+        "TP-LogicAppAlerts",
+      ],
+    },
     "Reader" = {
       groups = [
         "NV Tools & Products Member",
+      ],
+      service_principals = [
+        "TP-LogicAppAlerts",
       ],
     },
   }
