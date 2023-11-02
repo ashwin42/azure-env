@@ -1,5 +1,6 @@
 locals {
   resource_group_name = "nv-thousandeyes"
+  recovery_vault_name = "nv-thousandeyes-rv"
   tags = {
     infrastructure-owner = "techops@northvolt.com"
     business-unit        = "Business Unit 109 Digitalization IT - AB"
