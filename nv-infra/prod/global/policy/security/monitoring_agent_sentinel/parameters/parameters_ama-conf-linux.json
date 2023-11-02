@@ -1,0 +1,5 @@
+{
+    "dcrResourceId": {
+       "value": "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/loganalytics-rg/providers/Microsoft.Insights/dataCollectionRules/linux_syslogs_sentinel-dcr"
+    }
+}
