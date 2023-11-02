@@ -19,7 +19,7 @@ This is a list of Azure subscriptions in the repository.
 ---
 ### 🔑 NV-Dev
 - ID: 3540c34b-4446-4708-bddf-f701543443eb
-- owner: ❌ **MISSING**
+- owner: techops@northvolt.com
 ---
 ### 🔑 NV-Dwa
 - ID: 8fd2d16b-30ef-4fd1-b2f2-0df001fd747d
