@@ -23,6 +23,7 @@ inputs = {
       service_principals = [
         "DefenderOnboarding",
         "maintenance_windows_tags",
+        "AMAOnboarding",
       ],
     },
     "Owner" = {
