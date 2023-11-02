@@ -10,4 +10,11 @@ include "root" {
 
 inputs = {
   management_group = "Managed"
+
+  tags = {
+    owner         = "techops@northvolt.com"
+    business-unit = "109 Digitalization IT - AB"
+    cost-center   = "109035060 TechOps"
+    department    = "109035 Operations & Infrastructure - AB"
+  }
 }
