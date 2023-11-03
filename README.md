@@ -170,7 +170,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | samantha.transfeld@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
