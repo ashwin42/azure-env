@@ -30,6 +30,7 @@ inputs = {
   secrets_key_vault_rg                   = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
   vm_size                                = "Standard_D4_v3"
+  install_winrm                          = true
   storage_image_reference = {
     sku = "2022-Datacenter-smalldisk",
   }
