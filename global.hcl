@@ -10,12 +10,14 @@ locals {
   update_netbox             = true
   netbox_secret_aws_profile = "nv-it-prod"
 
-  vpn_subnet_labs = "10.16.8.0/24"
-  vpn_subnet_ett  = "10.240.0.0/21"
-  vpn_subnet_dwa  = "10.240.32.0/23"
+  vpn_subnet_labs       = "10.16.8.0/24"
+  vpn_subnet_ett        = "10.240.0.0/21"
+  vpn_subnet_ett_revolt = "10.240.20.0/23"
+  vpn_subnet_dwa        = "10.240.32.0/23"
   vpn_subnets_all = [
     local.vpn_subnet_labs,
     local.vpn_subnet_ett,
+    local.vpn_subnet_ett_revolt,
     local.vpn_subnet_dwa,
   ]
 
