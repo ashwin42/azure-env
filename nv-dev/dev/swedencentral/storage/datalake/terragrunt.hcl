@@ -8,10 +8,10 @@ include {
 }
 
 inputs = {
-  name                  = "swctestdatalake"
-  resource_group_name   = "storage-rg"
-  is_hns_enabled        = true
-  sftp_enabled          = true
+  name                = "swctestdatalake"
+  resource_group_name = "storage-rg"
+  is_hns_enabled      = true
+  sftp_enabled        = true
 
   iam_assignments = {
     "Storage Blob Data Owner" = {
