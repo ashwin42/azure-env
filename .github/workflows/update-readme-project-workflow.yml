@@ -117,6 +117,15 @@ jobs:
           JIRA_URL: ${{ inputs.jira_url }}
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
 
+      - name: Execute Confluence projects update script
+        if: steps.project_tags_present.outputs.continue == 'true'
+        run: python .github/workflows/confluence_projects.py
+        env:
+          ROOT_DIR: ${{ github.workspace }}
+          JIRA_URL: ${{ inputs.jira_url }}
+          AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.actions_confluence_api_token }}
+
       - name: Import bot's GPG key for signing commits
         if: steps.project_tags_present.outputs.continue == 'true'
         id: import-gpg
