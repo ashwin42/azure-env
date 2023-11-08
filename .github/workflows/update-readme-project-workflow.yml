@@ -26,7 +26,7 @@ on:
         type: string
       default_branch:
         required: false
-        default: "main"
+        default: "master"
         type: string
     secrets:
       actions_gpg_private_key:
