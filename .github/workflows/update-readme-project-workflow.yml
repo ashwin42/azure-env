@@ -50,6 +50,7 @@ jobs:
           filters: |
             project:
               - "**/project.hcl"
+          list-files: 'shell'
 
       - name: Checkout code
         if: steps.changes.outputs.project == 'true'
@@ -57,58 +58,67 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Setup Terragrunt
+      - name: Check for tags in project.hcl
+        id: check_project_tags
         if: steps.changes.outputs.project == 'true'
+        run: |
+          CHANGED_FILES=("${{ steps.changes.outputs.project_files }}")
+          if echo $CHANGED_FILES | grep -q 'project.hcl'; then
+            if grep -q -E 'project|infrastructure-owner' $CHANGED_FILES; then
+              echo "tags_present=true" >> $GITHUB_OUTPUT
+            else
+              echo "tags_present=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Set variable for continuing workflow or not
+        id: project_tags_present
+        if: steps.changes.outputs.project == 'true' && steps.check_project_tags.outputs.tags_present == 'true'
+        run: echo "continue=true" >> $GITHUB_OUTPUT
+
+      - name: Setup Terragrunt
+        if: steps.project_tags_present.outputs.continue == 'true'
         uses: autero1/action-terragrunt@v1.3.0
         with:
           terragrunt_version: ${{ inputs.terragrunt_version }}
 
       - name: Setup Terraform
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         uses: hashicorp/setup-terraform@v2.0.3
         with:
           terraform_version: ${{ inputs.terraform_version }}
           terraform_wrapper: false
 
       - name: Setup python
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: ${{ inputs.python_version }}
           cache: 'pip'
 
       - name: Install dependencies
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r .github/workflows/requirements.txt
 
       - name: Checkout README.md and PROJECTS.md from main branch
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         run: |
           git fetch origin ${{ inputs.default_branch }}
           git restore -s origin/${{ inputs.default_branch }} README.md
           git restore -s origin/${{ inputs.default_branch }} PROJECTS.md
 
       - name: Execute README.md update script
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         run: python .github/workflows/readme_projects.py
         env:
           ROOT_DIR: ${{ github.workspace }}
           JIRA_URL: ${{ inputs.jira_url }}
           AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
 
-      - name: Execute Confluence projects update script
-        if: steps.changes.outputs.project == 'true'
-        run: python .github/workflows/confluence_projects.py
-        env:
-          ROOT_DIR: ${{ github.workspace }}
-          JIRA_URL: ${{ inputs.jira_url }}
-          AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
-          CONFLUENCE_API_TOKEN: ${{ secrets.actions_confluence_api_token }}
-
       - name: Import bot's GPG key for signing commits
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         id: import-gpg
         uses: crazy-max/ghaction-import-gpg@6f6401f19d4d5866d07e9026b6468c69596e9470
         with:
@@ -119,7 +129,7 @@ jobs:
           git_commit_gpgsign: true
 
       - name: Add and commit fmt changes
-        if: steps.changes.outputs.project == 'true'
+        if: steps.project_tags_present.outputs.continue == 'true'
         uses: EndBug/add-and-commit@fc734f817560acc116627c6133815f6289cd96ce
         with:
           add: README.md PROJECTS.md
@@ -127,3 +137,4 @@ jobs:
           author_name: ${{ steps.import-gpg.outputs.name }}
           author_email: ${{ steps.import-gpg.outputs.email }}
           push: true
+
