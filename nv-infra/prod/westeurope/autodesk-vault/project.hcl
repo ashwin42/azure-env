@@ -9,6 +9,7 @@ locals {
   providers                  = ["azurerm", "netbox"]
   tags = {
     infrastructure-owner = "techops@northvolt.com"
+    system-owner         = "christian.futschik@northvolt.com"
     business-unit        = "111 COO - Adv Tech - Raw Mat & Energy - AB"
     department           = "111044 Blueprint - AB"
     cost-center          = "111044080 Blueprint - AB"
