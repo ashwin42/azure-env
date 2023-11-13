@@ -37,6 +37,7 @@ inputs = {
         "NV TechOps Read Member",
         "NV Aviatrix Admin",
         "NV Cyber Defence Member",
+        "NV IT Service Support Member"
       ],
     },
     "Resource Policy Contributor" = {
