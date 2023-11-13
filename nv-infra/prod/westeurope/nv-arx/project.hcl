@@ -6,5 +6,7 @@ locals {
     infrastructure-owner = "techops@northvolt.com"
     project              = "ARX"
     jira                 = "TOC-1208"
+    global-process-owner = "lina.jander@northvolt.com"
+    data-owner           = "linn.flachsbinder@northvolt.com"
   }
 }
