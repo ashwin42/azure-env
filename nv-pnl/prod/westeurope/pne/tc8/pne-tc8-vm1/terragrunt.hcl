@@ -59,7 +59,7 @@ inputs = merge(
         name                  = "NV-Cyclers"
         priority              = "221"
         direction             = "Inbound"
-        source_address_prefix = "10.149.64.0/18"
+        source_address_prefix = "10.149.0.0/18"
         access                = "Allow"
         description           = "Allow connections from NV-Cyclers"
       },
