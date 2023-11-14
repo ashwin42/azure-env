@@ -154,13 +154,13 @@ This is a list of projects in the repository based on project.hcl files.
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/bi-tomteboda-rg |
 | **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.10 |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 250 Northvolt Battery Systems - BS |
+| **department** | 250006 Manufacturing & Industrialization Engineering - BS |
+| **cost-center** | 250006019 Automation, Control & Manufacturing Data Solutions - BS |
+| **system-owner** | yew-onn.pang@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | yew-onn.pang@northvolt.com |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
