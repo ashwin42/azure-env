@@ -7,7 +7,8 @@ locals {
   tags = {
     infrastructure-owner = "techops@northvolt.com"
     business-unit        = "Business Unit 106 Sustainability - AB"
-    cost-center          = "206002001 – Environment – ET"
+    department           = "206002 Environment - ET"
+    cost-center          = "206002001 HSE - Environment and Energy - ET"
     project              = "PQMS"
     jira                 = "US1-250"
   }
