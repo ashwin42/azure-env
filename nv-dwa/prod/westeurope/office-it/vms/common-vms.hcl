@@ -70,61 +70,21 @@ inputs = {
   custom_rules = [
     {
       name                  = "LocalSubnet"
-      priority              = "205"
+      priority              = "201"
       direction             = "Inbound"
       source_address_prefix = dependency.subnet.outputs.subnets["office-it-subnet1"].address_prefixes[0]
       description           = "Allow connections from local subnet"
     },
     {
       name                   = "dwa_printer_mgmt_wvd"
-      priority               = "201"
+      priority               = "202"
       direction              = "Inbound"
       source_address_prefix  = "10.17.16.0/20"
       protocol               = "Tcp"
       destination_port_range = "3389"
       access                 = "Allow"
       description            = "Allow connections from Dwa office subnet"
-    },
-    {
-      name                   = "dwa_printer_umango"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.17.16.0/27"
-      protocol               = "Tcp"
-      destination_port_range = "389,445,443,50080,50081"
-      access                 = "Allow"
-      description            = "Allow connections from Dwa office subnet"
-    },
-    {
-      name                   = "dwa_printer_papercut"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.17.16.0/27"
-      protocol               = "Tcp"
-      destination_port_range = "9191,9192,9193,636"
-      access                 = "Allow"
-      description            = "Allow connections from Dwa office subnet"
-    },
-    {
-      name                   = "dwa_printer_papercut"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.17.16.0/27"
-      protocol               = "Tcp"
-      destination_port_range = "9191,9192,9193,636"
-      access                 = "Allow"
-      description            = "Allow connections from Dwa office subnet"
-    },
-    {
-      name                   = "dwa_printer_princity"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.17.16.0/27"
-      protocol               = "Udp"
-      destination_port_range = "161,162"
-      access                 = "Allow"
-      description            = "Allow connections from Dwa office subnet"
-    },
+    }
   ]
 }
 
