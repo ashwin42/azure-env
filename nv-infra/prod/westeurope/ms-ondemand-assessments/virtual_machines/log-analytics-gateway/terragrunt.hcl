@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  # source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -62,6 +62,7 @@ inputs = {
       ]
     },
   ]
+
   custom_rules = [
     {
       name                  = "ms-oda-data-collector_8080"
@@ -69,6 +70,12 @@ inputs = {
       direction             = "Inbound"
       source_address_prefix = "10.46.2.68/32"
       description           = "Allow connections from ms-oda-data-collector on port 8080"
+    },
+  ]
+
+  maintenance_configurations = [
+    {
+      name = "shared_services_tuesdays_0200_1"
     },
   ]
 }

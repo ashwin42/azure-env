@@ -1,7 +1,7 @@
 locals {
-  # azurerm_provider_version   = ">=3.2.6"
-  # terraform_required_version = ">= 1.2.6"
-  # azurerm_features           = {}
+  azurerm_provider_version   = ">=3.2.6"
+  terraform_required_version = ">= 1.2.6"
+  azurerm_features           = {}
   setup_prefix        = "nv-rds-lic"
   resource_group_name = "nv-rds-lic"
   tags = {
@@ -14,7 +14,7 @@ locals {
     system-owner            = "techops@northvolt.com"
     global-process-owner    = "N/A"
     data-owner              = "N/A"
-    recovery-time-objective = "Business Continuity"
+    recovery-time-objective = "Medium Priority"
   }
 }
 

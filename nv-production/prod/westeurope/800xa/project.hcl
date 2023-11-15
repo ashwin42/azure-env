@@ -8,6 +8,6 @@ locals {
     project                 = "800xa"
     jira                    = "TOC-233"
     global-process-owner    = "patrick.weir@northvolt.com"
-    recovery-time-objective = "Immediate Recovery"
+    recovery-time-objective = "Critical"
   }
 }
