@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.23"
-  #source = "../../../../../../tf-mod-azure/global/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/global/"
 }
 
 include "root" {
@@ -16,8 +16,6 @@ inputs = {
     {
       name             = "lv-incore-subnet-10.46.0.128-28"
       address_prefixes = ["10.46.0.128/28"]
-      #service_endpoints    = ["Microsoft.Sql"]
-      #enforce_private_link = true
     },
   ]
 }

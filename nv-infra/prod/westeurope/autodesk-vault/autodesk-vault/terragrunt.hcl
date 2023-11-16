@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -58,7 +58,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.46.1.4"
-          subnet_id                     = dependency.vnet.outputs.subnet["autodesk-vault-subnet-10.46.1.0_29"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["autodesk-vault-subnet-10.46.1.0_29"].id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
         },
