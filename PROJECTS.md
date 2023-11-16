@@ -33,7 +33,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | jesper.adolfsson@northvolt.com, nilay.celep@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -94,7 +94,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | samantha.transfeld@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -136,7 +136,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 111 COO - Adv Tech - Raw Mat & Energy - AB |
 | **department** | 111044 Blueprint - AB |
 | **cost-center** | 111044080 Blueprint - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | christian.futschik@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -405,7 +405,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109036 Infosec - AB |
 | **cost-center** | 109036064 Infosec - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | christian@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -422,10 +422,10 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Resources** | northvolt/tf-mod-azure.git//wvd?ref=v0.2.28<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0<br>northvolt/tf-mod-azure.git//global?ref=v0.2.23<br>northvolt/tf-mod-azure.git//vm?ref=v0.2.14<br> |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 151 Manufacturing Support - LA |
+| **department** | 151060 Production Technology - LA |
+| **cost-center** | 151060251 Production Technology - LA |
+| **system-owner** | niraj.karande@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -467,7 +467,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 151058 Quality Control - LA |
 | **department** | 151 Manufacturing Support - LA |
 | **cost-center** | 151058251 Quality Control - LA |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | nathan.zimmerman@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -673,7 +673,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 104 R&D AB |
 | **department** | 113049 P&L Facility - AB |
 | **cost-center** | 113049074 P&L Facility AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | camille.blanchet@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -1003,7 +1003,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035063 Operations & Infrastructure Common - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | karel.silha@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -1087,7 +1087,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | Business Unit 109 Digitalization IT - AB |
 | **department** | Department 109035 Operations & Infrastructure - AB |
 | **cost-center** | CostCenter 109035062 Network - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | eric.drugge-lundstrom@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -1105,10 +1105,10 @@ This is a list of projects in the repository based on project.hcl files.
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-toolsnet-rg |
 | **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br> |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 250 Northvolt Battery Systems - BS |
+| **department** | 250006 Manufacturing & Industrialization Engineering - BS |
+| **cost-center** | 250006024 Manufacturing Process Engineering - BS |
+| **system-owner** | nikhil.ravi@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |

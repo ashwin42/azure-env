@@ -236,6 +236,12 @@ for project_file in project_files:
         print(f"Skipping resources as grep failed: {e}")
         resources = "No resources found"
 
+    # break resources into a list, sort, and rejoin with html breakrow
+    resources = resources.split("<br>")
+    resources = [resource for resource in resources if resource]
+    resources = sorted(resources)
+    resources = "<br>".join(resources)
+
     if "maintenance_configurations" in project_json["locals"]:
          maintenance_configurations = project_json["locals"]["maintenance_configurations"]
 
