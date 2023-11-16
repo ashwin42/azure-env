@@ -39,6 +39,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
   netbox_role                            = "lv-incore"
   storage_image_reference = {
     sku = "2016-Datacenter",
@@ -68,7 +69,6 @@ inputs = {
           name                          = "lv-incore-srv-nic-ipconfig"
           private_ip_address            = "10.46.0.133"
           subnet_id                     = dependency.global.outputs.subnet["lv-incore-subnet-10.46.0.128-28"].id
-          ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
         }
       ]
