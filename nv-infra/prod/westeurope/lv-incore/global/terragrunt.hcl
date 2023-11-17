@@ -21,7 +21,7 @@ inputs = {
     },
   ]
 
-route_tables = [
+  route_tables = [
     {
       name = "lv-incore_vnet_default_rt"
       routes = [

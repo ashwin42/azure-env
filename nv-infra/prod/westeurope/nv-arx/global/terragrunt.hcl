@@ -36,7 +36,7 @@ inputs = {
     },
   ]
 
-route_tables = [
+  route_tables = [
     {
       name = "nv_arx_vnet_default_rt"
       routes = [

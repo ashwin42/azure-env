@@ -18,7 +18,7 @@ inputs = {
       name               = "nv-apis-iq-subnet-10.46.1.48_28"
       netbox_subnet_name = "nv-apis-iq subnet"
       address_prefixes   = ["10.46.1.48/28"]
-      route_table_name   = "nv-apis-iq_default-rt" 
+      route_table_name   = "nv-apis-iq_default-rt"
     },
   ]
 

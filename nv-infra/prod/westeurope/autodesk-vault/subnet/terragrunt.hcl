@@ -21,7 +21,7 @@ inputs = {
     },
   ]
 
-route_tables = [
+  route_tables = [
     {
       name = "autodesk-vault_default-rt"
       routes = [
