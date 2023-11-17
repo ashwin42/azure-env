@@ -32,6 +32,7 @@ inputs = {
   ad_join                                = true
   encrypt_disks                          = true
   boot_diagnostics_enabled               = true
+  install_winrm                          = true
   netbox_role                            = "arx"
   network_interfaces = [
     {

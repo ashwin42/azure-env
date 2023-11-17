@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.9.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.9.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/global/"
 }
 
@@ -10,6 +10,7 @@ include "root" {
 
 inputs = {
   setup_prefix        = "arx"
+  resource_group_name = "arx-rg"
   address_space       = ["10.44.5.16/28"]
   dns_servers         = ["10.40.250.5", "10.40.250.4"]
   recovery_vault_name = "ARX-RV"
@@ -17,6 +18,7 @@ inputs = {
     {
       name             = "arx-server-subnet"
       address_prefixes = ["10.44.5.16/28"]
+      route_table_name = "nv_arx_vnet_default_rt"
     },
   ]
   peerings = [
@@ -32,5 +34,18 @@ inputs = {
       use_remote_gateways   = false
       allow_gateway_transit = false
     },
+  ]
+
+route_tables = [
+    {
+      name = "nv_arx_vnet_default_rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -80,4 +80,10 @@ inputs = {
     disk_size_gb      = "256",
     managed_disk_type = "Premium_LRS",
   }
+
+  maintenance_configurations = [
+    {
+      name = "every_wednesday_0200"
+    },
+  ]
 }

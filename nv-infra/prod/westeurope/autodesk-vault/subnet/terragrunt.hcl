@@ -17,7 +17,21 @@ inputs = {
       name               = "autodesk-vault-subnet-10.46.1.0_29"
       netbox_subnet_name = "AutoDesk Vault subnet"
       address_prefixes   = ["10.46.1.0/29"]
+      route_table_name   = "autodesk-vault_default-rt"
     },
+  ]
+
+route_tables = [
+    {
+      name = "autodesk-vault_default-rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }
 
