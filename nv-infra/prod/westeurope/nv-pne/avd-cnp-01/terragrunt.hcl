@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.51"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
@@ -39,7 +39,6 @@ inputs = {
       host_pool_name               = "${local.name}-hp"
       workspace_name               = "${local.name}-ws"
       assign_groups = [
-        "NV TechOps Role",
         "RD2 PNE Coin & Pouch VM",
       ]
     },
