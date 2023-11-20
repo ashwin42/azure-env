@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.34"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
@@ -57,7 +57,6 @@ inputs = {
         default_desktop_display_name = "AAD joined MDM managed VM"
         description                  = "AAD joined MDM managed VM"
         assign_groups = [
-          "NV TechOps Role",
           "NV IT Core Role",
         ]
       }

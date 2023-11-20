@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.39"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
@@ -11,6 +11,7 @@ include "root" {
 
 inputs = {
   resource_group_name = "cb-apis-iq-rg"
+  enable_wvd_hp_logs = false
   workspaces = [
     {
       name          = "westus2-nv-cuberg-apis-iq-ws"
@@ -33,7 +34,6 @@ inputs = {
       host_pool_name               = "westus2-nv-cuberg-apis-iq-hp"
       workspace_name               = "westus2-nv-cuberg-apis-iq-ws"
       assign_groups = [
-        "NV TechOps Role",
         "Cuberg APIS IQ User Access",
       ]
     },

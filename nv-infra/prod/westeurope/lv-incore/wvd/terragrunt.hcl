@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.2.28"
-  #source = "../../../../../../tf-mod-azure/wvd/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.5"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
 include "root" {
@@ -17,4 +17,10 @@ inputs = {
   setup_prefix         = dependency.global.outputs.setup_prefix
   wvd_ws_friendly_name = "LV-Incore Virtual Desktop"
   wvd_location         = "westeurope"
+  assign_groups = [
+    "NV TechOps Role",
+    "NV IT Service Support Member",
+    "LV Incore Administrators",
+    "LV Incore Users",
+  ]
 }
