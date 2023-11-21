@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.8"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -45,6 +45,7 @@ inputs = {
   ad_join                                = true
   azuread_join                           = false
   wvd_register                           = true
+  netbox_role                            = "honeywell"
   identity = {
     type         = "SystemAssigned"
     identity_ids = null
@@ -69,7 +70,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.4"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-honey-subnet-10.64.1.0_28"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-honey-subnet-10.64.1.0_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
@@ -78,27 +79,7 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                   = "QCS Server"
+      name                   = "QCS-Server"
       priority               = "202"
       direction              = "Inbound"
       source_address_prefix  = "10.22.88.32/29"
