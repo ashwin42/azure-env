@@ -9,6 +9,5 @@ include "root" {
 }
 
 inputs = {
-  name = ""
 }
 
