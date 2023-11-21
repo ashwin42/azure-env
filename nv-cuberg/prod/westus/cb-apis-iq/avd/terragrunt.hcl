@@ -11,7 +11,7 @@ include "root" {
 
 inputs = {
   resource_group_name = "cb-apis-iq-rg"
-  enable_wvd_hp_logs = false
+  enable_wvd_hp_logs  = false
   workspaces = [
     {
       name          = "westus2-nv-cuberg-apis-iq-ws"
