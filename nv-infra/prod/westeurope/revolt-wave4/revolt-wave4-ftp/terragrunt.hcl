@@ -63,7 +63,16 @@ inputs = {
       source_address_prefix = "10.44.5.144/28"
       access                = "Allow"
       description           = "Allow connections from local VNET"
-    }
+    },
+    {
+      name                    = "Prometheus_Exporter"
+      priority                = "231"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.15.19.0/24", "10.15.17.192/26", "10.15.20.0/23", "10.15.18.0/25"]
+      destination_port_range  = "9100"
+      access                  = "Allow"
+      description             = "Allow node exporter"
+    },
   ]
 }
 
