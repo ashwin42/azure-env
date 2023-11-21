@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -15,11 +15,6 @@ dependency "vnet" {
 dependency "rv" {
   config_path = "../recovery_vault"
 }
-
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
 
 locals {
   name = basename(get_terragrunt_dir())
@@ -67,6 +62,13 @@ inputs = {
       ]
     },
   ]
+
+  maintenance_configurations = [
+    {
+      name = "shared_services_tuesdays_0200_1"
+    },
+  ]
+
   custom_rules = [
     {
       name                   = "Labs_RDP_MFA_VPN"
@@ -89,7 +91,7 @@ inputs = {
       description            = "Allow connections from Ett MFA VPN clients"
     },
     {
-      name                   = "WMI (DCOM)"
+      name                   = "WMI_DCOM"
       priority               = "210"
       direction              = "Inbound"
       source_address_prefix  = "10.0.0.0/8"
@@ -99,7 +101,7 @@ inputs = {
       description            = "Allow connections for DCOM"
     },
     {
-      name                   = "WMI (NP)"
+      name                   = "WMI_NP"
       priority               = "211"
       direction              = "Inbound"
       source_address_prefix  = "10.0.0.0/8"
