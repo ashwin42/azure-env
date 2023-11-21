@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -87,11 +87,11 @@ inputs = {
       generate_psk        = false
     },
     {
-      name                = "revolt-ett-temp-cloudvpn-01-internet"
+      name                = "revolt-ett-temp-cldro001-internet"
       gateway_address     = "194.17.162.251"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.26"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -102,14 +102,14 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
-      name                = "revolt-ett-temp-cloudvpn-02-internet"
+      name                = "revolt-ett-temp-cldro002-internet"
       gateway_address     = "194.17.162.252"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.27"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -120,7 +120,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
       name                = "ett-cloudvpn-01-internet"
@@ -300,6 +300,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
     {
       name                = "labs-edge-cldro002-internet-we"
@@ -317,6 +318,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
   ]
 }
