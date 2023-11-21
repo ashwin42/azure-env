@@ -44,6 +44,31 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.44.5.16/28" #Azure WestEurope - ARX vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.46.0.128/28" #Azure WestEurope - LV-Incore vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.46.1.48/28" #Azure WestEurope - APIS-IQ vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.46.1.0/29" #Azure WestEurope - Autodesk-Vault vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.44.5.96/27" #Azure WestEurope - Cell-Assembly WS vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
       ]
     },
     {
@@ -71,6 +96,31 @@ inputs = {
         },
         {
           address_prefix         = "10.44.1.0/24" #Azure WestEurope - Siemens Physical Security
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.44.5.16/28" #Azure WestEurope - ARX vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.46.0.128/28" #Azure WestEurope - LV-Incore vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.46.1.48/28" #Azure WestEurope - APIS-IQ vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.46.1.0/29" #Azure WestEurope - Autodesk-Vault vnet
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.44.5.96/27" #Azure WestEurope - Cell-Assembly WS vnet
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },

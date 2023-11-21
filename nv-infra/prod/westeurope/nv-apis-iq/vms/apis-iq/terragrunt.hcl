@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
 }
 
@@ -39,6 +39,7 @@ inputs = {
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
   localadmin_key_name                    = "domainjoin"
   netbox_create_role                     = true
   netbox_role                            = "apisiq"

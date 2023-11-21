@@ -18,7 +18,21 @@ inputs = {
       name               = "nv-apis-iq-subnet-10.46.1.48_28"
       netbox_subnet_name = "nv-apis-iq subnet"
       address_prefixes   = ["10.46.1.48/28"]
+      route_table_name   = "nv-apis-iq_default-rt"
     },
+  ]
+
+  route_tables = [
+    {
+      name = "nv-apis-iq_default-rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }
 
