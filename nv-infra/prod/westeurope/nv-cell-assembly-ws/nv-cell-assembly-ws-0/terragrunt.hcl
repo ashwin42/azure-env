@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.4.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -33,31 +34,40 @@ inputs = {
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
+  localadmin_key_name                    = "nv-cell-assembly-ws-nvadmin"
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
+  netbox_role                            = "cellassembly-ws"
+
+  storage_os_disk = {
+    name = "nv-cell-assembly-ws-vm-osdisk"
+  }
+
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "20h1-evd",
   }
+
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = "W. Europe Standard Time"
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = "W. Europe Standard Time"
   }
+
   os_profile = {
     admin_username = "domainjoin"
     computer_name  = local.name
   }
+
   network_interfaces = [
     {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.44.5.100"
+          private_ip_address            = "10.44.5.100"
           subnet_id                     = dependency.global.outputs.subnet["nv-cell-assembly-ws-subnet-10.44.5.96"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
@@ -66,22 +76,13 @@ inputs = {
       ]
     },
   ]
+
   data_disks = [
     {
       name                 = "${local.name}_datadisk"
       size                 = "100"
       lun                  = "0"
       storage_account_type = "StandardSSD_LRS"
-    }
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
     }
   ]
 }
