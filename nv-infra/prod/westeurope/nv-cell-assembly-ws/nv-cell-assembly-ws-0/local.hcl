@@ -1,3 +1,4 @@
 locals {
   providers = ["azurerm", "netbox"]
 }
+

@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.14"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -16,7 +17,7 @@ dependency "wvd" {
 }
 
 locals {
-  name = "lv-incore-srv"
+  name = basename(get_terragrunt_dir())
 }
 
 inputs = {
@@ -33,14 +34,19 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "lv-incore-nvadmin"
+  boot_diagnostics_enabled               = true
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
+  netbox_role                            = "lv-incore"
   storage_image_reference = {
     sku = "2016-Datacenter",
   }
   os_profile_windows_config = {
     enable_automatic_upgrades = true
+    provision_vm_agent        = true
     timezone                  = "W. Europe Standard Time"
   }
   os_profile = {
@@ -57,30 +63,27 @@ inputs = {
   ]
   network_interfaces = [
     {
-      name      = "${local.name}-nic"
-      ipaddress = "10.46.0.133"
-      subnet    = dependency.global.outputs.subnet["lv-incore-subnet-10.46.0.128-28"].id
-      public_ip = false
+      name = "lv-incore-srv-nic"
+      ip_configuration = [
+        {
+          name                          = "lv-incore-srv-nic-ipconfig"
+          private_ip_address            = "10.46.0.133"
+          subnet_id                     = dependency.global.outputs.subnet["lv-incore-subnet-10.46.0.128-28"].id
+          private_ip_address_allocation = "Static"
+        }
+      ]
     }
   ]
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "lv-incore-fpu"
-      priority               = "220"
-      direction              = "Inbound"
-      source_address_prefix  = "10.101.221.0/26"
-      protocol               = "TCP"
-      destination_port_range = "3306,5800,5900"
-      access                 = "Allow"
-      description            = "Allow connections from Incore FPU on-prem network"
+      name                    = "lv-incore-fpu"
+      priority                = "220"
+      direction               = "Inbound"
+      source_address_prefix   = "10.101.221.0/26"
+      protocol                = "Tcp"
+      destination_port_ranges = ["3306", "5800", "5900"]
+      access                  = "Allow"
+      description             = "Allow connections from Incore FPU on-prem network"
     },
   ]
 }
