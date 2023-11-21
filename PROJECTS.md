@@ -13,8 +13,8 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | patrick.weir@northvolt.com |
+| **recovery-time-objective** | Critical |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
@@ -54,9 +54,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | lina.jander@northvolt.com |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | linn.flachsbinder@northvolt.com |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -115,7 +115,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | samantha.transfeld@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -154,13 +154,13 @@ This is a list of projects in the repository based on project.hcl files.
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/bi-tomteboda-rg |
 | **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.10 |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 250 Northvolt Battery Systems - BS |
+| **department** | 250006 Manufacturing & Industrialization Engineering - BS |
+| **cost-center** | 250006019 Automation, Control & Manufacturing Data Solutions - BS |
+| **system-owner** | yew-onn.pang@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | yew-onn.pang@northvolt.com |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -179,9 +179,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035060 TechOps |
 | **system-owner** | techops@nortvolt.com |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Low Priority |
+| **data-owner** | N/A |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -199,9 +199,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035060 TechOps |
 | **system-owner** | techops@nortvolt.com |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | N/A |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -215,13 +215,13 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Resources** | northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.44<br>northvolt/tf-mod-azure.git//global?ref=v0.7.44<br>northvolt/tf-mod-azure.git//mssql?ref=v0.7.44<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 153 Manufacturing Upstream - LA |
+| **department** | 153041 Upstream - LA |
+| **cost-center** | 153041501 CAM Maintenance |
+| **system-owner** | johan.elander@northvolt.com |
+| **global-process-owner** | johan.elander@northvolt.com |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | marko.milosavljevic@northvolt.com |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -260,7 +260,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 151 Manufacturing Support - LA |
 | **department** | 151057 Production Management - LA |
 | **cost-center** | 151057251 Production Management - LA |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | joakim.hofgaard@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -406,9 +406,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109036 Infosec - AB |
 | **cost-center** | 109036064 Infosec - AB |
 | **system-owner** | christian@northvolt.com |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Low Priority |
+| **data-owner** | N/A |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -559,6 +559,28 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Microsoft On-Demand Assessments
+- Code: [nv-infra/prod/westeurope/ms-ondemand-assessments](nv-infra/prod/westeurope/ms-ondemand-assessments)
+- Jira: [TOC-2007](https://northvolt.atlassian.net/browse/TOC-2007)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/ms-oda-rg |
+| **Resources** | northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.53<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 1109037 IT Common - AB |
+| **cost-center** | 109037064 IT Common - AB |
+| **system-owner** | techops@northvolt.com |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Low Priority |
+| **data-owner** | N/A |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | [data-collector](nv-infra/prod/westeurope/ms-ondemand-assessments): [shared_services_tuesdays_0200_1](https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/shared_services_tuesdays_0200_1/overview) |
+[log-analytics-gateway](nv-infra/prod/westeurope/ms-ondemand-assessments): [shared_services_tuesdays_0200_1](https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/shared_services_tuesdays_0200_1/overview) |
+</details>
+
+---
 ### 🛠️ Moscura
 - Code: [nv-production/prod/swedencentral/nv-moscura](nv-production/prod/swedencentral/nv-moscura)
 - Jira: [RD2-727](https://northvolt.atlassian.net/browse/RD2-727)
@@ -662,29 +684,30 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
-### 🛠️ PNE
-- Code: [nv-infra/prod/westeurope/nv-pne](nv-infra/prod/westeurope/nv-pne)
-- Jira: [TOC-819](https://northvolt.atlassian.net/browse/TOC-819)
+### 🛠️ PNE Cycler VMs
+- Code: [nv-pnl/prod/westeurope/pne](nv-pnl/prod/westeurope/pne)
+- Jira: [TOC-1596](https://northvolt.atlassian.net/browse/TOC-1596)
 <details><summary>Details (click to expand):</summary>
 
 | Detail | Value |
 | ------ | ----- |
-| **Resources** | northvolt/tf-mod-azure.git//global?ref=v0.8.8<br>northvolt/tf-mod-azure.git//storage?ref=v0.2.35<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.2.15<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/30b428fc-5b94-408c-8c86-73cf2e46200c/resourceGroups/nv-pnl-vms-rg |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.6.10<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.32<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.32<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.34<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.34<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.2 |
 | **business-unit** | 104 R&D AB |
 | **department** | 113049 P&L Facility - AB |
 | **cost-center** | 113049074 P&L Facility AB |
 | **system-owner** | camille.blanchet@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | High Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
 
 ---
-### 🛠️ PNE Cycler VMs
-- Code: [nv-pnl/prod/westeurope/pne](nv-pnl/prod/westeurope/pne)
-- Jira: [❌ **MISSING** (please add to project.hcl)](https://northvolt.atlassian.net/browse/❌ **MISSING** (please add to project.hcl))
+### 🛠️ PNE Cyclers VMs
+- Code: [nv-infra/prod/westeurope/nv-pne](nv-infra/prod/westeurope/nv-pne)
+- Jira: [TOC-1596](https://northvolt.atlassian.net/browse/TOC-1596)
 <details><summary>Details (click to expand):</summary>
 
 | Detail | Value |
@@ -694,9 +717,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 104 R&D AB |
 | **department** | 113049 P&L Facility - AB |
 | **cost-center** | 113049074 P&L Facility AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | camille.blanchet@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | High Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
@@ -713,11 +736,11 @@ This is a list of projects in the repository based on project.hcl files.
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-pqms-ett-rg |
 | **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.50<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.26<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
 | **business-unit** | Business Unit 106 Sustainability - AB |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | 206002001 – Environment – ET |
+| **department** | 206002 Environment - ET |
+| **cost-center** | 206002001 HSE - Environment and Energy - ET |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | High Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
@@ -726,7 +749,7 @@ This is a list of projects in the repository based on project.hcl files.
 ---
 ### 🛠️ Polarion
 - Code: [nv-infra/prod/westeurope/nv-polarion](nv-infra/prod/westeurope/nv-polarion)
-- Jira: [TOC-0](https://northvolt.atlassian.net/browse/TOC-0)
+- Jira: [TOC-48](https://northvolt.atlassian.net/browse/TOC-48)
 <details><summary>Details (click to expand):</summary>
 
 | Detail | Value |
@@ -735,7 +758,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | august.hugnell@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -813,16 +836,16 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/nv-rds-lic |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.3<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.3<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | techops@northvolt.com |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | N/A |
 | **infrastructure-owner** | techops@nortvolt.com |
-| **Patch Orchestration:** | ❌ |
+| **Patch Orchestration:** | [rds-lic-srv](nv-hub/prod/westeurope/nv-rds-lic): [shared_services_tuesdays_0200_1](https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/shared_services_tuesdays_0200_1/overview) |
 </details>
 
 ---
@@ -837,9 +860,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | 306 R&D - PL |
 | **department** | 306065 R&D - PL |
 | **cost-center** | 306065083 R&D - PL |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | cezary.swinarski@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | Medium Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
@@ -1129,7 +1152,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | patrick.weir@northvolt.com |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
@@ -1151,9 +1174,9 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035060 TechOps |
 | **system-owner** | techops@northvolt.com |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | N/A |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | N/A |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
@@ -1192,27 +1215,6 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | karl.ziethen@northvolt.com, sudhir.u@northvolt.com, sajin.chadayan@northvolt.com |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **infrastructure-owner** | techops@northvolt.com |
-| **Patch Orchestration:** | ❌ |
-</details>
-
----
-### 🛠️ microsoft ondemand assessments
-- Code: [nv-infra/prod/westeurope/ms-ondemand-assessments](nv-infra/prod/westeurope/ms-ondemand-assessments)
-- Jira: [TOC-2007](https://northvolt.atlassian.net/browse/TOC-2007)
-<details><summary>Details (click to expand):</summary>
-
-| Detail | Value |
-| ------ | ----- |
-| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/ms-oda-rg |
-| **Resources** | northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.53<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
-| **business-unit** | 109 Digitalization IT - AB |
-| **department** | 1109037 IT Common - AB |
-| **cost-center** | 109037064 IT Common - AB |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
