@@ -69,6 +69,10 @@ This is a list of Azure subscriptions in the repository.
 - ID: 810a32ab-57c8-430a-a3ba-83c5ad49e012
 - owner: katarina.enskar@northvolt.com
 ---
+### 🔑 ett-revolt-prod
+- ID: f652c928-a8cb-4d8f-9175-bbe0a0128eb0
+- owner: techops@northvolt.com
+---
 ### 🔑 nv-d365-dev
 - ID: bd728441-1b83-4daa-a72f-91d5dc6284f1
 - owner: galen.lanphier@northvolt.com
