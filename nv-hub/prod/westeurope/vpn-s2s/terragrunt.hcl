@@ -320,5 +320,14 @@ inputs = {
       dpd_timeout_seconds = "45"
       generate_psk        = true
     },
+    {
+      name                       = "drei-office-7th-floor"
+      local_network_gateway_name = "drei-office-7th-floor"
+      gateway_address            = "24.40.143.226"
+      address_space              = "10.193.62.1/24, 10.17.4.1/22"
+      address_prefix             = "10.193.62.1/24, 10.17.4.1/22"
+      enable_bgp                 = "false"
+      generate_psk               = true
+    },
   ]
 }
