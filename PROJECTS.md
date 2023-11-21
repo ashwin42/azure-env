@@ -141,7 +141,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
-| **Patch Orchestration:** | ❌ |
+| **Patch Orchestration:** | [autodesk-vault](nv-infra/prod/westeurope/autodesk-vault): [every_wednesday_0200](https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/every_wednesday_0200/overview) |
 </details>
 
 ---

@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -25,6 +26,8 @@ inputs = {
   localadmin_name                        = "nvadmin"
   localadmin_key_name                    = "revolt-wave4-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
+  netbox_role                            = "revolt-wave4"
   data_disks = [
     {
       name                 = "revolt-wave4-ftp-datadisk"
@@ -40,27 +43,24 @@ inputs = {
   }
   network_interfaces = [
     {
-      name      = "revolt-wave4-ftp-nic1"
-      ipaddress = "10.44.5.151"
-      subnet    = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
-      public_ip = false
-    }
-  ],
+      name = "revolt-wave4-ftp-nic1"
+      ip_configuration = [
+        {
+          ipconfig_name                 = "revolt-wave4-ftp-nic1-ipconfig"
+          private_ip_address            = "10.44.5.151"
+          subnet_id                     = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
+          private_ip_address_allocation = "Static"
+        },
+      ]
+    },
+  ]
   dns_servers = null
   custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
     {
       name                  = "Local_VNET"
       priority              = "230"
       direction             = "Inbound"
-      source_address_prefix = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].address_prefix
+      source_address_prefix = "10.44.5.144/28"
       access                = "Allow"
       description           = "Allow connections from local VNET"
     }
