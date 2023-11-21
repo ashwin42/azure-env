@@ -28,4 +28,11 @@ inputs = {
     },
   ]
 
+  assign_groups = [
+    "NV TechOps Role",
+    "NV IT Service Support Member",
+    "P&L Validation Labs PNE Virtual Desktop users",
+    "PNE VM Users ", ## caution! blank space in group name...
+    "VPN-FL-PNE-AP",
+  ]
 }

@@ -1,7 +1,8 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.12"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd-full/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd"
 }
+
 include "root" {
   path   = find_in_parent_folders()
   expose = true
@@ -32,7 +33,6 @@ inputs = {
       default_desktop_display_name = "US1 WWT Operator VM"
       description                  = "Remote desktop to operate US1 Wastewater treatment"
       assign_groups = [
-        "NV TechOps Role",
         "US1 WWT Servers VPN AP",
       ]
     },

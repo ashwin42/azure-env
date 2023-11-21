@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.8.6"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
@@ -44,7 +44,6 @@ inputs = {
       default_desktop_display_name = "Lasernet Dev Virtual Desktop"
       description                  = "Application group for Lasernet Dev Virtual Desktop"
       assign_groups = [
-        "NV TechOps Role",
         "NV Business Systems Common Member"
       ]
     },
@@ -56,7 +55,6 @@ inputs = {
       default_desktop_display_name = "Lasernet Test Virtual Desktop"
       description                  = "Application group for Lasernet Test Virtual Desktop"
       assign_groups = [
-        "NV TechOps Role",
         "NV Business Systems Common Member"
       ]
     }

@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.2.30"
-  #source = "../../../../../../tf-mod-azure/wvd/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.7.5"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
 include "root" {
@@ -16,6 +16,7 @@ inputs = {
 
   assign_groups = [
     "NV TechOps Role",
+    "NV IT Service Support Member",
     "PowerBI Virtual Desktop Users",
   ]
   additional_applications = [
@@ -31,6 +32,7 @@ inputs = {
       icon_index                   = 0
       assign_groups = [
         "NV TechOps Role",
+        "NV IT Service Support Member",
         "PowerBI Virtual Desktop Users",
       ]
     },

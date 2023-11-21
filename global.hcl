@@ -86,4 +86,10 @@ locals {
     local.rule_windows_node_exporter,
     local.rule_rdp_bastion,
   )
+
+  # default groups allowed to access AVD VMs
+  default_avd_groups = [
+    "NV TechOps Role",
+    "NV IT Service Support Member",
+  ]
 }
