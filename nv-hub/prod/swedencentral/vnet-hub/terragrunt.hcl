@@ -176,5 +176,12 @@ inputs = {
       allow_forwarded_traffic = true
       allow_gateway_transit   = true
     },
+    {
+      name                    = "hub-swc-to-ett-revolt-prod-swc",
+      vnet_id                 = "/subscriptions/f652c928-a8cb-4d8f-9175-bbe0a0128eb0/resourceGroups/ett-revolt-prod-general-rg/providers/Microsoft.Network/virtualNetworks/ett-revolt-prod-general"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
   ]
 }
