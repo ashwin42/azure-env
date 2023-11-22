@@ -21,7 +21,6 @@ locals {
 }
 
 inputs = {
-  netbox_role                            = "pne-oper"
   setup_prefix                           = dependency.global.outputs.setup_prefix
   token                                  = dependency.wvd.outputs.token
   host_pool_name                         = dependency.wvd.outputs.host_pool.name
