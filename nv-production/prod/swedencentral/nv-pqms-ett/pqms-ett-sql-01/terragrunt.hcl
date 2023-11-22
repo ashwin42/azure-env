@@ -16,11 +16,6 @@ dependency "subnet" {
   config_path = "../subnet"
 }
 
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
-
 locals {
   name              = basename(get_original_terragrunt_dir())
   sql_data_disk_lun = 5
@@ -39,6 +34,7 @@ inputs = {
   create_localadmin_password             = true
   managed_disk_size                      = 127
   boot_diagnostics_enabled               = true
+  install_winrm                          = true
 
   storage_image_reference = {
     offer     = "sql2019-ws2019",
@@ -80,7 +76,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.148"
-          subnet_id                     = dependency.subnet.outputs.subnet["pqms-subnet"].id
+          subnet_id                     = dependency.subnet.outputs.subnets["pqms-subnet"].id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
         },
@@ -100,25 +96,10 @@ inputs = {
 
   custom_rules = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
-    },
-    {
       name                  = "LocalVnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.subnet.outputs.subnet["pqms-subnet"].address_prefixes[0]
+      source_address_prefix = dependency.subnet.outputs.subnets["pqms-subnet"].address_prefixes[0]
       access                = "Allow"
       description           = "Allow connections from local VNet"
     },
