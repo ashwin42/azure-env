@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -22,12 +22,13 @@ dependency "rv" {
 
 locals {
   name            = basename(get_terragrunt_dir())
+  host_pool_name                         = "nv-lims-04-hp"
   localadmin_name = "nvadmin"
 }
 
 inputs = {
-  token                                  = dependency.wvd.outputs.tokens
-  host_pool_name                         = "nv-lims-04-hp"
+  token                                  = dependency.wvd.outputs.tokens[local.host_pool_name]
+  host_pool_name                         = local.host_pool_name
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -64,33 +65,11 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.46"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
       ]
-    },
-  ]
-  custom_rules = [
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
     },
   ]
   iam_assignments = {
