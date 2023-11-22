@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -15,11 +15,6 @@ dependency "vnet" {
 dependency "rv" {
   config_path = "../recovery_vault"
 }
-
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
 
 locals {
   name = basename(get_terragrunt_dir())
@@ -41,6 +36,7 @@ inputs = {
   storage_account_name                   = "nvhubgeneralstorage"
   ad_join                                = true
   localadmin_key_name                    = "nv-rds-lic-nvadmin"
+  install_winrm                          = true
   storage_image_reference = {
     sku = include.root.locals.all_vars.windows_server_sku_2019,
   }
@@ -69,27 +65,7 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Labs_RDP_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "Tcp"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow RDP connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
-      name                   = "WMI (DCOM)"
+      name                   = "WMI_DCOM"
       priority               = "210"
       direction              = "Inbound"
       source_address_prefix  = "10.0.0.0/8"
@@ -99,7 +75,7 @@ inputs = {
       description            = "Allow connections for DCOM"
     },
     {
-      name                   = "WMI (NP)"
+      name                   = "WMI_NP"
       priority               = "211"
       direction              = "Inbound"
       source_address_prefix  = "10.0.0.0/8"
@@ -117,6 +93,11 @@ inputs = {
       destination_port_range = "49152-65535"
       access                 = "Allow"
       description            = "Allow connections for RPC"
+    },
+  ]
+  maintenance_configurations = [
+    {
+      name = "shared_services_tuesdays_0200_1"
     },
   ]
 }
