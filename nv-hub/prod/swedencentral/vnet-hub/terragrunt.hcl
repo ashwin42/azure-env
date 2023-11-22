@@ -74,6 +74,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.44.5.32/27" #Azure WestEurope - NV-PNE (Gen_Infra)
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
       ]
     },
     {
@@ -134,6 +139,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.44.5.32/27" #Azure WestEurope - NV-PNE (Gen_Infra)
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
       ]
     }
   ]
@@ -172,6 +182,13 @@ inputs = {
     {
       name                    = "hub-swc-to-nv-prod-swe",
       vnet_id                 = "/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-prod-swe-vnet-rg/providers/Microsoft.Network/virtualNetworks/nv-prod-swe-vnet"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
+      name                    = "hub-swc-to-ett-revolt-prod-swc",
+      vnet_id                 = "/subscriptions/f652c928-a8cb-4d8f-9175-bbe0a0128eb0/resourceGroups/ett-revolt-prod-general-rg/providers/Microsoft.Network/virtualNetworks/ett-revolt-prod-general"
       use_remote_gateways     = false
       allow_forwarded_traffic = true
       allow_gateway_transit   = true
