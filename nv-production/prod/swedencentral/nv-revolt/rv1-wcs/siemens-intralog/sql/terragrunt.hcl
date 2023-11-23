@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.39"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -26,6 +26,7 @@ inputs = {
   create_administrator_password = true
   key_vault_name                = "nv-production-core"
   key_vault_rg                  = "nv-production-core"
+  secret_name                   = "rv1-wcs-intralog-db-01-sqladmin"
   minimum_tls_version           = "1.2"
   private_endpoints = {
     "${local.name}-sql-pe" = {
