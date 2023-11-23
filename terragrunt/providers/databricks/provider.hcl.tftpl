@@ -1,0 +1,102 @@
+variable "databricks_host" {
+  description = "(optional) This is the host of the Databricks workspace. It is a URL that you use to login to your workspace. Alternatively, you can provide this value as an environment variable DATABRICKS_HOST."
+  type        = string
+  default     = null
+}
+
+variable "databricks_token" {
+  description = "(optional) This is the API token to authenticate into the workspace. Alternatively, you can provide this value as an environment variable DATABRICKS_TOKEN."
+  type        = string
+  default     = null
+}
+
+variable "databricks_username" {
+  description = "(optional) This is the username of the user that can log into the workspace. Alternatively, you can provide this value as an environment variable DATABRICKS_USERNAME. Recommended only for creating workspaces in AWS."
+  type        = string
+  default     = null
+}
+
+variable "databricks_password" {
+  description = "(optional) This is the user's password that can log into the workspace. Alternatively, you can provide this value as an environment variable DATABRICKS_PASSWORD. Recommended only for creating workspaces in AWS."
+  type        = string
+  default     = null
+}
+
+variable "databricks_config_file" {
+  description = "(optional) Location of the Databricks CLI credentials file created by databricks configure --token command (~/.databrickscfg by default). Check Databricks CLI documentation for more details. The provider uses configuration file credentials when you don't specify host/token/username/password/azure attributes. Alternatively, you can provide this value as an environment variable DATABRICKS_CONFIG_FILE. This field defaults to ~/.databrickscfg."
+  type        = string
+  default     = null
+}
+
+variable "databricks_profile" {
+  description = "(optional) Connection profile specified within ~/.databrickscfg. Please check connection profiles section for more details. This field defaults to DEFAULT."
+  type        = string
+  default     = null
+}
+
+variable "databricks_account_id" {
+  description = "(optional) Account Id that could be found in the bottom left corner of Accounts Console. Alternatively, you can provide this value as an environment variable DATABRICKS_ACCOUNT_ID. Only has effect when host = \"https://accounts.cloud.databricks.com/\", and is currently used to provision account admins via databricks_user. In the future releases of the provider this property will also be used specify account for databricks_mws_* resources as well."
+  type        = string
+  default     = null
+}
+
+variable "databricks_auth_type" {
+  description = "(optional) enforce specific auth type to be used in very rare cases, where a single Terraform state manages Databricks workspaces on more than one cloud and more than one authorization method configured error is a false positive. Valid values are pat, basic, azure-client-secret, azure-msi, azure-cli, google-credentials, and google-id."
+  type        = string
+  default     = null
+}
+
+variable "databricks_secret_name" {
+  type        = string
+  default     = null
+}
+
+variable "databricks_secret_name_key" {
+  type        = string
+  default     = null
+}
+
+variable "databricks_secret_path" {
+  type        = string
+  default     = null
+}
+
+variable "databricks_secret_store" {
+  type        = string
+  default     = "secrets-manager"
+}
+
+%{if databricks_secret_cloud_provider == "aws" ~}
+module "databricks_provider_secret" {
+  count           = length(compact([var.databricks_password])) > 0 ? 0 : 1
+  source          = "github.com/northvolt/tf-mod-common//secrets?ref=v2.8.1"
+  secret_name     = var.databricks_secret_name
+  secret_name_key = var.databricks_secret_name_key
+  secret_path     = var.databricks_secret_path
+  store           = var.databricks_secret_store
+%{if length(compact([databricks_secret_aws_profile])) > 0~}
+  providers = {
+    aws = aws.databricks_secret
+  }
+%{endif~}
+}
+%{endif~}
+
+%{if length(compact([databricks_secret_aws_profile])) > 0~}
+provider "aws" {
+  region  = "${databricks_secret_aws_region}"
+  profile = "${databricks_secret_aws_profile}"
+  alias   = "databricks_secret"
+}
+%{endif~}
+
+provider "databricks" {
+  host        = var.databricks_host
+  token       = var.databricks_token
+  username    = var.databricks_username
+  password    = coalesce(var.databricks_password, module.databricks_provider_secret[0].secret)
+  config_file = var.databricks_config_file
+  profile     = var.databricks_profile
+  account_id  = var.databricks_account_id
+  auth_type   = var.databricks_auth_type
+}

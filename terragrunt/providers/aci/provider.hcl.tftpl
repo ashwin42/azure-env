@@ -68,9 +68,22 @@ variable "aci_retries" {
   default = null
 }
 
-
 locals {
   aci_hostname = replace(var.aci_url, "/(https?://)|(/)|(:.*)/", "")
+}
+
+module "aci_provider_secret" {
+  count           = length(compact([var.aci_password])) > 0 ? 0 : 1
+  source          = "git@github.com:northvolt/tf-mod-common.git//secrets?ref=v2.2.7"
+  secret_name     = try(coalesce(var.aci_secret_name), local.aci_hostname)
+  secret_name_key = try(coalesce(var.aci_secret_name_key), var.aci_username)
+  secret_path     = try(coalesce(var.aci_secret_path), null)
+  store           = try(coalesce(var.aci_secret_store), "secrets-manager")
+%{if aci_secret_aws_profile != ""~}
+  providers = {
+    aws = aws.aci_secret
+  }
+%{endif~}
 }
 
 provider "aci" {
