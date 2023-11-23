@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.32"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -14,10 +14,11 @@ include "root" {
 }
 
 inputs = {
+  secret_name = "nv-moscura-sqladmin"
   private_endpoints = {
     "moscura-mssql-pe" = {
       name      = "moscura-mssql-pe"
-      subnet_id = dependency.subnet.outputs.subnet["moscura-subnet"].id
+      subnet_id = dependency.subnet.outputs.subnets["moscura-subnet"].id
       private_service_connection = {
         name              = "moscura-mssql-pec"
         subresource_names = ["sqlServer"]
