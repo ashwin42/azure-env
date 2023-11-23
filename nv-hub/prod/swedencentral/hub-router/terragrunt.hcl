@@ -16,11 +16,6 @@ dependency "rv" {
   config_path = "../recovery_vault"
 }
 
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
-
 locals {
   name = "hub-router"
 }
@@ -28,8 +23,9 @@ locals {
 inputs = {
   name                                   = local.name
   vm_name                                = local.name
+  netbox_vm_name                         = "hub-router-swc"
   netbox_create_role                     = true
-  resource_group_name                    = dependency.vnet.outputs.resource_group.name
+  resource_group_name                    = "hub_rg"
   vm_size                                = "Standard_B2s"
   managed_disk_type                      = "Standard_LRS"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
@@ -50,7 +46,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.48.0.70"
-          subnet_id                     = dependency.vnet.outputs.subnet.hub-dmz.id
+          subnet_id                     = dependency.vnet.outputs.subnets["hub-dmz"].id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
           public_ip_address_name        = "${local.name}-public-ip"
@@ -60,17 +56,6 @@ inputs = {
   ],
 
   custom_rules = [
-    {
-      name                       = "Labs_MFA_VPN"
-      priority                   = "200"
-      direction                  = "Inbound"
-      source_address_prefix      = "10.16.8.0/23"
-      destination_address_prefix = "0.0.0.0/0"
-      protocol                   = "*"
-      destination_port_range     = "0-65535"
-      access                     = "Allow"
-      description                = "Allow connections from Labs MFA VPN clients"
-    },
     # SSH from we hub router, To remove when routing is completed to/from on prem
     {
       name                       = "WestEurope_Hub_Router_SSH"

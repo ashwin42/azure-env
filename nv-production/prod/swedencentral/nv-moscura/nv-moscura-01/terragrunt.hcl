@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.33"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -29,12 +29,18 @@ inputs = {
   vm_size                                = "Standard_B2ms"
   backup_vm                              = true
   create_localadmin_password             = true
+  localadmin_key_name                    = "nv-moscura-nvadmin"
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
   managed_disk_size                      = 127
+  netbox_role                            = "moscura"
   storage_image_reference = {
     sku = include.root.locals.all_vars.windows_server_sku_2019
+  }
+  os_profile = {
+    computer_name  = local.name
+    admin_username = "nv-moscura-nvadmin"
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
@@ -56,27 +62,11 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.140"
-          subnet_id                     = dependency.subnet.outputs.subnet["moscura-subnet"].id
+          subnet_id                     = dependency.subnet.outputs.subnets["moscura-subnet"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
       ]
-    },
-  ]
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/24"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
     },
   ]
 }

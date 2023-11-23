@@ -1,8 +1,5 @@
 locals {
-  azurerm_provider_version   = ">= 3.45"
-  terraform_required_version = ">= 1.3.7"
-  netbox_role                = "wincc"
-
+  netbox_role         = "wincc"
   resource_group_name = "revolt-scada-wincc"
   tags = {
     infrastructure-owner = "techops@northvolt.com"

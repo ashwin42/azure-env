@@ -42,6 +42,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",

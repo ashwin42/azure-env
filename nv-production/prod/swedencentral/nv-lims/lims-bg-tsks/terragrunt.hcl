@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.12"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -33,7 +33,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_B2s"
+  vm_size                                = "Standard_D2d_v5"
   backup_vm                              = true
   key_vault_name                         = "nv-production-core"
   key_vault_rg                           = "nv-production-core"
@@ -49,9 +49,9 @@ inputs = {
     identity_ids = null
   }
   storage_image_reference = {
-    offer     = include.root.locals.all_vars.windows_server_offer,
-    publisher = include.root.locals.all_vars.windows_server_publisher,
-    sku       = "2022-datacenter-smalldisk-g2",
+    offer     = "Windows-10",
+    publisher = "MicrosoftWindowsDesktop"
+    sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
@@ -67,8 +67,8 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          private_ip_address            = "10.64.1.36"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+          private_ip_address            = "10.64.1.37"
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
@@ -77,25 +77,13 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
+      name                  = "LocalSubnet"
+      priority              = "205"
+      direction             = "Inbound"
+      source_address_prefix = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].address_prefixes.0
+      access                = "Allow"
+      description           = "Allow connections from local subnet"
+    }
   ]
 }
 

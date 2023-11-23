@@ -16,11 +16,6 @@ dependency "vnet" {
   config_path = "../subnet"
 }
 
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
-
 locals {
   name = basename(get_original_terragrunt_dir())
 }
@@ -68,7 +63,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.149"
-          subnet_id                     = dependency.vnet.outputs.subnet["pqms-subnet"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["pqms-subnet"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },

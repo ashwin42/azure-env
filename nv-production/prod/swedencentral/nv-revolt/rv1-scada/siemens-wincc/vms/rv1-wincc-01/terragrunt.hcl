@@ -1,5 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -39,6 +40,7 @@ inputs = {
   localadmin_name                        = "${local.vm_name}-nvadmin"
   vm_size                                = "Standard_B8ms"
   managed_disk_name                      = "${local.vm_name}-osdisk"
+  install_winrm                          = true
   storage_image_reference = {
     sku = "2019-Datacenter-smalldisk",
   }
