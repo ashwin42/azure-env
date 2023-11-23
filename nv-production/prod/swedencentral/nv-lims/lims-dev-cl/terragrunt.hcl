@@ -22,7 +22,7 @@ dependency "rv" {
 
 locals {
   name            = basename(get_terragrunt_dir())
-  host_pool_name                         = "nv-lims-04-hp"
+  host_pool_name  = "nv-lims-04-hp"
   localadmin_name = "nvadmin"
 }
 

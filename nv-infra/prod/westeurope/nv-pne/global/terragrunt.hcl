@@ -8,16 +8,16 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix  = "nv-pne"
+  setup_prefix        = "nv-pne"
   resource_group_name = "nv-pne-rg"
-  address_space = ["10.44.5.32/27"]
-  dns_servers   = ["10.40.250.5", "10.40.250.4"]
+  address_space       = ["10.44.5.32/27"]
+  dns_servers         = ["10.40.250.5", "10.40.250.4"]
   subnets = [
     {
       name              = "nv-pne-subnet-10.44.5.32"
       address_prefixes  = ["10.44.5.32/27"]
       service_endpoints = ["Microsoft.Storage"]
-      route_table_name = "nv_pne_vnet_default_rt"
+      route_table_name  = "nv_pne_vnet_default_rt"
     },
   ]
   peerings = [
