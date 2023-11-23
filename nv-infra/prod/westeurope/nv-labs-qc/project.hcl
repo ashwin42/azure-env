@@ -1,7 +1,7 @@
 locals {
-  recovery_vault_name        = "nv-labs-qc-rv"
-  resource_group_name        = "nv-labs-qc"
-  setup_prefix               = basename(get_terragrunt_dir())
+  recovery_vault_name = "nv-labs-qc-rv"
+  resource_group_name = "nv-labs-qc"
+  setup_prefix        = basename(get_terragrunt_dir())
   tags = {
     infrastructure-owner = "techops@northvolt.com"
     system-owner         = "nathan.zimmerman@northvolt.com"
