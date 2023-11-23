@@ -7,5 +7,6 @@ locals {
     infrastructure-owner = "techops@northvolt.com"
     project              = "UMS"
     jira                 = "TOC-787"
+    system-owner         = "patrick.weir@northvolt.com"
   }
 }

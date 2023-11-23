@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  # source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -51,10 +51,6 @@ inputs = {
     computer_name  = "ms-oda-data"
   }
 
-  # identity = {
-  #   type = "SystemAssigned"
-  # }
-
   network_interfaces = [
     {
       name = "${local.name}-nic"
@@ -68,20 +64,10 @@ inputs = {
       ]
     },
   ]
-  custom_rules = [
+
+  maintenance_configurations = [
     {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/24"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
+      name = "shared_services_tuesdays_0200_1"
     },
   ]
 }

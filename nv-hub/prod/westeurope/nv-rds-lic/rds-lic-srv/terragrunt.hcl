@@ -63,6 +63,13 @@ inputs = {
       ]
     },
   ]
+
+  maintenance_configurations = [
+    {
+      name = "shared_services_tuesdays_0200_1"
+    },
+  ]
+
   custom_rules = [
     {
       name                   = "WMI_DCOM"
