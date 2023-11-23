@@ -1,5 +1,5 @@
 locals {
-  providers = ["mssql", "netbox"]
+  providers = ["azurerm", "netbox"]
   additional_providers = [
     {
       alias           = "that"
@@ -8,6 +8,6 @@ locals {
       blocks = {
         features = {},
       },
-    },
+    }
   ]
 }

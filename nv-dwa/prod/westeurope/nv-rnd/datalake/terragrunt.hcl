@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.42"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -130,7 +130,7 @@ inputs = {
 
   private_endpoints = {
     nv-dwa-rnd-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-dwa-rnd"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-dwa-rnd"].id
       private_service_connection = {
         name              = "nv-dwa-rnd-pec"
         subresource_names = ["dfs"]
@@ -143,7 +143,7 @@ inputs = {
       }
     }
     nv-dwa-rnd-blob-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-dwa-rnd"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-dwa-rnd"].id
       private_service_connection = {
         name              = "nv-dwa-rnd-blob-pec"
         subresource_names = ["blob"]
@@ -163,7 +163,7 @@ inputs = {
     bypass         = ["AzureServices"]
     default_action = "Deny"
     virtual_network_subnet_ids = [
-      dependency.subnet.outputs.subnet["nv-dwa-rnd"].id,
+      dependency.subnet.outputs.subnets["nv-dwa-rnd"].id,
     ]
     ip_rules = [
       "81.233.195.87",

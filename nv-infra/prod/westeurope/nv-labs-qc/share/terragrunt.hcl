@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.8.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
@@ -76,7 +76,7 @@ inputs = {
 
   private_endpoints = {
     nv-labs-rndqcstorage-file-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-labs-qc-subnet-10.46.2.32_28"].id
       private_service_connection = {
         name              = "nv-labs-rndqcstorage-file-pec"
         subresource_names = ["file"]
