@@ -326,6 +326,33 @@ inputs = {
       gateway_address            = "24.40.143.226"
       address_space              = "10.193.62.1/24, 10.17.4.1/22"
       address_prefix             = "10.193.62.1/24, 10.17.4.1/22"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "GCMAES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "GCMAES256"
+      ipsec_integrity            = "GCMAES256"
+      pfs_group                  = "PFS24"
+      sa_lifetime                = "27000"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
+      enable_bgp                 = "false"
+      generate_psk               = true
+    },
+    {
+      name                       = "disponent-01-azure-internet"
+      local_network_gateway_name = "disponent-01-azure-internet"
+      gateway_address            = "134.65.165.214"
+      address_space              = "10.193.10.1/24, 10.16.100.1/24"
+      address_prefix             = "10.193.10.1/24, 10.16.100.1/24"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "GCMAES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "GCMAES256"
+      ipsec_integrity            = "GCMAES256"
+      pfs_group                  = "PFS24"
+      sa_lifetime                = "27000"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
       enable_bgp                 = "false"
       generate_psk               = true
     },
