@@ -1,9 +1,6 @@
 locals {
-  azurerm_provider_version   = ">= 3.0"
-  terraform_required_version = ">= 1.0"
   recovery_vault_name        = "nv-labs-qc-rv"
   resource_group_name        = "nv-labs-qc"
-  azurerm_features           = {}
   setup_prefix               = basename(get_terragrunt_dir())
   tags = {
     infrastructure-owner = "techops@northvolt.com"
