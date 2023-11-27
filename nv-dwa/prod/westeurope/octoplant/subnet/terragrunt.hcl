@@ -15,6 +15,19 @@ inputs = {
     {
       name               = "octoplant-dwa-10.46.97.0_29"
       address_prefixes   = ["10.46.97.0/29"]
+      route_table_name   = "octoplant-dwa_default-rt"
     },
+  ]
+  route_tables = [
+    {
+      name = "octoplant-dwa_default-rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }
