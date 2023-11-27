@@ -13,8 +13,8 @@ inputs = {
   vnet_resource_group_name = "global-rg"
   subnets = [
     {
-      name               = "octoplant-dwa-10.46.97.0_29"
-      address_prefixes   = ["10.46.97.0/29"]
+      name             = "octoplant-dwa-10.46.97.0_29"
+      address_prefixes = ["10.46.97.0/29"]
     },
   ]
 }
