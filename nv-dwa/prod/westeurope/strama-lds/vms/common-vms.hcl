@@ -63,12 +63,28 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                    = "Allow-Strama-Ports"
-      priority                = "400"
-      direction               = "Inbound"
-      source_address_prefixes = ["10.106.0.0/20", "10.106.33.0/24"]
-      destination_port_range  = "5000,8000,12000,12001,60008"
-      description             = "Allow Strama ports"
+      name      = "Allow-Strama-Ports"
+      priority  = "400"
+      direction = "Inbound"
+      source_address_prefixes = [
+        "10.106.0.0/20",
+        "10.106.33.0/24",
+        "10.18.64.0/20"
+      ]
+      destination_port_range = "5000,8000,12000,12001,60008"
+      description            = "Allow Strama ports"
+    },
+    {
+      name      = "Allow-Temp-SQL-Ports"
+      priority  = "401"
+      direction = "Inbound"
+      source_address_prefixes = [
+        "10.106.0.0/20",
+        "10.46.97.112/28",
+        "10.18.64.0/20"
+      ]
+      destination_port_range = "1433"
+      description            = "Allow Strama ports"
     },
   ]
 }
