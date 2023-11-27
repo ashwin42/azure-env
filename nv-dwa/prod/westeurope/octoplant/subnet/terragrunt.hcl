@@ -13,9 +13,9 @@ inputs = {
   vnet_resource_group_name = "global-rg"
   subnets = [
     {
-      name               = "octoplant-dwa-10.46.97.0_29"
-      address_prefixes   = ["10.46.97.0/29"]
-      route_table_name   = "octoplant-dwa_default-rt"
+      name             = "octoplant-dwa-10.46.97.0_29"
+      address_prefixes = ["10.46.97.0/29"]
+      route_table_name = "octoplant-dwa_default-rt"
     },
   ]
   route_tables = [
