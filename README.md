@@ -679,6 +679,26 @@ This is a list of projects in the repository based on project.hcl files.
 
 ---
 ### 🛠️ Octoplant
+- Code: [nv-dwa/prod/westeurope/octoplant](nv-dwa/prod/westeurope/octoplant)
+- Jira: [NDW-748](https://northvolt.atlassian.net/browse/NDW-748)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/octoplant-dwa-rg |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.4 |
+| **business-unit** | 120 ESS Systems - AB |
+| **department** | 120001 ESS Engineering - AB |
+| **cost-center** | 301001013 Engineering- ESS PL |
+| **system-owner** | arkadiusz.grochowski@northvolt.com, traian.butto@northvolt.com |
+| **global-process-owner** | arkadiusz.grochowski@northvolt.com |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | arkadiusz.grochowski@northvolt.com, traian.butto@northvolt.com |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
 - Code: [nv-infra/prod/westeurope/nv-octoplant](nv-infra/prod/westeurope/nv-octoplant)
 - Jira: [TOC-1094](https://northvolt.atlassian.net/browse/TOC-1094)
 <details><summary>Details (click to expand):</summary>
