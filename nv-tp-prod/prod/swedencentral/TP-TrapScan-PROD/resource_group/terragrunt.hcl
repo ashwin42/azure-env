@@ -14,7 +14,7 @@ inputs = {
         "NV Tools & Products Member",
       ],
     },
-    "Owner" = {
+    "Key Vault Administrator" = {
       "users" = [
         "alex.altieri@northvolt.com",
       ],
