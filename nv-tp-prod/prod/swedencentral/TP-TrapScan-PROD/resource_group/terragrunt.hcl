@@ -17,7 +17,7 @@ inputs = {
     "Owner" = {
       "users" = [
         "alex.altieri@northvolt.com",
-        ],
+      ],
     },
   }
 }
