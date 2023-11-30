@@ -77,7 +77,16 @@ inputs = {
       direction             = "Inbound"
       protocol              = "Udp"
       source_address_prefix = "10.194.12.0/22"
-      description           = "Allow connections from Ett MFA VPN clients"
+      description           = "Allow connections from ETT Factory SDAccess - PQMS"
+    },
+    {
+      name                    = "Prometheus_Blackbox_Exporter"
+      priority                = "401"
+      direction               = "Inbound"
+      protocol                = "Tcp"
+      source_address_prefixes = include.root.locals.all_vars.prometheus_cidr_blocks
+      destination_port_range  = "443"
+      description             = "Allow connections from it-prod eks"
     },
   ]
 }
