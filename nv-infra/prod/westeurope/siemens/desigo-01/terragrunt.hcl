@@ -67,16 +67,14 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from local VNet"
         },
-        # {
-        #   name                    = "Onprem"
-        #   priority                = "206"
-        #   direction               = "Inbound"
-        #   source_address_prefix   = "10.0.0.0/8"
-        #   #source_port_ranges      = ["0-65535"]
-        #   #destination_port_ranges = ["0-65535"]
-        #   access                  = "Allow"
-        #   description             = "Allow connections from on-prem"
-        # },
+        {
+          name                    = "onprem-physec-networks"
+          priority                = "206"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          access                  = "Allow"
+          description             = "Allow connections from on-prem"
+        },
       ]
     },
   ]

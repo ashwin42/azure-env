@@ -67,6 +67,14 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from local VNet"
         },
+        {
+          name                    = "onprem-physec-networks"
+          priority                = "206"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          access                  = "Allow"
+          description             = "Allow connections from on-prem"
+        },
       ]
     },
   ]
