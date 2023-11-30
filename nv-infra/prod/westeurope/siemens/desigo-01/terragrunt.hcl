@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -34,6 +34,8 @@ inputs = {
   create_localadmin_password             = true
   managed_disk_name                      = "${local.name}-os"
   managed_disk_type                      = "StandardSSD_LRS"
+  install_winrm                          = true
+  netbox_role                            = "desigo"
 
   storage_image_reference = {
     offer     = include.root.locals.all_vars.windows_server_offer,
@@ -65,6 +67,16 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from local VNet"
         },
+        # {
+        #   name                    = "Onprem"
+        #   priority                = "206"
+        #   direction               = "Inbound"
+        #   source_address_prefix   = "10.0.0.0/8"
+        #   #source_port_ranges      = ["0-65535"]
+        #   #destination_port_ranges = ["0-65535"]
+        #   access                  = "Allow"
+        #   description             = "Allow connections from on-prem"
+        # },
       ]
     },
   ]
