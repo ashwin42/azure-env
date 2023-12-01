@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.6"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -53,7 +53,7 @@ inputs = {
 
   network_security_groups = [
     {
-      name               = "ps-ac-sql-nsg"
+      name               = "${local.name}-nsg"
       move_default_rules = true
       rules = [
         {
@@ -87,6 +87,7 @@ inputs = {
           description            = "Allow connections from local VNet"
         },
       ],
+      network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
     },
   ]
 
