@@ -1,10 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
-}
-
-dependency "vnet" {
-  config_path = "../../nv-infra-vnet"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.7"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vnet/netbox"
 }
 
 include "root" {
@@ -13,10 +9,9 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix             = ""
+  setup_prefix             = null
   vnet_name                = "nv-gen-infra-vnet"
-  vnet_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
-  resource_group_name      = "nv-labs-qc"
+  vnet_resource_group_name = "nv-gen-infra-rg"
 
   subnets = [
     {
@@ -30,6 +25,7 @@ inputs = {
       ]
     },
   ]
+
   network_security_groups = [
     {
       name               = "nv-labs-qc-subnet-nsg"
@@ -69,6 +65,7 @@ inputs = {
           description            = "Allow connections from Ett MFA VPN clients"
         },
       ]
+      network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
     }
   ]
 }
