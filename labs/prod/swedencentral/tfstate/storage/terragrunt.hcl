@@ -13,9 +13,9 @@ inputs = {
   name                = include.root.inputs.remote_state_azurerm_storage_account_name
   resource_group_name = include.root.inputs.remote_state_azurerm_resource_group_name
   containers = [
-    { 
-      name = include.root.inputs.remote_state_azurerm_container_name, 
-      access_type = "private" 
+    {
+      name        = include.root.inputs.remote_state_azurerm_container_name,
+      access_type = "private"
     }
   ]
   iam_assignments = {
