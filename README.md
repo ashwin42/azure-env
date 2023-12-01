@@ -69,6 +69,14 @@ This is a list of Azure subscriptions in the repository.
 - ID: 810a32ab-57c8-430a-a3ba-83c5ad49e012
 - owner: katarina.enskar@northvolt.com
 ---
+### 🔑 labs
+- ID: 82f99951-a219-463b-97ff-011a0d6e28a4
+- owner: techops@northvolt.com
+---
+### 🔑 labs-dev
+- ID: 482ca545-4f14-415f-90fd-78b4f000d420
+- owner: techops@northvolt.com
+---
 ### 🔑 nv-d365-dev
 - ID: bd728441-1b83-4daa-a72f-91d5dc6284f1
 - owner: galen.lanphier@northvolt.com
