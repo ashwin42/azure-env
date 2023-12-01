@@ -7,6 +7,8 @@
 # To add a new provider:
 # - add a new provider.hcl.tftpl template file in terragrunt/providers/<provider_name>/ directory
 # - add necessary default variables for the provider template in terragrunt/vars/default_vars.hcl (at least <provider_name>_provider_source and <provider_name>_provider_version)
+#
+# THIS FILE IS CENTRALLY MANAGED, DO NOT EDIT IT OUTSIDE OF THE REPOSITORY: https://github.com/northvolt/tf-terragrunt
 
 # Skip terragrunt commands on this file
 skip = true
