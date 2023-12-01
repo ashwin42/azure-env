@@ -49,3 +49,6 @@ jobs:
           branch: update-terragrunt-structure
           committer: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
           delete-branch: true
+          body: |
+            This PR updates the terragrunt structure to the latest version.
+            See https://github.com/northvolt/tf-terragrunt
