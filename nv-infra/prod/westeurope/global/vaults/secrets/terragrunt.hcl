@@ -31,4 +31,28 @@ inputs = {
       ],
     }
   }
+
+  logs = [
+    {
+      logs_category_group           = "allLogs"
+      logs_enabled                  = false
+      logs_retention_policy_enabled = false
+      logs_retention_policy_days    = 0
+    },
+    {
+      logs_category_group           = "audit"
+      logs_enabled                  = true
+      logs_retention_policy_enabled = true
+      logs_retention_policy_days    = 180
+    }
+  ]
+
+  metrics = [
+    {
+      metrics_category                 = "AllMetrics"
+      metrics_enabled                  = false
+      metrics_retention_policy_enabled = false
+      metrics_retention_policy_days    = 0
+    },
+  ]
 }
