@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5"
+  #source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5"
+  source = "${dirname(get_repo_root())}/tf-mod-azure/vm//netbox/"
 }
 
 include "root" {
@@ -15,14 +16,14 @@ inputs = merge(
   local.common.inputs,
   {
     netbox_create_role = true
-    install_winrm      = true
+    openssh            = true
     network_interfaces = [
       {
         name           = "dwa-prn-nic1"
         security_group = "dwa-prn-custom-nsg"
         primary        = true
         ip_configuration = [{
-          subnet_id                     = local.common.dependency.subnet.outputs.subnets["office-it-subnet1"].id
+          subnet_id                     = local.common.dependency.subnet.outputs.subnets["papercut-subnet1"].id
           private_ip_address_allocation = "Static"
           private_ip_address            = "10.46.97.133"
         }]
@@ -98,7 +99,16 @@ inputs = merge(
         destination_port_range = "161-162"
         access                 = "Allow"
         description            = "Allow connections from Dwa office subnet"
-      }
+      },
+      {
+        name                  = "mdm_management "
+        priority              = "210"
+        direction             = "Inbound"
+        source_address_prefix = "10.46.2.84/32"
+        protocol              = "Tcp"
+        access                = "Allow"
+        description           = "Allow connections from MDM management server"
+      },
     ]
   }
 )
