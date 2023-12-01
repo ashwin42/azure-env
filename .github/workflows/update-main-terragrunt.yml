@@ -1,0 +1,51 @@
+---
+name: Update main terragrunt structure
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Import bot's GPG key for signing commits
+        id: import-gpg
+        uses: crazy-max/ghaction-import-gpg@ff3ef461823c67c5f2dcd2085b3d0e46997eb860
+        with:
+          gpg_private_key: ${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.ACTIONS_GPG_PASSPHRASE }}
+          git_config_global: true
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Setup nv-ci ssh credentials for cloning tf-terragrunt repo
+        run: |
+          mkdir -p "$HOME/.ssh"
+          echo "${{ secrets.NV_CI_SSH_KEY }}" > $HOME/.ssh/id_rsa
+          chmod 400 $HOME/.ssh/id_rsa
+          ssh-keyscan -H github.com >  $HOME/.ssh/known_hosts
+
+      - name: Clone tf-terragrunt repo
+        uses: actions/checkout@v4
+        with:
+          repository: northvolt/tf-terragrunt
+          path: tf-terragrunt
+          ssh-key: ${{ secrets.NV_CI_SSH_KEY }}
+
+      - name: Copy latest terragrunt files
+        run: |
+          rm -rf terragrunt
+          cp -r tf-terragrunt/terragrunt/ terragrunt/
+          cp tf-terragrunt/terragrunt.hcl terragrunt.hcl
+          rm -rf tf-terragrunt
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@f5ba48ac1e522e5e1b7b04e2ea86f584e5bf4704
+        with:
+          title: Update terragrunt structure
+          branch: update-terragrunt-structure
+          committer: "${{ steps.import-gpg.outputs.name }} <${{ steps.import-gpg.outputs.email }}>"
+          delete-branch: true
