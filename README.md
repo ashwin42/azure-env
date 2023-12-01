@@ -81,6 +81,10 @@ This is a list of Azure subscriptions in the repository.
 - ID: bd728441-1b83-4daa-a72f-91d5dc6284f1
 - owner: galen.lanphier@northvolt.com
 ---
+### 🔑 sub-template
+- ID: 
+- owner: techops@northvolt.com
+---
 <!-- END_SUBSCRIPTION -->
 <!-- START_PROJECT -->
 ## Projects
