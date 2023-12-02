@@ -48,6 +48,7 @@ inputs = {
   storage_account_name                   = dependency.storage.outputs.storage_account_name
   aad_join                               = true
   mdm_register                           = true
+  dns_zone                               = "dwa.nvlt.net"
   storage_image_reference = {
     sku       = "win11-22h2-avd"
     publisher = "MicrosoftWindowsDesktop"
