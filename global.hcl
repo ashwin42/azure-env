@@ -8,15 +8,16 @@ locals {
   # netbox
   netbox_server_url         = "https://netbox.it.aws.nvlt.co"
   update_netbox             = true
-  netbox_provider_version   = "= 3.6.2"
   netbox_secret_aws_profile = "nv-it-prod"
 
-  vpn_subnet_labs = "10.16.8.0/24"
-  vpn_subnet_ett  = "10.240.0.0/21"
-  vpn_subnet_dwa  = "10.240.32.0/23"
+  vpn_subnet_labs       = "10.16.8.0/24"
+  vpn_subnet_ett        = "10.240.0.0/21"
+  vpn_subnet_ett_revolt = "10.240.20.0/23"
+  vpn_subnet_dwa        = "10.240.32.0/23"
   vpn_subnets_all = [
     local.vpn_subnet_labs,
     local.vpn_subnet_ett,
+    local.vpn_subnet_ett_revolt,
     local.vpn_subnet_dwa,
   ]
 
@@ -85,4 +86,10 @@ locals {
     local.rule_windows_node_exporter,
     local.rule_rdp_bastion,
   )
+
+  # default groups allowed to access AVD VMs
+  default_avd_groups = [
+    "NV TechOps Role",
+    "NV IT Service Support Member",
+  ]
 }

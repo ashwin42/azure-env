@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//monitor_data_collection_rule?ref=v0.7.7"
-  #source = "../../../../../../../tf-mod-azure/monitor_data_collection_rule/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//monitor_data_collection_rule?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/monitor_data_collection_rule/"
 }
 
 include "root" {
@@ -13,12 +13,16 @@ locals {
 }
 
 inputs = {
-  name        = "win_eventlogs_sentinel"
+  name        = local.name
   description = "Data Collection Rule for Windows Event Logs. Collects Audit Failed Windows Event logs and sends them to Sentinel  - Managed by Terraform"
   location    = "northeurope"
   windows_event_log = [
     {
-      x_path_queries = ["Security!*[System[(band(Keywords,4503599627370496))]]"]
+      x_path_queries = [
+        "Application!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]",
+        "Security!*[System[(band(Keywords,13510798882111488))]]",
+        "System!*[System[(Level=1 or Level=2 or Level=3 or Level=4 or Level=0)]]",
+      ]
     }
   ]
 

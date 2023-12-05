@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.0"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -42,6 +42,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
@@ -93,6 +94,14 @@ inputs = {
       source_address_prefix = "10.100.250.0/23"
       access                = "Allow"
       description           = "Allow connections from NV-Cyclers"
-    }
+    },
+    {
+      name                  = "NV-Cyclers_10-149-0-0_18"
+      priority              = "221"
+      direction             = "Inbound"
+      source_address_prefix = "10.149.0.0/18"
+      access                = "Allow"
+      description           = "Allow connections from NV-Cyclers in 10.149.0.0/18"
+    },
   ]
 }

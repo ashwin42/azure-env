@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.2.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -27,25 +28,37 @@ inputs = {
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "revolt-wave4-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  netbox_role                            = "revolt-wave4"
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "20h1-evd",
   }
-  os_profile_windows = {}
+  os_profile_windows_config = {
+    enable_automatic_upgrades = true
+    provision_vm_agent        = true
+    timezone                  = "W. Europe Standard Time"
+  }
   os_profile = {
     admin_username = "domainjoin"
   }
   network_interfaces = [
     {
-      name      = "revolt-wave4-oper-0-nic"
-      ipaddress = "10.44.5.150"
-      subnet    = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
-      public_ip = false
-    }
+      name = "revolt-wave4-oper-0-nic"
+      ip_configuration = [
+        {
+          ipconfig_name                 = "revolt-wave4-oper-0-nic-ipconfig"
+          private_ip_address            = "10.44.5.150"
+          subnet_id                     = dependency.global.outputs.subnet["revolt-wave4-subnet-10.44.5.144-28"].id
+          private_ip_address_allocation = "Static"
+        },
+      ]
+    },
   ]
   dns_servers = null
   data_disks = [
@@ -57,14 +70,6 @@ inputs = {
     }
   ]
   custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/23"
-      access                = "Allow"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
     {
       name                  = "NV-Cyclers"
       priority              = "220"

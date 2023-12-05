@@ -17,7 +17,7 @@ inputs = {
   setup_prefix          = dependency.global.outputs.setup_prefix
   wvd_ws_friendly_name  = "CMX Virtual Desktop"
   wvd_location          = "westeurope"
-  assign_groups         = ["NV TechOps Role", "CMX VPN Eligible", "CMX virtual desktop user access"]
+  assign_groups         = ["NV TechOps Role", "CMX VPN Eligible", "CMX virtual desktop user access", "NV IT Service Support Member"]
   assign_users          = ["markku.liebl@northvolt.com", "uwe.laudahn.nve@northvolt.com", "henrik.miiro@northvolt.com"]
   custom_rdp_properties = "drivestoredirect:s:*;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;redirectprinters:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"
 

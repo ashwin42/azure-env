@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.61"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 include "root" {
@@ -15,9 +15,24 @@ inputs = {
   dns_servers              = []
   subnets = [
     {
-      name             = "nv-apis-iq-subnet-10.46.1.48_28"
-      address_prefixes = ["10.46.1.48/28"]
+      name               = "nv-apis-iq-subnet-10.46.1.48_28"
+      netbox_subnet_name = "nv-apis-iq subnet"
+      address_prefixes   = ["10.46.1.48/28"]
+      route_table_name   = "nv-apis-iq_default-rt"
     },
+  ]
+
+  route_tables = [
+    {
+      name = "nv-apis-iq_default-rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }
 

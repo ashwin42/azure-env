@@ -14,6 +14,11 @@ inputs = {
         "NV Tools & Products Member",
       ],
     },
+    "Logic App Contributor" = {
+      users = [
+        "akshay.kumar@northvolt.com"
+      ],
+    }
   }
 }
 

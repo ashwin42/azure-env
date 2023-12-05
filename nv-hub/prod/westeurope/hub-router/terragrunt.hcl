@@ -16,11 +16,6 @@ dependency "rv" {
   config_path = "../recovery_vault"
 }
 
-generate = merge(
-  include.root.locals.generate_providers.netbox,
-  include.root.locals.generate_providers_version_override.netbox
-)
-
 locals {
   name = "hub-router"
 }
@@ -40,9 +35,8 @@ inputs = {
   storage_image_reference = {
     offer     = include.root.locals.all_vars.ubuntu_offer_minimal_20,
     publisher = include.root.locals.all_vars.ubuntu_publisher,
-    sku       = include.root.locals.all_vars.local.ubuntu_sku_minimal_20,
+    sku       = include.root.locals.all_vars.ubuntu_sku_minimal_20,
   }
-  #encrypt_disks = true
   network_interfaces = [
     {
       name                 = "${local.name}-nic"
@@ -53,35 +47,11 @@ inputs = {
           subnet_id                     = dependency.vnet.outputs.subnets.hub-dmz.id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
-          #public_ip_address_name        = "${local.name}-public-ip"
         },
       ]
     },
   ],
-  data_collection_rule_names = ["linux_syslog-dcr"]
   custom_rules = [
-    {
-      name                       = "Labs_MFA_VPN"
-      priority                   = "200"
-      direction                  = "Inbound"
-      source_address_prefix      = "10.16.8.0/23"
-      destination_address_prefix = "0.0.0.0/0"
-      protocol                   = "*"
-      destination_port_range     = "0-65535"
-      access                     = "Allow"
-      description                = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                       = "Ett_MFA_VPN"
-      priority                   = "201"
-      direction                  = "Inbound"
-      source_address_prefix      = "10.240.0.0/21"
-      destination_address_prefix = "0.0.0.0/0"
-      protocol                   = "*"
-      destination_port_range     = "0-65535"
-      access                     = "Allow"
-      description                = "Allow connections from Ett MFA VPN clients"
-    },
     {
       name                       = "Labs_Jumphost"
       priority                   = "202"

@@ -7,6 +7,7 @@ locals {
 
   tags = {
     infrastructure-owner = "techops@northvolt.com"
+    system-owner         = "karel.silha@northvolt.com"
     business-unit        = "109 Digitalization IT - AB"
     department           = "109035 Operations & Infrastructure - AB"
     cost-center          = "109035063 Operations & Infrastructure Common - AB"

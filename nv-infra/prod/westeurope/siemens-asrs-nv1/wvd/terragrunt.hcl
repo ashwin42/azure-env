@@ -1,6 +1,6 @@
 terraform {
-  # source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.8.2"
-  source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 
 include "root" {
@@ -47,7 +47,6 @@ inputs = {
       default_desktop_display_name = "Siemens Management WVD"
       description                  = "Management VM for Siemens"
       assign_groups = [
-        "NV TechOps Role",
         "VPN Siemens ASRS AP",
       ]
     }

@@ -11,7 +11,13 @@ inputs = {
   name                          = "nvliminalstorage"
   account_replication_type      = "LRS"
   public_network_access_enabled = true
-
+  iam_assignments = {
+    "Reader" = {
+      groups = [
+        "Liminal Azure Storage Table Data Contributor - Production",
+      ],
+    },
+  }
   tables = [
     {
       name = "trainingcells"

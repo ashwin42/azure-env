@@ -19,6 +19,7 @@ inputs = {
 
   assign_groups = [
     "NV TechOps Role",
+    "NV IT Service Support Member",
     "APIS IQ User Access",
   ]
 }

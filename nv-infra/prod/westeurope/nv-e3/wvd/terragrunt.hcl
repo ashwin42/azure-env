@@ -18,4 +18,11 @@ inputs = {
   wvd_ws_friendly_name  = "E3 Virtual Desktop"
   wvd_hp_type           = "Pooled"
   custom_rdp_properties = "drivestoredirect:s:*;redirectprinters:i:1;audiomode:i:0;videoplaybackmode:i:1;redirectclipboard:i:1;devicestoredirect:s:*;redirectcomports:i:1;redirectsmartcards:i:1;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1;"
+  assign_groups = [
+    "NV TechOps Role",
+    "NV IT Service Support Member",
+    "E3 Battery Systems Users",
+    "E3 Maintenance Users",
+    "NVP E3 Battery Systems Users",
+  ]
 }

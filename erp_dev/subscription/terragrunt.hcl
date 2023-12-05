@@ -9,11 +9,17 @@ include "root" {
 }
 
 inputs = {
-  management_group = "Managed"
+  management_group = "Self Managed"
   iam_assignments = {
     "Contributor" = {
       service_principals = [
         "aviatrix_controller_app_prod",
+      ],
+    },
+
+    "User Access Administrator" = {
+      service_principals = [
+        "MS-PIM",
       ],
     },
   }

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -26,7 +26,7 @@ inputs = {
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   vm_name                                = local.name
   name                                   = local.name
-  vm_size                                = "Standard_B4ms"
+  vm_size                                = "Standard_D4s_v3"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
@@ -58,7 +58,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.46.1.4"
-          subnet_id                     = dependency.vnet.outputs.subnet["autodesk-vault-subnet-10.46.1.0_29"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["autodesk-vault-subnet-10.46.1.0_29"].id
           ipconfig_name                 = "${local.name}-nic_config"
           private_ip_address_allocation = "Static"
         },
@@ -80,4 +80,10 @@ inputs = {
     disk_size_gb      = "256",
     managed_disk_type = "Premium_LRS",
   }
+
+  maintenance_configurations = [
+    {
+      name = "every_wednesday_0200"
+    },
+  ]
 }

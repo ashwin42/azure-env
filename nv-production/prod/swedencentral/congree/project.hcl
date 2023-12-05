@@ -8,6 +8,7 @@ locals {
     business-unit        = "151 Manufacturing Support - LA"
     department           = "151057 Production Management - LA"
     cost-center          = "151057251 Production Management - LA"
+    system-owner         = "joakim.hofgaard@northvolt.com"
     project              = "Congree"
     jira                 = "TOC-1716"
   }

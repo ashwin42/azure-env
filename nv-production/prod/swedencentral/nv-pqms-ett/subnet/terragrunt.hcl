@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.26"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/tf-mod-azure/vnet/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
 dependency "vnet" {
@@ -14,12 +14,14 @@ include "root" {
 }
 
 inputs = {
+  setup_prefix             = ""
   vnet_name                = dependency.vnet.outputs.virtual_network.name
   vnet_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name
 
   subnets = [
     {
       name                            = "pqms-subnet"
+      netbox_subnet_name              = "pqms ett subnet"
       address_prefixes                = ["10.64.1.144/28"]
       route_table_name                = "nv-production-swc-default-rt"
       route_table_resource_group_name = dependency.vnet.outputs.virtual_network.resource_group_name

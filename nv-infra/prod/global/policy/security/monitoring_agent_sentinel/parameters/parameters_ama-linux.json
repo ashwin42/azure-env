@@ -1,0 +1,8 @@
+{
+    "bringYourOwnUserAssignedManagedIdentity": {
+       "value": true
+    },
+    "userAssignedManagedIdentityName": {
+        "value": "AMAOnboarding"
+     }
+}

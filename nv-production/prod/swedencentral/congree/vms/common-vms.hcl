@@ -22,9 +22,14 @@ inputs = {
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
+  netbox_role                            = "congree"
   managed_disk_size                      = 127
   storage_image_reference = {
     sku = "2019-Datacenter"
+  }
+  os_profile = {
+    admin_username = "congree-nvadmin"
+    computer_name  = local.name
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
@@ -33,20 +38,4 @@ inputs = {
   }
   windows_data_collection_rule_names = []
   linux_data_collection_rule_names   = []
-  custom_rules = [
-    {
-      name                  = "Labs_MFA_VPN"
-      priority              = "200"
-      direction             = "Inbound"
-      source_address_prefix = "10.16.8.0/24"
-      description           = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                  = "Ett_MFA_VPN"
-      priority              = "201"
-      direction             = "Inbound"
-      source_address_prefix = "10.240.0.0/21"
-      description           = "Allow connections from Ett MFA VPN clients"
-    },
-  ]
 }

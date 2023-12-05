@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.42"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -49,7 +49,7 @@ inputs = {
 
   private_endpoints = {
     nv-labs-qcstorage-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-labs-qc-subnet-10.46.2.32_28"].id
       private_service_connection = {
         name              = "nv-labs-qcstorage-pec"
         subresource_names = ["dfs"]
@@ -62,7 +62,7 @@ inputs = {
       }
     }
     nv-labs-qcstorage-blob-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-labs-qc-subnet-10.46.2.32_28"].id
       private_service_connection = {
         name              = "nv-labs-qcstorage-blob-pec"
         subresource_names = ["blob"]
@@ -82,7 +82,7 @@ inputs = {
     bypass         = ["AzureServices"]
     default_action = "Deny"
     virtual_network_subnet_ids = [
-      dependency.subnet.outputs.subnet["nv-labs-qc-subnet-10.46.2.32_28"].id,
+      dependency.subnet.outputs.subnets["nv-labs-qc-subnet-10.46.2.32_28"].id,
     ]
     ip_rules = [
       "213.50.54.196",

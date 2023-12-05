@@ -23,6 +23,7 @@ inputs = {
       service_principals = [
         "DefenderOnboarding",
         "maintenance_windows_tags",
+        "AMAOnboarding",
       ],
     },
     "Owner" = {
@@ -36,6 +37,7 @@ inputs = {
         "NV TechOps Read Member",
         "NV Aviatrix Admin",
         "NV Cyber Defence Member",
+        "NV IT Service Support Member"
       ],
     },
     "Resource Policy Contributor" = {

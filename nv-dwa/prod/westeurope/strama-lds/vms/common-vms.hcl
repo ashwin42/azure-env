@@ -30,7 +30,7 @@ inputs = {
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
-  vm_size                                = "Standard_D4s_v5"
+  vm_size                                = "Standard_D8s_v5"
   install_winrm                          = true
   backup_vm                              = true
   secrets_key_vault_name                 = dependency.vault.outputs.azurerm_key_vault.name
@@ -42,6 +42,7 @@ inputs = {
   localadmin_key_name                    = "${local.name}-nvadmin"
   storage_account_name                   = dependency.storage.outputs.storage_account_name
   ad_join                                = "true"
+  managed_disk_size                      = "64"
   storage_image_reference = {
     sku = "2022-Datacenter-smalldisk",
   }
@@ -62,12 +63,28 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                    = "Allow-Strama-Ports"
-      priority                = "400"
-      direction               = "Inbound"
-      source_address_prefixes = ["10.106.0.0/20", "10.106.33.0/24"]
-      destination_port_range  = "5000,8000,12000,12001,60008"
-      description             = "Allow Strama ports"
+      name      = "Allow-Strama-Ports"
+      priority  = "400"
+      direction = "Inbound"
+      source_address_prefixes = [
+        "10.106.0.0/20",
+        "10.106.33.0/24",
+        "10.18.64.0/20"
+      ]
+      destination_port_range = "5000,8000,12000,12001,60008"
+      description            = "Allow Strama ports"
+    },
+    {
+      name      = "Allow-Temp-SQL-Ports"
+      priority  = "401"
+      direction = "Inbound"
+      source_address_prefixes = [
+        "10.106.0.0/20",
+        "10.46.97.112/28",
+        "10.18.64.0/20"
+      ]
+      destination_port_range = "1433"
+      description            = "Allow Strama ports"
     },
   ]
 }

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -87,11 +87,11 @@ inputs = {
       generate_psk        = false
     },
     {
-      name                = "revolt-ett-temp-cloudvpn-01-internet"
+      name                = "revolt-ett-temp-cldro001-internet"
       gateway_address     = "194.17.162.251"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.26"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -102,14 +102,14 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
-      name                = "revolt-ett-temp-cloudvpn-02-internet"
+      name                = "revolt-ett-temp-cldro002-internet"
       gateway_address     = "194.17.162.252"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.27"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -120,7 +120,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
       name                = "ett-cloudvpn-01-internet"
@@ -300,6 +300,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
     {
       name                = "labs-edge-cldro002-internet-we"
@@ -317,6 +318,43 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                       = "drei-office-7th-floor"
+      local_network_gateway_name = "drei-office-7th-floor"
+      gateway_address            = "24.40.143.226"
+      address_space              = "10.193.62.0/24,10.17.4.0/22"
+      address_prefix             = "10.193.62.0/24,10.17.4.0/22"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "AES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "AES256"
+      ipsec_integrity            = "SHA256"
+      pfs_group                  = "PFS2"
+      sa_lifetime                = "28800"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
+      enable_bgp                 = "false"
+      generate_psk               = true
+    },
+    {
+      name                       = "disponent-01-azure-internet"
+      local_network_gateway_name = "disponent-01-azure-internet"
+      gateway_address            = "134.65.165.214"
+      address_space              = "10.193.10.0/24,10.16.100.0/22"
+      address_prefix             = "10.193.10.0/24,10.16.100.0/22"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "AES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "AES256"
+      ipsec_integrity            = "SHA256"
+      pfs_group                  = "PFS2"
+      sa_lifetime                = "28800"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
+      enable_bgp                 = "false"
+      generate_psk               = true
     },
   ]
 }
