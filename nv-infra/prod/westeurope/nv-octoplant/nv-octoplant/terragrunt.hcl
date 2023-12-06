@@ -25,7 +25,6 @@ inputs = {
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   netbox_role                            = "octoplant"
-  vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_D4_v3"
   backup_vm                              = true
