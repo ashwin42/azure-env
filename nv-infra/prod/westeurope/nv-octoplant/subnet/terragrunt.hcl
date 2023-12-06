@@ -18,6 +18,7 @@ inputs = {
       netbox_subnet_name = "nv-octoplant"
       address_prefixes   = ["10.46.1.8/29"]
       service_endpoints  = ["Microsoft.Storage"]
+      route_table_name   = "nv-gen-infra-vnet-default-rt"
     },
   ]
 }
