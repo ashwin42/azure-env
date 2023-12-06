@@ -26,7 +26,7 @@ locals {
     {
       alias           = "localadmin_keyvault"
       provider        = "azurerm"
-      subscription_id = local.subscription_id
+      subscription_id = "82f99951-a219-463b-97ff-011a0d6e28a4"
       blocks = {
         features = {},
       },
