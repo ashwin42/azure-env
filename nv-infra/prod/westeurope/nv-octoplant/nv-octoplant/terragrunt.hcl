@@ -33,6 +33,7 @@ inputs = {
   key_vault_rg                           = "nv-infra-core"
   storage_account_name                   = "nvinfrabootdiag"
   ad_join                                = true
+  install_winrm                          = true
   managed_disk_size                      = 256
   storage_image_reference = {
     sku = include.root.locals.all_vars.windows_server_sku_2019,
