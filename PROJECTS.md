@@ -623,6 +623,7 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Octoplant Ett
 - Code: [nv-infra/prod/westeurope/nv-octoplant](nv-infra/prod/westeurope/nv-octoplant)
 - Jira: [TOC-1094](https://northvolt.atlassian.net/browse/TOC-1094)
 <details><summary>Details (click to expand):</summary>
@@ -630,19 +631,20 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-octoplant-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | Medium Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
 </details>
 
 ---
+### 🛠️ Octoplant Labs
 - Code: [nv-infra/prod/westeurope/nv-octoplant-labs](nv-infra/prod/westeurope/nv-octoplant-labs)
 - Jira: [TOC-1094](https://northvolt.atlassian.net/browse/TOC-1094)
 <details><summary>Details (click to expand):</summary>
@@ -650,13 +652,13 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-octoplant-labs-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | Medium Priority |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **infrastructure-owner** | techops@northvolt.com |
 | **Patch Orchestration:** | ❌ |
