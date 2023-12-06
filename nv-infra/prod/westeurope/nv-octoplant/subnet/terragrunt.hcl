@@ -18,6 +18,19 @@ inputs = {
       netbox_subnet_name = "nv-octoplant"
       address_prefixes   = ["10.46.1.8/29"]
       service_endpoints  = ["Microsoft.Storage"]
+      route_table_name     = "octoplant-subnet_default-rt"
     },
+  ]
+  route_tables = [
+    {
+      name = "octoplant-subnet_default-rt"
+      routes = [
+        {
+          address_prefix         = "10.0.0.0/8"
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+      ]
+    }
   ]
 }
