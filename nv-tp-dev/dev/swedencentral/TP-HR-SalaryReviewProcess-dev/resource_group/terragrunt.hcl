@@ -15,7 +15,7 @@ inputs = {
     },
     "Contributor" = {
       users = [
-        "amadeusz.ozga@northvolt.com",
+        "amadeusz.ozga@northvolt.pl",
         "piotr.mazuchowski@northvolt.com",
         "wojciech.bloch@northvolt.com"
       ],
