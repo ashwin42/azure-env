@@ -10,7 +10,7 @@ include "root" {
 
 inputs = {
   vnet_resource_group_name = include.root.locals.all_vars.resource_group_name
-  vnet_name                = include.root.locals.all_vars.setup_prefix
+  vnet_name                = "${include.root.inputs.subscription_name}-general"
   netbox_vnet_name         = "${include.root.inputs.subscription_name}-vnet"
   address_space            = [""]
   dns_servers              = []
