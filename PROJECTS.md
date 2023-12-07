@@ -29,7 +29,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/apis-iq-rg |
-| **Resources** | northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.61<br>northvolt/tf-mod-azure.git//monitor_diagnostic_setting?ref=v0.7.61<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.46<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//deprecated/wvd?ref=v0.7.61<br>northvolt/tf-mod-azure.git//monitor_diagnostic_setting?ref=v0.7.61<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.46<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
@@ -50,10 +50,10 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Resources** | northvolt/tf-mod-azure.git//global?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035063 Operations & Infrastructure Common - AB |
+| **system-owner** | karel.silha@northvolt.com |
 | **global-process-owner** | lina.jander@northvolt.com |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | linn.flachsbinder@northvolt.com |
@@ -90,7 +90,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-ataccama-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.16<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.16<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.16<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109034 - Enterprise Architecture |
 | **cost-center** | 109034056 - Enterprise Architecture |
@@ -132,7 +132,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/autodesk-vault-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.5<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.5<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | 111 COO - Adv Tech - Raw Mat & Energy - AB |
 | **department** | 111044 Blueprint - AB |
 | **cost-center** | 111044080 Blueprint - AB |
@@ -235,7 +235,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-ces-ett-rg |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.39<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.39 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.39<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.39 |
 | **business-unit** | 226 Maintenance - ET |
 | **department** | 226001 Maintenance General - ET |
 | **cost-center** | 226001001 Maintenance General - ET |
@@ -256,7 +256,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/congree-rg |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.48<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.48<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 151 Manufacturing Support - LA |
 | **department** | 151057 Production Management - LA |
 | **cost-center** | 151057251 Production Management - LA |
@@ -381,7 +381,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-honey-ett-ds2-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.50 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.50 |
 | **business-unit** | 232 - Downstream 2 - ET |
 | **department** | 232002 - DS2 Wet Electrode - ET |
 | **cost-center** | 232002001 DS2 Wet Electrode General - ET |
@@ -442,7 +442,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv_labx |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.18<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.32<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.63<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.0 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.18<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.32<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.63<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azure.git//wvd?ref=v0.5.0<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -546,7 +546,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-lims-rg |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.19<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.13<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.13<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.13<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.6 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.19<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.13<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.13<br>northvolt/tf-mod-azure.git//storage?ref=v0.7.12<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.13<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.6 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -567,7 +567,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/ms-oda-rg |
-| **Resources** | northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.53<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//log_analytics_workspace?ref=v0.7.53<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 1109037 IT Common - AB |
 | **cost-center** | 109037064 IT Common - AB |
@@ -589,7 +589,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-moscura-rg |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.32<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.32<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.32<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 104 R&D AB |
 | **department** | 104020 R&D Common - AB |
 | **cost-center** | 104020015 SW & Automation |
@@ -610,7 +610,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/octoplant-dwa-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.4 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 120 ESS Systems - AB |
 | **department** | 120001 ESS Engineering - AB |
 | **cost-center** | 301001013 Engineering- ESS PL |
@@ -631,7 +631,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-octoplant-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -693,7 +693,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-plc-ews-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -755,7 +755,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-pqms-ett-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.50<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.26<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.50<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.26<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | Business Unit 106 Sustainability - AB |
 | **department** | 206002 Environment - ET |
 | **cost-center** | 206002001 HSE - Environment and Energy - ET |
@@ -796,7 +796,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/powerbi-client-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.2.35<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.2.34<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.5<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.2.35<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.2.34<br>northvolt/tf-mod-azure.git//vm?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.7.5<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -877,7 +877,7 @@ This is a list of projects in the repository based on project.hcl files.
 
 | Detail | Value |
 | ------ | ----- |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//storage?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//storage?ref=v0.9.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 306 R&D - PL |
 | **department** | 306065 R&D - PL |
 | **cost-center** | 306065083 R&D - PL |
@@ -898,7 +898,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/revolt-scada-wincc |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 119 Revolt - AB |
 | **department** | 350100 Program Team - RV |
 | **cost-center** | 350100001 RV Program |
@@ -919,7 +919,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/revolt-wcs-intralog |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.39<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.39<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62 |
 | **business-unit** | 119 Revolt - AB |
 | **department** | 350100 Program Team - RV |
 | **cost-center** | 350100001 RV Program |
@@ -981,7 +981,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/asrs-nv1-prod-rg |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.8.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.2<br>northvolt/tf-mod-azuread.git//app?ref=v1.4.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.2 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.8.0<br>northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.61<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.8.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.7<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.2<br>northvolt/tf-mod-azuread.git//app?ref=v1.4.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.2 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -1064,7 +1064,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/siemens-wcs |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.32<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.32<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62<br>northvolt/tf-mod-azure.git//web_app?ref=v0.7.62 |
 | **business-unit** | Battery Systems |
 | **department** | Factory Engineering |
 | **cost-center** | 250006020 Factory Development & Material Flow - BS |
@@ -1085,7 +1085,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/strama-lds |
-| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -1106,7 +1106,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/tia-mu-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.26<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.26<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vm?ref=v0.5.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -1148,7 +1148,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-toolsnet-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.7.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vm?ref=v0.7.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.3.4 |
 | **business-unit** | 250 Northvolt Battery Systems - BS |
 | **department** | 250006 Manufacturing & Industrialization Engineering - BS |
 | **cost-center** | 250006024 Manufacturing Process Engineering - BS |
@@ -1169,7 +1169,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/ums-env-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.5<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.8.5<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.4<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
@@ -1190,7 +1190,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/veeam |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.2<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.2<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035060 TechOps |
