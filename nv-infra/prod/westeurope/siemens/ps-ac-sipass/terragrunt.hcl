@@ -71,24 +71,14 @@ inputs = {
           description            = "Allow connections from local VNet"
         },
         {
-          name                   = "Cellhouse"
-          priority               = "207"
-          direction              = "Inbound"
-          source_address_prefix  = "10.193.8.0/24"
-          protocol               = "*"
-          destination_port_range = "0-65535"
-          access                 = "Allow"
-          description            = "Allow connections from Cellhouse"
-        },
-        {
-          name                   = "Temp_A_subnet"
-          priority               = "208"
-          direction              = "Inbound"
-          source_address_prefix  = "10.0.0.0/8"
-          protocol               = "*"
-          destination_port_range = "0-65535"
-          access                 = "Allow"
-          description            = "Allow connections from on-prem"
+          name                    = "On-prem_Security_networks_TCP"
+          priority                = "215"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          protocol                = "Tcp"
+          destination_port_ranges = [4343]
+          access                  = "Allow"
+          description             = "Allow TCP connections from on-prem security networks"
         },
       ]
       network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
