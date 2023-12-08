@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -62,7 +62,11 @@ inputs = {
       storage_account_type = "Premium_LRS"
     }
   ],
-
+  maintenance_configurations = [
+    {
+      name = "shared_services_tuesdays_0200_1"
+    },
+  ]
   custom_rules = [
     {
       name                  = "NV-VH_Security"
