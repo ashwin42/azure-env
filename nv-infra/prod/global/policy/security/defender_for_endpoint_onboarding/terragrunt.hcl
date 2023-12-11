@@ -12,7 +12,7 @@ inputs = {
   management_group_policy_assignments = [
     {
       name                          = "DefenderOnboarding"
-      display_name                  = "Deploy Microsoft Defender for Endpoint agent"
+      display_name                  = "Security: Deploy Microsoft Defender for Endpoint agent"
       description                   = "Deploy Microsoft Defender for Endpoint agent on applicable images"
       location                      = "swedencentral"
       management_group_display_name = "NV Root"

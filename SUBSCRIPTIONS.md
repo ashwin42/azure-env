@@ -75,6 +75,8 @@ This is a list of Azure subscriptions in the repository.
 ---
 ### 🔑 labs-prod
 - ID: 82f99951-a219-463b-97ff-011a0d6e28a4
+### 🔑 ett-revolt-prod
+- ID: f652c928-a8cb-4d8f-9175-bbe0a0128eb0
 - owner: techops@northvolt.com
 ---
 ### 🔑 nv-d365-dev

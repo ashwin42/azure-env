@@ -71,22 +71,6 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from local VNet"
         },
-        {
-          name                  = "Temp_A_subnet"
-          priority              = "206"
-          direction             = "Inbound"
-          source_address_prefix = "10.0.0.0/8"
-          access                = "Allow"
-          description           = "Allow connections from on-prem"
-        },
-        {
-          name                  = "Cellhouse"
-          priority              = "207"
-          direction             = "Inbound"
-          source_address_prefix = "10.193.8.0/24"
-          access                = "Allow"
-          description           = "Allow connections from Cellhouse"
-        },
       ]
     },
   ]
