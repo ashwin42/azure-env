@@ -13,13 +13,9 @@ jobs:
     needs: [terragrunt-fmt]
     uses: ./.github/workflows/update-project-workflow.yml
     secrets:
-      actions_gpg_private_key: ${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}
-      actions_gpg_passphrase: ${{ secrets.ACTIONS_GPG_PASSPHRASE }}
       actions_confluence_api_token: ${{ secrets.ACTIONS_CONFLUENCE_API_TOKEN }}
   update-subscriptions-readme:
     needs: [terragrunt-fmt]
     uses: ./.github/workflows/update-subscription-workflow.yml
     secrets:
-      actions_gpg_private_key: ${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}
-      actions_gpg_passphrase: ${{ secrets.ACTIONS_GPG_PASSPHRASE }}
       actions_confluence_api_token: ${{ secrets.ACTIONS_CONFLUENCE_API_TOKEN }}
