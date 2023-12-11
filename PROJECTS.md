@@ -49,7 +49,7 @@ This is a list of projects in the repository based on project.hcl files.
 
 | Detail | Value |
 | ------ | ----- |
-| **Resources** | northvolt/tf-mod-azure.git//global?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//global?ref=v0.9.3<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | 109 Digitalization IT - AB |
 | **department** | 109035 Operations & Infrastructure - AB |
 | **cost-center** | 109035063 Operations & Infrastructure Common - AB |
@@ -58,7 +58,7 @@ This is a list of projects in the repository based on project.hcl files.
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | linn.flachsbinder@northvolt.com |
 | **infrastructure-owner** | techops@northvolt.com |
-| **Patch Orchestration:** | ❌ |
+| **Patch Orchestration:** | [arx](nv-infra/prod/westeurope/nv-arx): [shared_services_tuesdays_0200_1](https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/patch_management/providers/Microsoft.Maintenance/maintenanceConfigurations/shared_services_tuesdays_0200_1/overview) |
 </details>
 
 ---
@@ -410,6 +410,27 @@ This is a list of projects in the repository based on project.hcl files.
 | **recovery-time-objective** | Low Priority |
 | **data-owner** | N/A |
 | **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
+### 🛠️ Jomesa
+- Code: [nv-production/prod/swedencentral/nv-jomesa](nv-production/prod/swedencentral/nv-jomesa)
+- Jira: [HELP-130049](https://northvolt.atlassian.net/browse/HELP-130049)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/0f5f2447-3af3-4bbf-98fb-ac9664f75bdc/resourceGroups/nv-jomesa |
+| **Resources** | northvolt/tf-mod-azure.git//mssql?ref=v0.7.48<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azuread.git//app?ref=v1.3.6 |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109037 IT Common - AB |
+| **cost-center** | 109037064 IT Common - AB |
+| **system-owner** | Techops |
+| **global-process-owner** | Techops |
+| **recovery-time-objective** | 24h |
+| **data-owner** | Techops |
+| **infrastructure-owner** | Techops |
 | **Patch Orchestration:** | ❌ |
 </details>
 
