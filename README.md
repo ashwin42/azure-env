@@ -73,9 +73,21 @@ This is a list of Azure subscriptions in the repository.
 - ID: f652c928-a8cb-4d8f-9175-bbe0a0128eb0
 - owner: techops@northvolt.com
 ---
+### 🔑 labs-dev
+- ID: 482ca545-4f14-415f-90fd-78b4f000d420
+- owner: techops@northvolt.com
+---
+### 🔑 labs-prod
+- ID: 82f99951-a219-463b-97ff-011a0d6e28a4
+- owner: techops@northvolt.com
+---
 ### 🔑 nv-d365-dev
 - ID: bd728441-1b83-4daa-a72f-91d5dc6284f1
 - owner: galen.lanphier@northvolt.com
+---
+### 🔑 sub-template
+- ID: 
+- owner: techops@northvolt.com
 ---
 <!-- END_SUBSCRIPTION -->
 <!-- START_PROJECT -->
