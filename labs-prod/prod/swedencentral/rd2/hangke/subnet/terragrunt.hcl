@@ -9,8 +9,8 @@ include "root" {
 }
 
 inputs = {
-  vnet_name                = "labs-prod-general"
-  vnet_resource_group_name = "labs-prod-general-rg"
+  vnet_name                = "${include.root.inputs.subscription_name}-general"
+  vnet_resource_group_name = "${include.root.inputs.subscription_name}-general-rg"
   subnets = [
     {
       name               = "rd2-hangke-10.64.97.0_29"
