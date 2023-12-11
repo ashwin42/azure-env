@@ -26,8 +26,8 @@ inputs = {
         timezone = "W. Europe Standard Time"
         schedule = [
           {
-            day_of_week = "Sunday"
-            hour_of_day = 23
+            day_of_week = "Monday"
+            hour_of_day = 01
           },
         ]
       },

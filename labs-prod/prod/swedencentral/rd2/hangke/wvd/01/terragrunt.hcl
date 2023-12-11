@@ -31,8 +31,6 @@ inputs = {
       friendly_name                = "R&D 2.0 - Hangke"
       default_desktop_display_name = "R&D 2.0 - Hangke"
       description                  = "Remote desktop for Hangke in R&D 2.0"
-      # assign_groups = [
-      # ]
     },
     )
   ]
