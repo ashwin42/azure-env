@@ -31,7 +31,7 @@ inputs = {
   key_vault_rg                  = "nv-production-core"
   allow_azure_ip_access         = false
   create_administrator_password = true
-  minimum_tls_version          = "1.0"
+  minimum_tls_version           = "1.0"
   private_endpoints = {
     "${include.root.inputs.project}-sql-pe" = {
       name      = "${include.root.inputs.project}-sql-pe"
@@ -78,7 +78,7 @@ inputs = {
     },
     {
       username      = "${local.name}-rw-user"
-      roles         = ["db_datareader","db_datawriter"]
+      roles         = ["db_datareader", "db_datawriter"]
       database      = "Jomesa_prod_DB"
       create_secret = true
     },
