@@ -25,12 +25,6 @@ on:
         default: "https://portal.azure.com/#@northvolt.com"
         type: string
     secrets:
-      actions_gpg_private_key:
-        description: 'GPG key to sign commits'
-        required: true
-      actions_gpg_passphrase:
-        description: 'Passphrase for the GPG key'
-        required: true
       actions_confluence_api_token:
         description: 'API token for Confluence'
         required: true
