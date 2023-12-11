@@ -332,27 +332,6 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
-### 🛠️ Dwa Office IT
-- Code: [nv-dwa/prod/westeurope/office-it](nv-dwa/prod/westeurope/office-it)
-- Jira: [NDW-666](https://northvolt.atlassian.net/browse/NDW-666)
-<details><summary>Details (click to expand):</summary>
-
-| Detail | Value |
-| ------ | ----- |
-| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/office-it |
-| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2 |
-| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
-| **department** | ❌ **MISSING** (please add to project.hcl) |
-| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
-| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
-| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
-| **infrastructure-owner** | techops@northvolt.com |
-| **Patch Orchestration:** | ❌ |
-</details>
-
----
 ### 🛠️ Gabi LCA
 - Code: [nv-infra/prod/westeurope/nv-gabi-lca](nv-infra/prod/westeurope/nv-gabi-lca)
 - Jira: [TOC-0](https://northvolt.atlassian.net/browse/TOC-0)
@@ -1257,6 +1236,27 @@ This is a list of projects in the repository based on project.hcl files.
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
 | **system-owner** | karl.ziethen@northvolt.com, sudhir.u@northvolt.com, sajin.chadayan@northvolt.com |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
+### 🛠️ dwa papercut
+- Code: [nv-dwa/prod/westeurope/papercut](nv-dwa/prod/westeurope/papercut)
+- Jira: [NDW-666](https://northvolt.atlassian.net/browse/NDW-666)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/papercut |
+| **Resources** | northvolt/tf-mod-azure.git//resource_group?ref=v0.7.19<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.5<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.3 |
+| **business-unit** | ❌ **MISSING** (please add to project.hcl) |
+| **department** | ❌ **MISSING** (please add to project.hcl) |
+| **cost-center** | ❌ **MISSING** (please add to project.hcl) |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
 | **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
 | **data-owner** | ❌ **MISSING** (please add to project.hcl) |

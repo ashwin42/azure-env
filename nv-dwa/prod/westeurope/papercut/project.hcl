@@ -29,7 +29,7 @@ locals {
   ]
   tags = {
     jira                 = "NDW-666"
-    project              = "Dwa Office IT"
+    project              = "dwa papercut"
     infrastructure-owner = "techops@northvolt.com"
   }
 }
