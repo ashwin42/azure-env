@@ -1,0 +1,43 @@
+locals {
+  kubernetes_eks_aws_region  = "${try(coalesce(kubernetes_eks_aws_region), aws_region)}"
+  kubernetes_eks_aws_profile = "${try(coalesce(kubernetes_eks_aws_profile), aws_profile)}"
+}
+
+%{if kubernetes_eks_aws_profile != ""~}
+provider "aws" {
+  region  = local.kubernetes_eks_aws_region
+  profile = local.kubernetes_eks_aws_profile
+  alias   = "kubernetes"
+}
+%{endif~}
+variable "kubernetes_eks_cluster_name" {
+  type    = string
+  default = null
+}
+
+data "aws_eks_cluster" "kubernetes_eks" {
+%{if kubernetes_eks_greenfield_deployment~}
+  name = module.eks_main.cluster_id
+%{else~}
+  name = var.kubernetes_eks_cluster_name
+%{endif~}
+
+%{if kubernetes_eks_aws_profile != ""~}
+  provider = aws.kubernetes
+%{endif~}
+}
+
+provider "kubernetes" {
+    host                   = data.aws_eks_cluster.kubernetes_eks.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.kubernetes_eks.certificate_authority.0.data)
+
+    exec {
+      api_version = "${kubernetes_eks_api_version}"
+      command     = "aws"
+%{if length(compact([try(coalesce(kubernetes_eks_aws_profile), aws_profile)])) > 0~}
+      args        = ["eks", "get-token", "--region", local.kubernetes_eks_aws_region, "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt", "--profile", local.kubernetes_eks_aws_profile]
+%{else~}
+      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.kubernetes_eks.name, "--no-cli-auto-prompt"]
+%{endif}
+    }
+}
