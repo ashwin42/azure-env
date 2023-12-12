@@ -191,4 +191,12 @@ locals {
   databricks_secret_aws_profile    = null
   databricks_secret_aws_region     = null
   databricks_secret_cloud_provider = null
+  # helm_aks
+  helm_aks_provider_source        = "hashicorp/helm"
+  helm_aks_provider_version       = null
+  helm_aks_kubernetes_api_version = "client.authentication.k8s.io/v1"
+  # helm_aks
+  kubernetes_aks_provider_source        = "hashicorp/kubernetes"
+  kubernetes_aks_provider_version       = null
+  kubernetes_aks_kubernetes_api_version = "client.authentication.k8s.io/v1"
 }

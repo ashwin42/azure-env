@@ -1,0 +1,26 @@
+variable "helm_aks_cluster_name" {
+  type    = string
+}
+
+variable "helm_aks_resource_group_name" {
+  type    = string
+}
+
+data "azurerm_kubernetes_cluster" "helm_aks" {
+  name                = var.helm_aks_cluster_name
+  resource_group_name = var.helm_aks_resource_group_name
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.azurerm_kubernetes_cluster.helm_aks.kube_config.0.host
+    cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.helm_aks.kube_config.0.cluster_ca_certificate)
+
+    exec {
+      api_version = "${helm_aks_kubernetes_api_version}"
+      command     = "kubelogin"
+      args        = ["get-token", "--login", "azurecli", "--server-id", "6dae42f8-4368-4678-94ff-3960e28e3630"]
+    }
+  }
+}
+
