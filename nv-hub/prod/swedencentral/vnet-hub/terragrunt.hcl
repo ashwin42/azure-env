@@ -193,5 +193,12 @@ inputs = {
       allow_forwarded_traffic = true
       allow_gateway_transit   = true
     },
+    {
+      name                    = "hub-swc-to-nv-gen-infra-swe_to_nv-hub"
+      vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-swc-rg/providers/Microsoft.Network/virtualNetworks/nv-gen-infra-swc-vnet"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
   ]
 }
