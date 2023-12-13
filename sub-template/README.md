@@ -25,6 +25,7 @@ locals {
 ```
 
 * Set the desired Management Group in `subscription/terragrunt.hcl`
+* Run terragrunt apply in `subscription/terragrunt.hcl`
  * Import the Management Group into state (ex to import mgmt group "Managed" below):
 
  ```bash
@@ -65,6 +66,8 @@ locals {
 * Confirm that state is uploaded remotely by running `terragrunt apply`
 
 ## Step 3: Optional resources
+
+#### When creating a new virtual network in /general, also create a new tenant group in Netbox for the new subscription -> [Netbox Azure Tenants](https://netbox.it.aws.nvlt.co/tenancy/tenants/?group_id=5)
 
 Based on if you create resources in swedencentral or westeurope, copy the `general` folder to the one that you will mainly build this subscription for and create the following:
 
