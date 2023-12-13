@@ -941,6 +941,27 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ RD2 - Hangke
+- Code: [labs-prod/prod/swedencentral/rd2/hangke](labs-prod/prod/swedencentral/rd2/hangke)
+- Jira: [RD2-1085](https://northvolt.atlassian.net/browse/RD2-1085)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/82f99951-a219-463b-97ff-011a0d6e28a4/resourceGroups/rd2-hangke-rg |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.8<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//wvd?ref=v0.9.8 |
+| **business-unit** | 150 Manufacturing Downstream - LA |
+| **department** | 150051 Formation and Aging - LA |
+| **cost-center** | 150051904 Prismatic Formation & Aging - LA |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | Medium Priority |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
 ### 🛠️ RDS License Server
 - Code: [nv-hub/prod/westeurope/nv-rds-lic](nv-hub/prod/westeurope/nv-rds-lic)
 - Jira: [TOC-1315](https://northvolt.atlassian.net/browse/TOC-1315)
