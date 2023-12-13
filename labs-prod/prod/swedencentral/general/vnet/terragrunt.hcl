@@ -23,5 +23,12 @@ inputs = {
       update_netbox      = true
     },
   ]
+  peerings = [
+    {
+      name                  = "labs-prod_to_nv-hub",
+      vnet_id               = "/subscriptions/4312dfc3-8ec3-49c4-b95e-90a248341dd5/resourceGroups/core_network/providers/Microsoft.Network/virtualNetworks/core_vnet"
+      allow_gateway_transit = false
+    },
+  ]
 }
 

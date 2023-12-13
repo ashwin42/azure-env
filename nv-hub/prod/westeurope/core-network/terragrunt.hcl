@@ -282,6 +282,12 @@ inputs = {
       allow_gateway_transit   = true
     },
     {
+      name                    = "nv-hub_to_labs-prod",
+      vnet_id                 = "/subscriptions/82f99951-a219-463b-97ff-011a0d6e28a4/resourceGroups/labs-prod-general-rg/providers/Microsoft.Network/virtualNetworks/labs-prod-general"
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
       name                    = "nv-hub_to_nv-aviatrix-migration-vnet",
       vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-rg/providers/Microsoft.Network/virtualNetworks/nv-aviatrix-migration-vnet"
       allow_forwarded_traffic = true
