@@ -55,7 +55,7 @@ repoConfig: |
  ---
  repos:
  - id: github.com/northvolt/azure-env
-   branch: /^main$/
+   branch: /^master$/
    apply_requirements: [approved, mergeable]
    import_requirements: [approved, mergeable]
    workflow: terragrunt
