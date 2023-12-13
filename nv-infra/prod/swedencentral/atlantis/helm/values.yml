@@ -2,7 +2,7 @@ image:
   repository: nvinfra.azurecr.io/atlantis-terragrunt
   tag: 0.0.4
 
-orgAllowlist: github.com/northvolt/tf-test
+orgAllowlist: github.com/northvolt/azure-env
 
 vcsSecretName: atlantis-gh-app
 basicAuthSecretName: atlantis-basic-auth
