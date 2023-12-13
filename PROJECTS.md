@@ -145,6 +145,26 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Azure Atlantis
+- Code: [nv-infra/prod/swedencentral/atlantis](nv-infra/prod/swedencentral/atlantis)
+- Jira: [TOC-2593](https://northvolt.atlassian.net/browse/TOC-2593)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Resources** | northvolt/tf-mod-azure.git//aks//external_secret?ref=v0.9.9<br>northvolt/tf-mod-azure.git//user_assigned_identity?ref=v0.9.9<br>terraform-module/terraform-helm-release.git//?ref=v2.8.1 |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035060 TechOps |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
 ### 🛠️ BI Tomteboda
 - Code: [nv-production/prod/swedencentral/bi-tomteboda](nv-production/prod/swedencentral/bi-tomteboda)
 - Jira: [TOC-1761](https://northvolt.atlassian.net/browse/TOC-1761)
@@ -393,6 +413,27 @@ This is a list of projects in the repository based on project.hcl files.
 </details>
 
 ---
+### 🛠️ Infra AKS
+- Code: [nv-infra/prod/swedencentral/aks](nv-infra/prod/swedencentral/aks)
+- Jira: [TOC-2592](https://northvolt.atlassian.net/browse/TOC-2592)
+<details><summary>Details (click to expand):</summary>
+
+| Detail | Value |
+| ------ | ----- |
+| **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/infra-aks-rg |
+| **Resources** | northvolt/tf-mod-azure.git//aks/core-services?ref=v0.10.0<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.9.4 |
+| **business-unit** | 109 Digitalization IT - AB |
+| **department** | 109035 Operations & Infrastructure - AB |
+| **cost-center** | 109035060 TechOps |
+| **system-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **global-process-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **recovery-time-objective** | ❌ **MISSING** (please add to project.hcl) |
+| **data-owner** | ❌ **MISSING** (please add to project.hcl) |
+| **infrastructure-owner** | techops@northvolt.com |
+| **Patch Orchestration:** | ❌ |
+</details>
+
+---
 ### 🛠️ Jomesa
 - Code: [nv-production/prod/swedencentral/nv-jomesa](nv-production/prod/swedencentral/nv-jomesa)
 - Jira: [HELP-130049](https://northvolt.atlassian.net/browse/HELP-130049)
@@ -631,7 +672,7 @@ This is a list of projects in the repository based on project.hcl files.
 | Detail | Value |
 | ------ | ----- |
 | **Azure RG** | https://portal.azure.com/#@northvolt.com/resource/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-octoplant-rg |
-| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.3.5<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
+| **Resources** | northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.4<br>northvolt/tf-mod-azure.git//resource_group?ref=v0.3.0<br>northvolt/tf-mod-azure.git//storage?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8<br>northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8<br>northvolt/tf-mod-azuread.git//groups?ref=v1.1.0 |
 | **business-unit** | ❌ **MISSING** (please add to project.hcl) |
 | **department** | ❌ **MISSING** (please add to project.hcl) |
 | **cost-center** | ❌ **MISSING** (please add to project.hcl) |
