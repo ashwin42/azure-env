@@ -33,7 +33,7 @@ inputs = {
         "NV Aviatrix Admin"
       ],
       service_principals = [
-        "Terraform pipeline Azure Resource Groups"
+        "atlantis-identity",
       ],
     },
   }

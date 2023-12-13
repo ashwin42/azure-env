@@ -21,7 +21,7 @@ inputs = {
         "NV TechOps Read Member",
       ],
       service_principals = [
-        "Terraform pipeline Azure Resource Groups"
+        "atlantis-identity"
       ],
     },
   }

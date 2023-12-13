@@ -19,6 +19,18 @@ inputs = {
           records = ["10.64.1.149"]
           ttl     = 300
         },
+        {
+          # fix module for automatic delegation of subdomain
+          name = "infra"
+          type = "ns"
+          ttl  = 300
+          records = [
+            "ns1-36.azure-dns.com.",
+            "ns2-36.azure-dns.net.",
+            "ns3-36.azure-dns.org.",
+            "ns4-36.azure-dns.info."
+          ]
+        }
       ]
 
       iam_assignments = {

@@ -22,7 +22,7 @@ inputs = {
       ],
       service_principals = [
         "Terraform pipeline AzureAD",
-        "Terraform pipeline Azure Resource Groups",
+        "atlantis-identity",
         "Terraform pipeline Azure Identity Governance",
       ],
     },
