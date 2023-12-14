@@ -1,7 +1,7 @@
 # azure-env
 
-This is the infrastructure repository where all Azure cloud-infrastructure is defined and managed using Terraform.
-[Azure Subscription Inventory](https://northvolt.atlassian.net/wiki/spaces/TO/pages/3567878304/Azure+Subscription+Inventory)
+This is the infrastructure repository where all Azure cloud-infrastructure is defined and managed using Terraform.  
+[Azure Subscription Inventory](https://northvolt.atlassian.net/wiki/spaces/TO/pages/3567878304/Azure+Subscription+Inventory)  
 [Inventory of System Deployments](https://northvolt.atlassian.net/wiki/spaces/TO/pages/3649503562/Inventory+of+System+Deployments)
 
 # Contributing
