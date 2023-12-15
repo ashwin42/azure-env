@@ -17,6 +17,11 @@ locals {
   automation_account_name                   = "${basename(get_terragrunt_dir())}-automation"
   automation_account_rg                     = "${basename(get_terragrunt_dir())}-general-rg"
   automation_account_workspace              = local.automation_account_name
+  dns_subdomain                             = "${replace(local.subscription_name, "-prod", "")}"
+  dns_domain_parent                         = "azure.nvlt.co"
+  dns_domain                                = "${local.dns_subdomain}.${local.dns_domain_parent}"
+  dns_domain_parent_resource_group_name     = "core_network"
+  dns_domain_parent_subscription_id         = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
   providers                                 = ["azurerm"]
   azurerm_features                          = {}
   additional_providers = [
