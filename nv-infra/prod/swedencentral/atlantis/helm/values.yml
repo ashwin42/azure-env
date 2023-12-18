@@ -100,15 +100,15 @@ repoConfig: |
           name: DESTROY_PARAMETER
           command: if [ "$COMMENT_ARGS" = "\-\d\e\s\t\r\o\y" ]; then echo "-destroy"; else echo ""; fi
       - run:
-          command: terragrunt plan -no-color -out $PLANFILE $DESTROY_PARAMETER
+          command: terragrunt plan -no-color -out "$PLANFILE" $DESTROY_PARAMETER
           output: hide
-      - run: terragrunt show -no-color $PLANFILE
+      - run: terragrunt show -no-color "$PLANFILE"
     apply:
       steps:
       - env:
           name: TERRAGRUNT_TFPATH
           command: 'echo "terraform$$${ATLANTIS_TERRAFORM_VERSION}"'
-      - run: terragrunt apply -no-color $PLANFILE
+      - run: terragrunt apply -no-color "$PLANFILE"
 
 serviceAccount:
   annotations:
