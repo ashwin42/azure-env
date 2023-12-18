@@ -12,10 +12,6 @@ dependency "vnet" {
   config_path = "../subnet"
 }
 
-dependency "wvd" {
-  config_path = "../wvd/01"
-}
-
 dependency "rv" {
   config_path = "../recovery_vault"
 }
@@ -26,8 +22,6 @@ locals {
 }
 
 inputs = {
-  token                                  = values(dependency.wvd.outputs.tokens)[0]
-  host_pool_name                         = keys(dependency.wvd.outputs.host_pools)[0]
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -43,14 +37,8 @@ inputs = {
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
-  azuread_join                           = false
-  wvd_register                           = true
   install_winrm                          = true
   managed_disk_size                      = 250
-  identity = {
-    type         = "SystemAssigned"
-    identity_ids = null
-  }
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
@@ -108,6 +96,13 @@ inputs = {
       destination_port_range = "8910"
       access                 = "Allow"
       description            = "Allow connections from wwt-server02"
+    },
+    {
+      name                  = "LocalSubnet"
+      priority              = "205"
+      direction             = "Inbound"
+      source_address_prefix = values(dependency.vnet.outputs.subnets)[0].address_prefixes.0
+      description           = "Allow connections from local subnet"
     },
   ]
 }
