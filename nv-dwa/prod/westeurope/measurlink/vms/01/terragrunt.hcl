@@ -16,10 +16,6 @@ dependency "rv" {
   config_path = "../../recovery_vault"
 }
 
-dependency "avd" {
-  config_path = "../../avd/01"
-}
-
 locals {
   name              = "measurlinkdwa${basename(get_original_terragrunt_dir())}"
   sql_data_disk_lun = 5
@@ -30,7 +26,7 @@ inputs = {
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
   name                                   = local.name
-  vm_size                                = "Standard_D4a_v4"
+  vm_size                                = "Standard_E4ds_v5"
   storage_account_name                   = "nvdwainfrabootdiag"
   boot_diagnostics_enabled               = true
   backup_vm                              = true
@@ -38,16 +34,11 @@ inputs = {
   create_localadmin_password             = true
   install_winrm                          = true
   netbox_role                            = "measurlink"
-  netbox_tags                            = ["monitoring:windows_node_exporter"]
-  managed_disk_size                      = 256
-  mssql_virtual_machine                  = true
-  wvd_register                           = true
-  token                                  = values(dependency.avd.outputs.tokens)[0]
-  host_pool_name                         = keys(dependency.avd.outputs.host_pools)[0]
+  managed_disk_size                      = 127
   storage_image_reference = {
-    publisher = "MicrosoftWindowsDesktop"
-    offer     = "Windows-10"
-    sku       = "win10-22h2-avd-g2",
+    offer     = "sql2019-ws2019",
+    publisher = "MicrosoftSQLServer",
+    sku       = "Standard",
   }
   os_profile_windows_config = {
     provision_vm_agent        = true
@@ -94,23 +85,13 @@ inputs = {
       size                 = "1024"
       lun                  = "5"
       storage_account_type = "StandardSSD_LRS"
-      caching              = "None"
+      caching              = "ReadOnly"
     }
   ]
-  repo_tag = {
-    repo = "azure-env/nv-dwa/prod/westeurope/measurlink/vms/01"
-  }
-  automation_updates = {
-    wvd_drain                 = true
-    wvd_drain_role_assignment = true
-    wvd_drain_reminder        = true
-    reboot                    = "Always"
-    schedule = {
-      frequency                       = "Week"
-      advanced_week_days              = ["Monday"]
-      start_time                      = "2023-12-25T01:00:00Z"
-      drain_schedule_reminder_message = "This VM will be patched and restarted in 5 minutes. Please save your work and log off."
-    }
-  }
+  maintenance_configurations = [
+    {
+      name = "first_sunday_2200"
+    },
+  ]
 }
 
