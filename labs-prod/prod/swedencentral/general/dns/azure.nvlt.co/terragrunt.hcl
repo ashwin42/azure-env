@@ -17,6 +17,14 @@ inputs = {
       parent_dns_zone_name                = include.root.inputs.dns_domain_parent
       parent_dns_zone_resource_group_name = include.root.inputs.dns_domain_parent_resource_group_name
 
+      records = [
+        {
+          name    = "desigo"
+          records = ["10.44.1.144"]
+          ttl     = 300
+        },
+      ]
+
       iam_assignments = {
         "DNS Zone Contributor" = {
           service_principals = [
