@@ -1,7 +1,7 @@
 locals {
   subscription_name                         = basename(get_parent_terragrunt_dir())
-  azurerm_subscription_id                   = ""
-  subscription_id                           = ""
+  azurerm_subscription_id                   = "548a41fa-688e-4d0d-a4bd-39ffbe39fff1"
+  subscription_id                           = "548a41fa-688e-4d0d-a4bd-39ffbe39fff1"
   remote_state_azurerm_enabled              = true
   remote_state_azurerm_storage_account_name = replace(lower("nv${local.subscription_name}tfstate"), "/[-_]/", "")
   remote_state_azurerm_container_name       = "nv-tf-state"
@@ -36,7 +36,7 @@ locals {
     {
       alias           = "localadmin_keyvault"
       provider        = "azurerm"
-      subscription_id = local.subscription_id
+      subscription_id = "548a41fa-688e-4d0d-a4bd-39ffbe39fff1"
       blocks = {
         features = {},
       },
@@ -50,6 +50,5 @@ locals {
       },
     },
   ]
-
 }
 
