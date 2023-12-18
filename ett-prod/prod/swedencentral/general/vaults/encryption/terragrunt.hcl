@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//keyvault?ref=v0.9.3"
-  #source = "../../../../../../tf-mod-azure/keyvault//"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//keyvault/"
 }
 
 include "root" {
