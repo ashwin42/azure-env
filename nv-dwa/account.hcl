@@ -11,6 +11,9 @@ locals {
   secrets_key_vault_rg                      = "global-rg"
   encryption_key_vault_name                 = "nvdwainfraencryption"
   encryption_key_vault_rg                   = "global-rg"
+  automation_account_name                   = "${basename(get_terragrunt_dir())}-automation"
+  automation_account_rg                     = "${basename(get_terragrunt_dir())}-general-rg"
+  automation_account_workspace              = local.automation_account_name
   providers                                 = ["azurerm"]
   azurerm_features                          = {}
   additional_providers = [
