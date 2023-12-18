@@ -18,7 +18,7 @@ inputs = {
   iam_assignments = {
     "Reader and Data Access" = {
       service_principals = [
-        "Terraform pipeline Azure Resource Groups"
+        "atlantis-identity",
       ],
     },
   }
