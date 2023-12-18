@@ -76,5 +76,5 @@ Based on if you create resources in swedencentral or westeurope, copy the `gener
 * /general/vnet: set appropriate address_space and prefix in `terragrunt.hcl`, check addresses in netbox and run `terragrunt apply`
 * /general/storage: run `terragrunt apply`
 * /general/recovery_vault: run `terragrunt apply`
-
+* /general/dns/azure.nvlt.co: if DNS zone of new subscription is needed go to dns folder and run `terragrunt apply` if not needed delete folder /dns/
 
