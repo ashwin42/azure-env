@@ -1,10 +1,11 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.6.10"
-  #source = "../../../../../../tf-mod-azure/storage"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
-include {
-  path = find_in_parent_folders()
+include "root" {
+  path   = find_in_parent_folders()
+  expose = true
 }
 
 inputs = {
