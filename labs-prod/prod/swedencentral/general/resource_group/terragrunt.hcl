@@ -10,12 +10,12 @@ include "root" {
 
 inputs = {
   lock_resources = false
-      iam_assignments = {
-        "Reader" = {
-          service_principals = [
-            "Win-Acme Certificate Manager"
-          ]
-        }
-      }
+  iam_assignments = {
+    "Reader" = {
+      service_principals = [
+        "Win-Acme Certificate Manager"
+      ]
+    }
+  }
 }
 
