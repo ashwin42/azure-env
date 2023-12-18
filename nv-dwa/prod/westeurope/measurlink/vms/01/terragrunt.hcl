@@ -30,6 +30,7 @@ inputs = {
   storage_account_name                   = "nvdwainfrabootdiag"
   boot_diagnostics_enabled               = true
   backup_vm                              = true
+  create_sql_backup_policy               = true
   ad_join                                = true
   create_localadmin_password             = true
   install_winrm                          = true
