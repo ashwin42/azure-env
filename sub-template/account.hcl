@@ -25,7 +25,6 @@ locals {
   providers                                 = ["azurerm"]
   azurerm_features                          = {}
   additional_providers = [
-  additional_providers = [
     {
       alias           = "ad_join_keyvault"
       provider        = "azurerm"
