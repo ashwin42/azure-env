@@ -1,8 +1,8 @@
 image:
   repository: nvinfra.azurecr.io/atlantis-terragrunt
-  tag: 0.0.4
+  tag: 0.0.5
 
-orgAllowlist: github.com/northvolt/azure-env
+orgAllowlist: github.com/northvolt/azure-env,github.com/northvolt/tf-infra-azuread
 
 vcsSecretName: atlantis-gh-app
 basicAuthSecretName: atlantis-basic-auth
@@ -50,6 +50,8 @@ environment:
   ATLANTIS_SILENCE_ALLOWLIST_ERRORS: "true"
   ATLANTIS_AUTODISCOVER_MODE: false
   ATLANTIS_FAIL_ON_PRE_WORKFLOW_HOOK_ERROR: "true"
+  ATLANTIS_GH_ALLOW_MERGEABLE_BYPASS_APPLY: "true"
+  ATLANTIS_SILENCE_NO_PROJECTS: "true"
 
 repoConfig: |
  ---
@@ -63,6 +65,22 @@ repoConfig: |
    pre_workflow_hooks:
     - run: |
         export ALLOWED_PATHS="resource_group"
+        terragrunt-atlantis-generate.sh
+        unset ALLOWED_PATHS
+   post_workflow_hooks:
+    - run: find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
+ - id: github.com/northvolt/tf-infra-azuread
+   branch: /^master$/
+   apply_requirements: [approved, mergeable]
+   import_requirements: [approved, mergeable]
+   workflow: terragrunt
+   repo_locking: true
+   pre_workflow_hooks:
+    - run: |
+        export ALLOWED_PATHS="azuread/tenants/northvolt.com/apps,azuread/tenants/northvolt.com/groups"
+        az login --federated-token "$(cat $AZURE_FEDERATED_TOKEN_FILE)" --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID
+        find ./azuread/tenants/northvolt.com/apps -name ".terraform.lock.hcl" -exec rm -rf {} \;
+        find ./azuread/tenants/northvolt.com/groups -name ".terraform.lock.hcl" -exec rm -rf {} \;
         terragrunt-atlantis-generate.sh
         unset ALLOWED_PATHS
    post_workflow_hooks:
