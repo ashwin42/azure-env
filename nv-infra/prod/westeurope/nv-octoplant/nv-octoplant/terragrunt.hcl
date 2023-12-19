@@ -59,5 +59,34 @@ inputs = {
       ]
     },
   ]
+  custom_rules = [
+    {
+      name                   = "WWT-Workstation_ETT-US1"
+      priority               = "200"
+      direction              = "Inbound"
+      source_address_prefix  = "10.14.16.96/32"
+      destination_port_range = "64001-64023"
+      access                 = "Allow"
+      description            = "Allow connections from AWS Ett US1 WWT Workstation"
+    },
+    {
+      name                   = "WWT-Server01_ETT-US1"
+      priority               = "201"
+      direction              = "Inbound"
+      source_address_prefix  = "10.14.16.145/32"
+      destination_port_range = "64001-64023"
+      access                 = "Allow"
+      description            = "Allow connections from AWS Ett US1 WWT Server 01"
+    },
+    {
+      name                   = "WWT-Server02_ETT-US1"
+      priority               = "202"
+      direction              = "Inbound"
+      source_address_prefix  = "10.14.16.6/32"
+      destination_port_range = "64001-64023"
+      access                 = "Allow"
+      description            = "Allow connections from AWS Ett US1 WWT Server 02"
+    },
+  ]
 }
 
