@@ -23,6 +23,23 @@ inputs = {
       update_netbox      = true
     },
   ]
+  route_tables = [
+    {
+      name = "labs-prod-swc-default-rt"
+      routes = [
+        {
+          address_prefix         = "10.40.0.0/16" #Azure WestEurope Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.48.0.0/22" #Azure Sweden Central Hub
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+      ]
+    }
+  ]
   peerings = [
     {
       name                    = "labs-prod_to_nv-hub",
