@@ -69,6 +69,16 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.64.96.0/19" #Azure SwedenCentral - labs-prod
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
+        {
+          address_prefix         = "10.64.128.0/19" #Azure SwedenCentral - ett-prod
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
       ]
     },
     {
@@ -121,6 +131,16 @@ inputs = {
         },
         {
           address_prefix         = "10.64.32.0/19" #Azure SwedenCentral - infra
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.64.96.0/19" #Azure SwedenCentral - labs-prod
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
+        {
+          address_prefix         = "10.64.128.0/19" #Azure SwedenCentral - ett-prod
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
