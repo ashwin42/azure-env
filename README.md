@@ -1,3 +1,5 @@
+[![Microsoft Azure](https://img.shields.io/badge/microsoft%20azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://portal.azure.com/) [![Terraform Module](https://img.shields.io/badge/module-tf--mod--azure-5c4ee0.svg)](https://github.com/northvolt/tf-mod-azure/tree/master)
+
 # azure-env
 
 This is the infrastructure repository where all Azure cloud-infrastructure is defined and managed using Terraform.  
