@@ -29,7 +29,7 @@ inputs = {
 
       ace = [
         {
-          group       = "LIMS Img Storage Data Lake QC Storage"
+          group       = "Labware Users"
           permissions = "rwx"
           scope       = "default"
           type        = "group"
@@ -52,7 +52,7 @@ inputs = {
               permissions = "rwx"
               scope       = "default"
               type        = "group"
-              group       = "LIMS Img Storage Data Lake QC Storage"
+              group       = "Labware Users"
             },
           ]
         }
@@ -71,7 +71,7 @@ inputs = {
 
   local_users = [
     {
-      name                 = "nv-lims-img-qcdatalakeadmin"
+      name                 = "nvlimsimgqcdatalakeadmin"
       home_directory       = "nvlimsimgstorage-dl/qc-testresults"
       ssh_password_enabled = true
       permission_scopes = [
@@ -90,7 +90,7 @@ inputs = {
       ]
     },
     {
-      name                 = "nv-lims-img-qcdatalakewriter"
+      name                 = "nvlimsimgqcdatalakewriter"
       home_directory       = "nvlimsimgstorage-dl/qc-testresults"
       ssh_password_enabled = true
       permission_scopes = [
@@ -109,7 +109,7 @@ inputs = {
       ]
     },
     {
-      name                 = "nv-lims-imgdatalakeadmin"
+      name                 = "nvlimsimgdatalakeadmin"
       ssh_password_enabled = true
       permission_scopes = [
         {
@@ -137,9 +137,9 @@ inputs = {
       }
       private_dns_zone_group = {
         name                         = "nv-lims-img-pec"
-        dns_zone_resource_group_name = "core_network"
-        dns_zone_name                = "privatelink.dfs.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+        dns_zone_name                = "privatelink.file.core.windows.net"
+        dns_zone_resource_group_name = "nv_infra"
+        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
       }
     }
     nv-lims-img-blob-pe = {
@@ -150,10 +150,9 @@ inputs = {
       }
       private_dns_zone_group = {
         name                         = "nv-lims-img-blob-pec"
-        dns_zone_resource_group_name = "core_network"
-        dns_zone_name                = "privatelink.blob.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-
+        dns_zone_name                = "privatelink.file.core.windows.net"
+        dns_zone_resource_group_name = "nv_infra"
+        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
       }
     }
   }
