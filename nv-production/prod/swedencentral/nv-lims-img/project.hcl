@@ -3,9 +3,9 @@ locals {
   tags = {
     project                 = "LIMS"
     jira                    = "LIMS-5"
-    business-unit           = ""
-    department              = ""
-    cost-center             = ""
+    business-unit           = "109 - Digitalization IT - AB"
+    department              = "109033 - Business Systems"
+    cost-center             = "109033056 - LIMS"
     infrastructure-owner    = "techops@northvolt.com"
     system-owner            = "per.spaak@northvolt.com"
     recovery-time-objective = "Medium Priority"

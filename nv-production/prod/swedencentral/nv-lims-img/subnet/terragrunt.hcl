@@ -13,14 +13,15 @@ dependency "rg" {
 }
 
 inputs = {
-  vnet_resource_group_name = "global-rg"
-  vnet_name                = include.root.locals.all_vars.setup_prefix
+  setup_prefix             = ""
+  vnet_name                = "nv-prod-swe-vnet"
+  vnet_resource_group_name = "nv-prod-swe-vnet-rg"
   resource_group_name = dependency.rg.outputs.resource_group_name
   subnets = [
     {
-      name                        = "nv-dwa-rnd"
-      address_prefixes            = ["10./28"]
-      network_security_group_name = "nv-dwa-rnd-nsg"
+      name                        = "nv-lims-img-subnet"
+      address_prefixes            = ["10.64.16.0/27"]
+      network_security_group_name = "nv-lims-img-nsg"
       service_endpoints = [
         "Microsoft.Storage",
       ]
@@ -28,7 +29,7 @@ inputs = {
   ]
   network_security_groups = [
     {
-      name               = "nv-dwa-rnd-nsg"
+      name               = "nv-lims-img-nsg"
       move_default_rules = true
       rules = [
         {

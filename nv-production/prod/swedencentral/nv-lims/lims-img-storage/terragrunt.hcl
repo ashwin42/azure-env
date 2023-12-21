@@ -4,7 +4,7 @@ terraform {
 }
 
 dependency "subnet" {
-  config_path = "../../nv-lims/subnet"
+  config_path = "../subnet"
 }
 
 dependency "rg" {
@@ -17,7 +17,7 @@ include "root" {
 }
 
 inputs = {
-  name            = basename(get_terragrunt_dir())
+  name                = "nvlimsimgstorage"
   resource_group_name = dependency.rg.outputs.resource_group_name
   sftp_enabled        = true
   is_hns_enabled      = true
@@ -25,11 +25,11 @@ inputs = {
   data_lake_gen2_filesystems = [
     {
       group_name = "NV TechOps Role"
-      name          = "basename(get_terragrunt_dir())-dl" 
+      name       = "nvlimsimgstorage-dl"
 
       ace = [
         {
-          group       = "LIMS Img Storage"
+          group       = "LIMS Img Storage Data Lake QC Storage"
           permissions = "rwx"
           scope       = "default"
           type        = "group"
@@ -45,14 +45,14 @@ inputs = {
 
       paths = [
         {
-          path       = "lims-img"
+          path       = "qc-testresults"
           group_name = "NV TechOps Role"
           ace = [
             {
               permissions = "rwx"
               scope       = "default"
               type        = "group"
-              group       = "LIMS Img Storage"
+              group       = "LIMS Img Storage Data Lake QC Storage"
             },
           ]
         }
@@ -71,12 +71,12 @@ inputs = {
 
   local_users = [
     {
-      name                 = "lims-img-admin"
-      home_directory       = "lims-img-storage-dl/lims-img"
+      name                 = "nv-lims-img-qcdatalakeadmin"
+      home_directory       = "nvlimsimgstorage-dl/qc-testresults"
       ssh_password_enabled = true
       permission_scopes = [
         {
-          resource_name = "lims-img-storage-dl"
+          resource_name = "nvlimsimgstorage-dl"
           service       = "blob"
 
           permissions = {
@@ -90,12 +90,12 @@ inputs = {
       ]
     },
     {
-      name                 = "limsimg writer"
-      home_directory       = "lims-img-storage-dl/lims-img"
+      name                 = "nv-lims-img-qcdatalakewriter"
+      home_directory       = "nvlimsimgstorage-dl/qc-testresults"
       ssh_password_enabled = true
       permission_scopes = [
         {
-          resource_name = "lims-img-storage-dl"
+          resource_name = "nvlimsimgstorage-dl"
           service       = "blob"
 
           permissions = {
@@ -109,11 +109,11 @@ inputs = {
       ]
     },
     {
-      name                 = "limsimgadmin"
+      name                 = "nv-lims-imgdatalakeadmin"
       ssh_password_enabled = true
       permission_scopes = [
         {
-          resource_name = "lims-img-storage-dl"
+          resource_name = "nvlimsimgstorage-dl"
           service       = "blob"
 
           permissions = {
@@ -130,7 +130,7 @@ inputs = {
 
   private_endpoints = {
     nv-lims-img-pe = {
-      subnet_id = dependency.subnet.outputs.subnets["nv-lims-img-subnet"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-img-pec"
         subresource_names = ["dfs"]
@@ -143,7 +143,7 @@ inputs = {
       }
     }
     nv-lims-img-blob-pe = {
-      subnet_id = dependency.subnet.outputs.subnets["nv-lims-img-subnet"].id
+      subnet_id = dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-img-blob-pec"
         subresource_names = ["blob"]
@@ -163,7 +163,7 @@ inputs = {
     bypass         = ["AzureServices"]
     default_action = "Deny"
     virtual_network_subnet_ids = [
-      dependency.subnet.outputs.subnets["nv-lims-img-subnet"].id,
+      dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id,
     ]
     ip_rules = [
       "81.233.195.87",
