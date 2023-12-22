@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.9.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//wvd?ref=v0.10.3"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/wvd/"
 }
 include "root" {
@@ -31,6 +31,9 @@ inputs = {
       friendly_name                = "R&D 2.0 - Hangke"
       default_desktop_display_name = "R&D 2.0 - Hangke"
       description                  = "Remote desktop for Hangke in R&D 2.0"
+      assign_groups = [
+        "NV R&D2.0 Hangke Pre-Charger VM",
+      ]
     },
     )
   ]
