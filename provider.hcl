@@ -26,5 +26,8 @@ locals {
     publisher = "MicrosoftWindowsDesktop",
     sku       = "win10-21h2-ent-ltsc-g2",
   }
+
+  netbox_secret_aws_region  = "eu-north-1"
+  netbox_secret_aws_profile = "nv-it-prod"
 }
 

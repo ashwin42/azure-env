@@ -1,6 +1,6 @@
 terraform {
   source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.3"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/vm/"
 }
 
 include "root" {
@@ -10,10 +10,6 @@ include "root" {
 
 dependency "vnet" {
   config_path = "../subnet"
-}
-
-dependency "wvd" {
-  config_path = "../wvd/01"
 }
 
 dependency "rv" {
@@ -26,8 +22,6 @@ locals {
 }
 
 inputs = {
-  token                                  = values(dependency.wvd.outputs.tokens)[0]
-  host_pool_name                         = keys(dependency.wvd.outputs.host_pools)[0]
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -43,13 +37,8 @@ inputs = {
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
-  azuread_join                           = false
-  wvd_register                           = true
+  install_winrm                          = true
   managed_disk_size                      = 250
-  identity = {
-    type         = "SystemAssigned"
-    identity_ids = null
-  }
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
@@ -70,35 +59,14 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.20"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-wwt-subnet-10.64.1.16_28"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-wwt-subnet-10.64.1.16_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
-          #ipconfig_name                 = "ipconfig"
         },
       ]
     },
   ]
   custom_rules = [
-    {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
     {
       name                   = "WWT_WS_8910"
       priority               = "202"
@@ -128,6 +96,13 @@ inputs = {
       destination_port_range = "8910"
       access                 = "Allow"
       description            = "Allow connections from wwt-server02"
+    },
+    {
+      name                  = "LocalSubnet"
+      priority              = "205"
+      direction             = "Inbound"
+      source_address_prefix = values(dependency.vnet.outputs.subnets)[0].address_prefixes.0
+      description           = "Allow connections from local subnet"
     },
   ]
 }

@@ -16,6 +16,7 @@ locals {
   ad_join_secrets_key_vault_rg              = "nv-infra-core"
   ad_join_secrets_key_vault_name            = "nv-infra-core"
   ad_join_keyvault_subscription_id          = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+  dns_domain                                = "infra.azure.nvlt.co"
   remote_state_azurerm_enabled              = true
   providers                                 = ["azurerm"]
   additional_providers = [

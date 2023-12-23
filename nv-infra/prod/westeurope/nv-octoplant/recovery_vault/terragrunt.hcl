@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//recovery_vault?ref=v0.3.0"
-  #source = "../../../../../../tf-mod-azure/recovery_vault/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//recovery_vault?ref=v0.9.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure/recovery_vault/"
 }
 
 include "root" {

@@ -37,6 +37,7 @@ inputs = {
   boot_diagnostics_enabled               = true
   ad_join                                = true
   wvd_register                           = true
+  install_winrm                          = true
   ou_path                                = "OU=PNE Cycler VMs,DC=aadds,DC=northvolt,DC=com"
 
   storage_image_reference = {

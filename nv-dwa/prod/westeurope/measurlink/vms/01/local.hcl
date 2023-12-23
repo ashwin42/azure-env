@@ -1,0 +1,4 @@
+locals {
+  providers = ["azurerm", "netbox"]
+}
+

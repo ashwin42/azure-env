@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.48"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.9.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 

@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.7.59"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.4"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -61,7 +61,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.48"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },
@@ -70,30 +70,10 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Labs_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Labs MFA VPN clients"
-    },
-    {
-      name                   = "Ett_MFA_VPN"
-      priority               = "201"
-      direction              = "Inbound"
-      source_address_prefix  = "10.240.0.0/21"
-      protocol               = "*"
-      destination_port_range = "0-65535"
-      access                 = "Allow"
-      description            = "Allow connections from Ett MFA VPN clients"
-    },
-    {
       name                  = "LocalSubnet"
       priority              = "205"
       direction             = "Inbound"
-      source_address_prefix = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].address_prefixes.0
+      source_address_prefix = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].address_prefixes.0
       access                = "Allow"
       description           = "Allow connections from local subnet"
     }

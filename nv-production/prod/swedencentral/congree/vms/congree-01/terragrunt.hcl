@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.7.20"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.3"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -15,6 +15,7 @@ locals {
 inputs = merge(
   local.common.inputs,
   {
+    localadmin_key_name = "congree-nvadmin"
     network_interfaces = [
       {
         name = "${local.common.inputs.name}-nic"

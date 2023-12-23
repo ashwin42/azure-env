@@ -1,0 +1,83 @@
+---
+name: Update confluence for Azure subscription changes
+
+on:
+  workflow_call:
+    inputs:
+      terragrunt_version:
+        required: false
+        default: "0.47.0"
+        type: string
+      terraform_version:
+        required: false
+        default: "1.5.0"
+        type: string
+      python_version:
+        required: false
+        default: "3.10"
+        type: string
+      jira_url:
+        required: false
+        default: "https://northvolt.atlassian.net/browse"
+        type: string
+      azure_portal_url:
+        required: false
+        default: "https://portal.azure.com/#@northvolt.com"
+        type: string
+    secrets:
+      actions_confluence_api_token:
+        description: 'API token for Confluence'
+        required: true
+
+jobs:
+  update_subscriptions_readme:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check subscription/terragrunt.hcl changed
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            subscription:
+              - "**/subscription/terragrunt.hcl"
+
+      - name: Checkout code
+        if: steps.changes.outputs.subscription == 'true'
+        uses: actions/checkout@v3.5.2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Setup Terragrunt
+        if: steps.changes.outputs.subscription == 'true'
+        uses: autero1/action-terragrunt@v1.3.0
+        with:
+          terragrunt_version: ${{ inputs.terragrunt_version }}
+
+      - name: Setup Terraform
+        if: steps.changes.outputs.subscription == 'true'
+        uses: hashicorp/setup-terraform@v2.0.3
+        with:
+          terraform_version: ${{ inputs.terraform_version }}
+          terraform_wrapper: false
+
+      - name: Setup python
+        if: steps.changes.outputs.subscription == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python_version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        if: steps.changes.outputs.subscription == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r .github/workflows/requirements.txt
+
+      - name: Execute Confluence subscriptions update script
+        if: steps.changes.outputs.subscription == 'true'
+        run: python .github/workflows/confluence_subscriptions.py
+        env:
+          ROOT_DIR: ${{ github.workspace }}
+          JIRA_URL: ${{ inputs.jira_url }}
+          AZURE_PORTAL_URL: ${{ inputs.azure_portal_url }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.actions_confluence_api_token }}

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.2"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
@@ -74,6 +74,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
+        {
+          address_prefix         = "10.44.5.32/27" #Azure WestEurope - NV-PNE (Gen_Infra)
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.48.0.70"
+        },
       ]
     },
     {
@@ -134,6 +139,11 @@ inputs = {
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
+        {
+          address_prefix         = "10.44.5.32/27" #Azure WestEurope - NV-PNE (Gen_Infra)
+          next_hop_type          = "VirtualAppliance"
+          next_hop_in_ip_address = "10.40.253.5"
+        },
       ]
     }
   ]
@@ -179,6 +189,27 @@ inputs = {
     {
       name                    = "hub-swc-to-ett-revolt-prod-swc",
       vnet_id                 = "/subscriptions/f652c928-a8cb-4d8f-9175-bbe0a0128eb0/resourceGroups/ett-revolt-prod-general-rg/providers/Microsoft.Network/virtualNetworks/ett-revolt-prod-general"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
+      name                    = "hub-swc-to-nv-gen-infra-swe_to_nv-hub"
+      vnet_id                 = "/subscriptions/11dd160f-0e01-4b4d-a7a0-59407e357777/resourceGroups/nv-gen-infra-swc-rg/providers/Microsoft.Network/virtualNetworks/nv-gen-infra-swc-vnet"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
+      name                    = "hub-swc-to-labs-prod-swe"
+      vnet_id                 = "/subscriptions/82f99951-a219-463b-97ff-011a0d6e28a4/resourceGroups/labs-prod-general-rg/providers/Microsoft.Network/virtualNetworks/labs-prod-general"
+      use_remote_gateways     = false
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
+      name                    = "hub-swc-to-ett-prod-swe"
+      vnet_id                 = "/subscriptions/6eec4236-13f1-41e0-9779-d50ad6c64edd/resourceGroups/ett-prod-general-rg/providers/Microsoft.Network/virtualNetworks/ett-prod-general"
       use_remote_gateways     = false
       allow_forwarded_traffic = true
       allow_gateway_transit   = true

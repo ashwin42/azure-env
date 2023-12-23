@@ -1,0 +1,15 @@
+variable "kubernetes_k3s_cluster_endpoint" {
+  type    = string
+  default = null
+}
+
+variable "kubernetes_k3s_cluster_token" {
+  type    = string
+  default = null
+}
+
+provider "kubernetes" {
+  alias = "k3s"
+  host  = try(coalesce(var.kubernetes_k3s_cluster_endpoint, var.cluster_endpoint), "")
+  token = try(coalesce(var.kubernetes_k3s_cluster_token, var.rancher_token), "")
+}

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.6"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -60,7 +60,7 @@ inputs = {
 
   network_security_groups = [
     {
-      name               = "recordingserver-nsg"
+      name               = "${local.name}-nsg"
       move_default_rules = true
       rules = [
         {
@@ -71,23 +71,8 @@ inputs = {
           access                = "Allow"
           description           = "Allow connections from local VNet"
         },
-        {
-          name                  = "Temp_A_subnet"
-          priority              = "206"
-          direction             = "Inbound"
-          source_address_prefix = "10.0.0.0/8"
-          access                = "Allow"
-          description           = "Allow connections from on-prem"
-        },
-        {
-          name                  = "Cellhouse"
-          priority              = "207"
-          direction             = "Inbound"
-          source_address_prefix = "10.193.8.0/24"
-          access                = "Allow"
-          description           = "Allow connections from Cellhouse"
-        },
       ]
+      network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
     },
   ]
 

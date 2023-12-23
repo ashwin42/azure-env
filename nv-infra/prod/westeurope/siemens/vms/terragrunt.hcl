@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.6"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
 }
 
@@ -59,7 +59,7 @@ inputs = {
 
   network_security_groups = [
     {
-      name               = "vms-nsg"
+      name               = "${local.name}-nsg"
       move_default_rules = true
       rules = [
         {
@@ -71,22 +71,27 @@ inputs = {
           description           = "Allow connections from local VNet"
         },
         {
-          name                  = "Temp_A_subnet"
-          priority              = "206"
-          direction             = "Inbound"
-          source_address_prefix = "10.0.0.0/8"
-          access                = "Allow"
-          description           = "Allow connections from on-prem"
+          name                    = "On-prem_Cameras_TCP"
+          priority                = "206"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          protocol                = "Tcp"
+          destination_port_ranges = [80, 443, 9000, 22333, 40010]
+          access                  = "Allow"
+          description             = "Allow TCP connections from on-prem cameras"
         },
         {
-          name                  = "Cellhouse"
-          priority              = "207"
-          direction             = "Inbound"
-          source_address_prefix = "10.193.8.0/24"
-          access                = "Allow"
-          description           = "Allow connections from Cellhouse"
+          name                    = "On-prem_Cameras_UDP"
+          priority                = "207"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          protocol                = "Udp"
+          destination_port_ranges = [123, "49000-65535"]
+          access                  = "Allow"
+          description             = "Allow UDP connections from on-prem cameras"
         },
       ]
+      network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
     },
   ]
 

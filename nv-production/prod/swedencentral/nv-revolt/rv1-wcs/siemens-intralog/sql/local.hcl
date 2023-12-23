@@ -1,5 +1,5 @@
 locals {
-  providers = ["mssql"]
+  providers = ["mssql", "netbox"]
   additional_providers = [
     {
       alias           = "that"

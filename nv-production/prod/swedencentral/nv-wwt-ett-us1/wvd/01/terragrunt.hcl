@@ -15,25 +15,26 @@ locals {
 inputs = {
   workspaces = [merge(local.common.inputs.workspaces[0],
     {
-      friendly_name = "US1 Wastewater treatment"
-      description   = "Remote desktop to operate US1 Wastewater treatment"
+      friendly_name = "US1 Wastewater treatment TIA"
+      description   = "RDP to US1 Wastewater treatment TIA"
     },
     )
   ]
   host_pools = [merge(local.common.inputs.host_pools[0],
     {
-      friendly_name = "US1 WWT Operator Pool"
-      description   = "Remote desktop to operate US1 Wastewater treatment"
+      friendly_name = "US1 WWT TIA"
+      description   = "RDP to US1 Wastewater treatment TIA"
     },
     )
   ]
   application_groups = [merge(local.common.inputs.application_groups[0],
     {
-      friendly_name                = "US1 WWT Operator VM"
-      default_desktop_display_name = "US1 WWT Operator VM"
-      description                  = "Remote desktop to operate US1 Wastewater treatment"
+      friendly_name                = "US1 WWT TIA VM"
+      default_desktop_display_name = "US1 WWT TIA VM"
+      description                  = "RDP to US1 Wastewater treatment TIA VM"
       assign_groups = [
         "US1 WWT Servers VPN AP",
+        "NV Automation Member",
       ]
     },
     )

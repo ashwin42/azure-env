@@ -85,7 +85,7 @@ inputs = {
     },
     "Terraform Resource Groups Contributor" = {
       service_principals = [
-        "Terraform pipeline Azure Resource Groups",
+        "atlantis-identity",
       ],
     }
   }

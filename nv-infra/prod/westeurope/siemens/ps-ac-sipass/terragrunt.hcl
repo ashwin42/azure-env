@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.8.0"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.6"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -71,26 +71,17 @@ inputs = {
           description            = "Allow connections from local VNet"
         },
         {
-          name                   = "Cellhouse"
-          priority               = "207"
-          direction              = "Inbound"
-          source_address_prefix  = "10.193.8.0/24"
-          protocol               = "*"
-          destination_port_range = "0-65535"
-          access                 = "Allow"
-          description            = "Allow connections from Cellhouse"
+          name                    = "On-prem_Security_networks_TCP"
+          priority                = "215"
+          direction               = "Inbound"
+          source_address_prefixes = ["10.191.0.0/16", "10.193.0.0/16"]
+          protocol                = "Tcp"
+          destination_port_ranges = [4343]
+          access                  = "Allow"
+          description             = "Allow TCP connections from on-prem security networks"
         },
-        {
-          name                   = "Temp_A_subnet"
-          priority               = "208"
-          direction              = "Inbound"
-          source_address_prefix  = "10.0.0.0/8"
-          protocol               = "*"
-          destination_port_range = "0-65535"
-          access                 = "Allow"
-          description            = "Allow connections from on-prem"
-        },
-      ],
+      ]
+      network_watcher_flow_log = include.root.inputs.network_watcher_flow_log
     },
   ]
 
