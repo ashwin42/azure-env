@@ -1,7 +1,7 @@
 locals {
   azurerm_provider_version = ">= 2.99"
   providers                = ["mssql"]
-  additional_providers = [
+  additional_providers_override = [
     {
       alias           = "that"
       provider        = "azurerm"

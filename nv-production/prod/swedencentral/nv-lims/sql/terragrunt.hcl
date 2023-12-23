@@ -33,7 +33,7 @@ inputs = {
   databases = [
     {
       name     = "Labware-Prod"
-      sku_name = "GP_Gen5_4"
+      sku_name = "GP_Gen5_8"
     },
     {
       name = "Labware-Test"
