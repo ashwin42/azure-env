@@ -19,6 +19,10 @@ inputs = {
         "piotr.mazuchowski@northvolt.com",
         "wojciech.bloch@northvolt.com"
       ],
+    "Key Vault Administrator" = {
+      groups = [
+        "NV Tools & Products Member",
+      ],
     },
   }
 }
