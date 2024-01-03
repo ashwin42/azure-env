@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//user_assigned_identity?ref=v0.9.9"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//user_assigned_identity?ref=v0.10.2"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//user_assigned_identity"
 }
 
@@ -26,5 +26,16 @@ inputs = {
       subject  = "system:serviceaccount:atlantis:atlantis"
       audience = ["api://AzureADTokenExchange"]
     }
+  ]
+  grant_consent = [
+    {
+      service_principal_name = "Microsoft Graph"
+      type                   = "Application"
+      claim_values = [
+        "User.Read.All",
+        "Group.ReadWrite.All",
+        "Application.ReadWrite.OwnedBy",
+      ]
+    },
   ]
 }

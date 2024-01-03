@@ -1,8 +1,8 @@
 image:
   repository: nvinfra.azurecr.io/atlantis-terragrunt
-  tag: 0.0.4
+  tag: 0.0.5
 
-orgAllowlist: github.com/northvolt/azure-env
+orgAllowlist: github.com/northvolt/azure-env,github.com/northvolt/tf-infra-azuread
 
 vcsSecretName: atlantis-gh-app
 basicAuthSecretName: atlantis-basic-auth
@@ -50,6 +50,11 @@ environment:
   ATLANTIS_SILENCE_ALLOWLIST_ERRORS: "true"
   ATLANTIS_AUTODISCOVER_MODE: false
   ATLANTIS_FAIL_ON_PRE_WORKFLOW_HOOK_ERROR: "true"
+  ATLANTIS_GH_ALLOW_MERGEABLE_BYPASS_APPLY: "true"
+  ATLANTIS_SILENCE_NO_PROJECTS: "true"
+  ATLANTIS_AUTOPLAN_FILE_LIST: "disabled"
+  ATLANTIS_HIDE_PREV_PLAN_COMMENTS: "true"
+  ATLANTIS_HIDE_UNCHANGED_PLAN_COMMENTS: "true"
 
 repoConfig: |
  ---
@@ -67,6 +72,22 @@ repoConfig: |
         unset ALLOWED_PATHS
    post_workflow_hooks:
     - run: find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
+ - id: github.com/northvolt/tf-infra-azuread
+   branch: /^master$/
+   apply_requirements: [approved, mergeable]
+   import_requirements: [approved, mergeable]
+   workflow: terragrunt
+   repo_locking: true
+   pre_workflow_hooks:
+    - run: |
+        export ALLOWED_PATHS="azuread/tenants/northvolt.com/apps,azuread/tenants/northvolt.com/groups"
+        az login --federated-token "$(cat $AZURE_FEDERATED_TOKEN_FILE)" --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID
+        find ./azuread/tenants/northvolt.com/apps -name ".terraform.lock.hcl" -exec rm -rf {} \;
+        find ./azuread/tenants/northvolt.com/groups -name ".terraform.lock.hcl" -exec rm -rf {} \;
+        terragrunt-atlantis-generate.sh
+        unset ALLOWED_PATHS
+   post_workflow_hooks:
+    - run: find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
 
  workflows:
   terragrunt:
@@ -79,15 +100,15 @@ repoConfig: |
           name: DESTROY_PARAMETER
           command: if [ "$COMMENT_ARGS" = "\-\d\e\s\t\r\o\y" ]; then echo "-destroy"; else echo ""; fi
       - run:
-          command: terragrunt plan -no-color -out $PLANFILE $DESTROY_PARAMETER
+          command: terragrunt plan -no-color -out "$PLANFILE" $DESTROY_PARAMETER
           output: hide
-      - run: terragrunt show -no-color $PLANFILE
+      - run: terragrunt show -no-color "$PLANFILE"
     apply:
       steps:
       - env:
           name: TERRAGRUNT_TFPATH
           command: 'echo "terraform$$${ATLANTIS_TERRAFORM_VERSION}"'
-      - run: terragrunt apply -no-color $PLANFILE
+      - run: terragrunt apply -no-color "$PLANFILE"
 
 serviceAccount:
   annotations:
