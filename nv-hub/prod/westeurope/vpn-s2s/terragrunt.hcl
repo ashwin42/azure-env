@@ -356,5 +356,23 @@ inputs = {
       enable_bgp                 = "false"
       generate_psk               = true
     },
+    {
+      name                = "azure-to-pnl1-we"
+      gateway_address     = "62.20.20.219"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65402"
+      bgp_peering_address = "169.254.116.8"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES256"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES256"
+      ipsec_integrity     = "GCMAES256"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
   ]
 }
