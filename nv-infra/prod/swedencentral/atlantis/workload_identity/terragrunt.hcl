@@ -35,6 +35,9 @@ inputs = {
         "User.Read.All",
         "Group.ReadWrite.All",
         "Application.ReadWrite.OwnedBy",
+        "Policy.ReadWrite.ApplicationConfiguration",
+        "Policy.Read.All",
+        "DelegatedPermissionGrant.ReadWrite.All",
       ]
     },
   ]
