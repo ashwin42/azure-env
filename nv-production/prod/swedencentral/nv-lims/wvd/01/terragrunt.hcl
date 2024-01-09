@@ -35,7 +35,14 @@ inputs = {
       {
         name          = "${local.name}-04-hp"
         friendly_name = "Labware LIMS Dev"
-        description   = "Remote desktop to administer Lims Dev and bg tasks"
+        description   = "Remote desktop to administer Lims"
+      }
+    ),
+    merge(local.common.inputs.host_pools[0],
+      {
+        name          = "${local.name}-05-hp"
+        friendly_name = "Labware LIMS BG tasks"
+        description   = "Remote desktop to administer Lims bg tasks"
       }
     ),
   ]
@@ -75,6 +82,19 @@ inputs = {
         friendly_name                = "LIMS Dev VM"
         default_desktop_display_name = "LIMS Dev VM"
         description                  = "Remote desktop to LIMS dev VM"
+        assign_groups = [
+          "NV TechOps Role",
+          "Labware LIMS Developers",
+        ]
+      }
+    ),
+    merge(local.common.inputs.application_groups[0],
+      {
+        name                         = "${local.name}-05-ag"
+        host_pool_name               = "${local.name}-05-hp"
+        friendly_name                = "LIMS BG VM"
+        default_desktop_display_name = "LIMS BG VM"
+        description                  = "Remote desktop to LIMS bg VM"
         assign_groups = [
           "NV TechOps Role",
           "Labware LIMS Developers",
