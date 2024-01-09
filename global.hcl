@@ -3,7 +3,6 @@ locals {
   billing_profile_name = "PQSA-I454-BG7-PGB"
   invoice_section_name = "E5XA-OC4Y-PJA-PGB"
   account_type         = "customer"
-  dns_servers          = ["10.40.250.4", "10.40.250.5"]
 
   # netbox
   netbox_server_url         = "https://netbox.it.aws.nvlt.co"

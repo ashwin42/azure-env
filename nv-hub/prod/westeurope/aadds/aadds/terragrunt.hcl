@@ -1,6 +1,6 @@
 terraform {
-  #source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.6.12"
-  source = "../../../../../../tf-mod-azure/aadds"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//aadds?ref=v0.10.4"
+  #source = "../../../../../../tf-mod-azure/aadds"
 }
 
 include "root" {

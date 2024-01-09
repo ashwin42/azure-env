@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.3.5"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.4"
   # source = "../../../../../../../tf-mod-azure//vnet"
 }
 
@@ -15,6 +15,7 @@ include "root" {
 inputs = {
   vnet_name                = "${include.root.inputs.location}-${include.root.inputs.subscription_name}.avx.dev-vnet-2"
   address_space            = ["100.64.3.0/24"]
+  dns_servers              = ["10.40.250.4", "10.40.250.5"]
   vnet_resource_group_name = dependency.rg.outputs.resource_group_name
   # bgp_community = "" what should this be?
   subnets = [
