@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//virtual_network_gateway/netbox?ref=v0.9.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//virtual_network_gateway/netbox?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//virtual_network_gateway/netbox"
 }
 
@@ -44,13 +44,13 @@ inputs = {
           name                          = "${local.vpn_gw_name}-ip-conf-1"
           private_ip_address_allocation = "Dynamic"
           public_ip_address_name        = "${local.vpn_gw_name}-ip-1"
-          subnet_id                     = dependency.vnet.outputs.subnet.GatewaySubnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.GatewaySubnet.id
         },
         {
           name                          = "${local.vpn_gw_name}-ip-conf-2"
           private_ip_address_allocation = "Dynamic"
           public_ip_address_name        = "${local.vpn_gw_name}-ip-2"
-          subnet_id                     = dependency.vnet.outputs.subnet.GatewaySubnet.id
+          subnet_id                     = dependency.vnet.outputs.subnets.GatewaySubnet.id
         },
       ]
       private_ip_address_enabled = true
