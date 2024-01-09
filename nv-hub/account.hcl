@@ -5,8 +5,8 @@ locals {
   remote_state_azurerm_storage_account_name = "nvhubtfstate"
   remote_state_azurerm_container_name       = "nv-tf-state"
   remote_state_azurerm_resource_group_name  = "nv-hub-core"
-  secrets_key_vault_name                    = "vm-secrets-kv"
-  secrets_key_vault_rg                      = "vm-secrets-kv-rg"
+  secrets_key_vault_name                    = "nv-hub-core"
+  secrets_key_vault_rg                      = "nv-hub-core"
   encryption_key_vault_name                 = "nv-swc-hub-vm-enc-kv"
   encryption_key_vault_rg                   = "nv-swc-hub-vm-enc-kv-rg"
   ad_join_secrets_key_vault_rg              = "nv-infra-core"
@@ -26,6 +26,20 @@ locals {
     },
     {
       alias    = "localadmin_keyvault"
+      provider = "azurerm"
+      blocks = {
+        features = {},
+      },
+    },
+    {
+      alias    = "keyvault_private_endpoint"
+      provider = "azurerm"
+      blocks = {
+        features = {},
+      },
+    },
+    {
+      alias    = "storage_private_endpoint"
       provider = "azurerm"
       blocks = {
         features = {},
