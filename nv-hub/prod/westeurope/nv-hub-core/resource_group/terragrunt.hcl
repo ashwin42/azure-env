@@ -9,17 +9,6 @@ include "root" {
 }
 
 inputs = {
-  setup_prefix   = ""
   lock_resources = false
-  role_assignements = [
-    {
-      role_name = "Owner"
-      groups    = ["AWS Admins"]
-    },
-    {
-      role_name = "Key Vault Administrator"
-      groups    = ["AWS Admins"]
-    },
-  ]
 }
 

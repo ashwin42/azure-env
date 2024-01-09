@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vnet/netbox"
 }
 
@@ -14,7 +14,7 @@ inputs = {
   netbox_vnet_name         = "${include.root.inputs.subscription_name}-swc-vnet"
   update_netbox            = true
   address_space            = ["10.64.96.0/19"]
-  dns_servers              = []
+  dns_servers              = ["10.40.250.4", "10.40.250.5"]
   subnets = [
     {
       name               = "${include.root.inputs.subscription_name}-general_subnet1"
