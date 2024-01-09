@@ -393,12 +393,12 @@ inputs = {
       generate_psk               = true
     },
     {
-      name                = "azure-to-pnl1-we"
+      name                = "pnl2-fw001-internet-we"
       gateway_address     = "62.20.20.219"
       address_space       = ""
       enable_bgp          = "true"
       bgp_asn             = "65402"
-      bgp_peering_address = "169.254.116.8"
+      bgp_peering_address = "169.254.0.50"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES128"
       ike_integrity       = "SHA256"
