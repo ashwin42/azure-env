@@ -1,0 +1,29 @@
+locals {
+  providers = ["mssql", "netbox"]
+  # additional_providers_override = [
+  #   {
+  #     alias           = "ad_join_keyvault"
+  #     provider        = "azurerm"
+  #     subscription_id = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+  #     blocks = {
+  #       features = {},
+  #     },
+  #   },
+  #   {
+  #     alias           = "localadmin_keyvault"
+  #     provider        = "azurerm"
+  #     subscription_id = local.subscription_id
+  #     blocks = {
+  #       features = {},
+  #     },
+  #   },
+  #   {
+  #     alias           = "that"
+  #     provider        = "azurerm"
+  #     subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+  #     blocks = {
+  #       features = {},
+  #     },
+  #   }
+  # ]
+}
