@@ -6,13 +6,7 @@ locals {
   tags = {
     infrastructure-owner = "techops@northvolt.com"
     project              = "Siemens ASRS"
-    jira                 = "HELP-105324"
-    system-owner         = ""
-    data-owner           = "pooyan@northvolt.com"
-    global-process-owner = "ashwin.sathrughnan@northvolt.com"
-    business-unit        = ""
-    department           = ""
-    cost-center          = ""
+    jira                 = "TOC-1208"
   }
 
   additional_providers = [
