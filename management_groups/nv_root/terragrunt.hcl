@@ -45,6 +45,11 @@ inputs = {
         "NV TechOps Role",
       ],
     },
+    "Security Admin" = {
+      service_principals = [
+        "DefenderForCloud",
+      ],
+    },
     "Security Reader" = {
       service_principals = [
         "DefenderOnboarding",
