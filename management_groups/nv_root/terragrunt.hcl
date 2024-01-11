@@ -48,6 +48,7 @@ inputs = {
     "Security Admin" = {
       service_principals = [
         "DefenderForCloud",
+        "DefenderForServer"
       ],
     },
     "Security Reader" = {
