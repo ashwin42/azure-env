@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -391,6 +391,24 @@ inputs = {
       dpd_timeout_seconds        = "45"
       enable_bgp                 = "false"
       generate_psk               = true
+    },
+    {
+      name                = "pnl2-fw001-internet-we"
+      gateway_address     = "62.20.20.219"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65402"
+      bgp_peering_address = "169.254.0.50"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
   ]
 }
