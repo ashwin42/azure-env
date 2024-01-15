@@ -59,5 +59,16 @@ inputs = {
       ]
     },
   ]
+  custom_rules = [
+    {
+      name                    = "WWT_ETT-US1"
+      priority                = "200"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.14.16.96/32", "10.14.16.145/32", "10.14.16.6/32"]
+      destination_port_range  = "64001-64023"
+      access                  = "Allow"
+      description             = "Allow connections from AWS Ett US1 WWT"
+    },
+  ]
 }
 
