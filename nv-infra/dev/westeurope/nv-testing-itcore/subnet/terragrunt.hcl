@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet?ref=v0.7.15"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.4"
   #source = "../../../../../../tf-mod-azure/vnet/"
 }
 
@@ -9,6 +9,7 @@ include "root" {
 }
 
 inputs = {
+  setup_prefix             = ""
   vnet_name                = "nv-gen-infra-vnet"
   vnet_resource_group_name = "nv-gen-infra-rg"
   subnets = [
