@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -45,6 +45,15 @@ inputs = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
+  data_disks = [
+    {
+      name                 = "${local.name}-datadisk01"
+      size                 = "64"
+      lun                  = "5"
+      storage_account_type = "StandardSSD_LRS"
+      caching              = "None"
+    }
+  ]
   network_interfaces = [
     {
       name = "${local.name}-nic"
