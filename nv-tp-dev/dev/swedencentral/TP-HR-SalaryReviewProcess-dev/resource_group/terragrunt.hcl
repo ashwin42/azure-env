@@ -24,6 +24,11 @@ inputs = {
       groups = [
         "NV Tools & Products Member",
       ],
+      users = [
+        "amadeusz.ozga@northvolt.pl",
+        "piotr.mazuchowski@northvolt.com",
+        "wojciech.bloch@northvolt.com"
+      ],
     },
   }
 }
