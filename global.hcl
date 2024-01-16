@@ -84,7 +84,7 @@ locals {
     "NV IT Service Support Member",
   ]
 
-# aws ssm
+  # aws ssm
   aws_ssm_region  = "eu-north-1"
   aws_ssm_profile = "nv-it-prod"
   user_data_ssm_ssh_keys = [
