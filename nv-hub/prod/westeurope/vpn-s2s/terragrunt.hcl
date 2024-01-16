@@ -410,5 +410,23 @@ inputs = {
       dpd_timeout_seconds = "45"
       generate_psk        = true
     },
+    {
+      name                       = "cuberg-camera"
+      local_network_gateway_name = "cuberg-camera"
+      gateway_address            = "64.201.242.2"
+      address_space              = "10.193.63.0/24"
+      address_prefix             = "10.193.63.0/24"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "AES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "AES256"
+      ipsec_integrity            = "SHA256"
+      pfs_group                  = "PFS2"
+      sa_lifetime                = "28800"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
+      enable_bgp                 = "false"
+      generate_psk               = true
+    },
   ]
 }
