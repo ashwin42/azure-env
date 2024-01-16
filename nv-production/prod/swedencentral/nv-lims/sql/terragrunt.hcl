@@ -23,7 +23,7 @@ locals {
 inputs = {
   key_vault_name      = "nv-production-core"
   key_vault_rg        = "nv-production-core"
-  subnet_id           = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+  subnet_id           = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
   lock_resources      = false
   minimum_tls_version = "Disabled"
   azuread_administrator = {
@@ -34,12 +34,25 @@ inputs = {
     {
       name     = "Labware-Prod"
       sku_name = "GP_Gen5_8"
+      long_term_retention_policy = {
+        weekly_retention  = "P8W"
+        monthly_retention = "P12M"
+      }
+
     },
     {
       name = "Labware-Test"
+      long_term_retention_policy = {
+        weekly_retention  = "P8W"
+        monthly_retention = "P12M"
+      }
     },
     {
       name = "Labware-Dev"
+      long_term_retention_policy = {
+        weekly_retention  = "P8W"
+        monthly_retention = "P12M"
+      }
     },
   ]
   mssql_user_client_id     = dependency.sql_app.outputs.client_id
@@ -141,7 +154,7 @@ inputs = {
   ]
   private_endpoints = {
     "nv-lims-pe" = {
-      subnet_id = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+      subnet_id = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-pec"
         subresource_names = ["sqlServer"]
@@ -158,7 +171,7 @@ inputs = {
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
-      subnet_id = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
+      subnet_id = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
     }
   ]
 }
