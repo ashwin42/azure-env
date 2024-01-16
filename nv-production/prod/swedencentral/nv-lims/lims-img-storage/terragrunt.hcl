@@ -64,7 +64,7 @@ inputs = {
     {
       base_blob = {
         tier_to_archive_after_days = 1095
-        delete_after_days          = 4380
+        delete_after_days          = 10950
       }
     }
   ]
@@ -137,9 +137,9 @@ inputs = {
       }
       private_dns_zone_group = {
         name                         = "nv-lims-img-pec"
-        dns_zone_name                = "privatelink.file.core.windows.net"
-        dns_zone_resource_group_name = "nv_infra"
-        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+        dns_zone_resource_group_name = "core_network"
+        dns_zone_name                = "privatelink.dfs.core.windows.net"
+        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
     nv-lims-img-blob-pe = {
@@ -150,9 +150,9 @@ inputs = {
       }
       private_dns_zone_group = {
         name                         = "nv-lims-img-blob-pec"
-        dns_zone_name                = "privatelink.file.core.windows.net"
-        dns_zone_resource_group_name = "nv_infra"
-        dns_zone_subscription_id     = "11dd160f-0e01-4b4d-a7a0-59407e357777"
+        dns_zone_resource_group_name = "core_network"
+        dns_zone_name                = "privatelink.blob.core.windows.net"
+        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
   }
