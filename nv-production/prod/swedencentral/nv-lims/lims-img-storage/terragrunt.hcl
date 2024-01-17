@@ -164,10 +164,6 @@ inputs = {
     virtual_network_subnet_ids = [
       dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id,
     ]
-    ip_rules = [
-      "81.233.195.87",
-      "213.50.54.196"
-    ]
   }
 
   iam_assignments = {
