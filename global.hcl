@@ -84,7 +84,10 @@ locals {
     "NV IT Service Support Member",
   ]
 
-  techops_ssh_rsa_keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvKvxLKoKTANf4FEFjK7t8oz5LUB0kmA5c4UsjY/MBfPwq//5GZhDU8jvr0uIrhICpnjWejoypP5AIC8rOsbRvWCB9HTbw3RQ+8ORVQ2kfWFSZmdw3SPQ9kPa987nIF49CMXKOI45OW/jdmnvu+eHEPefAgWLRcm4h5yilDfdQRng5Kf9ApKZGJ3QXnF06rcxX/x9I7gbrIcESef6MqdK4Qm24JP/cvnfem+/iewzWS9q8zR5Ji0apLik7bDdbgGiEX7B8ASACo2PFmvt+TIGGs6Zs6tPVBc0IMd8oURnQKA0WX3kuH6AXDGdKKzwPq1F9sS2YXGtGw9OCLxUgFMdR mihajlo.manojlov@northvolt.com",
+  # aws ssm
+  aws_ssm_region  = "eu-north-1"
+  aws_ssm_profile = "nv-it-prod"
+  user_data_ssm_ssh_keys = [
+    "/ssh_keys/techops",
   ]
 }
