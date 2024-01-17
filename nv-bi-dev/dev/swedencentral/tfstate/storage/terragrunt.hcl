@@ -19,7 +19,9 @@ inputs = {
   iam_assignments = {
     "Reader and Data Access" = {
       groups = [
+        "NV TechOps Role",
         "NV TechOps Read Member",
+        "NV Aviatrix Admin",
       ],
       service_principals = [
         "atlantis-identity"
