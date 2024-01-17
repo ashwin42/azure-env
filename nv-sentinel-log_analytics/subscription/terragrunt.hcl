@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.7.33"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//subscription?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//subscription"
 }
 
@@ -10,7 +10,7 @@ include "root" {
 
 inputs = {
   subscription_name = "NV-Sentinel-Log_Analytics"
-  management_group  = "Self Managed"
+  management_group  = "Tenant Root Group"
 
   tags = {
     owner         = "mikael.lindstrom@northvolt.com"
