@@ -1,0 +1,129 @@
+image:
+  repository: nvinfra.azurecr.io/atlantis-terragrunt
+  tag: 0.0.5
+
+orgAllowlist: github.com/northvolt/azure-env,github.com/northvolt/tf-infra-azuread
+
+vcsSecretName: atlantis-gh-app
+basicAuthSecretName: atlantis-basic-auth
+
+githubApp:
+  id: 674632
+  slug: nv-atlantis
+
+ingress:
+  ingressClassName: internal-nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  host: atlantis.infra.azure.nvlt.co
+  tls:
+    - hosts:
+        - atlantis.infra.azure.nvlt.co
+      secretName: atlantis-tls
+  path: /
+  pathType: Prefix
+
+webhook_ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /events
+    nginx.ingress.kubernetes.io/whitelist-source-range: 192.30.252.0/22,185.199.108.0/22,140.82.112.0/20,143.55.64.0/20,2a0a:a440::/29,2606:50c0::/32
+  host: atlantis-webhook.infra.azure.nvlt.co
+  tls:
+    - hosts:
+        - atlantis-webhook.infra.azure.nvlt.co
+      secretName: atlantis-webhook-tls
+  path: /
+  pathType: Prefix
+
+environment:
+  TF_IN_AUTOMATION: "true"
+  TF_INPUT: 0
+  TERRAGRUNT_NON_INTERACTIVE: "true"
+  ARM_USE_OIDC: "true"
+  ARM_USE_CLI: "false"
+  ARM_TENANT_ID: 706c5db9-5278-483b-b622-70084f823a12
+  ARM_CLIENT_ID: ${arm_client_id}
+  ARM_OIDC_TOKEN_FILE_PATH: /var/run/secrets/azure/tokens/azure-identity-token
+  ATLANTIS_SILENCE_ALLOWLIST_ERRORS: "true"
+  ATLANTIS_AUTODISCOVER_MODE: false
+  ATLANTIS_FAIL_ON_PRE_WORKFLOW_HOOK_ERROR: "true"
+  ATLANTIS_GH_ALLOW_MERGEABLE_BYPASS_APPLY: "true"
+  ATLANTIS_SILENCE_NO_PROJECTS: "true"
+  ATLANTIS_AUTOPLAN_FILE_LIST: "disabled"
+  ATLANTIS_HIDE_PREV_PLAN_COMMENTS: "true"
+  ATLANTIS_HIDE_UNCHANGED_PLAN_COMMENTS: "true"
+
+repoConfig: |
+ ---
+ repos:
+ - id: github.com/northvolt/azure-env
+   branch: /^master$/
+   apply_requirements: [approved, mergeable]
+   import_requirements: [approved, mergeable]
+   workflow: terragrunt
+   repo_locking: true
+   pre_workflow_hooks:
+    - run: |
+        export ALLOWED_PATHS="resource_group"
+        terragrunt-atlantis-generate.sh
+        unset ALLOWED_PATHS
+   post_workflow_hooks:
+    - run: find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
+ - id: github.com/northvolt/tf-infra-azuread
+   branch: /^master$/
+   apply_requirements: [approved, mergeable]
+   import_requirements: [approved, mergeable]
+   workflow: terragrunt
+   repo_locking: true
+   pre_workflow_hooks:
+    - run: |
+        export ALLOWED_PATHS="azuread/tenants/northvolt.com/apps,azuread/tenants/northvolt.com/groups"
+        az login --federated-token "$(cat $AZURE_FEDERATED_TOKEN_FILE)" --service-principal -u $AZURE_CLIENT_ID -t $AZURE_TENANT_ID
+        find ./azuread/tenants/northvolt.com/apps -name ".terraform.lock.hcl" -exec rm -rf {} \;
+        find ./azuread/tenants/northvolt.com/groups -name ".terraform.lock.hcl" -exec rm -rf {} \;
+        terragrunt-atlantis-generate.sh
+        unset ALLOWED_PATHS
+   post_workflow_hooks:
+    - run: find . -type d -name ".terragrunt-cache" -prune -exec rm -rf {} \;
+
+ workflows:
+  terragrunt:
+    plan:
+      steps:
+      - env:
+          name: TERRAGRUNT_TFPATH
+          command: 'echo "terraform$$${ATLANTIS_TERRAFORM_VERSION}"'
+      - env:
+          name: DESTROY_PARAMETER
+          command: if [ "$COMMENT_ARGS" = "\-\d\e\s\t\r\o\y" ]; then echo "-destroy"; else echo ""; fi
+      - run:
+          command: terragrunt plan -no-color -out "$PLANFILE" $DESTROY_PARAMETER
+          output: hide
+      - run: terragrunt show -no-color "$PLANFILE"
+    apply:
+      steps:
+      - env:
+          name: TERRAGRUNT_TFPATH
+          command: 'echo "terraform$$${ATLANTIS_TERRAFORM_VERSION}"'
+      - run: terragrunt apply -no-color "$PLANFILE"
+
+serviceAccount:
+  annotations:
+    azure.workload.identity/client-id: ${arm_client_id}
+    azure.workload.identity/tenant-id: 706c5db9-5278-483b-b622-70084f823a12
+
+podTemplate:
+  labels:
+    azure.workload.identity/use: "true"
+
+enableDiffMarkdownFormat: true
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 100m
+  limits:
+    memory: 4Gi

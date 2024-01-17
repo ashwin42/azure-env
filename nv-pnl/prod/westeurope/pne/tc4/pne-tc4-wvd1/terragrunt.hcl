@@ -32,8 +32,8 @@ inputs = {
       name                         = "${local.name}-ag"
       workspace_name               = "${local.name}-ws"
       host_pool_name               = "${local.name}-hp"
-      friendly_name                = "04.02 - 04.08"
-      default_desktop_display_name = "04.02 - 04.08"
+      friendly_name                = "04.02 - 04.09"
+      default_desktop_display_name = "04.02 - 04.09"
       assign_groups = [
         "P&L Validation Labs PNE Virtual Desktop users",
         "NV-PNE-VPN-AP",

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.7.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//resource_group?ref=v0.10.4"
   #source = "../../../../../../tf-mod-azure/resource_group/"
 }
 
@@ -9,6 +9,7 @@ include "root" {
 }
 
 inputs = {
+  setup_prefix   = ""
   lock_resources = false
   role_assignements = [
     {

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
@@ -12,6 +12,7 @@ inputs = {
   vnet_resource_group_name = include.root.locals.all_vars.resource_group_name
   vnet_name                = include.root.locals.all_vars.setup_prefix
   address_space            = ["10.64.0.0/19"]
+  dns_servers              = ["10.40.250.4", "10.40.250.5"]
   route_tables = [
     {
       name = "nv-production-swc-default-rt"

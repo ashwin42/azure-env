@@ -12,9 +12,9 @@ dependency "vnet" {
   config_path = "../subnet"
 }
 
-#dependency "wvd" {
-#  config_path = "../wvd/01"
-#}
+dependency "wvd" {
+  config_path = "../wvd/01"
+}
 
 dependency "rv" {
   config_path = "../recovery_vault"
@@ -26,8 +26,8 @@ locals {
 }
 
 inputs = {
-  #token                                  = dependency.wvd.outputs.tokens.nv-lims-01-hp
-  #host_pool_name                         = "nv-lims-01-hp"
+  token                                  = dependency.wvd.outputs.tokens.nv-lims-05-hp
+  host_pool_name                         = "nv-lims-05-hp"
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
@@ -43,14 +43,14 @@ inputs = {
   storage_account_name                   = "nvprodbootdiagswc"
   boot_diagnostics_enabled               = true
   ad_join                                = true
-  wvd_register                           = false
+  wvd_register                           = true
   identity = {
     type         = "SystemAssigned"
     identity_ids = null
   }
   storage_image_reference = {
     offer     = "Windows-10",
-    publisher = "MicrosoftWindowsDesktop"
+    publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
@@ -68,7 +68,7 @@ inputs = {
       ip_configuration = [
         {
           private_ip_address            = "10.64.1.37"
-          subnet_id                     = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
+          subnet_id                     = dependency.vnet.outputs.subnet["nv-lims-subnet-10.64.1.32_27"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
         },

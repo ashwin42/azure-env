@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.0"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -19,11 +19,47 @@ inputs = {
   virtual_network_gateway_id    = dependency.vpn_gateway.outputs.virtual_network_gateways.nv-hub-swc-vpn-gw.id
   tunnels = [
     {
-      name                = "revolt-ett-temp-cloudvpn-01-internet-swc"
+      name                = "revolt-ett-cldro001-internet-swc"
+      gateway_address     = "194.218.37.167"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65002"
+      bgp_peering_address = "169.254.0.45"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                = "revolt-ett-cldro002-internet-swc"
+      gateway_address     = "194.218.37.168"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65002"
+      bgp_peering_address = "169.254.0.46"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                = "revolt-ett-temp-cldro001-internet-swc"
       gateway_address     = "194.17.162.251"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.24"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -34,14 +70,14 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
-      name                = "revolt-ett-temp-cloudvpn-02-internet-swc"
+      name                = "revolt-ett-temp-cldro002-internet-swc"
       gateway_address     = "194.17.162.252"
       address_space       = ""
       enable_bgp          = "true"
-      bgp_asn             = "65327"
+      bgp_asn             = "65002"
       bgp_peering_address = "169.254.0.25"
       dh_group            = "DHGroup14"
       ike_encryption      = "GCMAES256"
@@ -52,7 +88,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
-      generate_psk        = false
+      generate_psk        = true
     },
     {
       name                = "ett-cloudvpn-01-internet-swc"
@@ -287,6 +323,7 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
     {
       name                = "labs-edge-cldro002-internet-swc"
@@ -304,6 +341,25 @@ inputs = {
       sa_lifetime         = "27000"
       sa_datasize         = "2147483647"
       dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                = "pnl2-fw001-internet-swc"
+      gateway_address     = "62.20.20.219"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65402"
+      bgp_peering_address = "169.254.0.49"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
   ]
 }

@@ -93,6 +93,7 @@ inputs = {
     "Virtual Machine Administrator Login" = {
       groups = [
         "NV TechOps Role",
+        "NV IT Core Role",
         "Printing Management System (Papercut) for Poland entity - Admin - Production",
       ],
     },

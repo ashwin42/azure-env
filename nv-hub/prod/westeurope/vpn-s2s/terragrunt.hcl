@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.9.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vpns2s?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vpns2s"
 }
 
@@ -85,6 +85,42 @@ inputs = {
       pfs_group           = "PFS24"
       sa_lifetime         = "27000"
       generate_psk        = false
+    },
+    {
+      name                = "revolt-ett-cldro001-internet"
+      gateway_address     = "194.218.37.167"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65002"
+      bgp_peering_address = "169.254.0.47"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                = "revolt-ett-cldro002-internet"
+      gateway_address     = "194.218.37.168"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65002"
+      bgp_peering_address = "169.254.0.48"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
     },
     {
       name                = "revolt-ett-temp-cldro001-internet"
@@ -344,6 +380,42 @@ inputs = {
       gateway_address            = "134.65.165.214"
       address_space              = "10.193.10.0/24,10.16.100.0/22"
       address_prefix             = "10.193.10.0/24,10.16.100.0/22"
+      dh_group                   = "DHGroup14"
+      ike_encryption             = "AES256"
+      ike_integrity              = "SHA256"
+      ipsec_encryption           = "AES256"
+      ipsec_integrity            = "SHA256"
+      pfs_group                  = "PFS2"
+      sa_lifetime                = "28800"
+      sa_datasize                = "2147483647"
+      dpd_timeout_seconds        = "45"
+      enable_bgp                 = "false"
+      generate_psk               = true
+    },
+    {
+      name                = "pnl2-fw001-internet-we"
+      gateway_address     = "62.20.20.219"
+      address_space       = ""
+      enable_bgp          = "true"
+      bgp_asn             = "65402"
+      bgp_peering_address = "169.254.0.50"
+      dh_group            = "DHGroup14"
+      ike_encryption      = "GCMAES128"
+      ike_integrity       = "SHA256"
+      ipsec_encryption    = "GCMAES128"
+      ipsec_integrity     = "GCMAES128"
+      pfs_group           = "PFS24"
+      sa_lifetime         = "27000"
+      sa_datasize         = "2147483647"
+      dpd_timeout_seconds = "45"
+      generate_psk        = true
+    },
+    {
+      name                       = "cuberg-camera"
+      local_network_gateway_name = "cuberg-camera"
+      gateway_address            = "64.201.242.2"
+      address_space              = "10.193.63.0/24"
+      address_prefix             = "10.193.63.0/24"
       dh_group                   = "DHGroup14"
       ike_encryption             = "AES256"
       ike_integrity              = "SHA256"

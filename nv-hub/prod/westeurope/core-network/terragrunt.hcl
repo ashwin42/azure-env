@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.9.2"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vnet/netbox?ref=v0.10.4"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/vnet/netbox"
 }
 
@@ -55,7 +55,7 @@ inputs = {
           next_hop_in_ip_address = "10.40.253.5"
         },
         {
-          address_prefix         = "10.64.0.0/19" #Azure SwedenCentral
+          address_prefix         = "10.64.0.0/12" #Azure SwedenCentral
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.40.253.5"
         },
@@ -100,7 +100,7 @@ inputs = {
           next_hop_in_ip_address = "10.48.0.70"
         },
         {
-          address_prefix         = "10.64.0.0/19" #Azure SwedenCentral
+          address_prefix         = "10.64.0.0/12" #Azure SwedenCentral
           next_hop_type          = "VirtualAppliance"
           next_hop_in_ip_address = "10.48.0.70"
         },
@@ -258,6 +258,12 @@ inputs = {
     {
       name                    = "nv-hub_to_nv-dwa-vnet",
       vnet_id                 = "/subscriptions/8fd2d16b-30ef-4fd1-b2f2-0df001fd747d/resourceGroups/global-rg/providers/Microsoft.Network/virtualNetworks/global"
+      allow_forwarded_traffic = true
+      allow_gateway_transit   = true
+    },
+    {
+      name                    = "nv-hub_to_labs-prod",
+      vnet_id                 = "/subscriptions/82f99951-a219-463b-97ff-011a0d6e28a4/resourceGroups/labs-prod-general-rg/providers/Microsoft.Network/virtualNetworks/labs-prod-general"
       allow_forwarded_traffic = true
       allow_gateway_transit   = true
     },

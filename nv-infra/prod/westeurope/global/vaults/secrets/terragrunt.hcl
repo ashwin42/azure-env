@@ -24,6 +24,9 @@ inputs = {
         "NV TechOps Consultants Member",
         "NV TechOps Role"
       ],
+      service_principals = [
+        "atlantis-identity",
+      ],
     },
     "Key Vault Administrator" = {
       service_principals = [

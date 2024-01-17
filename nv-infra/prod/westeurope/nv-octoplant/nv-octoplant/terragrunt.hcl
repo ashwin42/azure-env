@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.9.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
@@ -45,6 +45,15 @@ inputs = {
     admin_username = "nvadmin"
     computer_name  = local.name
   }
+  data_disks = [
+    {
+      name                 = "${local.name}-datadisk01"
+      size                 = "64"
+      lun                  = "5"
+      storage_account_type = "StandardSSD_LRS"
+      caching              = "None"
+    }
+  ]
   network_interfaces = [
     {
       name = "${local.name}-nic"
@@ -57,6 +66,17 @@ inputs = {
           ipconfig_name                 = "ipconfig"
         },
       ]
+    },
+  ]
+  custom_rules = [
+    {
+      name                    = "WWT_ETT-US1"
+      priority                = "200"
+      direction               = "Inbound"
+      source_address_prefixes = ["10.14.16.96/32", "10.14.16.145/32", "10.14.16.6/32"]
+      destination_port_range  = "64001-64023"
+      access                  = "Allow"
+      description             = "Allow connections from AWS Ett US1 WWT"
     },
   ]
 }

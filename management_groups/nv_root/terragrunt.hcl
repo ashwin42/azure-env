@@ -45,6 +45,12 @@ inputs = {
         "NV TechOps Role",
       ],
     },
+    "Security Admin" = {
+      service_principals = [
+        "DefenderForCloud",
+        "DefenderForServer"
+      ],
+    },
     "Security Reader" = {
       service_principals = [
         "DefenderOnboarding",
@@ -85,7 +91,7 @@ inputs = {
     },
     "Terraform Resource Groups Contributor" = {
       service_principals = [
-        "Terraform pipeline Azure Resource Groups",
+        "atlantis-identity",
       ],
     }
   }

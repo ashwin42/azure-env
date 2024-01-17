@@ -56,7 +56,7 @@ inputs = {
 
   network_security_groups = [
     {
-      name               = "${local.name}-nic-nsg"
+      name               = "${local.name}-nsg"
       move_default_rules = true
       rules = [
         {
@@ -82,13 +82,13 @@ inputs = {
 
   network_interfaces = [
     {
-      name                = "${local.name}-nic"
-      security_group_name = "${local.name}-nic-nsg"
+      name                = "desigo-nic"
+      security_group_name = "${local.name}-nsg"
       ip_configuration = [
         {
-          private_ip_address            = "10.44.1.146"
+          private_ip_address            = "10.44.1.135"
           subnet_id                     = dependency.vnet.outputs.subnets.siemens_system_subnet.id
-          ipconfig_name                 = "${local.name}-nic_config"
+          ipconfig_name                 = "desigo-nic_config"
           private_ip_address_allocation = "Static"
         },
       ]
