@@ -393,7 +393,7 @@ inputs = {
       generate_psk               = true
     },
     {
-      name                = "pnl2-fw001-internet-we"
+      name                = "pnl1-fw001-internet-we"
       gateway_address     = "62.20.20.219"
       address_space       = ""
       enable_bgp          = "true"
@@ -426,7 +426,8 @@ inputs = {
       sa_datasize                = "2147483647"
       dpd_timeout_seconds        = "45"
       enable_bgp                 = "false"
-      generate_psk               = true
+      generate_psk               = false
+      secret_name                = "cuberg-camera-psk"
     },
   ]
 }

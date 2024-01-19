@@ -344,7 +344,7 @@ inputs = {
       generate_psk        = true
     },
     {
-      name                = "pnl2-fw001-internet-swc"
+      name                = "pnl1-fw001-internet-swc"
       gateway_address     = "62.20.20.219"
       address_space       = ""
       enable_bgp          = "true"
