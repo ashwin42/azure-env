@@ -50,6 +50,11 @@ inputs = {
       roles    = ["db_owner"]
       database = "nextgen"
     },
+    {
+      username = "Tomteboda BuildData SQL VPN Access"
+      roles    = ["db_writer"]
+      database = "nextgen"
+    },
   ]
 
   custom_rules = [
