@@ -74,16 +74,6 @@ inputs = {
   ]
   custom_rules = [
     {
-      name                   = "Labs_RDP_MFA_VPN"
-      priority               = "200"
-      direction              = "Inbound"
-      source_address_prefix  = "10.16.8.0/23"
-      protocol               = "Tcp"
-      destination_port_range = "3389"
-      access                 = "Allow"
-      description            = "Allow RDP connections from Labs MFA VPN clients"
-    },
-    {
       name                   = "octoplant-labs_Allow_64001-64006"
       priority               = "400"
       direction              = "Inbound"
