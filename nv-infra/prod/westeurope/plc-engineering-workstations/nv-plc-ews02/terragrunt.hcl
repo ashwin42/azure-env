@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm?ref=v0.3.0"
-  #source = "../../../../../../tf-mod-azure//vm/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//vm/netbox?ref=v0.10.7"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//vm/netbox"
 }
 
 include "root" {
@@ -24,25 +24,26 @@ inputs = {
   recovery_vault_name                    = dependency.rv.outputs.recovery_services.recovery_vault_name
   recovery_vault_resource_group          = dependency.rv.outputs.resource_group.name
   recovery_services_protection_policy_id = dependency.rv.outputs.recovery_services.protection_policy_daily_id
-  vm_name                                = local.name
   name                                   = local.name
   vm_size                                = "Standard_D4_v4"
   backup_vm                              = true
   key_vault_name                         = "nv-infra-core"
   key_vault_rg                           = "nv-infra-core"
+  localadmin_key_name                    = "nv-plc-ews-nvadmin"
   storage_account_name                   = "nvinfrabootdiag"
+  boot_diagnostics_enabled               = true
   ad_join                                = true
+  install_winrm                          = true
+  netbox_role                            = "workstation"
   storage_image_reference = {
     offer     = "Windows-10",
     publisher = "MicrosoftWindowsDesktop",
     sku       = "21h1-evd-g2",
   }
   os_profile_windows_config = {
-    provision_vm_agent         = true
-    enable_automatic_upgrades  = true
-    timezone                   = null
-    winrm                      = null
-    additional_unattend_config = null
+    provision_vm_agent        = true
+    enable_automatic_upgrades = true
+    timezone                  = ""
   }
   os_profile = {
     admin_username = "nvadmin"
@@ -53,8 +54,8 @@ inputs = {
       name = "${local.name}-nic"
       ip_configuration = [
         {
-          ipaddress                     = "10.46.1.37"
-          subnet_id                     = dependency.vnet.outputs.subnet["nv-plc-ews-10.46.1.32_28"].id
+          private_ip_address            = "10.46.1.37"
+          subnet_id                     = dependency.vnet.outputs.subnets["nv-plc-ews-10.46.1.32_28"].id
           public_ip                     = false
           private_ip_address_allocation = "Static"
           ipconfig_name                 = "ipconfig"
@@ -64,10 +65,11 @@ inputs = {
   ]
   data_disks = [
     {
-      name                 = "${local.name}_datadisk"
-      size                 = "75"
-      lun                  = "0"
-      storage_account_type = "StandardSSD_LRS"
+      name                     = "${local.name}_datadisk"
+      size                     = "75"
+      lun                      = "0"
+      storage_account_type     = "StandardSSD_LRS"
+      create_option_attachment = "Attach"
     }
   ]
   custom_rules = [
@@ -83,7 +85,7 @@ inputs = {
     },
     {
       name                   = "octoplant-labs_Allow_64001-64006"
-      priority               = "300"
+      priority               = "400"
       direction              = "Inbound"
       source_address_prefix  = "10.46.1.12/32"
       protocol               = "Tcp"
@@ -93,7 +95,7 @@ inputs = {
     },
     {
       name                   = "octoplant-labs_Allow_64021"
-      priority               = "301"
+      priority               = "401"
       direction              = "Inbound"
       source_address_prefix  = "10.46.1.12/32"
       protocol               = "Tcp"
@@ -103,7 +105,7 @@ inputs = {
     },
     {
       name                   = "FL.F1"
-      priority               = "302"
+      priority               = "402"
       direction              = "Inbound"
       source_address_prefix  = "10.101.194.128/26"
       protocol               = "Tcp"
