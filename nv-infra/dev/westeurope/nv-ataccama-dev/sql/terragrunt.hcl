@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.44"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.7"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -51,6 +51,18 @@ inputs = {
       database      = "masterdatatransfdev"
       create_secret = true
     },
+    {
+      username      = "HRdata_admin"
+      roles         = ["db_owner"]
+      database      = "HRdata"
+      create_secret = true
+    },
+    {
+      username      = "HRdata_user"
+      roles         = ["db_datawriter"]
+      database      = "HRdata"
+      create_secret = true
+    },
   ]
 
   mssql_azuread_users = [
@@ -85,6 +97,10 @@ inputs = {
     },
     {
       name        = "ivaluadev"
+      max_size_gb = "50"
+    },
+    {
+      name        = "HRdata"
       max_size_gb = "50"
     }
   ]
