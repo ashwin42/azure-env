@@ -1,5 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//keyvault?ref=v0.7.26"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//keyvault?ref=v0.10.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//keyvault"
 }
 
 include "root" {
@@ -18,6 +19,45 @@ inputs = {
   enable_rbac_authorization       = true
   enabled_for_deployment          = false
   enabled_for_template_deployment = true
+  monitor_diagnostic_settings = [
+    {
+      name = "nv-infra-core-ds"
+
+      log = [
+        {
+          category_group = "allLogs"
+          enabled        = false
+
+          retention_policy = {
+            days    = 0
+            enabled = false
+          }
+        },
+        {
+          category_group = "audit"
+          enabled        = true
+
+          retention_policy = {
+            days    = 180
+            enabled = true
+          }
+        }
+      ]
+
+      metric = [
+        {
+          category = "AllMetrics"
+          enabled  = false
+
+          retention_policy = {
+            days    = 0
+            enabled = false
+          },
+        }
+      ]
+    },
+  ]
+
   iam_assignments = {
     "Key Vault Secrets Officer" = {
       groups = [
