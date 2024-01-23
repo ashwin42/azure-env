@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//synapse?ref=v0.7.44"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//synapse?ref=v0.10.8"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//synapse"
 }
 
@@ -15,10 +15,8 @@ dependency "sql" {
   config_path = "../sql"
 }
 
-# Include all settings from the root terragrunt.hcl file
-include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+include {
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -65,9 +63,11 @@ JSON
     },
   ]
 
-  private_endpoints = {
-    nv-ataccama-dev-wc-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+  private_endpoint_dns_zone_subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+  private_endpoints = [
+    {
+      name      = "nv-ataccama-dev-wc-pe"
+      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
       private_service_connection = {
         name              = "nv-ataccama-dev-wc-pec"
         subresource_names = ["Sql"]
@@ -76,27 +76,30 @@ JSON
         name                         = "nv-ataccama-dev-wc"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.azuresynapse.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
-  }
+  ]
 
   role_assignments = [
     {
-      role_name = "Synapse Administrator"
-      group     = "NV TechOps Role"
+      role_name      = "Synapse Administrator"
+      group          = "NV TechOps Role"
+      principal_type = "Group"
     },
     {
-      role_name = "Synapse Administrator"
-      group     = "Ataccama - Datalake Admins Dev"
+      role_name      = "Synapse Administrator"
+      group          = "Ataccama - Datalake Admins Dev"
+      principal_type = "Group"
     },
     {
-      role_name = "Synapse Contributor"
-      group     = "Ataccama - Datalake Admins Dev"
+      role_name      = "Synapse Contributor"
+      group          = "Ataccama - Datalake Admins Dev"
+      principal_type = "Group"
     },
     {
-      role_name = "Synapse SQL Administrator"
-      group     = "Ataccama - Datalake Admins Dev"
+      role_name      = "Synapse SQL Administrator"
+      group          = "Ataccama - Datalake Admins Dev"
+      principal_type = "Group"
     },
   ]
 }
