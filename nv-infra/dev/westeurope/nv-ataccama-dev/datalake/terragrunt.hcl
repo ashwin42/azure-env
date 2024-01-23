@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.44"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.8"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
 dependency "subnet" {
@@ -93,9 +93,11 @@ inputs = {
     },
   ]
 
-  private_endpoints = {
-    nv-ataccama-dev-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+  private_endpoint_dns_zone_subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+  private_endpoints = [
+    {
+      name      = "nv-ataccama-dev-pe"
+      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
       private_service_connection = {
         name              = "nv-ataccama-dev-pec"
         subresource_names = ["dfs"]
@@ -104,12 +106,11 @@ inputs = {
         name                         = "nv-ataccama-dev-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.dfs.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-
       }
-    }
-    nv-ataccama-dev-blob-pe = {
-      subnet_id = dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id
+    },
+    {
+      name      = "nv-ataccama-dev-blob-pe"
+      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
       private_service_connection = {
         name              = "nv-ataccama-dev-blob-pec"
         subresource_names = ["blob"]
@@ -118,10 +119,9 @@ inputs = {
         name                         = "nv-ataccama-dev-blob-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.blob.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
-    }
-  }
+    },
+  ]
 
   lifecycles = [
     {
@@ -136,7 +136,7 @@ inputs = {
     name                       = "default_rule"
     bypass                     = ["AzureServices"]
     default_action             = "Deny"
-    virtual_network_subnet_ids = [dependency.subnet.outputs.subnet["nv-ataccama-subnet"].id, ]
+    virtual_network_subnet_ids = [dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id, ]
     ip_rules = [
       "16.170.65.157",
       "13.49.218.90",
