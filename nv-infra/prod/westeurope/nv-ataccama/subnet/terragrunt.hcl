@@ -18,7 +18,7 @@ inputs = {
       name                        = "nv-ataccama-subnet"
       address_prefixes            = ["10.46.2.16/28"]
       network_security_group_name = "nv-ataccama-subnet-nsg"
-      route_table_name   = "nv-gen-infra-vnet-default-rt"
+      route_table_name            = "nv-gen-infra-vnet-default-rt"
       service_endpoints = [
         "Microsoft.Sql",
         "Microsoft.Storage",
