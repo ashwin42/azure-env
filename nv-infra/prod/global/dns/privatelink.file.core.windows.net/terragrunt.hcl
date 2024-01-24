@@ -14,14 +14,6 @@ inputs = {
       name                = basename(get_terragrunt_dir())
       resource_group_name = "nv_infra"
 
-      records = [
-        {
-          name    = "qcsftpstoragect2"
-          records = ["10.44.2.11"]
-          ttl     = 300
-        },
-      ]
-
       virtual_network_links = [
         {
           name    = "core_vnet_vnl",
