@@ -26,9 +26,10 @@ inputs = {
         name              = "nv-cmx-pec"
         subresource_names = ["sqlServer"]
       }
-      create_dns_record            = true
-      dns_zone_name                = "privatelink.database.windows.net"
-      dns_zone_resource_group_name = "core_network"
+      private_dns_zone_group = {
+        dns_zone_name                = "privatelink.database.windows.net"
+        dns_zone_resource_group_name = "core_network"
+      }
     }
   ]
 
