@@ -1,29 +1,30 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.2.17"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//global?ref=v0.10.13"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//global"
 }
 
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
   setup_prefix  = "asrs-nv1-dev"
   address_space = ["10.44.5.176/28", "10.44.5.192/28"]
   dns_servers   = ["10.40.250.5", "10.40.250.4"]
+
   subnets = [
     {
       name                 = "asrs-nv1-dev-subnet-10.44.5.176-28"
       address_prefixes     = ["10.44.5.176/28"]
       service_endpoints    = ["Microsoft.Sql"]
-      enforce_private_link = true
+      enforce_private_link = false
       delegation           = []
     },
     {
       name                 = "asrs-nv1-dev-subnet-10.44.5.192-28"
       address_prefixes     = ["10.44.5.192/28"]
       service_endpoints    = []
-      enforce_private_link = false
+      enforce_private_link = true
       delegation = [
         {
           name                       = "Microsoft.Web.serverFarms",
@@ -33,6 +34,7 @@ inputs = {
       ]
     },
   ]
+
   peerings = [
     {
       name                  = "asrs_nv1-dev2nv-hub",
