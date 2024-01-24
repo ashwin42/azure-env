@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.9.4"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.13"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
 dependency "subnet" {
@@ -12,8 +12,7 @@ dependency "rg" {
 }
 
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -53,6 +52,12 @@ inputs = {
               scope       = "default"
               type        = "group"
               group       = "Dwa RND Data Lake QC Storage"
+            },
+            {
+              group       = "Dwa RND Data Lake Storage Admin"
+              permissions = "rwx"
+              scope       = "access"
+              type        = "group"
             },
           ]
         }
@@ -128,8 +133,9 @@ inputs = {
     },
   ]
 
-  private_endpoints = {
-    nv-dwa-rnd-pe = {
+  private_endpoints = [
+    {
+      name      = "nv-dwa-rnd-pe"
       subnet_id = dependency.subnet.outputs.subnets["nv-dwa-rnd"].id
       private_service_connection = {
         name              = "nv-dwa-rnd-pec"
@@ -139,10 +145,10 @@ inputs = {
         name                         = "nv-dwa-rnd-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.dfs.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
-    }
-    nv-dwa-rnd-blob-pe = {
+    },
+    {
+      name      = "nv-dwa-rnd-blob-pe"
       subnet_id = dependency.subnet.outputs.subnets["nv-dwa-rnd"].id
       private_service_connection = {
         name              = "nv-dwa-rnd-blob-pec"
@@ -152,11 +158,9 @@ inputs = {
         name                         = "nv-dwa-rnd-blob-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.blob.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-
       }
     }
-  }
+  ]
 
   network_rules = {
     name           = "default_rule"
