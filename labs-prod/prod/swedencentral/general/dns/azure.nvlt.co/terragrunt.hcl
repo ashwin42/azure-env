@@ -1,6 +1,6 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//dns?ref=v0.10.1"
-  #source = "${dirname(get_repo_root())}/tf-mod-azure//dns/"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//dns?ref=v0.10.9"
+  #source = "${dirname(get_repo_root())}/tf-mod-azure//dns"
 }
 
 include "root" {
@@ -9,7 +9,6 @@ include "root" {
 }
 
 inputs = {
-  parent_dns_subscription_id = include.root.inputs.dns_domain_parent_subscription_id
   dns_zones = [
     {
       name                                = include.root.inputs.dns_domain

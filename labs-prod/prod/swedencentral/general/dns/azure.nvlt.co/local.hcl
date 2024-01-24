@@ -1,11 +1,9 @@
 locals {
   additional_providers = [
     {
-      alias    = "parent_dns"
-      provider = "azurerm"
-      raw = {
-        subscription_id = "coalesce(var.parent_dns_subscription_id, var.subscription_id)"
-      }
+      alias           = "parent_dns"
+      provider        = "azurerm"
+      subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       blocks = {
         features = {},
       },
