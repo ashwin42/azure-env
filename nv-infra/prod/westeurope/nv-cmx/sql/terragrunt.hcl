@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.44"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -7,10 +7,8 @@ dependency "global" {
   config_path = "../global"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -20,8 +18,9 @@ inputs = {
   key_vault_rg        = "nv-infra-core"
   secret_name         = "nv-cmx-sqladmin"
 
-  private_endpoints = {
-    "nv-cmx-pe" = {
+  private_endpoints = [
+    {
+      name      = "nv-cmx-pe"
       subnet_id = dependency.global.outputs.subnet["nv-cmx-subnet-10.46.0.64-28"].id
       private_service_connection = {
         name              = "nv-cmx-pec"
@@ -30,11 +29,8 @@ inputs = {
       create_dns_record            = true
       dns_zone_name                = "privatelink.database.windows.net"
       dns_zone_resource_group_name = "core_network"
-      dns_record_name              = "nv-cmx-sql"
-      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-      dns_record_ttl               = 300
     }
-  }
+  ]
 
   lock_resources                = false
   public_network_access_enabled = false
