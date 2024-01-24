@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.8.0"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -11,11 +11,8 @@ dependency "sql_app" {
   config_path = "../sql_app"
 }
 
-
-# Include all settings from the root terragrunt.hcl file
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -25,8 +22,10 @@ inputs = {
   mssql_federated_login = false
   key_vault_name        = "nv-infra-core"
   key_vault_rg          = "nv-infra-core"
-  private_endpoints = {
-    "asrs-nv1-prod-pe" = {
+
+  private_endpoints = [
+    {
+      name      = "asrs-nv1-prod-pe"
       subnet_id = dependency.vnet.outputs.subnets["asrs-nv1-prod-subnet-10.46.0.0-27"].id
       private_service_connection = {
         name              = "asrs-nv1-prod-pec"
@@ -35,16 +34,16 @@ inputs = {
       create_dns_record            = true
       dns_zone_name                = "privatelink.database.windows.net"
       dns_zone_resource_group_name = "core_network"
-      dns_record_name              = "asrs-nv1-prod-sql"
-      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-      dns_record_ttl               = 300
     }
-  }
+  ]
+
   lock_resources      = false
   minimum_tls_version = "Disabled"
+
   azuread_administrator = {
     group = "Siemens ASRS Database Administrators"
   }
+
   databases = [
     {
       name = "siemens-wcs-cathode"
@@ -68,8 +67,10 @@ inputs = {
       name = "siemens-wcs-anode2"
     },
   ]
+
   mssql_user_client_id     = dependency.sql_app.outputs.client_id
   mssql_user_client_secret = dependency.sql_app.outputs.service_principal_password
+
   mssql_azuread_users = [
     {
       username = "VPN Siemens ASRS AP"
@@ -92,6 +93,7 @@ inputs = {
       database = "siemens-wcs-anode2"
     },
   ]
+
   mssql_local_users = [
     {
       username      = "asrs_wcs_rw_user"
@@ -126,3 +128,4 @@ inputs = {
     }
   ]
 }
+
