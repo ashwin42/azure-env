@@ -16,11 +16,6 @@ inputs = {
 
       records = [
         {
-          name    = "qcsftpstorage2"
-          records = ["10.44.2.16"]
-          ttl     = 300
-        },
-        {
           name    = "qcsftpstoragect2"
           records = ["10.44.2.11"]
           ttl     = 300
