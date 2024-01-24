@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.18"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -7,10 +7,8 @@ dependency "global" {
   config_path = "../global"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -20,6 +18,7 @@ inputs = {
   key_vault_rg                  = "nv-infra-core"
   lock_resources                = false
   public_network_access_enabled = false
+  secret_name                   = "asrs-nv1-dev-sqladmin"
   azuread_administrator = {
     username = "domainjoin@northvolt.com"
   }
@@ -36,8 +35,10 @@ inputs = {
       subnet_id = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
     }
   ]
-  private_endpoints = {
-    "asrs-nv1-dev-pe" = {
+
+  private_endpoints = [
+    {
+      name      = "asrs-nv1-dev-pe"
       subnet_id = dependency.global.outputs.subnet["asrs-nv1-dev-subnet-10.44.5.176-28"].id
       private_service_connection = {
         name              = "asrs-nv1-dev-pec"
@@ -46,9 +47,6 @@ inputs = {
       create_dns_record            = true
       dns_zone_name                = "privatelink.database.windows.net"
       dns_zone_resource_group_name = "core_network"
-      dns_record_name              = "asrs-nv1-dev-sql"
-      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-      dns_record_ttl               = 300
     }
-  }
+  ]
 }
