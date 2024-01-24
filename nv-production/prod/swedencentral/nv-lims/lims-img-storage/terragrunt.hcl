@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.9.4"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure/storage"
 }
 
@@ -12,8 +12,7 @@ dependency "rg" {
 }
 
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -49,10 +48,16 @@ inputs = {
           group_name = "NV TechOps Role"
           ace = [
             {
+              group       = "Labware Users"
               permissions = "rwx"
               scope       = "default"
               type        = "group"
+            },
+            {
               group       = "Labware Users"
+              permissions = "rwx"
+              scope       = "access"
+              type        = "group"
             },
           ]
         }
@@ -128,8 +133,9 @@ inputs = {
     },
   ]
 
-  private_endpoints = {
-    nv-lims-img-pe = {
+  private_endpoints = [
+    {
+      name      = "nv-lims-img-pe"
       subnet_id = dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-img-pec"
@@ -139,10 +145,10 @@ inputs = {
         name                         = "nv-lims-img-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.dfs.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
-    }
-    nv-lims-img-blob-pe = {
+    },
+    {
+      name      = "nv-lims-img-blob-pe"
       subnet_id = dependency.subnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-img-blob-pec"
@@ -152,10 +158,9 @@ inputs = {
         name                         = "nv-lims-img-blob-pec"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.blob.core.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
-  }
+  ]
 
   network_rules = {
     name           = "default_rule"
