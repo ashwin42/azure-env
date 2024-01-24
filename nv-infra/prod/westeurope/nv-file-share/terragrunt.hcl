@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.7.44"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.13"
   #source = "../../../../../tf-mod-azure//storage/"
 }
 
@@ -16,8 +16,7 @@ dependency "labx-global" {
 }
 
 include "root" {
-  path   = find_in_parent_folders()
-  expose = true
+  path = find_in_parent_folders()
 }
 
 inputs = {
@@ -27,6 +26,7 @@ inputs = {
   enable_advanced_threat_protection = false
   min_tls_version                   = "TLS1_0"
   allow_nested_items_to_be_public   = false
+
   blob_properties = {
     versioning_enabled = true
     delete_retention_policy = {
@@ -36,7 +36,6 @@ inputs = {
       days = 30
     }
   }
-
 
   azure_files_authentication = {
     directory_type = "AADDS"
@@ -61,8 +60,9 @@ inputs = {
     ]
   }
 
-  private_endpoints = {
-    "nvinfrafs-pe" = {
+  private_endpoints = [
+    {
+      name      = "nvinfrafs-pe"
       subnet_id = dependency.global.outputs.subnet.vdi_subnet.id
       private_service_connection = {
         subresource_names = ["file"]
@@ -73,5 +73,5 @@ inputs = {
         dns_zone_name                = "privatelink.file.core.windows.net"
       }
     }
-  }
+  ]
 }
