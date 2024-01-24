@@ -90,14 +90,15 @@ inputs = {
   databases = [
     {
       name                        = "masterdatatransfdev"
-      sku_name                    = "GP_S_Gen5_1"
+      sku_name                    = "GP_S_Gen5_2"
       min_capacity                = "0.5"
       max_size_gb                 = "50"
       auto_pause_delay_in_minutes = "60"
     },
     {
-      name        = "ivaluadev"
-      max_size_gb = "50"
+      name                 = "ivaluadev"
+      max_size_gb          = "9"
+      storage_account_type = "Local"
     },
     {
       name        = "HRdata"
@@ -107,13 +108,14 @@ inputs = {
 
   private_endpoints = {
     nv-ataccama-dev-sql-pe = {
-      subnet_id = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
+      subnet_id          = dependency.subnet.outputs.subnets["nv-ataccama-subnet"].id
+      netbox_description = "nv-ataccama-dev-sql-pe"
       private_service_connection = {
         name              = "nv-ataccama-dev-sql-pec"
         subresource_names = ["sqlServer"]
       }
       private_dns_zone_group = {
-        name                         = "nv-ataccama-dev-sql"
+        name                         = "nv-ataccama-dev-sql-pe"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.database.windows.net"
         dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"

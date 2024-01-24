@@ -1,4 +1,5 @@
 locals {
+  providers = ["azurerm", "netbox"]
   additional_providers = [
     {
       alias           = "that"
