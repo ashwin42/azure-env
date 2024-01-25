@@ -1,6 +1,6 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.7.62"
-  # source = "${dirname(get_repo_root())}/tf-mod-azure/web_app/"
+  source = "git@github.com:northvolt/tf-mod-azure.git//web_app?ref=v0.10.14"
+  # source = "${dirname(get_repo_root())}/tf-mod-azure//web_app/"
 }
 
 include "root" {
@@ -30,6 +30,10 @@ inputs = {
   sku_name   = "P1v2"
   https_only = true
 
+  app_settings = {
+    "ASPNETCORE_DETAILEDERRORS" = "true"
+  }
+
   site_config = {
     always_on          = true
     use_32_bit_worker  = true
@@ -42,23 +46,23 @@ inputs = {
 
   client_certificate_mode = "Optional"
 
-  virtual_network_subnet_id = dependency.subnet.outputs.subnets["${local.subnet}"].id
+  virtual_network_subnet_id = dependency.subnet.outputs.subnets[local.subnet].id
 
-  private_endpoint = {
-    location            = include.root.locals.all_vars.location
-    subnet_id           = dependency.subnet.outputs.subnets["${local.intergration_subnet}"].id
-    resource_group_name = dependency.resource_group.outputs.resource_group_name
-    private_dns_zone_group = {
-      dns_zone_resource_group_name = "core_network"
-      dns_zone_name                = "privatelink.azurewebsites.net"
-      dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
+  private_endpoints = [
+    {
+      name      = "${local.name}-pe"
+      subnet_id = dependency.subnet.outputs.subnets[local.intergration_subnet].id
+      private_service_connection = {
+        name                 = "${local.name}-pec"
+        subresource_names    = ["sites"]
+        is_manual_connection = false
+      }
+      private_dns_zone_group = {
+        dns_zone_resource_group_name = "core_network"
+        dns_zone_name                = "privatelink.azurewebsites.net"
+      }
     }
-    private_service_connection = {
-      name                 = "${local.name}-pec"
-      subresource_names    = ["sites"]
-      is_manual_connection = false
-    }
-  }
+  ]
 
   iam_assignments = {
     Contributor = {
