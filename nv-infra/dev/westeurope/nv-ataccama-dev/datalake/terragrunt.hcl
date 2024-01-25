@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.8"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//storage?ref=v0.10.14"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//storage"
 }
 
@@ -93,7 +93,6 @@ inputs = {
     },
   ]
 
-  private_endpoint_dns_zone_subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
   private_endpoints = [
     {
       name      = "nv-ataccama-dev-pe"

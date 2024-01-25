@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.19"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -11,7 +11,6 @@ dependency "sql_app" {
   config_path = "../sql_app"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include "root" {
   path = find_in_parent_folders()
 }
@@ -21,15 +20,21 @@ locals {
 }
 
 inputs = {
-  key_vault_name      = "nv-production-core"
-  key_vault_rg        = "nv-production-core"
-  subnet_id           = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
-  lock_resources      = false
-  minimum_tls_version = "Disabled"
+  key_vault_name        = "nv-production-core"
+  key_vault_rg          = "nv-production-core"
+  subnet_id             = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
+  lock_resources        = false
+  minimum_tls_version   = "Disabled"
+  mssql_app_login       = true
+  mssql_federated_login = false
+
   azuread_administrator = {
     group = "Labware LIMS Developers"
   }
+
   create_administrator_password = true
+  secret_name                   = "nv-lims-sqladmin"
+
   databases = [
     {
       name     = "Labware-Prod"
@@ -55,8 +60,10 @@ inputs = {
       }
     },
   ]
+
   mssql_user_client_id     = dependency.sql_app.outputs.client_id
   mssql_user_client_secret = dependency.sql_app.outputs.service_principal_password
+
   mssql_local_users = [
     {
       username    = "nv_rw_user]"
@@ -152,8 +159,10 @@ inputs = {
       create_secret = true
     },
   ]
-  private_endpoints = {
-    "nv-lims-pe" = {
+
+  private_endpoints = [
+    {
+      name      = "nv-lims-pe"
       subnet_id = dependency.vnet.outputs.subnets["nv-lims-subnet-10.64.1.32_27"].id
       private_service_connection = {
         name              = "nv-lims-pec"
@@ -163,11 +172,10 @@ inputs = {
         name                         = "nv-lims-sql"
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.database.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-        dns_record_ttl               = 300
       }
     }
-  }
+  ]
+
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
@@ -175,3 +183,4 @@ inputs = {
     }
   ]
 }
+

@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.32"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -11,7 +11,6 @@ dependency "resource_group" {
   config_path = "../resource_group"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include "root" {
   path   = find_in_parent_folders()
   expose = true
@@ -26,9 +25,11 @@ inputs = {
   setup_prefix                  = include.root.locals.all_vars.project
   key_vault_name                = "nvdwainfrasecrets"
   key_vault_rg                  = "global-rg"
+  secret_name                   = "siemens-wcs-sqladmin"
   create_administrator_password = true
-  private_endpoints = {
-    "${include.root.locals.all_vars.project}-sql-pe" = {
+
+  private_endpoints = [
+    {
       name      = "${include.root.locals.all_vars.project}-sql-pe"
       subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-subnet1"].id
       private_service_connection = {
@@ -38,15 +39,17 @@ inputs = {
       private_dns_zone_group = {
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.database.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
-  }
+  ]
+
   lock_resources      = false
   minimum_tls_version = "Disabled"
+
   azuread_administrator = {
     group = "NV TechOps Role"
   }
+
   databases = [
     {
       name = "${local.name}-inbound"
@@ -55,9 +58,10 @@ inputs = {
       name = "${local.name}-outbound"
     },
   ]
+
   mssql_azuread_users = [
     {
-      username = "VPN-Siemens-ASRS-AP"
+      username = "VPN Siemens ASRS AP"
       roles    = ["db_owner"]
       database = "${local.name}-inbound"
     },
@@ -67,7 +71,7 @@ inputs = {
       database = "${local.name}-inbound"
     },
     {
-      username = "VPN-Siemens-ASRS-AP"
+      username = "VPN Siemens ASRS AP"
       roles    = ["db_owner"]
       database = "${local.name}-outbound"
     },
@@ -77,6 +81,7 @@ inputs = {
       database = "${local.name}-outbound"
     },
   ]
+
   mssql_local_users = [
     {
       username      = "${local.name}-rw"
@@ -111,3 +116,4 @@ inputs = {
     },
   ]
 }
+

@@ -1,5 +1,5 @@
 terraform {
-  source = "git::git@github.com:northvolt/tf-mod-azure.git//dns?ref=v0.6.13"
+  source = "git::git@github.com:northvolt/tf-mod-azure.git//dns?ref=v0.10.13"
   #source = "../../../../../../tf-mod-azure//dns/"
 }
 
@@ -13,23 +13,7 @@ inputs = {
     {
       name                = basename(get_terragrunt_dir())
       resource_group_name = "nv_infra"
-      records = [
-        {
-          name    = "qcsftpstorage"
-          records = ["10.44.2.5"]
-          ttl     = 300
-        },
-        {
-          name    = "qcsftpstorage2"
-          records = ["10.44.2.16"]
-          ttl     = 300
-        },
-        {
-          name    = "qcsftpstoragect2"
-          records = ["10.44.2.11"]
-          ttl     = 300
-        },
-      ]
+
       virtual_network_links = [
         {
           name    = "core_vnet_vnl",

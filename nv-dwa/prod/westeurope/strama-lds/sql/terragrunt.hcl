@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.9.4"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.13"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -11,7 +11,6 @@ dependency "resource_group" {
   config_path = "../resource_group"
 }
 
-# Include all settings from the root terragrunt.hcl file
 include "root" {
   path   = find_in_parent_folders()
   expose = true
@@ -28,8 +27,9 @@ inputs = {
   key_vault_rg                  = "global-rg"
   allow_azure_ip_access         = false
   create_administrator_password = true
-  private_endpoints = {
-    "${include.root.locals.all_vars.project}-sql-pe" = {
+
+  private_endpoints = [
+    {
       name      = "${include.root.locals.all_vars.project}-sql-pe"
       subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-subnet1"].id
       private_service_connection = {
@@ -39,20 +39,23 @@ inputs = {
       private_dns_zone_group = {
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.database.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       }
     }
-  }
+  ]
+
   lock_resources = false
+
   azuread_administrator = {
     group = "NV TechOps Role"
   }
+
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
       subnet_id = dependency.subnet.outputs.subnets["${include.root.locals.all_vars.project}-subnet1"].id
     },
   ]
+
   databases = [
     {
       name = "Log_DB"
@@ -73,6 +76,7 @@ inputs = {
       }
     },
   ]
+
   mssql_local_users = [
     {
       username      = "${local.name}-owner"
@@ -123,6 +127,7 @@ inputs = {
       create_secret = true
     },
   ]
+
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
@@ -130,3 +135,4 @@ inputs = {
     }
   ]
 }
+

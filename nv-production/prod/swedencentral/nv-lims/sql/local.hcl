@@ -1,9 +1,9 @@
 locals {
-  azurerm_provider_version = ">= 2.99"
-  providers                = ["mssql"]
+  providers = ["mssql", "netbox"]
+
   additional_providers_override = [
     {
-      alias           = "that"
+      alias           = "private_endpoint_dns_subscription"
       provider        = "azurerm"
       subscription_id = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
       blocks = {
@@ -20,3 +20,4 @@ locals {
     },
   ]
 }
+
