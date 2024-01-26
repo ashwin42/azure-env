@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.7.48"
+  source = "git@github.com:northvolt/tf-mod-azure.git//mssql?ref=v0.10.14"
   #source = "${dirname(get_repo_root())}/tf-mod-azure//mssql"
 }
 
@@ -32,8 +32,8 @@ inputs = {
   allow_azure_ip_access         = false
   create_administrator_password = true
   minimum_tls_version           = "1.0"
-  private_endpoints = {
-    "${include.root.inputs.project}-sql-pe" = {
+  private_endpoints = [
+     {
       name      = "${include.root.inputs.project}-sql-pe"
       subnet_id = dependency.subnet.outputs.subnets["${include.root.inputs.project}-subnet1"].id
       private_service_connection = {
@@ -43,11 +43,10 @@ inputs = {
       private_dns_zone_group = {
         dns_zone_resource_group_name = "core_network"
         dns_zone_name                = "privatelink.database.windows.net"
-        dns_zone_subscription_id     = "4312dfc3-8ec3-49c4-b95e-90a248341dd5"
-        dns_record_ttl               = 300
       }
     }
-  }
+  ]
+  
   lock_resources = false
   azuread_administrator = {
     group = "NV TechOps Role"
