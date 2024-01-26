@@ -51,12 +51,14 @@ inputs = {
   azuread_administrator = {
     group = "NV TechOps Role"
   }
+  
   custom_rules = [
     {
       name      = "AllowLocalSubnet"
       subnet_id = dependency.subnet.outputs.subnets["${include.root.inputs.project}-subnet1"].id
     },
   ]
+
   databases = [
     {
       name = "Jomesa_prod_DB"
